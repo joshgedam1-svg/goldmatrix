@@ -2022,14 +2022,37 @@ footer {
   .hero-desc { font-size: 13px; }
 
   .trust-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px 6px; }
-  .section-brands { padding: 22px 14px; }
-  .brands-list { gap: 14px 20px; }
-  .brand-logo img { height: 26px; max-width: 90px; }
 
-  .pfeat-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .pfeat-card { padding: 18px 12px 16px; }
-  .pfeat-title { font-size: 14px; }
-  .pfeat-desc { font-size: 11.5px; }
+  /* ── Brands strip — stack vertically, centre-aligned on mobile ── */
+  .section-brands { padding: 28px 16px; }
+  .brands-wrap {
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+  .brands-label {
+    text-align: center;
+    font-size: 10px;
+  }
+  .brands-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px 16px;
+    justify-items: center;
+    width: 100%;
+  }
+  .brand-logo {
+    width: 100%;
+    justify-content: center;
+  }
+  .brand-logo img { height: 28px; max-width: 100px; }
+
+  /* ── Feature cards — 1 column on small phones ── */
+  .pfeat-grid { grid-template-columns: 1fr; gap: 14px; }
+  .pfeat-card { padding: 22px 20px; flex-direction: row; align-items: flex-start; text-align: left; gap: 16px; }
+  .pfeat-icon-badge { flex-shrink: 0; width: 48px; height: 48px; font-size: 22px; margin-bottom: 0; }
+  .pfeat-title { font-size: 15px; }
+  .pfeat-desc { font-size: 12px; }
 
   .integ-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .integ-card { padding: 16px 10px 14px; min-height: 150px; }
@@ -2052,7 +2075,9 @@ footer {
 
 @media (max-width: 375px) {
   .hero-h1 { font-size: 1.4rem; }
-  .feat-grid, .modules-grid, .pfeat-grid, .integ-grid { grid-template-columns: 1fr; }
+  .feat-grid, .modules-grid, .integ-grid { grid-template-columns: 1fr; }
+  .pfeat-grid { grid-template-columns: 1fr; }
+  .brands-list { grid-template-columns: repeat(2, 1fr); }
   .trust-list { grid-template-columns: repeat(2, 1fr); }
   .app-main-heading { font-size: 1.35rem; }
 }
