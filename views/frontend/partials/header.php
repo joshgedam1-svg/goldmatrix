@@ -2042,17 +2042,16 @@ footer {
   .testi-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px 24px; }
 
-  /* ── feat-grid: 1 column on mobile, horizontal card layout ── */
+  /* ── feat-grid: 1 column on mobile, same card layout as desktop ── */
   .feat-grid { grid-template-columns: 1fr !important; gap: 14px; }
   .feat-card {
-    flex-direction: row !important;
+    flex-direction: column !important;
     align-items: flex-start;
-    gap: 18px;
-    padding: 20px 18px;
+    padding: 24px 20px;
   }
-  .feat-icon { flex-shrink: 0; margin-bottom: 0 !important; }
-  .feat-title { font-size: 15px; }
-  .feat-desc { font-size: 13px; }
+  .feat-icon { margin-bottom: 16px !important; }
+  .feat-title { font-size: 16px; }
+  .feat-desc { font-size: 13.5px; }
 
   /* Solutions section grid on tablet */
   .gm-sol-card-grid { grid-template-columns: 1fr 1fr !important; }
@@ -2095,12 +2094,12 @@ footer {
   }
   .brand-logo img { height: 28px; max-width: 100px; }
 
-  /* ── feat-grid: force 1-col on small mobile ── */
+  /* ── feat-grid: force 1-col on small mobile, column layout same as desktop ── */
   .feat-grid { grid-template-columns: 1fr !important; gap: 12px; }
-  .feat-card { flex-direction: row !important; align-items: flex-start; gap: 14px; padding: 18px 16px; }
-  .feat-icon { flex-shrink: 0; width: 44px; height: 44px; font-size: 20px; margin-bottom: 0 !important; }
-  .feat-title { font-size: 14.5px; }
-  .feat-desc { font-size: 12.5px; }
+  .feat-card { flex-direction: column !important; align-items: flex-start; padding: 20px 16px; }
+  .feat-icon { width: 44px; height: 44px; font-size: 20px; margin-bottom: 14px !important; }
+  .feat-title { font-size: 15px; }
+  .feat-desc { font-size: 13px; }
 
   /* ── pfeat-grid (navy section cards) ── */
   .pfeat-grid { grid-template-columns: 1fr; gap: 14px; }
