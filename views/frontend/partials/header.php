@@ -1228,6 +1228,12 @@ h1, h2, h3, h4, h5, h6,
     grid-template-columns: repeat(2, 1fr);
   }
 }
+@media (max-width: 768px) {
+  .feat-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
 @media (max-width: 600px) {
   .feat-grid {
     grid-template-columns: 1fr;
@@ -1246,6 +1252,36 @@ h1, h2, h3, h4, h5, h6,
   position: relative;
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 21, 64, 0.04);
+}
+@media (max-width: 768px) {
+  .feat-card {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px 18px;
+  }
+  .feat-icon {
+    flex-shrink: 0;
+    margin-bottom: 0 !important;
+  }
+  .feat-title {
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+  .feat-desc {
+    font-size: 13px;
+  }
+  .section-conn {
+    padding: 48px 5%;
+  }
+  .conn-top {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .conn-title {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+  }
 }
 .feat-card:hover {
   transform: translateY(-3px);
