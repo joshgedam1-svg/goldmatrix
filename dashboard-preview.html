@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GoldMatrix ERP — Admin Dashboard Visual Mockup</title>
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    :root {
+      --sidebar-bg: #0B1F3A;
+      --sidebar-hover: #163A63;
+      --sidebar-active: #1D4B7C;
+      --sidebar-text: #94A3B8;
+      --sidebar-text-active: #FFFFFF;
+      --accent-gold: #C9A84C;
+      --bg-body: #F4F6F9;
+      --card-bg: #FFFFFF;
+      --text-main: #1E293B;
+      --text-muted: #64748B;
+      --border-color: #E2E8F0;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      overflow-x: hidden;
+      margin: 0;
+    }
+
+    /* ─── SIDEBAR STYLES ─── */
+    .admin-wrapper {
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 260px;
+      background-color: var(--sidebar-bg);
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+      z-index: 1040;
+    }
+    .sidebar-header {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .sidebar-menu {
+      padding: 16px 12px;
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+    .menu-category {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: rgba(255,255,255,0.4);
+      padding: 16px 12px 6px 12px;
+    }
+    .nav-item-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      color: var(--sidebar-text);
+      font-size: 13.5px;
+      font-weight: 500;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      margin-bottom: 2px;
+    }
+    .nav-item-link:hover {
+      background-color: var(--sidebar-hover);
+      color: #FFFFFF;
+    }
+    .nav-item-link.active {
+      background-color: var(--sidebar-active);
+      color: #FFFFFF;
+      font-weight: 600;
+      border-left: 3px solid var(--accent-gold);
+    }
+    .nav-item-link i {
+      font-size: 16px;
+      width: 20px;
+      text-align: center;
+    }
+    .badge-count {
+      margin-left: auto;
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 12px;
+    }
+
+    /* ─── TOPBAR STYLES ─── */
+    .main-content {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .topbar {
+      height: 64px;
+      background-color: #FFFFFF;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      position: sticky;
+      top: 0;
+      z-index: 1020;
+    }
+    .topbar-search {
+      position: relative;
+      width: 320px;
+    }
+    .topbar-search input {
+      background-color: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 20px;
+      padding: 8px 16px 8px 38px;
+      font-size: 13px;
+      width: 100%;
+    }
+    .topbar-search i {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+    }
+
+    /* ─── CARDS & STATS ─── */
+    .content-body {
+      padding: 28px;
+      flex-grow: 1;
+    }
+    .stat-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      border: 1px solid #E2E8F0;
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .stat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    .stat-icon-wrapper {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .badge-trend {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+
+    /* ─── TABLES ─── */
+    .custom-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      border: 1px solid #E2E8F0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+      margin-bottom: 24px;
+    }
+    .card-header-custom {
+      padding: 18px 24px;
+      border-bottom: 1px solid #F1F5F9;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-title-custom {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 0;
+    }
+
+    .table-custom th {
+      background-color: #F8FAFC;
+      color: #64748B;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 12px 20px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .table-custom td {
+      padding: 14px 20px;
+      vertical-align: middle;
+      font-size: 13.5px;
+      border-bottom: 1px solid #F1F5F9;
+    }
+
+    .user-avatar-chip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .avatar-circle {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #0B1F3A;
+      color: #FFFFFF;
+      font-weight: 600;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="admin-wrapper">
+  
+  <!-- SIDEBAR NAVIGATION -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="d-flex align-items-center gap-2">
+        <svg width="30" height="30" viewBox="0 0 40 40" fill="none">
+          <polygon points="20,2 36,14 20,38 4,14" stroke="#C9A84C" stroke-width="2.5" fill="none"/>
+          <polygon points="20,2 36,14 20,20 4,14" fill="#C9A84C" opacity="0.3"/>
+          <polygon points="36,14 20,20 20,38" fill="#C9A84C" opacity="0.2"/>
+          <line x1="4" y1="14" x2="36" y2="14" stroke="#C9A84C" stroke-width="1.8"/>
+          <circle cx="20" cy="20" r="2.5" fill="#C9A84C"/>
+        </svg>
+        <div>
+          <div style="color:#fff; font-weight:800; font-size:16px; line-height:1;">GoldMatrix</div>
+          <div style="color:#C9A84C; font-size:8px; font-weight:700; letter-spacing:1.5px; margin-top:2px;">JEWELRY ERP</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-menu">
+      <div class="menu-category">Main</div>
+      <a href="#" class="nav-item-link active">
+        <i class="bi bi-speedometer2"></i> Dashboard
+      </a>
+
+      <div class="menu-category">Website Admin</div>
+      <a href="#" class="nav-item-link">
+        <i class="bi bi-file-earmark-text"></i> Pages <span class="badge bg-secondary badge-count">12</span>
+      </a>
+      <a href="#" class="nav-item-link">
+        <i class="bi bi-house-door"></i> Homepage Sections
+      </a>
+      <a href="#" class="nav-item-link">
+        <i class="bi bi-menu-button-wide"></i> Navigation Menus
+      </a>
+      <a href="#" class="nav-item-link">
+        <i class="bi bi-sliders"></i> Global Settings
+      </a>
+
+      <div class="menu-category">ERP Content</div>
+      <a href="#" class="nav-item-link">
+        <i class="bi bi-cpu"></i> ERP Modules <span class="badge bg-primary badge-count">14</span>
+      </a>
+      <a href="#" class="nav-item-link">
+        <i class="bi bi-stars"></i> Features
+      </a>
+      <a href="#" class="nav-item-link">
+        <i class="bi bi-gem"></i> Services
+      </a>
+      <a href="#" class="nav-item-link">
+        <i class="bi bi-buildings"></i> Industries
+      </a>
+      <a href="#" class="nav-item-link">
+        <i class="bi bi-journal-check"></i> Case Studies
+      </a>
+
+      <div class="menu-category">Content</div>
+      <a href="#" class="nav-item-link">
+        <i class="bi bi-newspaper"></i> Blog Posts <span class="badge bg-success badge-count">24</span>
+      </a>
+      <a href="#" class="nav-item-link">
+        <i class="bi bi-chat-quote"></i> Testimonials
+      </a>
+      <a href="#" class="nav-item-link">
+        <i class="bi bi-question-circle"></i> FAQs
+      </a>
+      <a href="#" class="nav-item-link">
+        <i class="bi bi-people"></i> Team Members
+      </a>
+
+      <div class="menu-category">Media & SEO</div>
+      <a href="#" class="nav-item-link">
+        <i class="bi bi-images"></i> Media Library
+      </a>
+      <a href="#" class="nav-item-link">
+        <i class="bi bi-search font-weight-bold"></i> SEO Manager
+      </a>
+      <a href="#" class="nav-item-link">
+        <i class="bi bi-arrow-return-right"></i> Redirects 301
+      </a>
+
+      <div class="menu-category">Leads Management</div>
+      <a href="#" class="nav-item-link">
+        <i class="bi bi-envelope-paper"></i> Contact Enquiries <span class="badge bg-danger badge-count">8 New</span>
+      </a>
+      <a href="#" class="nav-item-link">
+        <i class="bi bi-calendar-event"></i> Demo Requests <span class="badge bg-warning text-dark badge-count">5</span>
+      </a>
+
+      <div class="menu-category">System</div>
+      <a href="#" class="nav-item-link">
+        <i class="bi bi-person-gear"></i> Admin Users
+      </a>
+      <a href="#" class="nav-item-link">
+        <i class="bi bi-clock-history"></i> Activity Logs
+      </a>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="main-content">
+    
+    <!-- TOPBAR HEADER -->
+    <header class="topbar">
+      <div class="d-flex align-items-center gap-3">
+        <button class="btn btn-sm btn-light border d-md-none"><i class="bi bi-list fs-5"></i></button>
+        <div class="topbar-search d-none d-md-block">
+          <i class="bi bi-search"></i>
+          <input type="text" placeholder="Search pages, modules, enquiries (⌘K)...">
+        </div>
+      </div>
+
+      <div class="d-flex align-items-center gap-3">
+        <a href="#" class="btn btn-sm btn-outline-secondary rounded-pill px-3" target="_blank">
+          <i class="bi bi-box-arrow-up-right me-1"></i> Live Site
+        </a>
+        <div class="position-relative">
+          <button class="btn btn-light rounded-circle position-relative p-2" style="width:38px;height:38px;">
+            <i class="bi bi-bell text-secondary"></i>
+            <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
+          </button>
+        </div>
+        <div class="vr mx-1"></div>
+        <div class="dropdown">
+          <a href="#" class="d-flex align-items-center gap-2 text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">
+            <div class="avatar-circle">A</div>
+            <div class="d-none d-sm-block text-start" style="line-height:1.2;">
+              <div class="fw-bold text-dark fs-14">Abhishek Admin</div>
+              <div class="text-muted fs-12">Super Administrator</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT BODY -->
+    <div class="content-body">
+      
+      <!-- PAGE TITLE HEADER -->
+      <div class="d-flex align-items-center justify-content-between mb-4">
+        <div>
+          <h4 class="fw-bold mb-1" style="color:var(--sidebar-bg);">Jewelry ERP Executive Dashboard</h4>
+          <p class="text-muted fs-14 mb-0">Overview of website performance, leads, content status, and system health.</p>
+        </div>
+        <div class="d-flex gap-2">
+          <button class="btn btn-white border bg-white shadow-sm btn-sm px-3 fw-medium"><i class="bi bi-download me-1"></i> Export Report</button>
+          <button class="btn btn-primary btn-sm px-3 fw-medium" style="background-color:#0B1F3A; border-color:#0B1F3A;"><i class="bi bi-plus-lg me-1"></i> Quick Action</button>
+        </div>
+      </div>
+
+      <!-- 4 METRIC STAT CARDS -->
+      <div class="row g-3 mb-4">
+        
+        <div class="col-12 col-sm-6 col-xl-3">
+          <div class="stat-card">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <span class="text-muted fw-semibold fs-13">Total Leads Received</span>
+              <div class="stat-icon-wrapper" style="background:#EEF2FF; color:#4F46E5;">
+                <i class="bi bi-people-fill"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-baseline justify-content-between">
+              <h3 class="fw-bold mb-0">142</h3>
+              <span class="badge-trend bg-success-subtle text-success"><i class="bi bi-arrow-up-right me-1"></i>+18.4%</span>
+            </div>
+            <p class="text-muted fs-12 mt-2 mb-0">8 new enquiries today</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-xl-3">
+          <div class="stat-card">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <span class="text-muted fw-semibold fs-13">Demo Requests</span>
+              <div class="stat-icon-wrapper" style="background:#FEF3C7; color:#D97706;">
+                <i class="bi bi-calendar2-check"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-baseline justify-content-between">
+              <h3 class="fw-bold mb-0">38</h3>
+              <span class="badge-trend bg-success-subtle text-success"><i class="bi bi-arrow-up-right me-1"></i>+12.0%</span>
+            </div>
+            <p class="text-muted fs-12 mt-2 mb-0">5 pending schedule</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-xl-3">
+          <div class="stat-card">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <span class="text-muted fw-semibold fs-13">ERP Modules Active</span>
+              <div class="stat-icon-wrapper" style="background:#ECFDF5; color:#059669;">
+                <i class="bi bi-boxes"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-baseline justify-content-between">
+              <h3 class="fw-bold mb-0">14 / 14</h3>
+              <span class="badge-trend bg-info-subtle text-info">100% Published</span>
+            </div>
+            <p class="text-muted fs-12 mt-2 mb-0">Inventory, JobWork, Accounting</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-xl-3">
+          <div class="stat-card">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <span class="text-muted fw-semibold fs-13">SEO Score Status</span>
+              <div class="stat-icon-wrapper" style="background:#F1F5F9; color:#0B1F3A;">
+                <i class="bi bi-shield-check"></i>
+              </div>
+            </div>
+            <div class="d-flex align-items-baseline justify-content-between">
+              <h3 class="fw-bold mb-0">94 / 100</h3>
+              <span class="badge-trend bg-success-subtle text-success">Optimal</span>
+            </div>
+            <p class="text-muted fs-12 mt-2 mb-0">0 missing titles or canonicals</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CHARTS & RECENT INQUIRIES ROW -->
+      <div class="row g-4 mb-4">
+        
+        <!-- LEFT: LEAD TRAFFIC ANALYTICS CHART -->
+        <div class="col-12 col-lg-7 col-xl-8">
+          <div class="custom-card h-100">
+            <div class="card-header-custom">
+              <h6 class="card-title-custom">Lead Inquiries & Demo Conversion Growth</h6>
+              <div class="dropdown">
+                <button class="btn btn-sm btn-light border dropdown-toggle" data-bs-toggle="dropdown">Last 30 Days</button>
+              </div>
+            </div>
+            <div class="card-body">
+              <canvas id="leadsChart" height="260"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: SEO HEALTH & QUICK STATS -->
+        <div class="col-12 col-lg-5 col-xl-4">
+          <div class="custom-card h-100">
+            <div class="card-header-custom">
+              <h6 class="card-title-custom"><i class="bi bi-activity text-primary me-2"></i>SEO & System Health</h6>
+            </div>
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-between p-3 rounded mb-3" style="background:#F8FAFC;">
+                <div class="d-flex align-items-center gap-3">
+                  <i class="bi bi-file-earmark-check text-success fs-4"></i>
+                  <div>
+                    <div class="fw-semibold fs-14">Published Pages</div>
+                    <div class="text-muted fs-12">12 of 12 pages indexable</div>
+                  </div>
+                </div>
+                <span class="badge bg-success">100%</span>
+              </div>
+
+              <div class="d-flex align-items-center justify-content-between p-3 rounded mb-3" style="background:#F8FAFC;">
+                <div class="d-flex align-items-center gap-3">
+                  <i class="bi bi-images text-warning fs-4"></i>
+                  <div>
+                    <div class="fw-semibold fs-14">Media Alt Tags</div>
+                    <div class="text-muted fs-12">45 images audited</div>
+                  </div>
+                </div>
+                <span class="badge bg-success">All OK</span>
+              </div>
+
+              <div class="d-flex align-items-center justify-content-between p-3 rounded mb-3" style="background:#F8FAFC;">
+                <div class="d-flex align-items-center gap-3">
+                  <i class="bi bi-signpost-split text-info fs-4"></i>
+                  <div>
+                    <div class="fw-semibold fs-14">301 Redirect Rules</div>
+                    <div class="text-muted fs-12">6 active redirects</div>
+                  </div>
+                </div>
+                <span class="badge bg-secondary">Active</span>
+              </div>
+
+              <div class="d-flex align-items-center justify-content-between p-3 rounded" style="background:#F8FAFC;">
+                <div class="d-flex align-items-center gap-3">
+                  <i class="bi bi-cpu text-primary fs-4"></i>
+                  <div>
+                    <div class="fw-semibold fs-14">PHP & Database</div>
+                    <div class="text-muted fs-12">PHP 8.2 + MySQL 8.0</div>
+                  </div>
+                </div>
+                <span class="badge bg-success">Optimal</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RECENT DEMO & LEAD ENQUIRIES TABLE -->
+      <div class="custom-card mb-4">
+        <div class="card-header-custom">
+          <div>
+            <h6 class="card-title-custom">Recent Jewelry ERP Demo & Contact Requests</h6>
+            <span class="text-muted fs-12">Real-time leads submitted via public ERP software website</span>
+          </div>
+          <button class="btn btn-sm btn-outline-primary" style="color:#0B1F3A; border-color:#0B1F3A;">View All Enquiries <i class="bi bi-arrow-right ms-1"></i></button>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-custom mb-0">
+            <thead>
+              <tr>
+                <th>Lead ID</th>
+                <th>Contact Name</th>
+                <th>Company / Jewelry Business</th>
+                <th>Email & Phone</th>
+                <th>Requested Module</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="fw-semibold text-primary">#LD-2026-089</td>
+                <td>
+                  <div class="user-avatar-chip">
+                    <div class="avatar-circle" style="background:#0B1F3A;">RK</div>
+                    <div>
+                      <div class="fw-semibold">Rajesh Kothari</div>
+                      <div class="text-muted fs-12">Owner / Director</div>
+                    </div>
+                  </div>
+                </td>
+                <td><strong>Kothari Gold & Diamonds</strong><br><span class="text-muted fs-12">Retail & Wholesale (6 Branches)</span></td>
+                <td>rajesh@kotharijewellers.com<br><span class="text-muted fs-12">+91 98250 11223</span></td>
+                <td><span class="badge bg-light text-dark border">Inventory + JobWork</span></td>
+                <td>Aug 26, 2026</td>
+                <td><span class="badge bg-warning text-dark"><i class="bi bi-clock me-1"></i> New Request</span></td>
+                <td>
+                  <button class="btn btn-sm btn-light border"><i class="bi bi-eye"></i></button>
+                  <button class="btn btn-sm btn-primary" style="background-color:#0B1F3A;"><i class="bi bi-telephone"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td class="fw-semibold text-primary">#LD-2026-088</td>
+                <td>
+                  <div class="user-avatar-chip">
+                    <div class="avatar-circle" style="background:#163A63;">PS</div>
+                    <div>
+                      <div class="fw-semibold">Priya Sharma</div>
+                      <div class="text-muted fs-12">Purchase Head</div>
+                    </div>
+                  </div>
+                </td>
+                <td><strong>Vogue Carat Jewels</strong><br><span class="text-muted fs-12">Jewelry Manufacturer</span></td>
+                <td>priya@voguecarat.in<br><span class="text-muted fs-12">+91 97129 44332</span></td>
+                <td><span class="badge bg-light text-dark border">Manufacturing ERP</span></td>
+                <td>Aug 25, 2026</td>
+                <td><span class="badge bg-info text-white"><i class="bi bi-chat-text me-1"></i> Contacted</span></td>
+                <td>
+                  <button class="btn btn-sm btn-light border"><i class="bi bi-eye"></i></button>
+                  <button class="btn btn-sm btn-primary" style="background-color:#0B1F3A;"><i class="bi bi-telephone"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td class="fw-semibold text-primary">#LD-2026-087</td>
+                <td>
+                  <div class="user-avatar-chip">
+                    <div class="avatar-circle" style="background:#C9A84C; color:#0B1F3A;">AM</div>
+                    <div>
+                      <div class="fw-semibold">Amit Mehta</div>
+                      <div class="text-muted fs-12">Managing Director</div>
+                    </div>
+                  </div>
+                </td>
+                <td><strong>Mehta Bullion & Gems</strong><br><span class="text-muted fs-12">Bullion Trader</span></td>
+                <td>amit@mehtabullion.com<br><span class="text-muted fs-12">+91 98980 99881</span></td>
+                <td><span class="badge bg-light text-dark border">Full Suite ERP</span></td>
+                <td>Aug 24, 2026</td>
+                <td><span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Demo Done</span></td>
+                <td>
+                  <button class="btn btn-sm btn-light border"><i class="bi bi-eye"></i></button>
+                  <button class="btn btn-sm btn-primary" style="background-color:#0B1F3A;"><i class="bi bi-telephone"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script>
+  // Chart.js initialization
+  const ctx = document.getElementById('leadsChart').getContext('2d');
+  const gradientLeads = ctx.createLinearGradient(0, 0, 0, 260);
+  gradientLeads.addColorStop(0, 'rgba(11, 31, 58, 0.25)');
+  gradientLeads.addColorStop(1, 'rgba(11, 31, 58, 0.0)');
+
+  const gradientDemos = ctx.createLinearGradient(0, 0, 0, 260);
+  gradientDemos.addColorStop(0, 'rgba(201, 168, 76, 0.25)');
+  gradientDemos.addColorStop(1, 'rgba(201, 168, 76, 0.0)');
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['Aug 1', 'Aug 5', 'Aug 10', 'Aug 15', 'Aug 20', 'Aug 25', 'Aug 26'],
+      datasets: [
+        {
+          label: 'Contact Inquiries',
+          data: [12, 19, 15, 25, 22, 30, 38],
+          borderColor: '#0B1F3A',
+          borderWidth: 2.5,
+          backgroundColor: gradientLeads,
+          fill: true,
+          tension: 0.35,
+          pointBackgroundColor: '#0B1F3A'
+        },
+        {
+          label: 'ERP Demo Requests',
+          data: [5, 9, 8, 14, 12, 18, 22],
+          borderColor: '#C9A84C',
+          borderWidth: 2.5,
+          backgroundColor: gradientDemos,
+          fill: true,
+          tension: 0.35,
+          pointBackgroundColor: '#C9A84C'
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'top', labels: { usePointStyle: true, font: { family: 'Inter', size: 12 } } }
+      },
+      scales: {
+        y: { grid: { color: '#F1F5F9' }, ticks: { font: { family: 'Inter' } } },
+        x: { grid: { display: false }, ticks: { font: { family: 'Inter' } } }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 215 50" width="215" height="50">
+  <defs>
+    <linearGradient id="sencoRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#DC2626"/>
+      <stop offset="100%" stop-color="#991B1B"/>
+    </linearGradient>
+    <linearGradient id="sencoGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#B45309"/>
+    </linearGradient>
+  </defs>
+  <!-- Senco Diamond Jewel Emblem -->
+  <g transform="translate(6, 4)">
+    <polygon points="21,4 37,21 21,38 5,21" fill="url(#sencoRed)"/>
+    <polygon points="21,9 32,21 21,33 10,21" fill="none" stroke="url(#sencoGold)" stroke-width="1.5"/>
+    <circle cx="21" cy="21" r="4.5" fill="url(#sencoGold)"/>
+    <circle cx="21" cy="21" r="2" fill="#FFFFFF"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="52" y="27" font-family="'Montserrat', 'Arial Black', sans-serif" font-size="22" font-weight="900" fill="#991B1B" letter-spacing="2">SENCO</text>
+  <line x1="53" y1="33" x2="205" y2="33" stroke="url(#sencoGold)" stroke-width="1.2"/>
+  <text x="54" y="42" font-family="'Montserrat', Arial, sans-serif" font-size="7.5" font-weight="800" fill="#B45309" letter-spacing="3.5">GOLD &amp; DIAMONDS</text>
+</svg>

@@ -1,0 +1,30 @@
+# Environment & Secrets
+.env
+.env.backup
+.env.local
+.env.*.local
+
+# Database & SQLite files
+storage/*.sqlite
+storage/*.sqlite-journal
+storage/*.db
+*.sqlite
+
+# Cache & Logs
+storage/cache/*
+!storage/cache/.gitkeep
+storage/logs/*
+!storage/logs/.gitkeep
+
+# Temporary / Scratch Files
+scratch/
+*.tmp
+*.log
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace

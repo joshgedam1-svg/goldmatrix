@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 50" width="210" height="50">
+  <defs>
+    <linearGradient id="tqGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C59B27"/>
+      <stop offset="50%" stop-color="#E5C158"/>
+      <stop offset="100%" stop-color="#9A7B1C"/>
+    </linearGradient>
+    <linearGradient id="tqRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#831823"/>
+      <stop offset="100%" stop-color="#580E16"/>
+    </linearGradient>
+  </defs>
+  <!-- Emblem: Intricate Tanishq Ornament Motif -->
+  <g transform="translate(4, 3)">
+    <circle cx="22" cy="22" r="21" fill="none" stroke="url(#tqGold)" stroke-width="1.5" stroke-dasharray="2 1.5"/>
+    <circle cx="22" cy="22" r="18" fill="url(#tqRed)"/>
+    <!-- Stylized Ornamental T Crest -->
+    <path d="M22 8 C23.5 12, 27 14, 30 14 C27 15.5, 25 18, 25 21 C25 25, 28 27, 31 29 C27 30, 24 33, 22 36 C20 33, 17 30, 13 29 C16 27, 19 25, 19 21 C19 18, 17 15.5, 14 14 C17 14, 20.5 12, 22 8 Z" fill="url(#tqGold)"/>
+    <circle cx="22" cy="22" r="2.8" fill="#FFF8E7"/>
+    <circle cx="22" cy="14" r="1.5" fill="#FFE58F"/>
+    <circle cx="22" cy="30" r="1.5" fill="#FFE58F"/>
+  </g>
+  <!-- Typography -->
+  <text x="54" y="27" font-family="'Cinzel', 'Times New Roman', 'Georgia', serif" font-size="21" font-weight="800" fill="#580E16" letter-spacing="3.5">TANISHQ</text>
+  <line x1="55" y1="33" x2="198" y2="33" stroke="url(#tqGold)" stroke-width="1"/>
+  <text x="56" y="42" font-family="'Montserrat', 'Helvetica Neue', Arial, sans-serif" font-size="7.5" font-weight="700" fill="#78350F" letter-spacing="3.2">A TATA PRODUCT</text>
+</svg>

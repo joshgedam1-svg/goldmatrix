@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 215 50" width="215" height="50">
+  <defs>
+    <linearGradient id="bhimaGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D97706"/>
+      <stop offset="50%" stop-color="#FCD34D"/>
+      <stop offset="100%" stop-color="#92400E"/>
+    </linearGradient>
+    <linearGradient id="bhimaBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E3A8A"/>
+      <stop offset="100%" stop-color="#172554"/>
+    </linearGradient>
+  </defs>
+  <!-- Bhima Emblem -->
+  <g transform="translate(6, 4)">
+    <circle cx="21" cy="21" r="19" fill="url(#bhimaBlue)" stroke="url(#bhimaGold)" stroke-width="1.6"/>
+    <!-- Traditional Gold Lamp / Diya Emblem -->
+    <path d="M14 26 C14 26, 17 30, 21 30 C25 30, 28 26, 28 26 L14 26 Z" fill="url(#bhimaGold)"/>
+    <path d="M21 12 C23 16, 24 19, 21 23 C18 19, 19 16, 21 12 Z" fill="#FCD34D"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="52" y="27" font-family="'Cinzel', 'Georgia', serif" font-size="22" font-weight="900" fill="#172554" letter-spacing="3">BHIMA</text>
+  <line x1="53" y1="33" x2="200" y2="33" stroke="url(#bhimaGold)" stroke-width="1.2"/>
+  <text x="54" y="42" font-family="'Montserrat', Arial, sans-serif" font-size="8" font-weight="800" fill="#92400E" letter-spacing="4">JEWELLERS</text>
+</svg>

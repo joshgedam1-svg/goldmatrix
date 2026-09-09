@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A1128"/>
+      <stop offset="100%" stop-color="#050B18"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBBF24"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="560" rx="20" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle Grid Lines -->
+  <g stroke="rgba(255,255,255,0.04)" stroke-width="1">
+    <line x1="0" y1="140" x2="800" y2="140"/>
+    <line x1="0" y1="280" x2="800" y2="280"/>
+    <line x1="0" y1="420" x2="800" y2="420"/>
+    <line x1="200" y1="0" x2="200" y2="560"/>
+    <line x1="400" y1="0" x2="400" y2="560"/>
+    <line x1="600" y1="0" x2="600" y2="560"/>
+  </g>
+
+  <!-- Central Ambient Gold Light -->
+  <circle cx="400" cy="270" r="160" fill="#F59E0B" opacity="0.08" filter="url(#goldGlow)"/>
+
+  <!-- Main Central Dashboard Card Mockup -->
+  <rect x="120" y="80" width="560" height="380" rx="16" fill="url(#cardGrad)" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+  
+  <!-- Card Header Bar -->
+  <rect x="120" y="80" width="560" height="50" rx="16" fill="rgba(255,255,255,0.03)"/>
+  <circle cx="150" cy="105" r="5" fill="#EF4444"/>
+  <circle cx="168" cy="105" r="5" fill="#F59E0B"/>
+  <circle cx="186" cy="105" r="5" fill="#10B981"/>
+  <text x="400" y="110" fill="#94A3B8" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="12" font-weight="600" text-anchor="middle" letter-spacing="1">GOLDMATRIX ERP &bull; WORKSHOP &amp; CRAFTSMANSHIP</text>
+
+  <!-- Left Panel: Jewellery Specs -->
+  <rect x="150" y="155" width="230" height="130" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)"/>
+  <text x="170" y="185" fill="#F59E0B" font-family="-apple-system,sans-serif" font-size="11" font-weight="700" letter-spacing="1">ORNAMENT SPECIFICATIONS</text>
+  <text x="170" y="210" fill="#FFFFFF" font-family="-apple-system,sans-serif" font-size="14" font-weight="600">22K Diamond Choker</text>
+  <text x="170" y="235" fill="#94A3B8" font-family="-apple-system,sans-serif" font-size="12">Gross: 48.650g &bull; Net: 45.220g</text>
+  <text x="170" y="260" fill="#10B981" font-family="-apple-system,sans-serif" font-size="11" font-weight="600">HUID: GM8942 &bull; 100% BIS Verified</text>
+
+  <!-- Right Panel: Purity & Metal Analysis -->
+  <rect x="400" y="155" width="250" height="130" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)"/>
+  <text x="420" y="185" fill="#F59E0B" font-family="-apple-system,sans-serif" font-size="11" font-weight="700" letter-spacing="1">WORKSHOP KARIGAR LEDGER</text>
+  <text x="420" y="210" fill="#FFFFFF" font-family="-apple-system,sans-serif" font-size="14" font-weight="600">Wastage Loss Control: 0.04%</text>
+  <text x="420" y="235" fill="#94A3B8" font-family="-apple-system,sans-serif" font-size="12">Allowed: 1.200g &bull; Actual: 1.180g</text>
+  <text x="420" y="260" fill="#60A5FA" font-family="-apple-system,sans-serif" font-size="11" font-weight="600">Metal Discrepancy: Zero Loss</text>
+
+  <!-- Bottom Panel: Live Rates & Sync Bar -->
+  <rect x="150" y="305" width="500" height="125" rx="10" fill="rgba(245, 158, 11, 0.04)" stroke="rgba(245, 158, 11, 0.2)"/>
+  <g transform="translate(170, 335)">
+    <!-- Gold Icon -->
+    <path d="M15 5 L35 5 L45 20 L5 20 Z" fill="url(#goldGrad)"/>
+    <path d="M5 20 L45 20 L25 40 Z" fill="url(#goldGrad)" opacity="0.8"/>
+  </g>
+  <text x="240" y="350" fill="#FFFFFF" font-family="-apple-system,sans-serif" font-size="15" font-weight="700">Real-Time Precision Down to Milligrams</text>
+  <text x="240" y="375" fill="#94A3B8" font-family="-apple-system,sans-serif" font-size="12">Automated Karat calculations &bull; Multi-branch ledger sync &bull; 15 Years Industry Heritage</text>
+  
+  <!-- Status Badge -->
+  <rect x="240" y="390" width="140" height="24" rx="12" fill="rgba(16, 185, 129, 0.15)" stroke="rgba(16, 185, 129, 0.4)"/>
+  <circle cx="254" cy="402" r="4" fill="#10B981"/>
+  <text x="266" y="406" fill="#10B981" font-family="-apple-system,sans-serif" font-size="11" font-weight="700">ENTERPRISE ACTIVE</text>
+
+  <rect x="390" y="390" width="160" height="24" rx="12" fill="rgba(245, 158, 11, 0.15)" stroke="rgba(245, 158, 11, 0.4)"/>
+  <text x="470" y="406" fill="#F59E0B" font-family="-apple-system,sans-serif" font-size="11" font-weight="700" text-anchor="middle">UAE &bull; INDIA &bull; GLOBAL</text>
+</svg>

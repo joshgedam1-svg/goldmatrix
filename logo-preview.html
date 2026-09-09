@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GoldMatrix ERP — Logo Preview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #F5F7FA;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      gap: 40px;
+    }
+
+    h2 {
+      font-size: 14px;
+      color: #6B7280;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ─── LOGO CARD ─── */
+    .logo-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 48px 64px;
+      box-shadow: 0 4px 24px rgba(11,31,58,0.10);
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      align-items: center;
+    }
+
+    /* ─── VERSION 1: Light background (Admin Sidebar Logo) ─── */
+    .logo-v1 {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #0B1F3A;
+      padding: 16px 24px;
+      border-radius: 12px;
+    }
+
+    /* ─── VERSION 2: White background (Login / Email) ─── */
+    .logo-v2 {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #fff;
+      padding: 16px 24px;
+      border-radius: 12px;
+      border: 1px solid #E5E7EB;
+    }
+
+    /* ─── VERSION 3: Compact small ─── */
+    .logo-v3 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #0B1F3A;
+      padding: 10px 16px;
+      border-radius: 8px;
+    }
+
+    /* ─── ICON MARK ─── */
+    .logo-mark {
+      flex-shrink: 0;
+    }
+
+    /* ─── TEXT ─── */
+    .logo-text-group {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    .logo-name {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #FFFFFF;
+    }
+    .logo-name-dark {
+      color: #0B1F3A;
+    }
+    .logo-sub {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #C9A84C;
+      margin-top: 3px;
+    }
+    .logo-sub-dark {
+      color: #C9A84C;
+    }
+
+    /* Small version */
+    .logo-name-sm {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      color: #FFFFFF;
+    }
+    .logo-sub-sm {
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #C9A84C;
+      margin-top: 2px;
+    }
+
+    .label {
+      font-size: 11px;
+      color: #6B7280;
+      font-weight: 500;
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    .variant-row {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .variant-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Favicon mark */
+    .favicon-wrap {
+      width: 48px;
+      height: 48px;
+      background: #0B1F3A;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>GoldMatrix ERP — Logo Variants</h2>
+
+  <div class="logo-card">
+
+    <div class="variant-row">
+
+      <!-- V1: Dark sidebar logo (primary) -->
+      <div class="variant-wrap">
+        <div class="logo-v1">
+          <div class="logo-mark">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Diamond / Gem icon -->
+              <polygon points="20,2 36,14 20,38 4,14" fill="none" stroke="#C9A84C" stroke-width="2"/>
+              <polygon points="20,2 36,14 20,20 4,14" fill="#C9A84C" opacity="0.25"/>
+              <polygon points="4,14 20,20 20,38" fill="#C9A84C" opacity="0.15"/>
+              <polygon points="36,14 20,20 20,38" fill="#C9A84C" opacity="0.30"/>
+              <line x1="4" y1="14" x2="36" y2="14" stroke="#C9A84C" stroke-width="1.5"/>
+              <line x1="20" y1="2" x2="20" y2="20" stroke="#C9A84C" stroke-width="1" opacity="0.6"/>
+              <circle cx="20" cy="20" r="2" fill="#C9A84C"/>
+            </svg>
+          </div>
+          <div class="logo-text-group">
+            <span class="logo-name">GoldMatrix</span>
+            <span class="logo-sub">ERP SOFTWARE</span>
+          </div>
+        </div>
+        <p class="label">Primary (Sidebar / Dark)</p>
+      </div>
+
+      <!-- V2: White background -->
+      <div class="variant-wrap">
+        <div class="logo-v2">
+          <div class="logo-mark">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="20,2 36,14 20,38 4,14" fill="none" stroke="#0B1F3A" stroke-width="2"/>
+              <polygon points="20,2 36,14 20,20 4,14" fill="#0B1F3A" opacity="0.15"/>
+              <polygon points="4,14 20,20 20,38" fill="#0B1F3A" opacity="0.08"/>
+              <polygon points="36,14 20,20 20,38" fill="#0B1F3A" opacity="0.20"/>
+              <line x1="4" y1="14" x2="36" y2="14" stroke="#0B1F3A" stroke-width="1.5"/>
+              <line x1="20" y1="2" x2="20" y2="20" stroke="#0B1F3A" stroke-width="1" opacity="0.5"/>
+              <circle cx="20" cy="20" r="2" fill="#C9A84C"/>
+            </svg>
+          </div>
+          <div class="logo-text-group">
+            <span class="logo-name logo-name-dark">GoldMatrix</span>
+            <span class="logo-sub logo-sub-dark">ERP SOFTWARE</span>
+          </div>
+        </div>
+        <p class="label">Light Version (Login / Emails)</p>
+      </div>
+
+    </div>
+
+    <div class="variant-row">
+
+      <!-- V3: Compact small -->
+      <div class="variant-wrap">
+        <div class="logo-v3">
+          <div class="logo-mark">
+            <svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="20,2 36,14 20,38 4,14" fill="none" stroke="#C9A84C" stroke-width="2.5"/>
+              <polygon points="20,2 36,14 20,20 4,14" fill="#C9A84C" opacity="0.25"/>
+              <polygon points="4,14 20,20 20,38" fill="#C9A84C" opacity="0.15"/>
+              <polygon points="36,14 20,20 20,38" fill="#C9A84C" opacity="0.30"/>
+              <line x1="4" y1="14" x2="36" y2="14" stroke="#C9A84C" stroke-width="2"/>
+              <circle cx="20" cy="20" r="2.5" fill="#C9A84C"/>
+            </svg>
+          </div>
+          <div class="logo-text-group">
+            <span class="logo-name-sm">GoldMatrix</span>
+            <span class="logo-sub-sm">ERP</span>
+          </div>
+        </div>
+        <p class="label">Compact (Mobile / Topbar)</p>
+      </div>
+
+      <!-- Favicon / Icon only -->
+      <div class="variant-wrap">
+        <div class="favicon-wrap">
+          <svg width="30" height="30" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="20,2 36,14 20,38 4,14" fill="none" stroke="#C9A84C" stroke-width="2.5"/>
+            <polygon points="20,2 36,14 20,20 4,14" fill="#C9A84C" opacity="0.3"/>
+            <polygon points="4,14 20,20 20,38" fill="#C9A84C" opacity="0.15"/>
+            <polygon points="36,14 20,20 20,38" fill="#C9A84C" opacity="0.35"/>
+            <line x1="4" y1="14" x2="36" y2="14" stroke="#C9A84C" stroke-width="2"/>
+            <circle cx="20" cy="20" r="2.5" fill="#C9A84C"/>
+          </svg>
+        </div>
+        <p class="label">Favicon / Icon Mark</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <p style="font-size:12px;color:#9CA3AF;">Colors: Navy #0B1F3A &nbsp;|&nbsp; Gold Accent #C9A84C &nbsp;|&nbsp; Font: Inter</p>
+
+</body>
+</html>

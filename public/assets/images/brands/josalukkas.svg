@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 215 50" width="215" height="50">
+  <defs>
+    <linearGradient id="jaGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#065F46"/>
+      <stop offset="100%" stop-color="#022C22"/>
+    </linearGradient>
+    <linearGradient id="jaGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBBF24"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+  </defs>
+  <!-- Jos Alukkas Crest -->
+  <g transform="translate(6, 4)">
+    <!-- Crest Shield with Laurel / Wings -->
+    <path d="M21 4 C28 4, 37 8, 37 17 C37 28, 25 36, 21 38 C17 36, 5 28, 5 17 C5 8, 14 4, 21 4 Z" fill="url(#jaGreen)" stroke="url(#jaGold)" stroke-width="1.5"/>
+    <!-- Golden Monogram JA -->
+    <path d="M14 14 L21 26 L28 14" fill="none" stroke="url(#jaGold)" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="21" cy="14" r="2" fill="#FFFFFF"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="52" y="26" font-family="'Cinzel', 'Georgia', serif" font-size="20" font-weight="900" fill="#022C22" letter-spacing="1.5">JOS ALUKKAS</text>
+  <line x1="53" y1="32" x2="205" y2="32" stroke="url(#jaGold)" stroke-width="1"/>
+  <text x="54" y="42" font-family="'Montserrat', Arial, sans-serif" font-size="7.5" font-weight="800" fill="#047857" letter-spacing="3.2">PURE GOLD. PURE TRUST.</text>
+</svg>

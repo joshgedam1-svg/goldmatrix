@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 50" width="210" height="50">
+  <defs>
+    <linearGradient id="kjGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D97706"/>
+      <stop offset="50%" stop-color="#FBBF24"/>
+      <stop offset="100%" stop-color="#92400E"/>
+    </linearGradient>
+    <linearGradient id="kjMaroon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7C1123"/>
+      <stop offset="100%" stop-color="#4A0B15"/>
+    </linearGradient>
+  </defs>
+  <!-- Kalyan Crown / Diadem Emblem -->
+  <g transform="translate(6, 4)">
+    <circle cx="21" cy="21" r="19" fill="#FDF8EC" stroke="url(#kjGold)" stroke-width="1.8"/>
+    <!-- Intricate Floral Royal Crown / Monogram K -->
+    <path d="M21 9 L24 16 L31 13 L27 21 L33 24 L25 27 L27 34 L21 29 L15 34 L17 27 L9 24 L15 21 L11 13 L18 16 Z" fill="url(#kjGold)"/>
+    <path d="M17 17 L21 25 L25 17" fill="none" stroke="url(#kjMaroon)" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="21" cy="21" r="3.2" fill="url(#kjMaroon)"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="54" y="27" font-family="'Cinzel', 'Times New Roman', 'Georgia', serif" font-size="22" font-weight="900" fill="#7C1123" letter-spacing="2.8">KALYAN</text>
+  <line x1="55" y1="33" x2="195" y2="33" stroke="url(#kjGold)" stroke-width="1.2"/>
+  <text x="56" y="42" font-family="'Montserrat', 'Helvetica Neue', Arial, sans-serif" font-size="8" font-weight="800" fill="#92400E" letter-spacing="4.5">JEWELLERS</text>
+</svg>

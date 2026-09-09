@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GoldMatrix Jewelry ERP — Workflow</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: #F5F7FA; }
+</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" width="1200" height="820" style="display:block;background:#ffffff;font-family:'Inter',Arial,sans-serif">
+  <defs>
+    <marker id="arrow-navy" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#0B1F3A"/>
+    </marker>
+    <marker id="arrow-gold" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#C9A84C"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#059669"/>
+    </marker>
+    <filter id="shadow">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- BACKGROUND HEADER BAND -->
+  <rect x="0" y="0" width="1200" height="90" fill="#0B1F3A" rx="0"/>
+  <!-- TITLE -->
+  <text x="600" y="38" text-anchor="middle" font-size="26" font-weight="900" fill="#FFFFFF" letter-spacing="-0.5">GOLDMATRIX <tspan fill="#C9A84C">JEWELRY ERP</tspan> – COMPLETE WORKFLOW</text>
+  <text x="600" y="65" text-anchor="middle" font-size="13" font-weight="500" fill="#94A3B8" letter-spacing="0.8">End-to-End Business Automation  •  Real-Time Sync  •  Multi-Branch Control  •  GST Compliance</text>
+
+  <!-- ─────────────────────────── ROW 1 ─────────────────────────── -->
+  <!-- BOX 1: Inventory -->
+  <rect x="20" y="110" width="175" height="160" rx="10" fill="#EEF2FF" stroke="#0B1F3A" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="20" y="110" width="175" height="32" rx="10" fill="#0B1F3A"/>
+  <rect x="20" y="130" width="175" height="12" rx="0" fill="#0B1F3A"/>
+  <text x="107" y="131" text-anchor="middle" font-size="11" font-weight="700" fill="#FFFFFF">1. INVENTORY MANAGEMENT</text>
+  <text x="35" y="162" font-size="10" fill="#1E293B">✦ Raw Gold / Silver Stock</text>
+  <text x="35" y="178" font-size="10" fill="#1E293B">✦ Diamond &amp; Stone Tracking</text>
+  <text x="35" y="194" font-size="10" fill="#1E293B">✦ Fine / Gross Weight</text>
+  <text x="35" y="210" font-size="10" fill="#1E293B">✦ Purity Management</text>
+  <text x="35" y="226" font-size="10" fill="#1E293B">✦ Tag / Barcode System</text>
+  <text x="35" y="242" font-size="10" fill="#1E293B">✦ Stock Valuation</text>
+  <text x="35" y="258" font-size="10" fill="#1E293B">✦ Dead Stock Alerts</text>
+
+  <!-- ARROW 1→2 -->
+  <line x1="195" y1="190" x2="218" y2="190" stroke="#0B1F3A" stroke-width="2" marker-end="url(#arrow-navy)"/>
+
+  <!-- BOX 2: Manufacturing -->
+  <rect x="220" y="110" width="180" height="160" rx="10" fill="#FFF7ED" stroke="#D97706" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="220" y="110" width="180" height="32" rx="10" fill="#D97706"/>
+  <rect x="220" y="130" width="180" height="12" rx="0" fill="#D97706"/>
+  <text x="310" y="131" text-anchor="middle" font-size="11" font-weight="700" fill="#FFFFFF">2. MANUFACTURING &amp; JOB WORK</text>
+  <text x="235" y="162" font-size="10" fill="#1E293B">✦ Production Orders</text>
+  <text x="235" y="178" font-size="10" fill="#1E293B">✦ Karigar / Artisan Mgmt</text>
+  <text x="235" y="194" font-size="10" fill="#1E293B">✦ Job Work In / Out</text>
+  <text x="235" y="210" font-size="10" fill="#1E293B">✦ Making Charges Track</text>
+  <text x="235" y="226" font-size="10" fill="#1E293B">✦ Gold Issued / Received</text>
+  <text x="235" y="242" font-size="10" fill="#1E293B">✦ Wastage Calculation</text>
+  <text x="235" y="258" font-size="10" fill="#1E293B">✦ QC &amp; Hallmarking</text>
+
+  <!-- ARROW 2→3 -->
+  <line x1="400" y1="190" x2="423" y2="190" stroke="#0B1F3A" stroke-width="2" marker-end="url(#arrow-navy)"/>
+
+  <!-- BOX 3: Sales & POS -->
+  <rect x="425" y="110" width="175" height="160" rx="10" fill="#ECFDF5" stroke="#059669" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="425" y="110" width="175" height="32" rx="10" fill="#059669"/>
+  <rect x="425" y="130" width="175" height="12" rx="0" fill="#059669"/>
+  <text x="512" y="131" text-anchor="middle" font-size="11" font-weight="700" fill="#FFFFFF">3. SALES &amp; POS BILLING</text>
+  <text x="440" y="162" font-size="10" fill="#1E293B">✦ Retail POS Counter</text>
+  <text x="440" y="178" font-size="10" fill="#1E293B">✦ Quotation / Estimate</text>
+  <text x="440" y="194" font-size="10" fill="#1E293B">✦ GST Invoice</text>
+  <text x="440" y="210" font-size="10" fill="#1E293B">✦ Old Gold Exchange</text>
+  <text x="440" y="226" font-size="10" fill="#1E293B">✦ EMI / Payment Track</text>
+  <text x="440" y="242" font-size="10" fill="#1E293B">✦ Customer Receipt</text>
+  <text x="440" y="258" font-size="10" fill="#1E293B">✦ Discount / Scheme</text>
+
+  <!-- ARROW 3→4 -->
+  <line x1="600" y1="190" x2="623" y2="190" stroke="#0B1F3A" stroke-width="2" marker-end="url(#arrow-navy)"/>
+
+  <!-- BOX 4: Purchase -->
+  <rect x="625" y="110" width="175" height="160" rx="10" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="625" y="110" width="175" height="32" rx="10" fill="#2563EB"/>
+  <rect x="625" y="130" width="175" height="12" rx="0" fill="#2563EB"/>
+  <text x="712" y="131" text-anchor="middle" font-size="11" font-weight="700" fill="#FFFFFF">4. PURCHASE MANAGEMENT</text>
+  <text x="640" y="162" font-size="10" fill="#1E293B">✦ Vendor / Supplier Mgmt</text>
+  <text x="640" y="178" font-size="10" fill="#1E293B">✦ Gold / Silver Purchase</text>
+  <text x="640" y="194" font-size="10" fill="#1E293B">✦ Purchase Orders</text>
+  <text x="640" y="210" font-size="10" fill="#1E293B">✦ Stone / Diamond Buy</text>
+  <text x="640" y="226" font-size="10" fill="#1E293B">✦ Return / Rejection</text>
+  <text x="640" y="242" font-size="10" fill="#1E293B">✦ Rate Negotiation</text>
+  <text x="640" y="258" font-size="10" fill="#1E293B">✦ Payment Scheduling</text>
+
+  <!-- ARROW 4→LIVE -->
+  <line x1="800" y1="190" x2="828" y2="190" stroke="#059669" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+  <!-- LIVE BOX -->
+  <rect x="830" y="130" width="145" height="120" rx="10" fill="#0B1F3A" filter="url(#shadow)"/>
+  <text x="902" y="158" text-anchor="middle" font-size="12" font-weight="800" fill="#C9A84C">● LIVE SYSTEM</text>
+  <text x="902" y="178" text-anchor="middle" font-size="10" fill="#FFFFFF">All modules synced</text>
+  <text x="902" y="195" text-anchor="middle" font-size="10" fill="#FFFFFF">in real-time</text>
+  <text x="902" y="215" text-anchor="middle" font-size="10" fill="#94A3B8">Multi-Branch</text>
+  <text x="902" y="230" text-anchor="middle" font-size="10" fill="#94A3B8">Cloud Ready</text>
+
+  <!-- DATA SYNC LABEL -->
+  <text x="1000" y="130" font-size="11" font-weight="700" fill="#0B1F3A">5. PUBLISH &amp; SYNC</text>
+  <rect x="985" y="138" width="200" height="130" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1" filter="url(#shadow)"/>
+  <text x="1000" y="158" font-size="10" fill="#1E293B">📊 Real-Time Stock Update</text>
+  <text x="1000" y="175" font-size="10" fill="#1E293B">🔄 Auto Rate Sync (Gold/Silver)</text>
+  <text x="1000" y="192" font-size="10" fill="#1E293B">📱 Mobile App Sync</text>
+  <text x="1000" y="209" font-size="10" fill="#1E293B">🖥️ All Branch Live Data</text>
+  <text x="1000" y="226" font-size="10" fill="#1E293B">📋 GST Filing Ready</text>
+  <text x="1000" y="243" font-size="10" fill="#1E293B">📤 Tally / Export</text>
+
+  <!-- ─────────────────────────── ROW 2 ─────────────────────────── -->
+  <!-- BOX 6: CRM -->
+  <rect x="20" y="300" width="195" height="165" rx="10" fill="#FDF4FF" stroke="#9333EA" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="20" y="300" width="195" height="32" rx="10" fill="#9333EA"/>
+  <rect x="20" y="320" width="195" height="12" rx="0" fill="#9333EA"/>
+  <text x="117" y="321" text-anchor="middle" font-size="11" font-weight="700" fill="#FFFFFF">6. CRM &amp; CUSTOMER MGMT</text>
+  <text x="35" y="352" font-size="10" fill="#1E293B">• Customer Profiles &amp; History</text>
+  <text x="35" y="368" font-size="10" fill="#1E293B">• Purchase History</text>
+  <text x="35" y="384" font-size="10" fill="#1E293B">• Loyalty Points / Schemes</text>
+  <text x="35" y="400" font-size="10" fill="#1E293B">• Birthday / Anniversary Alerts</text>
+  <text x="35" y="416" font-size="10" fill="#1E293B">• WhatsApp / SMS Followup</text>
+  <text x="35" y="432" font-size="10" fill="#1E293B">• Custom Price Catalogue</text>
+  <text x="35" y="448" font-size="10" fill="#1E293B">• Outstanding Balance View</text>
+
+  <!-- BOX 7: Accounting -->
+  <rect x="235" y="300" width="210" height="165" rx="10" fill="#FFFBEB" stroke="#D97706" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="235" y="300" width="210" height="32" rx="10" fill="#C9A84C"/>
+  <rect x="235" y="320" width="210" height="12" rx="0" fill="#C9A84C"/>
+  <text x="340" y="321" text-anchor="middle" font-size="11" font-weight="700" fill="#0B1F3A">7. ACCOUNTING &amp; GST</text>
+  <text x="250" y="352" font-size="10" fill="#1E293B">• Double Entry Ledger</text>
+  <text x="250" y="368" font-size="10" fill="#1E293B">• GST Return (GSTR1/2A/3B)</text>
+  <text x="250" y="384" font-size="10" fill="#1E293B">• Profit &amp; Loss Statement</text>
+  <text x="250" y="400" font-size="10" fill="#1E293B">• Balance Sheet</text>
+  <text x="250" y="416" font-size="10" fill="#1E293B">• Cash / Bank Books</text>
+  <text x="250" y="432" font-size="10" fill="#1E293B">• Trial Balance</text>
+  <text x="250" y="448" font-size="10" fill="#1E293B">• Tally Data Export</text>
+
+  <!-- BOX 8: Multi Branch -->
+  <rect x="465" y="300" width="210" height="165" rx="10" fill="#F0FFF4" stroke="#059669" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="465" y="300" width="210" height="32" rx="10" fill="#059669"/>
+  <rect x="465" y="320" width="210" height="12" rx="0" fill="#059669"/>
+  <text x="570" y="321" text-anchor="middle" font-size="11" font-weight="700" fill="#FFFFFF">8. MULTI-BRANCH MANAGEMENT</text>
+  <text x="480" y="352" font-size="10" fill="#1E293B">• Centralised Head Office View</text>
+  <text x="480" y="368" font-size="10" fill="#1E293B">• Inter-Branch Transfers</text>
+  <text x="480" y="384" font-size="10" fill="#1E293B">• Branch-wise Profit Reports</text>
+  <text x="480" y="400" font-size="10" fill="#1E293B">• Stock Sharing</text>
+  <text x="480" y="416" font-size="10" fill="#1E293B">• Role-Based Branch Access</text>
+  <text x="480" y="432" font-size="10" fill="#1E293B">• Consolidated Balance Sheet</text>
+  <text x="480" y="448" font-size="10" fill="#1E293B">• Daily Sales Summary</text>
+
+  <!-- BOX 9: Reports -->
+  <rect x="695" y="300" width="210" height="165" rx="10" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="695" y="300" width="210" height="32" rx="10" fill="#0B1F3A"/>
+  <rect x="695" y="320" width="210" height="12" rx="0" fill="#0B1F3A"/>
+  <text x="800" y="321" text-anchor="middle" font-size="11" font-weight="700" fill="#C9A84C">9. REPORTING &amp; ANALYTICS</text>
+  <text x="710" y="352" font-size="10" fill="#1E293B">• Sales vs Target Dashboard</text>
+  <text x="710" y="368" font-size="10" fill="#1E293B">• Gold Rate P&amp;L Analysis</text>
+  <text x="710" y="384" font-size="10" fill="#1E293B">• Slow / Fast Moving Items</text>
+  <text x="710" y="400" font-size="10" fill="#1E293B">• Karigar Efficiency Report</text>
+  <text x="710" y="416" font-size="10" fill="#1E293B">• Customer Segment Analysis</text>
+  <text x="710" y="432" font-size="10" fill="#1E293B">• Outstanding Receivables</text>
+  <text x="710" y="448" font-size="10" fill="#1E293B">• Custom Report Builder</text>
+
+  <!-- ─────────────────────────── ROW 3: Integration ─────────────────────────── -->
+  <rect x="20" y="490" width="1160" height="35" rx="8" fill="#0B1F3A" opacity="0.08"/>
+  <text x="600" y="513" text-anchor="middle" font-size="13" font-weight="800" fill="#0B1F3A">10. GOLDMATRIX ERP INTEGRATION ECOSYSTEM – ALL MODULES CONNECTED IN REAL-TIME</text>
+
+  <!-- Integration boxes row -->
+  <rect x="20" y="535" width="135" height="75" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" filter="url(#shadow)"/>
+  <text x="87" y="561" text-anchor="middle" font-size="18">🏷️</text>
+  <text x="87" y="578" text-anchor="middle" font-size="10" font-weight="700" fill="#0B1F3A">Barcode /</text>
+  <text x="87" y="592" text-anchor="middle" font-size="10" font-weight="700" fill="#0B1F3A">RFID System</text>
+
+  <rect x="165" y="535" width="135" height="75" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" filter="url(#shadow)"/>
+  <text x="232" y="561" text-anchor="middle" font-size="18">📱</text>
+  <text x="232" y="578" text-anchor="middle" font-size="10" font-weight="700" fill="#0B1F3A">Mobile App</text>
+  <text x="232" y="592" text-anchor="middle" font-size="10" font-weight="700" fill="#0B1F3A">Android / iOS</text>
+
+  <rect x="310" y="535" width="135" height="75" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" filter="url(#shadow)"/>
+  <text x="377" y="561" text-anchor="middle" font-size="18">💬</text>
+  <text x="377" y="578" text-anchor="middle" font-size="10" font-weight="700" fill="#0B1F3A">WhatsApp</text>
+  <text x="377" y="592" text-anchor="middle" font-size="10" font-weight="700" fill="#0B1F3A">Notifications</text>
+
+  <rect x="455" y="535" width="135" height="75" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" filter="url(#shadow)"/>
+  <text x="522" y="561" text-anchor="middle" font-size="18">💹</text>
+  <text x="522" y="578" text-anchor="middle" font-size="10" font-weight="700" fill="#0B1F3A">Live Gold Rate</text>
+  <text x="522" y="592" text-anchor="middle" font-size="10" font-weight="700" fill="#0B1F3A">Auto Update</text>
+
+  <rect x="600" y="535" width="135" height="75" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" filter="url(#shadow)"/>
+  <text x="667" y="561" text-anchor="middle" font-size="18">🖨️</text>
+  <text x="667" y="578" text-anchor="middle" font-size="10" font-weight="700" fill="#0B1F3A">Thermal / Dot</text>
+  <text x="667" y="592" text-anchor="middle" font-size="10" font-weight="700" fill="#0B1F3A">Matrix Print</text>
+
+  <rect x="745" y="535" width="135" height="75" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" filter="url(#shadow)"/>
+  <text x="812" y="561" text-anchor="middle" font-size="18">☁️</text>
+  <text x="812" y="578" text-anchor="middle" font-size="10" font-weight="700" fill="#0B1F3A">Cloud Backup</text>
+  <text x="812" y="592" text-anchor="middle" font-size="10" font-weight="700" fill="#0B1F3A">Auto Daily</text>
+
+  <rect x="890" y="535" width="135" height="75" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" filter="url(#shadow)"/>
+  <text x="957" y="561" text-anchor="middle" font-size="18">📊</text>
+  <text x="957" y="578" text-anchor="middle" font-size="10" font-weight="700" fill="#0B1F3A">Tally / Excel</text>
+  <text x="957" y="592" text-anchor="middle" font-size="10" font-weight="700" fill="#0B1F3A">Export</text>
+
+  <rect x="1035" y="535" width="145" height="75" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" filter="url(#shadow)"/>
+  <text x="1107" y="561" text-anchor="middle" font-size="18">🏛️</text>
+  <text x="1107" y="578" text-anchor="middle" font-size="10" font-weight="700" fill="#0B1F3A">GST Portal</text>
+  <text x="1107" y="592" text-anchor="middle" font-size="10" font-weight="700" fill="#0B1F3A">e-Invoice</text>
+
+  <!-- ─────── LEGEND / FOOTER ─────── -->
+  <rect x="0" y="630" width="1200" height="190" fill="#0B1F3A"/>
+
+  <!-- LEGEND TITLE -->
+  <text x="600" y="658" text-anchor="middle" font-size="14" font-weight="800" fill="#FFFFFF">LEGEND &amp; BUSINESS BENEFITS</text>
+
+  <!-- Left: data flows -->
+  <text x="40" y="685" font-size="11" font-weight="700" fill="#C9A84C">DATA FLOWS</text>
+  <line x1="40" y1="698" x2="80" y2="698" stroke="#0B1F3A" stroke-width="2.5" marker-end="url(#arrow-navy)"/>
+  <rect x="40" y="693" width="40" height="10" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+  <text x="90" y="700" font-size="10" fill="#CBD5E1">Inventory → Production Flow</text>
+  <line x1="40" y1="715" x2="80" y2="715" stroke="#C9A84C" stroke-width="2.5" marker-end="url(#arrow-gold)"/>
+  <rect x="40" y="710" width="40" height="10" fill="none" stroke="#C9A84C" stroke-width="1.5"/>
+  <text x="90" y="717" font-size="10" fill="#CBD5E1">Sales &amp; Accounting Flow</text>
+  <line x1="40" y1="732" x2="80" y2="732" stroke="#059669" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+  <rect x="40" y="727" width="40" height="10" fill="none" stroke="#059669" stroke-width="1.5"/>
+  <text x="90" y="734" font-size="10" fill="#CBD5E1">Multi-Branch Sync Flow</text>
+
+  <!-- Center benefits -->
+  <text x="380" y="685" font-size="11" font-weight="700" fill="#C9A84C">KEY BENEFITS</text>
+  <text x="380" y="704" font-size="10" fill="#CBD5E1">✓ Designed exclusively for Jewelry Industry</text>
+  <text x="380" y="720" font-size="10" fill="#CBD5E1">✓ Full GST compliance &amp; e-Invoice ready</text>
+  <text x="380" y="736" font-size="10" fill="#CBD5E1">✓ Works Offline + Online (Cloud Sync)</text>
+  <text x="380" y="752" font-size="10" fill="#CBD5E1">✓ Supports Wholesale, Retail &amp; Manufacturing</text>
+  <text x="380" y="768" font-size="10" fill="#CBD5E1">✓ Multi-user with Role Based Access</text>
+
+  <!-- Right bottom -->
+  <text x="750" y="685" font-size="11" font-weight="700" fill="#C9A84C">INDUSTRY COVERAGE</text>
+  <text x="750" y="704" font-size="10" fill="#CBD5E1">💎 Jewelry Retailers &amp; Showrooms</text>
+  <text x="750" y="720" font-size="10" fill="#CBD5E1">🏭 Jewelry Manufacturers</text>
+  <text x="750" y="736" font-size="10" fill="#CBD5E1">📦 Gold &amp; Diamond Wholesalers</text>
+  <text x="750" y="752" font-size="10" fill="#CBD5E1">🏅 Bullion Dealers &amp; Traders</text>
+  <text x="750" y="768" font-size="10" fill="#CBD5E1">🏪 Multi-Branch Chain Stores</text>
+
+  <!-- Bottom copyright strip -->
+  <rect x="0" y="790" width="1200" height="30" fill="#071528"/>
+  <text x="600" y="810" text-anchor="middle" font-size="11" fill="#64748B">© 2026 GoldMatrix Software Technologies Pvt. Ltd.  •  www.goldmatrixerp.com  •  All Rights Reserved</text>
+
+</svg>
+</body>
+</html>
