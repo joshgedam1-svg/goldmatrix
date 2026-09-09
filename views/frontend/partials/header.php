@@ -2009,7 +2009,7 @@ footer {
 ══════════════════════════════ */
 @media (max-width: 1199.98px) {
   .navbar { padding: 0 4%; }
-  .feat-grid { grid-template-columns: repeat(3, 1fr); }
+  .feat-grid { grid-template-columns: repeat(2, 1fr); }
   .modules-grid { grid-template-columns: repeat(3, 1fr); }
   .footer-grid { grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 32px; }
 }
@@ -2041,6 +2041,18 @@ footer {
   .modules-grid { grid-template-columns: repeat(3, 1fr); }
   .testi-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px 24px; }
+
+  /* ── feat-grid: 1 column on mobile, horizontal card layout ── */
+  .feat-grid { grid-template-columns: 1fr !important; gap: 14px; }
+  .feat-card {
+    flex-direction: row !important;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 20px 18px;
+  }
+  .feat-icon { flex-shrink: 0; margin-bottom: 0 !important; }
+  .feat-title { font-size: 15px; }
+  .feat-desc { font-size: 13px; }
 
   /* Solutions section grid on tablet */
   .gm-sol-card-grid { grid-template-columns: 1fr 1fr !important; }
@@ -2083,7 +2095,14 @@ footer {
   }
   .brand-logo img { height: 28px; max-width: 100px; }
 
-  /* ── Feature cards — 1 column on small phones ── */
+  /* ── feat-grid: force 1-col on small mobile ── */
+  .feat-grid { grid-template-columns: 1fr !important; gap: 12px; }
+  .feat-card { flex-direction: row !important; align-items: flex-start; gap: 14px; padding: 18px 16px; }
+  .feat-icon { flex-shrink: 0; width: 44px; height: 44px; font-size: 20px; margin-bottom: 0 !important; }
+  .feat-title { font-size: 14.5px; }
+  .feat-desc { font-size: 12.5px; }
+
+  /* ── pfeat-grid (navy section cards) ── */
   .pfeat-grid { grid-template-columns: 1fr; gap: 14px; }
   .pfeat-card { padding: 22px 20px; flex-direction: row; align-items: flex-start; text-align: left; gap: 16px; }
   .pfeat-icon-badge { flex-shrink: 0; width: 48px; height: 48px; font-size: 22px; margin-bottom: 0; }
