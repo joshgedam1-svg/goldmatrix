@@ -1,6 +1,6 @@
 Options -Indexes
 
-# Block sensitive files and hidden dotfiles
+# ── Block direct access to hidden files and sensitive extensions ──
 <FilesMatch "^\.|\.(env|sqlite|sql|log|json|lock|bak|md|git|yml|yaml)$">
     <IfModule mod_authz_core.c>
         Require all denied
@@ -13,6 +13,18 @@ Options -Indexes
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteRule ^$ public/ [L]
-    RewriteRule (.*) public/$1 [L]
+
+    # Prevent loop if already rewritten to public/
+    RewriteCond %{REQUEST_URI} ^/public/ [NC]
+    RewriteRule ^ - [L]
+
+    # If static file/asset exists inside public/, serve it directly
+    RewriteCond %{DOCUMENT_ROOT}/public/$1 -f [OR]
+    RewriteCond %{DOCUMENT_ROOT}/public/$1 -d
+    RewriteRule ^(.*)$ public/$1 [L]
+
+    # Check relative path for subfolder deployments
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ public/index.php [L,QSA]
 </IfModule>

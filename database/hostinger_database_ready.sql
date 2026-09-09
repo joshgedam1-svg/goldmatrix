@@ -1,7 +1,7 @@
 -- ========================================================
 -- GoldMatrix Complete Hostinger MySQL Schema & Seed Dump
 -- Compatible with MySQL 5.7 / 8.0 / MariaDB
--- Generated: 2026-09-09 14:01:48
+-- Generated: 2026-09-09 14:16:38
 -- ========================================================
 
 SET FOREIGN_KEY_CHECKS=0;

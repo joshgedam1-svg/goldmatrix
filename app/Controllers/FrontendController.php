@@ -1896,9 +1896,58 @@ class FrontendController {
         ]));
     }
 
-    /* ─────────────────────────────────────────────────────────────
-     *  BLOG: Category archive  /blog/category/{slug}
-     * ────�    public function submitDemo(): void {
+        /**
+     * BLOG: Category archive /blog/category/{slug}
+     */
+    public function blogCategory(string $slug): void {
+        $db = Database::getInstance();
+        $stmt = $db->prepare("SELECT * FROM blog_categories WHERE slug = ? LIMIT 1");
+        $stmt->execute([$slug]);
+        $category = $stmt->fetch();
+        if (!$category) {
+            header("HTTP/1.0 404 Not Found");
+            view("errors.404");
+            return;
+        }
+
+        $page = max(1, (int)($_GET["page"] ?? 1));
+        $perPage = 9;
+        $offset = ($page - 1) * $perPage;
+
+        $countStmt = $db->prepare("SELECT COUNT(*) FROM blog_posts WHERE status = 'published' AND category_id = ?");
+        $countStmt->execute([$category["id"]]);
+        $totalPosts = (int)$countStmt->fetchColumn();
+        $totalPages = max(1, (int)ceil($totalPosts / $perPage));
+
+        $postsStmt = $db->prepare("SELECT p.*, c.name AS category_name, c.slug AS category_slug, c.color AS category_color FROM blog_posts p LEFT JOIN blog_categories c ON p.category_id = c.id WHERE p.status = 'published' AND p.category_id = ? ORDER BY p.published_at DESC LIMIT ? OFFSET ?");
+        $postsStmt->execute([$category["id"], $perPage, $offset]);
+        $posts = $postsStmt->fetchAll();
+
+        $canonicalUrl = site_url("/blog/category/" . $category["slug"]);
+        $categories = $this->blogCategories();
+        $recentPosts = $this->recentBlogPosts(5);
+
+        view("frontend.blog-category", array_merge($this->footerData(), [
+            "category"      => $category,
+            "posts"         => $posts,
+            "categories"    => $categories,
+            "recent_posts"  => $recentPosts,
+            "current_page"  => $page,
+            "total_pages"   => $totalPages,
+            "total_posts"   => $totalPosts,
+            "meta_title"    => ($category["name"] ?? "Category") . " Articles & Insights | GoldMatrix Blog",
+            "meta_desc"     => $category["description"] ?? ("Read the latest articles on " . $category["name"]),
+            "meta_robots"   => "index,follow",
+            "canonical_url" => $canonicalUrl,
+            "og_type"       => "website",
+            "og_title"      => ($category["name"] ?? "Category") . " | GoldMatrix Blog",
+            "og_desc"       => $category["description"] ?? "",
+            "og_url"        => $canonicalUrl,
+            "header_menu"   => $this->getMenu("header"),
+        ]));
+    }
+
+    public function submitDemo(): void {
         header('Content-Type: application/json');
 
         // Anti-Bot Honeypot trap
@@ -1955,39 +2004,6 @@ class FrontendController {
             $leadStmt->execute([$name, $company, $email, $phone, $country, $leadMsg]);
 
             \App\Services\AuthService::recordAttempt($throttleKey, 3600);
-
-            echo json_encode([
-                'success' => true,
-                'message' => 'Demo request confirmed! Our Senior ERP Specialist will call you to conduct a live 1-on-1 walkthrough.'
-            ]);
-        } catch (\Throwable $e) {
-            http_response_code(500);
-            echo json_encode([
-                'success' => false,
-                'message' => 'Failed to register demo. Please contact us on WhatsApp (+91 92703 69937).'
-            ]);
-        }
-    }               'success' => false,
-                'message' => 'Please enter your name and phone number so we can coordinate your demo.'
-            ]);
-            exit;
-        }
-
-        try {
-            $pdo = $this->db->getPdo();
-            
-            // 1. Insert into demo_requests
-            $stmt = $pdo->prepare("INSERT INTO demo_requests (name, company, email, phone, country, business_type, number_of_branches, current_software, requirements, preferred_date, preferred_time, source, status, created_at, updated_at) 
-                                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'new', datetime('now'), datetime('now'))");
-            $stmt->execute([
-                $name, $company, $email, $phone, $country, $businessType, $branches, $currentSoftware, $requirements, $preferredDate, $preferredTime, $source
-            ]);
-
-            // 2. Also log as a high-priority lead in leads table
-            $leadMsg = "Requested Free Live Demo for {$company} ({$businessType}, {$branches} branch). Requirements: {$requirements}";
-            $leadStmt = $pdo->prepare("INSERT INTO leads (name, company, email, phone, country, message, source, status, created_at, updated_at) 
-                                       VALUES (?, ?, ?, ?, ?, ?, 'Free Demo Request', 'new', datetime('now'), datetime('now'))");
-            $leadStmt->execute([$name, $company, $email, $phone, $country, $leadMsg]);
 
             echo json_encode([
                 'success' => true,
