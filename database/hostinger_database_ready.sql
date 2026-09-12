@@ -1,7 +1,7 @@
 -- ========================================================
 -- GoldMatrix Hostinger Production Database SQL Import
 -- Database: Hostinger MySQL
--- Generated: 2026-09-12 12:13:27
+-- Generated: 2026-09-12 12:20:47
 -- ========================================================
 
 SET FOREIGN_KEY_CHECKS=0;

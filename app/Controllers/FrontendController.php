@@ -34,6 +34,132 @@ class FrontendController {
         }
     }
 
+    private function getSpotlightItems(): array {
+        $dbItems = $this->hpItems('feature_spotlight');
+        $hasGirvi = false;
+        $hasCRM = false;
+        $needsRename = false;
+
+        foreach ($dbItems as $it) {
+            $t = $it['title'] ?? '';
+            if (stripos($t, 'Girvi') !== false) $hasGirvi = true;
+            if (stripos($t, 'CRM') !== false) $hasCRM = true;
+            if ($t === 'Manufacturing') $needsRename = true;
+        }
+
+        if (count($dbItems) < 4 || !$hasGirvi || !$hasCRM || $needsRename) {
+            try {
+                if ($needsRename) {
+                    $this->db->query("UPDATE homepage_items SET title = ? WHERE section = 'feature_spotlight' AND title = 'Manufacturing'", ["Manufacturer's"]);
+                }
+                if (!$hasGirvi) {
+                    $girviFeatures = json_encode([
+                        'Automate daily, monthly, and compounding interest calculations with penalty rules',
+                        'Instant Girvi pawn receipt, pledge token, and legal agreement printing with customer photo',
+                        'Real-time valuation of gold and silver ornaments based on live market rates and tested purity',
+                        'Automated WhatsApp and SMS payment reminders, interest notices, and settlement tracking'
+                    ], JSON_UNESCAPED_SLASHES);
+                    $this->db->query("
+                        INSERT INTO homepage_items 
+                        (section, title, subtitle, description, features, alt_text, image, sort_order, is_active)
+                        VALUES ('feature_spotlight', 'Girvi ( Mortgage)', 
+                        'Streamline Gold Loan & Girvi Operations with Automated Interest',
+                        'GoldMatrix Girvi (Mortgage) Software provides a secure, reliable pawn broking and gold loan system built specifically for jewellery businesses. Calculate daily, monthly, or compounding interest accurately, issue legal pledge receipts, and maintain safe vault management.',
+                        ?, 'Girvi Mortgage & Gold Loan Software Interface', '', 3, 1)
+                    ", [$girviFeatures]);
+                }
+                if (!$hasCRM) {
+                    $crmFeatures = json_encode([
+                        '360° customer profile with lifetime purchase history, design preferences, and ring sizes',
+                        'Manage monthly gold savings schemes (Swarna Nidhi / 11+1 BC) with digital passbooks',
+                        'Automated personalized WhatsApp greetings for birthdays, anniversaries, and festival promotions',
+                        'Tiered customer loyalty reward points program with VIP discounts and referral bonus incentives'
+                    ], JSON_UNESCAPED_SLASHES);
+                    $this->db->query("
+                        INSERT INTO homepage_items 
+                        (section, title, subtitle, description, features, alt_text, image, sort_order, is_active)
+                        VALUES ('feature_spotlight', 'CRM', 
+                        'Jewellery Customer Relationship Management & Loyalty Schemes',
+                        'GoldMatrix Jewellery CRM Software helps retail jewellers nurture customer relationships, increase repeat showroom visits, and boost customer lifetime value. Seamlessly manage 11+1 monthly gold savings schemes, automated festive wishes, and personalized WhatsApp catalogs.',
+                        ?, 'Jewellery CRM & Customer Loyalty Software Interface', '', 4, 1)
+                    ", [$crmFeatures]);
+                }
+                $dbItems = $this->hpItems('feature_spotlight');
+            } catch (\Throwable $e) {}
+        }
+
+        if (count($dbItems) < 4) {
+            return [
+                [
+                    'id'          => 1,
+                    'title'       => 'Retails & Showrooms',
+                    'subtitle'    => 'Simplify Jewellery Retail and Showroom Operations',
+                    'description' => 'GoldMatrix Jewellery Software is built to support the day-to-day operations of jewellery retail stores and showrooms. It helps businesses maintain control over stock, sales, and customer transactions while ensuring smooth and efficient store management.',
+                    'features'    => json_encode([
+                        'Track inventory in real time, including available, reserved, and pending items',
+                        'Maintain optimal stock levels using smart reorder alerts',
+                        'Automate routine processes for sales, purchases, and returns',
+                        'Generate barcodes and design custom price tags and labels effortlessly'
+                    ]),
+                    'alt_text'    => 'Jewellery Retail & Showroom Software Interface',
+                    'image'       => '/uploads/homepage/hp_6a9207ee140eb.png',
+                    'sort_order'  => 1,
+                    'is_active'   => 1
+                ],
+                [
+                    'id'          => 2,
+                    'title'       => "Manufacturer's",
+                    'subtitle'    => 'Improve Productivity with Jewellery Manufacturing Software',
+                    'description' => 'GoldMatrix Manufacturing Software is designed to support jewellery manufacturers by simplifying production management and improving operational control. It helps businesses plan, track, and optimize manufacturing activities while maintaining accuracy and cost efficiency.',
+                    'features'    => json_encode([
+                        'Plan and manage production jobs with clear task assignments',
+                        'Support batch-based manufacturing for better efficiency',
+                        'Calculate accurate production costs and track finished goods sales',
+                        'Monitor work-in-progress inventory at every stage'
+                    ]),
+                    'alt_text'    => 'Jewellery Manufacturing & Production Dashboard',
+                    'image'       => '/uploads/homepage/hp_6a92088a510d9.png',
+                    'sort_order'  => 2,
+                    'is_active'   => 1
+                ],
+                [
+                    'id'          => 3,
+                    'title'       => 'Girvi ( Mortgage)',
+                    'subtitle'    => 'Streamline Gold Loan & Girvi Operations with Automated Interest',
+                    'description' => 'GoldMatrix Girvi (Mortgage) Software provides a secure, reliable pawn broking and gold loan system built specifically for jewellery businesses. Calculate daily, monthly, or compounding interest accurately, issue legal pledge receipts, and maintain safe vault management.',
+                    'features'    => json_encode([
+                        'Automate daily, monthly, and compounding interest calculations with penalty rules',
+                        'Instant Girvi pawn receipt, pledge token, and legal agreement printing with customer photo',
+                        'Real-time valuation of gold and silver ornaments based on live market rates and tested purity',
+                        'Automated WhatsApp and SMS payment reminders, interest notices, and settlement tracking'
+                    ]),
+                    'alt_text'    => 'Girvi Mortgage & Gold Loan Software Interface',
+                    'image'       => '',
+                    'sort_order'  => 3,
+                    'is_active'   => 1
+                ],
+                [
+                    'id'          => 4,
+                    'title'       => 'CRM',
+                    'subtitle'    => 'Jewellery Customer Relationship Management & Loyalty Schemes',
+                    'description' => 'GoldMatrix Jewellery CRM Software helps retail jewellers nurture customer relationships, increase repeat showroom visits, and boost customer lifetime value. Seamlessly manage 11+1 monthly gold savings schemes, automated festive wishes, and personalized WhatsApp catalogs.',
+                    'features'    => json_encode([
+                        '360° customer profile with lifetime purchase history, design preferences, and ring sizes',
+                        'Manage monthly gold savings schemes (Swarna Nidhi / 11+1 BC) with digital passbooks',
+                        'Automated personalized WhatsApp greetings for birthdays, anniversaries, and festival promotions',
+                        'Tiered customer loyalty reward points program with VIP discounts and referral bonus incentives'
+                    ]),
+                    'alt_text'    => 'Jewellery CRM & Customer Loyalty Software Interface',
+                    'image'       => '',
+                    'sort_order'  => 4,
+                    'is_active'   => 1
+                ]
+            ];
+        }
+
+        return $dbItems;
+    }
+
     public function home(): void {
         $data = [
             // ── META/SEO ──
@@ -106,72 +232,7 @@ class FrontendController {
             'spotlight_title'           => $this->hp('spotlight_title',           'Built to Power Every Stage of Jewellery Business'),
             'spotlight_title_highlight' => $this->hp('spotlight_title_highlight', 'Jewellery Business'),
             'spotlight_desc'            => $this->hp('spotlight_desc',            ''),
-            'spotlight_items'           => !empty($this->hpItems('feature_spotlight')) ? $this->hpItems('feature_spotlight') : [
-                [
-                    'id'          => 1,
-                    'title'       => 'Retails & Showrooms',
-                    'subtitle'    => 'Simplify Jewellery Retail and Showroom Operations',
-                    'description' => 'GoldMatrix Jewellery Software is built to support the day-to-day operations of jewellery retail stores and showrooms. It helps businesses maintain control over stock, sales, and customer transactions while ensuring smooth and efficient store management.',
-                    'features'    => json_encode([
-                        'Track inventory in real time, including available, reserved, and pending items',
-                        'Maintain optimal stock levels using smart reorder alerts',
-                        'Automate routine processes for sales, purchases, and returns',
-                        'Generate barcodes and design custom price tags and labels effortlessly'
-                    ]),
-                    'alt_text'    => 'Jewellery Retail & Showroom Software Interface',
-                    'image'       => '/uploads/homepage/hp_6a9207ee140eb.png',
-                    'sort_order'  => 1,
-                    'is_active'   => 1
-                ],
-                [
-                    'id'          => 2,
-                    'title'       => "Manufacturer's",
-                    'subtitle'    => 'Improve Productivity with Jewellery Manufacturing Software',
-                    'description' => 'GoldMatrix Manufacturing Software is designed to support jewellery manufacturers by simplifying production management and improving operational control. It helps businesses plan, track, and optimize manufacturing activities while maintaining accuracy and cost efficiency.',
-                    'features'    => json_encode([
-                        'Plan and manage production jobs with clear task assignments',
-                        'Support batch-based manufacturing for better efficiency',
-                        'Calculate accurate production costs and track finished goods sales',
-                        'Monitor work-in-progress inventory at every stage'
-                    ]),
-                    'alt_text'    => 'Jewellery Manufacturing & Production Dashboard',
-                    'image'       => '/uploads/homepage/hp_6a92088a510d9.png',
-                    'sort_order'  => 2,
-                    'is_active'   => 1
-                ],
-                [
-                    'id'          => 3,
-                    'title'       => 'Girvi ( Mortgage)',
-                    'subtitle'    => 'Streamline Gold Loan & Girvi Operations with Automated Interest',
-                    'description' => 'GoldMatrix Girvi (Mortgage) Software provides a secure, reliable pawn broking and gold loan system built specifically for jewellery businesses. Calculate daily, monthly, or compounding interest accurately, issue legal pledge receipts, and maintain safe vault management.',
-                    'features'    => json_encode([
-                        'Automate daily, monthly, and compounding interest calculations with penalty rules',
-                        'Instant Girvi pawn receipt, pledge token, and legal agreement printing with customer photo',
-                        'Real-time valuation of gold and silver ornaments based on live market rates and tested purity',
-                        'Automated WhatsApp and SMS payment reminders, interest notices, and settlement tracking'
-                    ]),
-                    'alt_text'    => 'Girvi Mortgage & Gold Loan Software Interface',
-                    'image'       => '',
-                    'sort_order'  => 3,
-                    'is_active'   => 1
-                ],
-                [
-                    'id'          => 4,
-                    'title'       => 'CRM',
-                    'subtitle'    => 'Jewellery Customer Relationship Management & Loyalty Schemes',
-                    'description' => 'GoldMatrix Jewellery CRM Software helps retail jewellers nurture customer relationships, increase repeat showroom visits, and boost customer lifetime value. Seamlessly manage 11+1 monthly gold savings schemes, automated festive wishes, and personalized WhatsApp catalogs.',
-                    'features'    => json_encode([
-                        '360° customer profile with lifetime purchase history, design preferences, and ring sizes',
-                        'Manage monthly gold savings schemes (Swarna Nidhi / 11+1 BC) with digital passbooks',
-                        'Automated personalized WhatsApp greetings for birthdays, anniversaries, and festival promotions',
-                        'Tiered customer loyalty reward points program with VIP discounts and referral bonus incentives'
-                    ]),
-                    'alt_text'    => 'Jewellery CRM & Customer Loyalty Software Interface',
-                    'image'       => '',
-                    'sort_order'  => 4,
-                    'is_active'   => 1
-                ]
-            ],
+            'spotlight_items'           => $this->getSpotlightItems(),
 
             // ── POWERFUL FEATURES (5 CARDS GRID) ──
             'pfeat_enabled'     => $this->hp('pfeat_enabled',      '1'),
