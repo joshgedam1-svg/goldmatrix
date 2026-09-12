@@ -645,12 +645,19 @@ $slides = !empty($hero_slides) ? $hero_slides : [
   </div>
 
   <style>
+  .spotlight-img-wrap {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  .spotlight-img-wrap:hover {
+    box-shadow: none !important;
+  }
   .spotlight-card-box {
     width: 100%;
     max-width: 480px;
     margin: 0 auto;
     min-height: 52px;
-    background: rgba(255, 255, 255, 0.02);
+    background: transparent !important;
     border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: 12px;
     display: flex;
@@ -661,12 +668,13 @@ $slides = !empty($hero_slides) ? $hero_slides : [
     font-weight: 700;
     font-size: 15.5px;
     letter-spacing: 0.3px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: none !important;
     transition: all 0.3s ease;
   }
   .spotlight-img-wrap:hover .spotlight-card-box {
     border-color: rgba(245, 158, 11, 0.4);
-    background: rgba(255, 255, 255, 0.05);
+    background: transparent !important;
+    box-shadow: none !important;
   }
   </style>
 </section>

@@ -1152,11 +1152,11 @@ h1, h2, h3, h4, h5, h6,
   flex-shrink: 0;
 }
 .spotlight-img-wrap {
-  background: rgba(0, 11, 42, 0.5);
+  background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 18px;
   padding: 16px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  box-shadow: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1165,6 +1165,7 @@ h1, h2, h3, h4, h5, h6,
 .spotlight-img-wrap:hover {
   transform: translateY(-4px);
   border-color: rgba(220, 148, 35, 0.4);
+  box-shadow: none;
 }
 .spotlight-img {
   max-width: 100%;
