@@ -194,6 +194,19 @@ class AboutPageController {
             }
         }
 
+        // Ensure repeater keys are updated if all cards were removed
+        $repeaterKeys = [
+            'journey'    => 'about_journey_items',
+            'solutions'  => 'about_solutions_items',
+            'howwework'  => 'about_howwework_steps',
+            'builtfor'   => 'about_builtfor_items',
+            'why'        => 'about_why_items',
+            'whoweserve' => 'about_whoweserve_items'
+        ];
+        if (isset($repeaterKeys[$section]) && !isset($_POST[$repeaterKeys[$section]])) {
+            $_POST[$repeaterKeys[$section]] = [];
+        }
+
         // Save all about_* POST fields
         $savedCount = 0;
         foreach ($_POST as $key => $val) {
@@ -202,7 +215,26 @@ class AboutPageController {
             }
 
             if (strpos($key, 'about_') === 0) {
-                $val = is_array($val) ? json_encode($val) : (string)$val;
+                if (is_array($val)) {
+                    $cleanArray = [];
+                    foreach ($val as $item) {
+                        if (is_array($item)) {
+                            $hasContent = false;
+                            foreach ($item as $f) {
+                                if (trim((string)$f) !== '') {
+                                    $hasContent = true;
+                                    break;
+                                }
+                            }
+                            if ($hasContent) {
+                                $cleanArray[] = $item;
+                            }
+                        }
+                    }
+                    $val = json_encode(array_values($cleanArray), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+                } else {
+                    $val = (string)$val;
+                }
                 
                 $exists = $this->db->fetch("SELECT 1 FROM settings WHERE setting_key = ?", [$key]);
                 if ($exists) {
