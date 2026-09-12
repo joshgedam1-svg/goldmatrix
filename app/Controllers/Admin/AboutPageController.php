@@ -17,113 +17,116 @@ class AboutPageController {
      */
     private function ensureDefaults(): void {
         $defaults = [
-            // ── Section 1: Hero Banner ──
-            ['about_hero_enabled',      '1', 'Show Hero Banner Section', 'select'],
-            ['about_hero_eyebrow',      'ABOUT GOLDMATRIX', 'Hero Eyebrow Badge', 'text'],
-            ['about_hero_title',        'Technology Built Around the Jewellery Business', 'Hero Main Title', 'text'],
-            ['about_hero_sub',          'GoldMatrix is a jewellery-focused software technology provider helping businesses manage the complexity of modern jewellery operations through connected, purpose-built business software.', 'Hero Subtitle', 'textarea'],
-            ['about_hero_bg_style',     'dark', 'Hero Background Theme', 'select'],
+            // ── 1. Hero Section ──
+            ['about_hero_title',        'About GoldMatrix', 'Hero Main Heading', 'text'],
+            ['about_hero_lead',         'GoldMatrix is a jewellery business software company helping jewellery businesses simplify operations, improve control and grow with confidence.', 'Hero Supporting Text', 'textarea'],
+            ['about_hero_image',        'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=1000&auto=format&fit=crop&q=80', 'Hero Right Image URL', 'text'],
+            ['about_hero_btn1_text',    'Book a Free Demo', 'Hero Primary Button Text', 'text'],
+            ['about_hero_btn2_text',    'Explore Solutions', 'Hero Secondary Button Text', 'text'],
+            ['about_hero_btn2_link',    '/solutions', 'Hero Secondary Button Link', 'text'],
 
-            // ── Section 2: Story & Vision ──
-            ['about_story_enabled',     '1', 'Show Company Story Section', 'select'],
-            ['about_story_badge',       'PURPOSE-BUILT ARCHITECTURE', 'Story Eyebrow Badge', 'text'],
-            ['about_story_title',       'Built for the Realities of Jewellery Businesses', 'Story Heading', 'text'],
-            ['about_story_p1',          'Jewellery businesses operate differently from conventional retail and trading businesses. Products can involve precious metals, diamonds and stones, varying purity and carat values, weight-based transactions, changing rates, manufacturing processes, jobwork, repairs, stock transfers and high-value inventory.', 'Story Paragraph 1', 'textarea'],
-            ['about_story_p2',          'GoldMatrix brings these requirements together in a single business-management environment.', 'Story Paragraph 2', 'textarea'],
-            ['about_story_image',       'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1000&auto=format&fit=crop&q=80', 'Story Photo URL', 'text'],
+            // ── 2. Who We Are ──
+            ['about_whoweare_title',    'Who We Are', 'Who We Are Heading', 'text'],
+            ['about_whoweare_text',     'We build practical business solutions for jewellery retailers, wholesalers, manufacturers and growing jewellery enterprises.', 'Who We Are Supporting Text', 'textarea'],
+            ['about_whoweare_image',    'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1000&auto=format&fit=crop&q=80', 'Who We Are Image URL', 'text'],
 
-            // ── Section 3: Key Stats ──
-            ['about_stats_enabled',     '1', 'Show Key Statistics Strip', 'select'],
-            ['about_stats_items',       json_encode([
-                ['num' => '10+',    'label' => 'Core Operational Modules'],
-                ['num' => '100%',   'label' => 'Jewellery-Specific Domain Logic'],
-                ['num' => 'Global', 'label' => 'Multi-Country Cloud Deployments'],
-                ['num' => '24/7',   'label' => 'Dedicated Enterprise Support']
-            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE), 'Stats (JSON)', 'textarea'],
+            // ── 3. Our Purpose ──
+            ['about_purpose_title',     'Our Purpose', 'Our Purpose Heading', 'text'],
+            ['about_purpose_text',      'To make complex jewellery business operations simpler, more accurate and easier to manage.', 'Our Purpose Supporting Text', 'textarea'],
+            ['about_purpose_image',     'https://images.unsplash.com/photo-1531973576160-7125cd663d86?w=1000&auto=format&fit=crop&q=80', 'Our Purpose Image URL', 'text'],
 
-            // ── Section 4: Core Values ──
-            ['about_values_enabled',    '1', 'Show Core Values Section', 'select'],
-            ['about_values_badge',      'OUR APPROACH', 'Values Badge', 'text'],
-            ['about_values_title',      'Technology With a Customer-First Approach', 'Values Title', 'text'],
-            ['about_values_items',      json_encode([
-                [
-                    'icon'  => 'bi-lightbulb',
-                    'title' => 'Industry Understanding',
-                    'desc'  => 'Software designed around real jewellery workflows rather than generic retail assumptions.'
-                ],
-                [
-                    'icon'  => 'bi-check2-square',
-                    'title' => 'Accuracy & Control',
-                    'desc'  => 'Structured processes and reporting designed to improve operational visibility and reduce manual errors.'
-                ],
-                [
-                    'icon'  => 'bi-diagram-3',
-                    'title' => 'Scalable Technology',
-                    'desc'  => 'A technology platform designed to support growing business requirements and connected operations.'
-                ],
-                [
-                    'icon'  => 'bi-ui-checks',
-                    'title' => 'Practical Usability',
-                    'desc'  => 'Interfaces and workflows designed to help teams perform everyday tasks efficiently.'
-                ],
-                [
-                    'icon'  => 'bi-handshake',
-                    'title' => 'Long-Term Partnership',
-                    'desc'  => 'Supporting businesses beyond software deployment with ongoing product improvements and customer assistance.'
-                ]
-            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE), 'Values Items (JSON)', 'textarea'],
+            // ── 4. Our Journey ──
+            ['about_journey_title',     'Our Journey', 'Our Journey Heading', 'text'],
+            ['about_journey_text',      'Our journey is shaped by continuous experience, customer relationships and a deep understanding of jewellery business operations.', 'Our Journey Supporting Text', 'textarea'],
+            ['about_journey_items',     json_encode([
+                ['phase' => 'PHASE 01', 'title' => 'Experience', 'desc' => 'Direct engagement with jewellery merchants, retailers and bullion counters.'],
+                ['phase' => 'PHASE 02', 'title' => 'Industry Understanding', 'desc' => 'Deep mastering of Karigar jobwork, metal purities, stone calculations and retail workflows.'],
+                ['phase' => 'PHASE 03', 'title' => 'Software Evolution', 'desc' => 'Purpose-built cloud software bringing inventory, sales, RFID and accounting together.'],
+                ['phase' => 'PHASE 04', 'title' => 'Global Growth', 'desc' => 'Expanding across international jewellery capitals with continuous product refinement.']
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE), 'Journey Timeline Items (JSON)', 'textarea'],
 
-            // ── Section 5: Timeline / Milestones ──
-            ['about_timeline_enabled',  '1', 'Show Evolution Timeline Section', 'select'],
-            ['about_timeline_badge',    'DOMAIN MASTERY', 'Timeline Badge', 'text'],
-            ['about_timeline_title',    'Jewellery Industry Expertise at the Core', 'Timeline Title', 'text'],
-            ['about_timeline_items',    json_encode([
-                [
-                    'year'  => '01',
-                    'title' => 'Precious-Metal Inventory',
-                    'desc'  => 'Manage products where weight, purity, carat and metal type matter with complete calculation precision.'
-                ],
-                [
-                    'year'  => '02',
-                    'title' => 'Manufacturing & Jobwork',
-                    'desc'  => 'Follow production activities through departments and manufacturing stages with granular jobcard and loss tracking.'
-                ],
-                [
-                    'year'  => '03',
-                    'title' => 'High-Value Inventory',
-                    'desc'  => 'Maintain greater visibility over products, stock movements, approvals and high-security vault inventory information.'
-                ],
-                [
-                    'year'  => '04',
-                    'title' => 'Multi-Location Operations',
-                    'desc'  => 'Support businesses that need centralized visibility across stores, branches, wholesale counters or operational locations.'
-                ],
-                [
-                    'year'  => '05',
-                    'title' => 'Customer Relationships',
-                    'desc'  => 'Bring customer information, purchase activity, gold saving schemes and business interactions into a connected environment.'
-                ]
-            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE), 'Timeline Items (JSON)', 'textarea'],
+            // ── 5. What We Do ──
+            ['about_whatwedo_title',    'What We Do', 'What We Do Heading', 'text'],
+            ['about_whatwedo_text',     'We provide connected business solutions covering the key operations of modern jewellery businesses.', 'What We Do Supporting Text', 'textarea'],
+            ['about_whatwedo_image',    '/uploads/homepage/hp_6a9207ee140eb.png', 'Software Screenshot Collage Image', 'text'],
 
-            // ── Section 6: Global Hubs ──
-            ['about_hubs_enabled',      '1', 'Show Dual Global Hubs Section', 'select'],
-            ['about_hubs_badge',        'GLOBAL PRESENCE', 'Hubs Badge', 'text'],
-            ['about_hubs_title',        'Built for Jewellery Businesses Worldwide', 'Hubs Title', 'text'],
+            // ── 6. Our Solutions ──
+            ['about_solutions_title',   'Our Solutions', 'Our Solutions Heading', 'text'],
+            ['about_solutions_text',    'Explore our dedicated solution modules built exclusively for jewellery commerce.', 'Our Solutions Supporting Text', 'textarea'],
+            ['about_solutions_items',   json_encode([
+                ['icon' => 'bi-shop', 'title' => 'Jewellery Retail', 'desc' => 'Sales, quick billing, customer profiles and daily store management.'],
+                ['icon' => 'bi-boxes', 'title' => 'Wholesale Management', 'desc' => 'B2B orders, approval memos, dealer accounts and bulk trade control.'],
+                ['icon' => 'bi-gear-wide-connected', 'title' => 'Manufacturing & Jobwork', 'desc' => 'Department allocations, Karigar jobbags, loss tracking and worklogs.'],
+                ['icon' => 'bi-layers', 'title' => 'Inventory Management', 'desc' => 'Precious metal purity, diamond weights, barcode and RFID audits.'],
+                ['icon' => 'bi-calculator', 'title' => 'Accounting & Finance', 'desc' => 'Automated ledgers, tax compliance, metal balance and financial statements.'],
+                ['icon' => 'bi-people', 'title' => 'CRM & Customer Management', 'desc' => 'Customer history, gold saving schemes and relationship workflows.']
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE), 'Solution Cards (JSON)', 'textarea'],
 
-            // ── Section 7: Conversion CTA ──
-            ['about_cta_enabled',       '1', 'Show Bottom Demo Conversion Banner', 'select'],
-            ['about_cta_title',         'Ready to Modernize Your Jewellery Business?', 'CTA Title', 'text'],
-            ['about_cta_desc',          'Discover how GoldMatrix can bring your sales, inventory, manufacturing, accounting, customer management and reporting into one connected software platform.', 'CTA Subtitle', 'textarea'],
-            ['about_cta_btn1_text',     'Book a Personal Demo', 'CTA Button 1 Text', 'text'],
-            ['about_cta_btn1_link',     '/contact', 'CTA Button 1 Target', 'text'],
-            ['about_cta_btn2_text',     'Talk to Our Team', 'CTA Button 2 Text', 'text'],
-            ['about_cta_whatsapp',      '+91 92703 69937', 'CTA WhatsApp', 'text'],
+            // ── 7. How We Work ──
+            ['about_howwework_title',   'How We Work', 'How We Work Heading', 'text'],
+            ['about_howwework_text',    'A structured, customer-first approach to deploying software that fits your operations.', 'How We Work Supporting Text', 'textarea'],
+            ['about_howwework_image',   'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1000&auto=format&fit=crop&q=80', 'How We Work Image URL', 'text'],
+            ['about_howwework_steps',   json_encode([
+                ['num' => '1', 'title' => 'Understand', 'desc' => 'We understand your business processes and operational requirements.'],
+                ['num' => '2', 'title' => 'Implement', 'desc' => 'We configure solutions around your jewellery business workflows.'],
+                ['num' => '3', 'title' => 'Support', 'desc' => 'We continue to support your business as your operations grow.']
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE), 'How We Work Steps (JSON)', 'textarea'],
 
-            // ── Section 8: SEO Meta ──
+            // ── 8. Built for Jewellery Businesses ──
+            ['about_builtfor_title',    'Built for Jewellery Businesses', 'Built For Heading', 'text'],
+            ['about_builtfor_text',     'Our solutions are designed around the unique requirements of jewellery retail, wholesale, manufacturing and business operations.', 'Built For Supporting Text', 'textarea'],
+            ['about_builtfor_items',    json_encode([
+                ['title' => 'Retail Showroom', 'desc' => 'POS, barcode and counter sales', 'img' => 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&auto=format&fit=crop&q=80'],
+                ['title' => 'Wholesale Operation', 'desc' => 'B2B orders and stock transfer', 'img' => 'https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=600&auto=format&fit=crop&q=80'],
+                ['title' => 'Jewellery Manufacturing', 'desc' => 'Jobwork and production queues', 'img' => 'https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?w=600&auto=format&fit=crop&q=80'],
+                ['title' => 'Business Management', 'desc' => 'CRM, schemes and analytics', 'img' => 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&auto=format&fit=crop&q=80']
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE), 'Built For 4-Image Grid (JSON)', 'textarea'],
+
+            // ── 9. Why GoldMatrix ──
+            ['about_why_title',         'Why GoldMatrix', 'Why GoldMatrix Heading', 'text'],
+            ['about_why_text',          'Engineered specifically for the demands and operational integrity of the jewellery industry.', 'Why GoldMatrix Supporting Text', 'textarea'],
+            ['about_why_items',         json_encode([
+                ['icon' => 'bi-gem', 'title' => 'Jewellery Expertise', 'desc' => 'Purpose-built around jewellery business operations.'],
+                ['icon' => 'bi-link-45deg', 'title' => 'Connected Operations', 'desc' => 'Manage essential business processes in one ecosystem.'],
+                ['icon' => 'bi-check2-circle', 'title' => 'Practical Solutions', 'desc' => 'Designed for real-world jewellery workflows.'],
+                ['icon' => 'bi-graph-up-arrow', 'title' => 'Scalable Business', 'desc' => 'Suitable for growing businesses and multi-location operations.'],
+                ['icon' => 'bi-headset', 'title' => 'Customer Support', 'desc' => 'Focused on long-term customer relationships.'],
+                ['icon' => 'bi-globe2', 'title' => 'Global Approach', 'desc' => 'Built to support modern jewellery businesses across markets.']
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE), 'Why GoldMatrix Benefits (JSON)', 'textarea'],
+
+            // ── 10. Who We Serve ──
+            ['about_whoweserve_title',  'Who We Serve', 'Who We Serve Heading', 'text'],
+            ['about_whoweserve_text',   'From individual jewellery businesses to growing enterprises, GoldMatrix supports different stages of the jewellery business.', 'Who We Serve Supporting Text', 'textarea'],
+            ['about_whoweserve_items',  json_encode([
+                ['icon' => 'bi-shop', 'title' => 'Retailers', 'desc' => 'Single & multi-store showrooms'],
+                ['icon' => 'bi-boxes', 'title' => 'Wholesalers', 'desc' => 'Bullion & trade distributors'],
+                ['icon' => 'bi-hammer', 'title' => 'Manufacturers', 'desc' => 'Production units & Karigars'],
+                ['icon' => 'bi-safe', 'title' => 'Girvi / Mortgage', 'desc' => 'Gold loan & pawn operators'],
+                ['icon' => 'bi-building', 'title' => 'Enterprises', 'desc' => 'Large multi-branch jewellery chains']
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE), 'Who We Serve Items (JSON)', 'textarea'],
+
+            // ── 11. Global Presence ──
+            ['about_global_title',      'Global Presence', 'Global Presence Heading', 'text'],
+            ['about_global_text',       'GoldMatrix is built with an international outlook to support jewellery businesses across different markets and business environments.', 'Global Presence Supporting Text', 'textarea'],
+            ['about_global_markets',    'UAE • India • Hong Kong • Singapore • United Kingdom • GCC', 'Global Highlighted Markets', 'text'],
+
+            // ── 12. Our Commitment ──
+            ['about_commitment_title',  'Our Commitment', 'Our Commitment Heading', 'text'],
+            ['about_commitment_text',   'We focus on reliable solutions, continuous improvement and long-term relationships with the businesses we serve.', 'Our Commitment Supporting Text', 'textarea'],
+            ['about_commitment_image',  'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1000&auto=format&fit=crop&q=80', 'Commitment Image URL', 'text'],
+
+            // ── 13. Final CTA ──
+            ['about_cta_title',         'Let\'s Grow Together', 'Final CTA Heading', 'text'],
+            ['about_cta_desc',          'Discover how GoldMatrix can help simplify your jewellery business and bring greater control to your daily operations.', 'Final CTA Supporting Text', 'textarea'],
+            ['about_cta_btn1_text',     'Book a Free Demo', 'CTA Button Text', 'text'],
+            ['about_cta_whatsapp',      '+91 92703 69937', 'CTA WhatsApp Phone', 'text'],
+            ['about_cta_bg_image',      'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1600&auto=format&fit=crop&q=80', 'CTA Background Image URL', 'text'],
+
+            // ── 14. SEO Meta ──
             ['about_seo_meta_title',    'About GoldMatrix | Jewellery ERP & Business Software', 'SEO Meta Title', 'text'],
-            ['about_seo_meta_desc',     'Learn about GoldMatrix, a jewellery-focused software provider delivering ERP, POS, inventory, manufacturing, accounting, CRM and business management solutions for jewellery businesses.', 'SEO Meta Description', 'textarea'],
+            ['about_seo_meta_desc',     'GoldMatrix is a jewellery business software company helping jewellery businesses simplify operations, improve control and grow with confidence.', 'SEO Meta Description', 'textarea'],
             ['about_seo_keywords',      'about goldmatrix, jewellery erp software, jewellery pos, jewellery inventory management, jewelry manufacturing software, jewellery accounting crm', 'SEO Keywords', 'textarea'],
-            ['about_seo_og_image',      '', 'OpenGraph Image URL', 'text'],
+            ['about_seo_og_image',      '', 'OpenGraph Social Share Image URL', 'text'],
         ];
 
         foreach ($defaults as $d) {
@@ -162,7 +165,7 @@ class AboutPageController {
     }
 
     /**
-     * Handle updating an individual section or all sections
+     * Handle updating individual sections or all sections
      */
     private function handlePost(): void {
         $section = $_POST['section_name'] ?? 'all';
@@ -173,87 +176,28 @@ class AboutPageController {
             return;
         }
 
-        // Process Stats items JSON
-        if (isset($_POST['stat_nums']) && is_array($_POST['stat_nums'])) {
-            $stats = [];
-            $nums = $_POST['stat_nums'];
-            $lbls = $_POST['stat_labels'] ?? [];
-            for ($i = 0; $i < count($nums); $i++) {
-                $n = trim($nums[$i] ?? '');
-                $l = trim($lbls[$i] ?? '');
-                if (!empty($n)) {
-                    $stats[] = ['num' => $n, 'label' => $l];
-                }
-            }
-            $_POST['about_stats_items'] = json_encode($stats, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-        }
-
-        // Process Values items JSON
-        if (isset($_POST['val_titles']) && is_array($_POST['val_titles'])) {
-            $vals = [];
-            $titles = $_POST['val_titles'];
-            $icons  = $_POST['val_icons'] ?? [];
-            $descs  = $_POST['val_descs'] ?? [];
-            for ($i = 0; $i < count($titles); $i++) {
-                $t = trim($titles[$i] ?? '');
-                $ic = trim($icons[$i] ?? 'bi-stars');
-                $d = trim($descs[$i] ?? '');
-                if (!empty($t)) {
-                    $vals[] = ['icon' => $ic, 'title' => $t, 'desc' => $d];
-                }
-            }
-            $_POST['about_values_items'] = json_encode($vals, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-        }
-
-        // Process Timeline items JSON
-        if (isset($_POST['tm_years']) && is_array($_POST['tm_years'])) {
-            $tms = [];
-            $years = $_POST['tm_years'];
-            $titles = $_POST['tm_titles'] ?? [];
-            $descs  = $_POST['tm_descs'] ?? [];
-            for ($i = 0; $i < count($years); $i++) {
-                $y = trim($years[$i] ?? '');
-                $t = trim($titles[$i] ?? '');
-                $d = trim($descs[$i] ?? '');
-                if (!empty($y)) {
-                    $tms[] = ['year' => $y, 'title' => $t, 'desc' => $d];
-                }
-            }
-            $_POST['about_timeline_items'] = json_encode($tms, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-        }
-
-        // Process file upload if any (e.g. Story image or OG Image)
-        if ($storyImg = secure_upload_image('about_story_image_file', 'about', ['png', 'jpg', 'jpeg', 'webp', 'svg'])) {
-            $_POST['about_story_image'] = $storyImg;
-        }
-
-        if ($ogImg = secure_upload_image('about_seo_og_image_file', 'about', ['png', 'jpg', 'jpeg', 'webp', 'svg'])) {
-            $_POST['about_seo_og_image'] = $ogImg;
-        }
-
-        // Auto-handle unchecked switch toggles for the current section
-        $switchKeys = [
-            'hero'     => ['about_hero_enabled'],
-            'story'    => ['about_story_enabled'],
-            'stats'    => ['about_stats_enabled'],
-            'values'   => ['about_values_enabled'],
-            'timeline' => ['about_timeline_enabled'],
-            'hubs'     => ['about_hubs_enabled'],
-            'cta'      => ['about_cta_enabled'],
+        // Handle Image Uploads
+        $imageFields = [
+            'about_hero_image_file'        => 'about_hero_image',
+            'about_whoweare_image_file'    => 'about_whoweare_image',
+            'about_purpose_image_file'     => 'about_purpose_image',
+            'about_whatwedo_image_file'    => 'about_whatwedo_image',
+            'about_howwework_image_file'   => 'about_howwework_image',
+            'about_commitment_image_file'  => 'about_commitment_image',
+            'about_cta_bg_image_file'      => 'about_cta_bg_image',
+            'about_seo_og_image_file'      => 'about_seo_og_image'
         ];
 
-        if (isset($switchKeys[$section])) {
-            foreach ($switchKeys[$section] as $swKey) {
-                if (!isset($_POST[$swKey])) {
-                    $_POST[$swKey] = '0';
-                }
+        foreach ($imageFields as $fileInput => $settingKey) {
+            if ($uploadedPath = secure_upload_image($fileInput, 'about', ['png', 'jpg', 'jpeg', 'webp', 'svg'])) {
+                $_POST[$settingKey] = $uploadedPath;
             }
         }
 
-        // Save keys
+        // Save all about_* POST fields
         $savedCount = 0;
         foreach ($_POST as $key => $val) {
-            if ($key === 'section_name' || $key === 'action' || $key === 'stat_nums' || $key === 'stat_labels' || $key === 'val_titles' || $key === 'val_icons' || $key === 'val_descs' || $key === 'tm_years' || $key === 'tm_titles' || $key === 'tm_descs') {
+            if ($key === 'section_name' || $key === 'action') {
                 continue;
             }
 
@@ -274,19 +218,25 @@ class AboutPageController {
         }
 
         $sectionLabels = [
-            'hero'     => 'Hero Banner Section',
-            'story'    => 'Company Story & Mission Section',
-            'stats'    => 'Key Statistics Strip',
-            'values'   => 'Core Values Section',
-            'timeline' => 'Evolution Timeline Section',
-            'hubs'     => 'Global Presence & Hubs Section',
-            'cta'      => 'Bottom Conversion CTA Banner',
-            'seo'      => 'About SEO & Social Meta Configuration',
-            'all'      => 'About Us Page Settings'
+            'hero'         => '1. Hero Section',
+            'whoweare'     => '2. Who We Are',
+            'purpose'      => '3. Our Purpose',
+            'journey'      => '4. Our Journey',
+            'whatwedo'     => '5. What We Do',
+            'solutions'    => '6. Our Solutions',
+            'howwework'    => '7. How We Work',
+            'builtfor'     => '8. Built for Jewellery Businesses',
+            'why'          => '9. Why GoldMatrix',
+            'whoweserve'   => '10. Who We Serve',
+            'global'       => '11. Global Presence',
+            'commitment'   => '12. Our Commitment',
+            'cta'          => '13. Final CTA (Let\'s Grow Together)',
+            'seo'          => 'SEO & Social Meta Configuration',
+            'all'          => 'About Us Page Settings'
         ];
 
         $secName = $sectionLabels[$section] ?? 'Section';
-        set_flash('success', "✅ {$secName} updated successfully and synchronized to live About page!");
+        set_flash('success', "✅ {$secName} saved successfully and updated on live About page!");
         redirect('/admin/about-settings?section=' . urlencode($section));
     }
 }

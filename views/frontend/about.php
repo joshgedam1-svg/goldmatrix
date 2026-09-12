@@ -2,9 +2,65 @@
 /**
  * GoldMatrix — International Standard About Us Page
  * Structure: Company First, Technology Second (13 Clean Sections)
+ * Dynamic CMS: 100% Editable via Admin (/admin/about-settings)
  * Location: views/frontend/about.php
  */
 require __DIR__ . '/partials/header.php';
+
+// Decode JSON repeaters from DB settings with fallback defaults
+$defaultJourney = [
+  ['phase' => 'PHASE 01', 'title' => 'Experience', 'desc' => 'Direct engagement with jewellery merchants, retailers and bullion counters.'],
+  ['phase' => 'PHASE 02', 'title' => 'Industry Understanding', 'desc' => 'Deep mastering of Karigar jobwork, metal purities, stone calculations and retail workflows.'],
+  ['phase' => 'PHASE 03', 'title' => 'Software Evolution', 'desc' => 'Purpose-built cloud software bringing inventory, sales, RFID and accounting together.'],
+  ['phase' => 'PHASE 04', 'title' => 'Global Growth', 'desc' => 'Expanding across international jewellery capitals with continuous product refinement.']
+];
+$journeyItems = json_decode(setting('about_journey_items', ''), true) ?: $defaultJourney;
+
+$defaultSolutions = [
+  ['icon' => 'bi-shop', 'title' => 'Jewellery Retail', 'desc' => 'Sales, quick billing, customer profiles and daily store management.'],
+  ['icon' => 'bi-boxes', 'title' => 'Wholesale Management', 'desc' => 'B2B orders, approval memos, dealer accounts and bulk trade control.'],
+  ['icon' => 'bi-gear-wide-connected', 'title' => 'Manufacturing & Jobwork', 'desc' => 'Department allocations, Karigar jobbags, loss tracking and worklogs.'],
+  ['icon' => 'bi-layers', 'title' => 'Inventory Management', 'desc' => 'Precious metal purity, diamond weights, barcode and RFID audits.'],
+  ['icon' => 'bi-calculator', 'title' => 'Accounting & Finance', 'desc' => 'Automated ledgers, tax compliance, metal balance and financial statements.'],
+  ['icon' => 'bi-people', 'title' => 'CRM & Customer Management', 'desc' => 'Customer history, gold saving schemes and relationship workflows.']
+];
+$solutionsItems = json_decode(setting('about_solutions_items', ''), true) ?: $defaultSolutions;
+
+$defaultHowWeWork = [
+  ['num' => '1', 'title' => 'Understand', 'desc' => 'We understand your business processes and operational requirements.'],
+  ['num' => '2', 'title' => 'Implement', 'desc' => 'We configure solutions around your jewellery business workflows.'],
+  ['num' => '3', 'title' => 'Support', 'desc' => 'We continue to support your business as your operations grow.']
+];
+$howWeWorkSteps = json_decode(setting('about_howwework_steps', ''), true) ?: $defaultHowWeWork;
+
+$defaultBuiltFor = [
+  ['title' => 'Retail Showroom', 'desc' => 'POS, barcode and counter sales', 'img' => 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&auto=format&fit=crop&q=80'],
+  ['title' => 'Wholesale Operation', 'desc' => 'B2B orders and stock transfer', 'img' => 'https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=600&auto=format&fit=crop&q=80'],
+  ['title' => 'Jewellery Manufacturing', 'desc' => 'Jobwork and production queues', 'img' => 'https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?w=600&auto=format&fit=crop&q=80'],
+  ['title' => 'Business Management', 'desc' => 'CRM, schemes and analytics', 'img' => 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&auto=format&fit=crop&q=80']
+];
+$builtForItems = json_decode(setting('about_builtfor_items', ''), true) ?: $defaultBuiltFor;
+
+$defaultWhy = [
+  ['icon' => 'bi-gem', 'title' => 'Jewellery Expertise', 'desc' => 'Purpose-built around jewellery business operations.'],
+  ['icon' => 'bi-link-45deg', 'title' => 'Connected Operations', 'desc' => 'Manage essential business processes in one ecosystem.'],
+  ['icon' => 'bi-check2-circle', 'title' => 'Practical Solutions', 'desc' => 'Designed for real-world jewellery workflows.'],
+  ['icon' => 'bi-graph-up-arrow', 'title' => 'Scalable Business', 'desc' => 'Suitable for growing businesses and multi-location operations.'],
+  ['icon' => 'bi-headset', 'title' => 'Customer Support', 'desc' => 'Focused on long-term customer relationships.'],
+  ['icon' => 'bi-globe2', 'title' => 'Global Approach', 'desc' => 'Built to support modern jewellery businesses across markets.']
+];
+$whyItems = json_decode(setting('about_why_items', ''), true) ?: $defaultWhy;
+
+$defaultWhoWeServe = [
+  ['icon' => 'bi-shop', 'title' => 'Retailers', 'desc' => 'Single & multi-store showrooms'],
+  ['icon' => 'bi-boxes', 'title' => 'Wholesalers', 'desc' => 'Bullion & trade distributors'],
+  ['icon' => 'bi-hammer', 'title' => 'Manufacturers', 'desc' => 'Production units & Karigars'],
+  ['icon' => 'bi-safe', 'title' => 'Girvi / Mortgage', 'desc' => 'Gold loan & pawn operators'],
+  ['icon' => 'bi-building', 'title' => 'Enterprises', 'desc' => 'Large multi-branch jewellery chains']
+];
+$whoWeServeItems = json_decode(setting('about_whoweserve_items', ''), true) ?: $defaultWhoWeServe;
+
+$ctaBg = setting('about_cta_bg_image', 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1600&auto=format&fit=crop&q=80');
 ?>
 
 <style>
@@ -442,7 +498,7 @@ require __DIR__ . '/partials/header.php';
   background-color: var(--ab-navy);
   background-image: 
     linear-gradient(rgba(0, 21, 64, 0.92), rgba(0, 11, 42, 0.95)),
-    url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1600&auto=format&fit=crop&q=80');
+    url('<?= e($ctaBg) ?>');
   background-size: cover;
   background-position: center;
   padding: 105px 5%;
@@ -460,24 +516,24 @@ require __DIR__ . '/partials/header.php';
     <div class="row align-items-center g-5">
       
       <div class="col-lg-6 text-center text-lg-start">
-        <h1 class="ab-h1">About GoldMatrix</h1>
+        <h1 class="ab-h1"><?= e(setting('about_hero_title', 'About GoldMatrix')) ?></h1>
         <p class="ab-lead ab-lead-dark mb-4">
-          GoldMatrix is a jewellery business software company helping jewellery businesses simplify operations, improve control and grow with confidence.
+          <?= e(setting('about_hero_lead', 'GoldMatrix is a jewellery business software company helping jewellery businesses simplify operations, improve control and grow with confidence.')) ?>
         </p>
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start gap-3">
           <button type="button" class="btn-ab-gold" data-bs-toggle="modal" data-bs-target="#bookDemoModal">
-            <span>Book a Free Demo</span>
+            <span><?= e(setting('about_hero_btn1_text', 'Book a Free Demo')) ?></span>
             <i class="bi bi-arrow-right"></i>
           </button>
-          <a href="/solutions" class="btn-ab-outline">
-            <span>Explore Solutions</span>
+          <a href="<?= e(setting('about_hero_btn2_link', '/solutions')) ?>" class="btn-ab-outline">
+            <span><?= e(setting('about_hero_btn2_text', 'Explore Solutions')) ?></span>
           </a>
         </div>
       </div>
 
       <div class="col-lg-6">
         <div class="ab-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=1000&auto=format&fit=crop&q=80" alt="GoldMatrix International Jewellery Environment" class="ab-img-fluid" loading="eager">
+          <img src="<?= e(setting('about_hero_image', 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=1000&auto=format&fit=crop&q=80')) ?>" alt="GoldMatrix International Jewellery Environment" class="ab-img-fluid" loading="eager">
         </div>
       </div>
 
@@ -494,14 +550,14 @@ require __DIR__ . '/partials/header.php';
       
       <div class="col-lg-6 order-2 order-lg-1">
         <div class="ab-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1000&auto=format&fit=crop&q=80" alt="GoldMatrix Company Team & Workspace" class="ab-img-fluid" loading="lazy">
+          <img src="<?= e(setting('about_whoweare_image', 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1000&auto=format&fit=crop&q=80')) ?>" alt="GoldMatrix Company Team & Workspace" class="ab-img-fluid" loading="lazy">
         </div>
       </div>
 
       <div class="col-lg-6 order-1 order-lg-2">
-        <h2 class="ab-h2">Who We Are</h2>
+        <h2 class="ab-h2"><?= e(setting('about_whoweare_title', 'Who We Are')) ?></h2>
         <p class="ab-lead">
-          We build practical business solutions for jewellery retailers, wholesalers, manufacturers and growing jewellery enterprises.
+          <?= e(setting('about_whoweare_text', 'We build practical business solutions for jewellery retailers, wholesalers, manufacturers and growing jewellery enterprises.')) ?>
         </p>
       </div>
 
@@ -517,15 +573,15 @@ require __DIR__ . '/partials/header.php';
     <div class="row align-items-center g-5">
       
       <div class="col-lg-6">
-        <h2 class="ab-h2">Our Purpose</h2>
+        <h2 class="ab-h2"><?= e(setting('about_purpose_title', 'Our Purpose')) ?></h2>
         <p class="ab-lead">
-          To make complex jewellery business operations simpler, more accurate and easier to manage.
+          <?= e(setting('about_purpose_text', 'To make complex jewellery business operations simpler, more accurate and easier to manage.')) ?>
         </p>
       </div>
 
       <div class="col-lg-6">
         <div class="ab-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1531973576160-7125cd663d86?w=1000&auto=format&fit=crop&q=80" alt="Jewellery Business Operations & Retail Integration" class="ab-img-fluid" loading="lazy">
+          <img src="<?= e(setting('about_purpose_image', 'https://images.unsplash.com/photo-1531973576160-7125cd663d86?w=1000&auto=format&fit=crop&q=80')) ?>" alt="Jewellery Business Operations & Retail Integration" class="ab-img-fluid" loading="lazy">
         </div>
       </div>
 
@@ -540,38 +596,20 @@ require __DIR__ . '/partials/header.php';
   <div class="container-fluid px-3 px-xl-5" style="max-width: 1300px;">
     
     <div class="text-center mb-4">
-      <h2 class="ab-h2">Our Journey</h2>
+      <h2 class="ab-h2"><?= e(setting('about_journey_title', 'Our Journey')) ?></h2>
       <p class="ab-lead mx-auto" style="max-width: 750px;">
-        Our journey is shaped by continuous experience, customer relationships and a deep understanding of jewellery business operations.
+        <?= e(setting('about_journey_text', 'Our journey is shaped by continuous experience, customer relationships and a deep understanding of jewellery business operations.')) ?>
       </p>
     </div>
 
     <div class="timeline-track-wrap">
-      
-      <div class="timeline-step-card">
-        <div class="timeline-step-num">PHASE 01</div>
-        <h3 class="timeline-step-title">Experience</h3>
-        <p class="timeline-step-desc">Direct engagement with jewellery merchants, retailers and bullion counters.</p>
-      </div>
-
-      <div class="timeline-step-card">
-        <div class="timeline-step-num">PHASE 02</div>
-        <h3 class="timeline-step-title">Industry Understanding</h3>
-        <p class="timeline-step-desc">Deep mastering of Karigar jobwork, metal purities, stone calculations and retail workflows.</p>
-      </div>
-
-      <div class="timeline-step-card">
-        <div class="timeline-step-num">PHASE 03</div>
-        <h3 class="timeline-step-title">Software Evolution</h3>
-        <p class="timeline-step-desc">Purpose-built cloud software bringing inventory, sales, RFID and accounting together.</p>
-      </div>
-
-      <div class="timeline-step-card">
-        <div class="timeline-step-num">PHASE 04</div>
-        <h3 class="timeline-step-title">Global Growth</h3>
-        <p class="timeline-step-desc">Expanding across international jewellery capitals with continuous product refinement.</p>
-      </div>
-
+      <?php foreach ($journeyItems as $j): ?>
+        <div class="timeline-step-card">
+          <div class="timeline-step-num"><?= e($j['phase'] ?? 'PHASE') ?></div>
+          <h3 class="timeline-step-title"><?= e($j['title'] ?? '') ?></h3>
+          <p class="timeline-step-desc"><?= e($j['desc'] ?? '') ?></p>
+        </div>
+      <?php endforeach; ?>
     </div>
 
   </div>
@@ -584,9 +622,9 @@ require __DIR__ . '/partials/header.php';
   <div class="container-fluid px-3 px-xl-5" style="max-width: 1300px;">
     
     <div class="text-center mb-4">
-      <h2 class="ab-h2">What We Do</h2>
+      <h2 class="ab-h2"><?= e(setting('about_whatwedo_title', 'What We Do')) ?></h2>
       <p class="ab-lead mx-auto" style="max-width: 750px;">
-        We provide connected business solutions covering the key operations of modern jewellery businesses.
+        <?= e(setting('about_whatwedo_text', 'We provide connected business solutions covering the key operations of modern jewellery businesses.')) ?>
       </p>
     </div>
 
@@ -602,7 +640,7 @@ require __DIR__ . '/partials/header.php';
 
       <div class="row justify-content-center">
         <div class="col-lg-10">
-          <img src="/uploads/homepage/hp_6a9207ee140eb.png" alt="GoldMatrix Jewellery ERP Software Suite" class="software-preview-img" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop&q=80'">
+          <img src="<?= e(setting('about_whatwedo_image', '/uploads/homepage/hp_6a9207ee140eb.png')) ?>" alt="GoldMatrix Jewellery ERP Software Suite" class="software-preview-img" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop&q=80'">
         </div>
       </div>
     </div>
@@ -617,92 +655,26 @@ require __DIR__ . '/partials/header.php';
   <div class="container-fluid px-3 px-xl-5" style="max-width: 1300px;">
     
     <div class="text-center mb-5">
-      <h2 class="ab-h2">Our Solutions</h2>
+      <h2 class="ab-h2"><?= e(setting('about_solutions_title', 'Our Solutions')) ?></h2>
       <p class="ab-lead mx-auto" style="max-width: 750px;">
-        Explore our dedicated solution modules built exclusively for jewellery commerce.
+        <?= e(setting('about_solutions_text', 'Explore our dedicated solution modules built exclusively for jewellery commerce.')) ?>
       </p>
     </div>
 
     <div class="row g-4">
-      
-      <!-- 1. Retail -->
-      <div class="col-lg-4 col-md-6">
-        <div class="sol-clean-card">
-          <div class="sol-icon-box">
-            <i class="bi bi-shop"></i>
-          </div>
-          <div>
-            <h3 class="sol-card-title">Jewellery Retail</h3>
-            <p class="sol-card-text">Sales, quick billing, customer profiles and daily store management.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2. Wholesale -->
-      <div class="col-lg-4 col-md-6">
-        <div class="sol-clean-card">
-          <div class="sol-icon-box">
-            <i class="bi bi-boxes"></i>
-          </div>
-          <div>
-            <h3 class="sol-card-title">Wholesale Management</h3>
-            <p class="sol-card-text">B2B orders, approval memos, dealer accounts and bulk trade control.</p>
+      <?php foreach ($solutionsItems as $sol): ?>
+        <div class="col-lg-4 col-md-6">
+          <div class="sol-clean-card">
+            <div class="sol-icon-box">
+              <i class="bi <?= e($sol['icon'] ?? 'bi-gem') ?>"></i>
+            </div>
+            <div>
+              <h3 class="sol-card-title"><?= e($sol['title'] ?? '') ?></h3>
+              <p class="sol-card-text"><?= e($sol['desc'] ?? '') ?></p>
+            </div>
           </div>
         </div>
-      </div>
-
-      <!-- 3. Manufacturing -->
-      <div class="col-lg-4 col-md-6">
-        <div class="sol-clean-card">
-          <div class="sol-icon-box">
-            <i class="bi bi-gear-wide-connected"></i>
-          </div>
-          <div>
-            <h3 class="sol-card-title">Manufacturing &amp; Jobwork</h3>
-            <p class="sol-card-text">Department allocations, Karigar jobbags, loss tracking and worklogs.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 4. Inventory -->
-      <div class="col-lg-4 col-md-6">
-        <div class="sol-clean-card">
-          <div class="sol-icon-box">
-            <i class="bi bi-layers"></i>
-          </div>
-          <div>
-            <h3 class="sol-card-title">Inventory Management</h3>
-            <p class="sol-card-text">Precious metal purity, diamond weights, barcode and RFID audits.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 5. Accounting -->
-      <div class="col-lg-4 col-md-6">
-        <div class="sol-clean-card">
-          <div class="sol-icon-box">
-            <i class="bi bi-calculator"></i>
-          </div>
-          <div>
-            <h3 class="sol-card-title">Accounting &amp; Finance</h3>
-            <p class="sol-card-text">Automated ledgers, tax compliance, metal balance and financial statements.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 6. CRM -->
-      <div class="col-lg-4 col-md-6">
-        <div class="sol-clean-card">
-          <div class="sol-icon-box">
-            <i class="bi bi-people"></i>
-          </div>
-          <div>
-            <h3 class="sol-card-title">CRM &amp; Customer Management</h3>
-            <p class="sol-card-text">Customer history, gold saving schemes and relationship workflows.</p>
-          </div>
-        </div>
-      </div>
-
+      <?php endforeach; ?>
     </div>
 
   </div>
@@ -716,39 +688,25 @@ require __DIR__ . '/partials/header.php';
     <div class="row align-items-center g-5">
       
       <div class="col-lg-6">
-        <h2 class="ab-h2">How We Work</h2>
+        <h2 class="ab-h2"><?= e(setting('about_howwework_title', 'How We Work')) ?></h2>
         <p class="ab-lead mb-4">
-          A structured, customer-first approach to deploying software that fits your operations.
+          <?= e(setting('about_howwework_text', 'A structured, customer-first approach to deploying software that fits your operations.')) ?>
         </p>
 
-        <div class="work-step-row">
-          <div class="work-step-num">1</div>
-          <div>
-            <h3 class="work-step-title">Understand</h3>
-            <p class="work-step-desc">We understand your business processes and operational requirements.</p>
+        <?php foreach ($howWeWorkSteps as $step): ?>
+          <div class="work-step-row">
+            <div class="work-step-num"><?= e($step['num'] ?? '') ?></div>
+            <div>
+              <h3 class="work-step-title"><?= e($step['title'] ?? '') ?></h3>
+              <p class="work-step-desc"><?= e($step['desc'] ?? '') ?></p>
+            </div>
           </div>
-        </div>
-
-        <div class="work-step-row">
-          <div class="work-step-num">2</div>
-          <div>
-            <h3 class="work-step-title">Implement</h3>
-            <p class="work-step-desc">We configure solutions around your jewellery business workflows.</p>
-          </div>
-        </div>
-
-        <div class="work-step-row mb-0">
-          <div class="work-step-num">3</div>
-          <div>
-            <h3 class="work-step-title">Support</h3>
-            <p class="work-step-desc">We continue to support your business as your operations grow.</p>
-          </div>
-        </div>
+        <?php endforeach; ?>
       </div>
 
       <div class="col-lg-6">
         <div class="ab-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1000&auto=format&fit=crop&q=80" alt="GoldMatrix Customer Consultation & Implementation" class="ab-img-fluid" loading="lazy">
+          <img src="<?= e(setting('about_howwework_image', 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1000&auto=format&fit=crop&q=80')) ?>" alt="GoldMatrix Customer Consultation & Implementation" class="ab-img-fluid" loading="lazy">
         </div>
       </div>
 
@@ -763,58 +721,24 @@ require __DIR__ . '/partials/header.php';
   <div class="container-fluid px-3 px-xl-5" style="max-width: 1300px;">
     
     <div class="text-center mb-5">
-      <h2 class="ab-h2">Built for Jewellery Businesses</h2>
+      <h2 class="ab-h2"><?= e(setting('about_builtfor_title', 'Built for Jewellery Businesses')) ?></h2>
       <p class="ab-lead mx-auto" style="max-width: 750px;">
-        Our solutions are designed around the unique requirements of jewellery retail, wholesale, manufacturing and business operations.
+        <?= e(setting('about_builtfor_text', 'Our solutions are designed around the unique requirements of jewellery retail, wholesale, manufacturing and business operations.')) ?>
       </p>
     </div>
 
     <div class="row g-4">
-      
-      <!-- 1. Retail Showroom -->
-      <div class="col-lg-3 col-md-6">
-        <div class="quad-grid-card">
-          <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&auto=format&fit=crop&q=80" alt="Retail Showroom" class="quad-grid-img" loading="lazy">
-          <div class="quad-grid-caption">
-            <h3 class="quad-grid-title">Retail Showroom</h3>
-            <p class="quad-grid-desc">POS, barcode and counter sales</p>
+      <?php foreach ($builtForItems as $bf): ?>
+        <div class="col-lg-3 col-md-6">
+          <div class="quad-grid-card">
+            <img src="<?= e($bf['img'] ?? '') ?>" alt="<?= e($bf['title'] ?? '') ?>" class="quad-grid-img" loading="lazy">
+            <div class="quad-grid-caption">
+              <h3 class="quad-grid-title"><?= e($bf['title'] ?? '') ?></h3>
+              <p class="quad-grid-desc"><?= e($bf['desc'] ?? '') ?></p>
+            </div>
           </div>
         </div>
-      </div>
-
-      <!-- 2. Wholesale Operation -->
-      <div class="col-lg-3 col-md-6">
-        <div class="quad-grid-card">
-          <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=600&auto=format&fit=crop&q=80" alt="Wholesale Operation" class="quad-grid-img" loading="lazy">
-          <div class="quad-grid-caption">
-            <h3 class="quad-grid-title">Wholesale Operation</h3>
-            <p class="quad-grid-desc">B2B orders and stock transfer</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3. Jewellery Manufacturing -->
-      <div class="col-lg-3 col-md-6">
-        <div class="quad-grid-card">
-          <img src="https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?w=600&auto=format&fit=crop&q=80" alt="Jewellery Manufacturing" class="quad-grid-img" loading="lazy">
-          <div class="quad-grid-caption">
-            <h3 class="quad-grid-title">Jewellery Manufacturing</h3>
-            <p class="quad-grid-desc">Jobwork and production queues</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 4. Business & CRM Management -->
-      <div class="col-lg-3 col-md-6">
-        <div class="quad-grid-card">
-          <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&auto=format&fit=crop&q=80" alt="Business & CRM Management" class="quad-grid-img" loading="lazy">
-          <div class="quad-grid-caption">
-            <h3 class="quad-grid-title">Business Management</h3>
-            <p class="quad-grid-desc">CRM, schemes and analytics</p>
-          </div>
-        </div>
-      </div>
-
+      <?php endforeach; ?>
     </div>
 
   </div>
@@ -827,74 +751,24 @@ require __DIR__ . '/partials/header.php';
   <div class="container-fluid px-3 px-xl-5" style="max-width: 1300px;">
     
     <div class="text-center mb-5">
-      <h2 class="ab-h2">Why GoldMatrix</h2>
+      <h2 class="ab-h2"><?= e(setting('about_why_title', 'Why GoldMatrix')) ?></h2>
       <p class="ab-lead mx-auto" style="max-width: 750px;">
-        Engineered specifically for the demands and operational integrity of the jewellery industry.
+        <?= e(setting('about_why_text', 'Engineered specifically for the demands and operational integrity of the jewellery industry.')) ?>
       </p>
     </div>
 
     <div class="row g-4">
-      
-      <div class="col-lg-4 col-md-6">
-        <div class="benefit-clean-card">
-          <h3 class="benefit-title">
-            <i class="bi bi-gem"></i>
-            <span>Jewellery Expertise</span>
-          </h3>
-          <p class="benefit-text">Purpose-built around jewellery business operations.</p>
+      <?php foreach ($whyItems as $why): ?>
+        <div class="col-lg-4 col-md-6">
+          <div class="benefit-clean-card">
+            <h3 class="benefit-title">
+              <i class="bi <?= e($why['icon'] ?? 'bi-check2-circle') ?>"></i>
+              <span><?= e($why['title'] ?? '') ?></span>
+            </h3>
+            <p class="benefit-text"><?= e($why['desc'] ?? '') ?></p>
+          </div>
         </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6">
-        <div class="benefit-clean-card">
-          <h3 class="benefit-title">
-            <i class="bi bi-link-45deg"></i>
-            <span>Connected Operations</span>
-          </h3>
-          <p class="benefit-text">Manage essential business processes in one ecosystem.</p>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6">
-        <div class="benefit-clean-card">
-          <h3 class="benefit-title">
-            <i class="bi bi-check2-circle"></i>
-            <span>Practical Solutions</span>
-          </h3>
-          <p class="benefit-text">Designed for real-world jewellery workflows.</p>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6">
-        <div class="benefit-clean-card">
-          <h3 class="benefit-title">
-            <i class="bi bi-graph-up-arrow"></i>
-            <span>Scalable Business</span>
-          </h3>
-          <p class="benefit-text">Suitable for growing businesses and multi-location operations.</p>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6">
-        <div class="benefit-clean-card">
-          <h3 class="benefit-title">
-            <i class="bi bi-headset"></i>
-            <span>Customer Support</span>
-          </h3>
-          <p class="benefit-text">Focused on long-term customer relationships.</p>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6">
-        <div class="benefit-clean-card">
-          <h3 class="benefit-title">
-            <i class="bi bi-globe2"></i>
-            <span>Global Approach</span>
-          </h3>
-          <p class="benefit-text">Built to support modern jewellery businesses across markets.</p>
-        </div>
-      </div>
-
+      <?php endforeach; ?>
     </div>
 
   </div>
@@ -907,54 +781,22 @@ require __DIR__ . '/partials/header.php';
   <div class="container-fluid px-3 px-xl-5" style="max-width: 1300px;">
     
     <div class="text-center mb-5">
-      <h2 class="ab-h2">Who We Serve</h2>
+      <h2 class="ab-h2"><?= e(setting('about_whoweserve_title', 'Who We Serve')) ?></h2>
       <p class="ab-lead mx-auto" style="max-width: 750px;">
-        From individual jewellery businesses to growing enterprises, GoldMatrix supports different stages of the jewellery business.
+        <?= e(setting('about_whoweserve_text', 'From individual jewellery businesses to growing enterprises, GoldMatrix supports different stages of the jewellery business.')) ?>
       </p>
     </div>
 
     <div class="row g-3 justify-content-center">
-      
-      <div class="col-lg-2 col-md-4 col-6">
-        <div class="serve-chip-card">
-          <i class="bi bi-shop serve-icon"></i>
-          <h3 class="serve-name">Retailers</h3>
-          <p class="serve-desc">Single &amp; multi-store showrooms</p>
+      <?php foreach ($whoWeServeItems as $ws): ?>
+        <div class="col-lg-2 col-md-4 col-6">
+          <div class="serve-chip-card">
+            <i class="bi <?= e($ws['icon'] ?? 'bi-building') ?> serve-icon"></i>
+            <h3 class="serve-name"><?= e($ws['title'] ?? '') ?></h3>
+            <p class="serve-desc"><?= e($ws['desc'] ?? '') ?></p>
+          </div>
         </div>
-      </div>
-
-      <div class="col-lg-2 col-md-4 col-6">
-        <div class="serve-chip-card">
-          <i class="bi bi-boxes serve-icon"></i>
-          <h3 class="serve-name">Wholesalers</h3>
-          <p class="serve-desc">Bullion &amp; trade distributors</p>
-        </div>
-      </div>
-
-      <div class="col-lg-2 col-md-4 col-6">
-        <div class="serve-chip-card">
-          <i class="bi bi-hammer serve-icon"></i>
-          <h3 class="serve-name">Manufacturers</h3>
-          <p class="serve-desc">Production units &amp; Karigars</p>
-        </div>
-      </div>
-
-      <div class="col-lg-2 col-md-4 col-6">
-        <div class="serve-chip-card">
-          <i class="bi bi-safe serve-icon"></i>
-          <h3 class="serve-name">Girvi / Mortgage</h3>
-          <p class="serve-desc">Gold loan &amp; pawn operators</p>
-        </div>
-      </div>
-
-      <div class="col-lg-2 col-md-4 col-6">
-        <div class="serve-chip-card">
-          <i class="bi bi-building serve-icon"></i>
-          <h3 class="serve-name">Enterprises</h3>
-          <p class="serve-desc">Large multi-branch jewellery chains</p>
-        </div>
-      </div>
-
+      <?php endforeach; ?>
     </div>
 
   </div>
@@ -968,9 +810,9 @@ require __DIR__ . '/partials/header.php';
     <div class="row align-items-center g-5">
       
       <div class="col-lg-6">
-        <h2 class="ab-h2">Global Presence</h2>
+        <h2 class="ab-h2"><?= e(setting('about_global_title', 'Global Presence')) ?></h2>
         <p class="ab-lead mb-4">
-          GoldMatrix is built with an international outlook to support jewellery businesses across different markets and business environments.
+          <?= e(setting('about_global_text', 'GoldMatrix is built with an international outlook to support jewellery businesses across different markets and business environments.')) ?>
         </p>
 
         <div class="hub-capsule">
@@ -991,7 +833,7 @@ require __DIR__ . '/partials/header.php';
           <i class="bi bi-globe-americas text-warning display-3 mb-3 d-inline-block"></i>
           <h3 class="h4 fw-bold text-white mb-2">Connected Across Key Jewellery Markets</h3>
           <p class="text-white-50 fs-14 mb-0">
-            UAE • India • Hong Kong • Singapore • United Kingdom • GCC
+            <?= e(setting('about_global_markets', 'UAE • India • Hong Kong • Singapore • United Kingdom • GCC')) ?>
           </p>
         </div>
       </div>
@@ -1009,14 +851,14 @@ require __DIR__ . '/partials/header.php';
       
       <div class="col-lg-6">
         <div class="ab-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1000&auto=format&fit=crop&q=80" alt="GoldMatrix Team Long-term Partnership" class="ab-img-fluid" loading="lazy">
+          <img src="<?= e(setting('about_commitment_image', 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1000&auto=format&fit=crop&q=80')) ?>" alt="GoldMatrix Team Long-term Partnership" class="ab-img-fluid" loading="lazy">
         </div>
       </div>
 
       <div class="col-lg-6">
-        <h2 class="ab-h2">Our Commitment</h2>
+        <h2 class="ab-h2"><?= e(setting('about_commitment_title', 'Our Commitment')) ?></h2>
         <p class="ab-lead">
-          We focus on reliable solutions, continuous improvement and long-term relationships with the businesses we serve.
+          <?= e(setting('about_commitment_text', 'We focus on reliable solutions, continuous improvement and long-term relationships with the businesses we serve.')) ?>
         </p>
       </div>
 
@@ -1029,16 +871,16 @@ require __DIR__ . '/partials/header.php';
 ══════════════════════════════════════════════════ -->
 <section class="sec-final-cta">
   <div class="container" style="max-width: 850px;">
-    <h2 class="ab-h1 mb-3">Let's Grow Together</h2>
+    <h2 class="ab-h1 mb-3"><?= e(setting('about_cta_title', 'Let\'s Grow Together')) ?></h2>
     <p class="ab-lead ab-lead-dark mb-4 mx-auto" style="max-width: 700px;">
-      Discover how GoldMatrix can help simplify your jewellery business and bring greater control to your daily operations.
+      <?= e(setting('about_cta_desc', 'Discover how GoldMatrix can help simplify your jewellery business and bring greater control to your daily operations.')) ?>
     </p>
     <div class="d-flex flex-wrap justify-content-center gap-3">
       <button type="button" class="btn-ab-gold" data-bs-toggle="modal" data-bs-target="#bookDemoModal">
-        <span>Book a Free Demo</span>
+        <span><?= e(setting('about_cta_btn1_text', 'Book a Free Demo')) ?></span>
         <i class="bi bi-arrow-right"></i>
       </button>
-      <a href="https://wa.me/<?= preg_replace('/[^0-9]/', '', setting('contact_india_phone', '919270369937')) ?>?text=Hello%20GoldMatrix%20Team%2C%20I%20would%20like%20to%20learn%20more%20about%20your%20Jewellery%20ERP%20software." target="_blank" class="btn-ab-outline">
+      <a href="https://wa.me/<?= preg_replace('/[^0-9]/', '', setting('about_cta_whatsapp', '919270369937')) ?>?text=Hello%20GoldMatrix%20Team%2C%20I%20would%20like%20to%20learn%20more%20about%20your%20Jewellery%20ERP%20software." target="_blank" class="btn-ab-outline">
         <i class="bi bi-whatsapp text-success me-1"></i>
         <span>Chat on WhatsApp</span>
       </a>
