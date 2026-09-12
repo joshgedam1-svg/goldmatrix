@@ -203,11 +203,15 @@ $slides = !empty($hero_slides) ? $hero_slides : [
 <!-- ════════════════════════════════
      SOLUTIONS — 3 BUSINESS TYPES (EDITABLE CMS SECTION)
 ════════════════════════════════ -->
-<?php if (($solutions_enabled ?? '1') == '1' && !empty($solutions_items)): ?>
-<section class="section-solutions" id="solutions" style="background: #F8FAFC; padding: 90px 0;">
+<?php if (($solutions_enabled ?? '1') == '1' && !empty($solutions_items)): 
+  $firstCard = $solutions_items[0] ?? null;
+  $subCards  = array_slice($solutions_items, 1);
+  $firstCardFeatures = !empty($firstCard['features']) ? (is_array($firstCard['features']) ? $firstCard['features'] : json_decode($firstCard['features'], true)) : [];
+?>
+<section class="section-solutions" id="solutions">
   <div class="container-fluid px-3 px-xl-5" style="max-width: 1400px;">
 
-    <!-- Section Header -->
+    <!-- Section Header (SEO-Friendly Clean Title & Badges) -->
     <div class="text-center mb-5">
       <?php if (!empty($solutions_badge)): ?>
         <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(217,119,6,0.1); color:#D97706; font-size:11px; font-weight:800; letter-spacing:1.8px; text-transform:uppercase; padding:6px 16px; border-radius:20px; border:1px solid rgba(217,119,6,0.25); margin-bottom:16px;">
@@ -217,343 +221,394 @@ $slides = !empty($hero_slides) ? $hero_slides : [
       <h2 style="font-family:var(--gm-font-display); font-size:clamp(1.8rem,3.2vw,2.6rem); font-weight:850; color:#0F172A; letter-spacing:-0.02em; margin-bottom:14px;">
         <?= e($solutions_title ?? 'Built for Every Jewellery Business Model') ?>
       </h2>
-      <p style="font-size:16px; color:#64748B; max-width:640px; margin:0 auto; line-height:1.65;">
-        <?= e($solutions_desc ?? 'Whether you run a retail showroom, wholesale operation, or manufacturing unit — GoldMatrix is built to fit your exact workflow.') ?>
+      <p style="font-size:16px; color:#64748B; max-width:680px; margin:0 auto; line-height:1.65;">
+        <?= e($solutions_desc ?? 'Engineered for high-growth jewellery retail, wholesale, and export brands across UAE, Dubai, India, and worldwide markets.') ?>
       </p>
     </div>
 
-    <!-- 3 Solution Cards Grid -->
-    <div class="gm-sol-grid">
-      <?php foreach ($solutions_items as $idx => $card): 
-        $features = !empty($card['features']) ? (is_array($card['features']) ? $card['features'] : json_decode($card['features'], true)) : [];
-        $isDark = ($idx === 1 || stripos($card['title'] ?? '', 'Wholesale') !== false || ($card['accent_color'] ?? '') === '#2563EB' || ($card['extra'] ?? '') === 'dark');
-        $isMint = ($idx === 2 || stripos($card['title'] ?? '', 'Manufacturing') !== false || ($card['accent_color'] ?? '') === '#059669');
-        
-        // Color tokens & ambient gradient curve
-        if ($isDark) {
-            $cardBg = '#0B1528';
-            $cardBorder = '#1E293B';
-            $cornerGradient = 'radial-gradient(circle at 100% 0%, rgba(37, 99, 235, 0.22) 0%, rgba(30, 58, 138, 0.08) 50%, transparent 75%)';
-            $iconBg = '#2563EB';
-            $iconColor = '#FFFFFF';
-            $cardIcon = !empty($card['icon']) ? $card['icon'] : 'handshake';
-            $watermark = !empty($card['extra']) && $card['extra'] !== 'dark' ? $card['extra'] : 'bar-chart';
-            $watermarkColor = 'rgba(255, 255, 255, 0.16)';
-            $badgeColor = '#60A5FA';
-            $titleColor = '#FFFFFF';
-            $descColor = '#94A3B8';
-            $checkColor = '#3B82F6';
-            $checkText = '#E2E8F0';
-            $ctaColor = '#93C5FD';
-            $btnBg = '#2563EB';
-            $btnColor = '#FFFFFF';
-            $defaultImg = '/assets/images/solution-wholesale-bullion.jpg';
-        } elseif ($isMint) {
-            $cardBg = '#FFFFFF';
-            $cardBorder = '#E2E8F0';
-            $cornerGradient = 'radial-gradient(circle at 100% 0%, rgba(209, 250, 229, 0.85) 0%, rgba(240, 253, 244, 0.3) 50%, transparent 75%)';
-            $iconBg = '#D1FAE5';
-            $iconColor = '#059669';
-            $cardIcon = !empty($card['icon']) ? $card['icon'] : 'bi-gear-wide-connected';
-            $watermark = !empty($card['extra']) ? $card['extra'] : 'bi-hammer';
-            $watermarkColor = 'rgba(16, 185, 129, 0.32)';
-            $badgeColor = '#059669';
-            $titleColor = '#0F172A';
-            $descColor = '#64748B';
-            $checkColor = '#059669';
-            $checkText = '#334155';
-            $ctaColor = '#059669';
-            $btnBg = '#D1FAE5';
-            $btnColor = '#059669';
-            $defaultImg = '/assets/images/solution-manufacturing-craft.jpg';
-        } else { // Retail / Amber
-            $cardBg = '#FFFFFF';
-            $cardBorder = '#E2E8F0';
-            $cornerGradient = 'radial-gradient(circle at 100% 0%, rgba(254, 243, 199, 0.85) 0%, rgba(255, 251, 235, 0.3) 50%, transparent 75%)';
-            $iconBg = '#FEF3C7';
-            $iconColor = '#B45309';
-            $cardIcon = !empty($card['icon']) ? $card['icon'] : 'bi-shop';
-            $watermark = !empty($card['extra']) ? $card['extra'] : 'bi-gem';
-            $watermarkColor = 'rgba(217, 119, 6, 0.3)';
-            $badgeColor = '#D97706';
-            $titleColor = '#0F172A';
-            $descColor = '#64748B';
-            $checkColor = '#D97706';
-            $checkText = '#334155';
-            $ctaColor = '#D97706';
-            $btnBg = '#FEF3C7';
-            $btnColor = '#B45309';
-            $defaultImg = '/assets/images/solution-retail-rings.jpg';
-        }
-
-        $cardImage = !empty($card['image']) ? $card['image'] : $defaultImg;
-        $btnLink = !empty($card['btn1_link']) ? $card['btn1_link'] : (!empty($card['link']) ? $card['link'] : '#');
-        $btnText = !empty($card['btn1_text']) ? $card['btn1_text'] : 'Explore Software';
-      ?>
-      <div class="gm-sol-card-col">
-        <a href="<?= e($btnLink) ?>" class="gm-sol-card-wrap">
-          <div class="gm-sol-card" style="background-color: <?= $cardBg ?>; border: 1px solid <?= $cardBorder ?>;">
-            
-            <!-- Ambient Top-Right Corner Soft Gradient -->
-            <div class="gm-sol-corner-curve" style="background: <?= $cornerGradient ?>;"></div>
-
-            <!-- Top Header: Left Icon & Right Subtle Watermark -->
-            <div class="gm-sol-top-row">
-              <div class="gm-sol-icon-box" style="background: <?= $iconBg ?>;">
-                <?php if (stripos($cardIcon, 'handshake') !== false): ?>
-                  <!-- Handshake Vector Icon matching reference image with dual cuffs & clasp -->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 36 36" fill="none" stroke="<?= $iconColor ?>" stroke-width="2.35" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;">
-                    <!-- Left Sleeve / Cuff -->
-                    <rect x="3.5" y="12" width="5.5" height="12" rx="2" transform="rotate(-15 6.25 18)" />
-                    <!-- Right Sleeve / Cuff -->
-                    <rect x="27" y="12" width="5.5" height="12" rx="2" transform="rotate(15 29.75 18)" />
-                    <!-- Top Hand & Thumb Arch -->
-                    <path d="M9.5 15.5L14.8 12.2C16.8 11 19.4 11.2 21.2 12.8L25.5 17L20.5 22L17.5 19L14.5 22L9.5 17.5" />
-                    <!-- Bottom Interlocked Clasped Fingers -->
-                    <path d="M14.5 22L17.2 24.7C18.6 26.1 20.8 26.1 22.2 24.7L26.5 20.4" />
-                    <path d="M17.5 25.2L19.8 27.5C21.2 28.9 23.4 28.9 24.8 27.5L27.5 24.8" />
-                  </svg>
-                <?php else: ?>
-                  <i class="bi <?= e($cardIcon) ?>" style="color: <?= $iconColor ?>;"></i>
-                <?php endif; ?>
+    <!-- 1. TOP FEATURED SHOWCASE CARD (Product Jewellery Catalogue & 1-Click WhatsApp) -->
+    <?php if ($firstCard): ?>
+      <div class="gm-sol-featured-hero mb-4">
+        <div class="row align-items-center g-4 g-lg-5">
+          
+          <!-- Left Content Column -->
+          <div class="col-lg-6 col-12">
+            <div class="gm-sol-featured-content">
+              <div class="d-flex align-items-center flex-wrap gap-2 mb-3">
+                <span class="gm-sol-badge-featured"><?= e($firstCard['badge'] ?? 'DIGITAL CATALOGUE & WHATSAPP') ?></span>
+                <span class="gm-sol-pill-whatsapp"><i class="bi bi-whatsapp me-1"></i> 1-Click WhatsApp Share</span>
               </div>
-              <?php if (!empty($watermark)): ?>
-                <div class="gm-sol-watermark" style="color: <?= $watermarkColor ?>;">
-                  <?php if (stripos($watermark, 'chart') !== false): ?>
-                    <!-- Clean SVG Bar Chart Watermark -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-                      <rect x="3" y="14" width="4" height="7" rx="1"/>
-                      <rect x="10" y="8" width="4" height="13" rx="1"/>
-                      <rect x="17" y="3" width="4" height="18" rx="1"/>
-                    </svg>
-                  <?php else: ?>
-                    <i class="bi <?= e($watermark) ?>"></i>
-                  <?php endif; ?>
-                </div>
+              
+              <h3 class="gm-sol-featured-title"><?= e($firstCard['title']) ?></h3>
+              <p class="gm-sol-featured-desc"><?= e($firstCard['description']) ?></p>
+              
+              <?php if (!empty($firstCardFeatures) && is_array($firstCardFeatures)): ?>
+                <ul class="gm-sol-featured-list">
+                  <?php foreach ($firstCardFeatures as $f): 
+                    if (empty(trim((string)$f))) continue;
+                  ?>
+                    <li>
+                      <i class="bi bi-check-circle-fill text-warning"></i>
+                      <span><?= e($f) ?></span>
+                    </li>
+                  <?php endforeach; ?>
+                </ul>
               <?php endif; ?>
+
+              <div class="d-flex align-items-center flex-wrap gap-3 pt-2">
+                <a href="<?= e($firstCard['btn1_link'] ?: '/features') ?>" class="btn-gold-solid">
+                  <span><?= e($firstCard['btn1_text'] ?: 'Explore Digital Catalogue') ?></span>
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+                <span class="text-secondary fs-12 d-inline-flex align-items-center gap-1">
+                  <i class="bi bi-lightning-charge-fill text-warning"></i> Real-time Rates &amp; WhatsApp Ready
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Visual Column (Interactive Catalogue Screenshot) -->
+          <div class="col-lg-6 col-12">
+            <div class="gm-sol-featured-visual-wrap">
+              <div class="gm-sol-featured-mockup-frame">
+                <img src="<?= e($firstCard['image'] ?: '/assets/images/digital-jewellery-catalogue.png') ?>" alt="<?= e($firstCard['alt_text'] ?: $firstCard['title']) ?>" class="gm-sol-featured-img" loading="lazy">
+                <div class="gm-sol-floating-pill">
+                  <i class="bi bi-whatsapp text-success"></i>
+                  <span>Direct WhatsApp Catalogue Share</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    <?php endif; ?>
+
+    <!-- 2. COMPACT COMPANION CARDS (UAE, Dubai & Global High-Conversion Highlights) -->
+    <?php if (!empty($subCards)): ?>
+      <div class="gm-sol-subgrid">
+        <?php foreach ($subCards as $card): 
+          $feats = !empty($card['features']) ? (is_array($card['features']) ? $card['features'] : json_decode($card['features'], true)) : [];
+          $cardColor = !empty($card['accent_color']) ? $card['accent_color'] : '#2563EB';
+          $cardIcon = !empty($card['icon']) ? $card['icon'] : 'bi-stars';
+          $cardExtra = !empty($card['extra']) ? $card['extra'] : 'bi-gem';
+          $btnLink = !empty($card['btn1_link']) ? $card['btn1_link'] : (!empty($card['link']) ? $card['link'] : '#contact');
+          $btnText = !empty($card['btn1_text']) ? $card['btn1_text'] : 'Explore Feature';
+        ?>
+          <a href="<?= e($btnLink) ?>" class="gm-sol-compact-card">
+            
+            <div class="gm-sol-compact-top">
+              <div class="gm-sol-compact-icon" style="background: <?= e($cardColor) ?>18; color: <?= e($cardColor) ?>;">
+                <i class="bi <?= e($cardIcon) ?>"></i>
+              </div>
+              <div style="color: <?= e($cardColor) ?>30; font-size: 26px;">
+                <i class="bi <?= e($cardExtra) ?>"></i>
+              </div>
             </div>
 
-            <!-- Badge / Eyebrow -->
             <?php if (!empty($card['badge'])): ?>
-              <div class="gm-sol-badge" style="color: <?= $badgeColor ?>;">
+              <div class="gm-sol-compact-badge" style="color: <?= e($cardColor) ?>;">
                 <?= e($card['badge']) ?>
               </div>
             <?php endif; ?>
 
-            <!-- Title & Description -->
-            <h3 class="gm-sol-title" style="color: <?= $titleColor ?>;">
+            <h4 class="gm-sol-compact-title">
               <?= e($card['title']) ?>
-            </h3>
-            <p class="gm-sol-desc" style="color: <?= $descColor ?>;">
+            </h4>
+
+            <p class="gm-sol-compact-desc">
               <?= e($card['description']) ?>
             </p>
 
-            <!-- Feature Bullet Checkpoints -->
-            <?php if (!empty($features) && is_array($features)): ?>
-              <ul class="gm-sol-list">
-                <?php foreach ($features as $f): 
+            <?php if (!empty($feats) && is_array($feats)): ?>
+              <ul class="gm-sol-compact-list">
+                <?php foreach ($feats as $f): 
                   if (empty(trim((string)$f))) continue;
                 ?>
-                  <li style="color: <?= $checkText ?>;">
-                    <i class="bi bi-check-circle-fill" style="color: <?= $checkColor ?>;"></i>
+                  <li>
+                    <i class="bi bi-check-circle-fill" style="color: <?= e($cardColor) ?>;"></i>
                     <span><?= e($f) ?></span>
                   </li>
                 <?php endforeach; ?>
               </ul>
             <?php endif; ?>
 
-            <!-- Bottom Row: CTA Button & Cutout Product Asset -->
-            <div class="gm-sol-bottom-row">
-              <div class="gm-sol-action" style="color: <?= $ctaColor ?>;">
-                <span><?= e($btnText) ?></span>
-                <span class="gm-sol-arrow-circle" style="background: <?= $btnBg ?>; color: <?= $btnColor ?>;">
-                  <i class="bi bi-arrow-right"></i>
-                </span>
-              </div>
-
-              <?php if (!empty($cardImage)): ?>
-                <div class="gm-sol-img-box">
-                  <img src="<?= e($cardImage) ?>" alt="<?= e($card['alt_text'] ?? $card['title']) ?>" class="gm-sol-asset-img" loading="lazy">
-                </div>
-              <?php endif; ?>
+            <div class="gm-sol-compact-bottom">
+              <span class="gm-sol-compact-action" style="color: <?= e($cardColor) ?>;">
+                <?= e($btnText) ?>
+              </span>
+              <span class="gm-sol-compact-arrow" style="background: <?= e($cardColor) ?>15; color: <?= e($cardColor) ?>;">
+                <i class="bi bi-arrow-right"></i>
+              </span>
             </div>
 
-          </div>
-        </a>
+          </a>
+        <?php endforeach; ?>
       </div>
-      <?php endforeach; ?>
-    </div>
+    <?php endif; ?>
 
   </div>
 </section>
 
 <style>
-.gm-sol-grid {
+.section-solutions {
+  background: #F8FAFC;
+  padding: 90px 0;
+  position: relative;
+}
+
+/* Featured Hero Showcase Card */
+.gm-sol-featured-hero {
+  background: #0B1528;
+  border: 1px solid #1E293B;
+  border-radius: 24px;
+  padding: 42px 40px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 21, 64, 0.08);
+}
+.gm-sol-featured-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle at 100% 0%, rgba(245, 158, 11, 0.16) 0%, rgba(37, 99, 235, 0.08) 50%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+.gm-sol-featured-content {
+  position: relative;
+  z-index: 1;
+}
+.gm-sol-badge-featured {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(245, 158, 11, 0.14);
+  color: #FBBF24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+}
+.gm-sol-pill-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(37, 211, 102, 0.12);
+  color: #4ADE80;
+  border: 1px solid rgba(37, 211, 102, 0.25);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 20px;
+}
+.gm-sol-featured-title {
+  font-family: var(--gm-font-display, inherit);
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  font-weight: 850;
+  color: #FFFFFF;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+}
+.gm-sol-featured-desc {
+  font-size: 15px;
+  color: #94A3B8;
+  line-height: 1.65;
+  margin-bottom: 22px;
+}
+.gm-sol-featured-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 26px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 18px;
+}
+.gm-sol-featured-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #E2E8F0;
+}
+.gm-sol-featured-list li i {
+  font-size: 15px;
+  flex-shrink: 0;
+}
+.gm-sol-featured-visual-wrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gm-sol-featured-mockup-frame {
+  position: relative;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  background: #020B1F;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.gm-sol-featured-mockup-frame:hover {
+  transform: translateY(-4px);
+  border-color: rgba(245, 158, 11, 0.4);
+}
+.gm-sol-featured-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+.gm-sol-floating-pill {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  background: rgba(11, 21, 40, 0.88);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* 3 Compact Companion Cards Subgrid */
+.gm-sol-subgrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 26px;
+  gap: 24px;
   align-items: stretch;
 }
-.gm-sol-card-wrap {
-  text-decoration: none;
-  display: block;
-  height: 100%;
-}
-.gm-sol-card {
+.gm-sol-compact-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
   border-radius: 20px;
-  padding: 34px 28px 24px;
+  padding: 30px 26px 24px;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   height: 100%;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 16px rgba(0, 21, 64, 0.03);
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  text-decoration: none;
 }
-.gm-sol-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+.gm-sol-compact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(0, 21, 64, 0.08);
+  border-color: rgba(245, 158, 11, 0.4);
 }
-.gm-sol-corner-curve {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 280px;
-  height: 280px;
-  pointer-events: none;
-  border-top-right-radius: 20px;
-  z-index: 0;
-}
-.gm-sol-top-row {
+.gm-sol-compact-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 22px;
-  position: relative;
-  z-index: 1;
+  margin-bottom: 18px;
 }
-.gm-sol-icon-box {
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
+.gm-sol-compact-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  font-size: 20px;
 }
-.gm-sol-watermark {
-  font-size: 32px;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-}
-.gm-sol-badge {
-  font-size: 11px;
+.gm-sol-compact-badge {
+  font-size: 10.5px;
   font-weight: 800;
-  letter-spacing: 1.6px;
+  letter-spacing: 1.4px;
   text-transform: uppercase;
   margin-bottom: 8px;
-  position: relative;
-  z-index: 1;
 }
-.gm-sol-title {
+.gm-sol-compact-title {
   font-family: var(--gm-font-display, inherit);
-  font-size: 1.35rem;
+  font-size: 1.22rem;
   font-weight: 800;
-  line-height: 1.25;
-  letter-spacing: -0.02em;
-  margin-bottom: 12px;
-  position: relative;
-  z-index: 1;
+  line-height: 1.3;
+  color: #0F172A;
+  margin-bottom: 10px;
 }
-.gm-sol-desc {
-  font-size: 14px;
-  line-height: 1.6;
-  margin-bottom: 22px;
-  position: relative;
-  z-index: 1;
+.gm-sol-compact-desc {
+  font-size: 13.5px;
+  color: #64748B;
+  line-height: 1.55;
+  margin-bottom: 18px;
 }
-.gm-sol-list {
+.gm-sol-compact-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 24px;
+  margin: 0 0 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  position: relative;
-  z-index: 1;
+  gap: 8px;
 }
-.gm-sol-list li {
+.gm-sol-compact-list li {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 13.5px;
-  font-weight: 550;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
   line-height: 1.35;
 }
-.gm-sol-list li i {
-  font-size: 15px;
+.gm-sol-compact-list li i {
+  font-size: 14px;
   flex-shrink: 0;
 }
-.gm-sol-bottom-row {
+.gm-sol-compact-bottom {
   margin-top: auto;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
-  position: relative;
-  z-index: 1;
-  min-height: 80px;
-  padding-top: 10px;
+  padding-top: 14px;
+  border-top: 1px solid #F1F5F9;
 }
-.gm-sol-action {
-  font-size: 13.5px;
+.gm-sol-compact-action {
+  font-size: 13px;
   font-weight: 800;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding-bottom: 8px;
+  gap: 6px;
 }
-.gm-sol-arrow-circle {
-  width: 32px;
-  height: 32px;
+.gm-sol-compact-arrow {
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
+  font-size: 12px;
   transition: transform 0.2s ease;
 }
-.gm-sol-card:hover .gm-sol-arrow-circle {
-  transform: translateX(4px);
+.gm-sol-compact-card:hover .gm-sol-compact-arrow {
+  transform: translateX(3px);
 }
-.gm-sol-img-box {
-  width: 140px;
-  height: 95px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  margin-right: -10px;
-  margin-bottom: -6px;
-  pointer-events: none;
-}
-.gm-sol-asset-img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  transition: transform 0.3s ease;
-}
-.gm-sol-card:hover .gm-sol-asset-img {
-  transform: scale(1.06);
-}
+
 @media (max-width: 991px) {
-  .gm-sol-grid {
-    grid-template-columns: 1fr;
-    gap: 22px;
+  .gm-sol-featured-hero {
+    padding: 30px 22px;
   }
-  .gm-sol-img-box {
-    width: 120px;
-    height: 85px;
+  .gm-sol-featured-list {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .gm-sol-subgrid {
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
 }
 </style>

@@ -34,6 +34,128 @@ class FrontendController {
         }
     }
 
+    private function getSolutionsItems(): array {
+        $dbItems = $this->hpItems('solutions_cards');
+        $hasCatalogue = false;
+
+        foreach ($dbItems as $it) {
+            $t = $it['title'] ?? '';
+            if (stripos($t, 'Catalogue') !== false || stripos($t, 'Catalog') !== false) {
+                $hasCatalogue = true;
+            }
+        }
+
+        if (count($dbItems) < 4 || !$hasCatalogue) {
+            try {
+                $currentBadge = $this->hp('solutions_badge', '');
+                if ($currentBadge === 'BUSINESS SOLUTIONS' || empty($currentBadge)) {
+                    $this->setHP('solutions_badge', 'GLOBAL JEWELLERY PLATFORM');
+                }
+
+                $this->db->query("DELETE FROM homepage_items WHERE section = 'solutions_cards'");
+
+                $defaultCards = [
+                    [
+                        'badge'        => 'DIGITAL CATALOGUE & WHATSAPP',
+                        'title'        => 'Interactive Jewellery Catalogue & 1-Click WhatsApp Sharing',
+                        'description'  => 'Create stunning digital catalogues with real-time metal rates and weight calculations. Share product photos, item codes, and prices directly to your customer\'s WhatsApp with one click.',
+                        'features'     => json_encode([
+                            'Category-Wise Showcase (Gold, Diamond, Platinum, Silver)',
+                            'Real-Time Metal Rate & Net Weight Calculation',
+                            '1-Click Direct WhatsApp Share with Photo & Price',
+                            'Instant Quotation & Customer Order Generation'
+                        ], JSON_UNESCAPED_SLASHES),
+                        'icon'         => 'bi-images',
+                        'extra'        => 'bi-whatsapp',
+                        'accent_color' => '#D97706',
+                        'image'        => '/assets/images/digital-jewellery-catalogue.png',
+                        'alt_text'     => 'GoldMatrix Premium Jewellery Digital Catalogue with WhatsApp Sharing',
+                        'btn1_text'    => 'Explore Digital Catalogue',
+                        'btn1_link'    => '/features',
+                        'sort_order'   => 1,
+                        'is_active'    => 1
+                    ],
+                    [
+                        'badge'        => 'MULTI-CURRENCY & BULLION',
+                        'title'        => 'Live Bullion Rate Auto-Sync & Multi-Currency Billing',
+                        'description'  => 'Auto-sync live market rates from Dubai Gold & Commodities Exchange (DGCX) and bullion boards. Bill seamlessly in AED, USD, SAR, and INR with zero counter errors.',
+                        'features'     => json_encode([
+                            'Auto-Sync Live Gold & Silver Market Feeds',
+                            'Multi-Currency Invoicing (AED, USD, SAR, INR)',
+                            'Automated Karat, Purity & Touch Calculation',
+                            'Locked Counter Rates with Zero Manipulation'
+                        ], JSON_UNESCAPED_SLASHES),
+                        'icon'         => 'bi-currency-exchange',
+                        'extra'        => 'bi-globe2',
+                        'accent_color' => '#2563EB',
+                        'image'        => '/assets/images/solution-wholesale-bullion.jpg',
+                        'alt_text'     => 'Live Bullion Rate Auto-Sync & Multi-Currency Billing',
+                        'btn1_text'    => 'Explore Multi-Currency',
+                        'btn1_link'    => '/solutions/jewellery-wholesale',
+                        'sort_order'   => 2,
+                        'is_active'    => 1
+                    ],
+                    [
+                        'badge'        => 'HIGH-SPEED AUDIT',
+                        'title'        => 'RFID Instant Vault & Tray Inventory Tally',
+                        'description'  => 'Audit 10,000+ jewellery items across showroom trays and vaults in under 5 minutes. Detect missing items instantly with automated discrepancy alerts.',
+                        'features'     => json_encode([
+                            'Scan Entire Trays in 5 Seconds Flat',
+                            '100% Real-Time Stock & Vault Tally',
+                            'Zero Stock Leakage with Anti-Theft Alerts',
+                            'Tamper-Evident RFID & Barcode Tracking'
+                        ], JSON_UNESCAPED_SLASHES),
+                        'icon'         => 'bi-upc-scan',
+                        'extra'        => 'bi-shield-check',
+                        'accent_color' => '#059669',
+                        'image'        => '/assets/images/solution-manufacturing-craft.jpg',
+                        'alt_text'     => 'RFID Instant Vault & Tray Inventory Audit',
+                        'btn1_text'    => 'Explore RFID Audit',
+                        'btn1_link'    => '/features',
+                        'sort_order'   => 3,
+                        'is_active'    => 1
+                    ],
+                    [
+                        'badge'        => '100% COMPLIANCE',
+                        'title'        => 'UAE FTA VAT & International Hallmark Compliance',
+                        'description'  => 'Pre-configured for UAE Federal Tax Authority (FTA) 5% VAT, Indian Tax e-Invoicing, and 1-click BIS Hallmark HUID verification for audit-proof operations.',
+                        'features'     => json_encode([
+                            '100% UAE FTA 5% VAT & Tax Invoicing',
+                            '1-Click BIS Hallmark & HUID Verification',
+                            'Customs Bullion Import & Export Documentation',
+                            'Automated P&L, Balance Sheet & Day Book'
+                        ], JSON_UNESCAPED_SLASHES),
+                        'icon'         => 'bi-receipt-cutoff',
+                        'extra'        => 'bi-award',
+                        'accent_color' => '#7C3AED',
+                        'image'        => '/assets/images/solution-retail-rings.jpg',
+                        'alt_text'     => 'UAE FTA VAT & International Hallmark Compliance',
+                        'btn1_text'    => 'Explore Compliance',
+                        'btn1_link'    => '/solutions/jewellery-retail',
+                        'sort_order'   => 4,
+                        'is_active'    => 1
+                    ]
+                ];
+
+                foreach ($defaultCards as $card) {
+                    $this->db->query("
+                        INSERT INTO homepage_items 
+                        (section, badge, title, description, features, icon, extra, accent_color, image, alt_text, btn1_text, btn1_link, sort_order, is_active)
+                        VALUES ('solutions_cards', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)
+                    ", [
+                        $card['badge'], $card['title'], $card['description'], $card['features'],
+                        $card['icon'], $card['extra'], $card['accent_color'], $card['image'],
+                        $card['alt_text'], $card['btn1_text'], $card['btn1_link'], $card['sort_order']
+                    ]);
+                }
+
+                $dbItems = $this->hpItems('solutions_cards');
+            } catch (\Throwable $e) {}
+        }
+
+        return $dbItems;
+    }
+
     private function getSpotlightItems(): array {
         $dbItems = $this->hpItems('feature_spotlight');
         $hasGirvi = false;
@@ -330,79 +452,12 @@ class FrontendController {
             'conn_title2'       => $this->hp('conn_title2',        'Connected.'),
             'conn_desc'         => $this->hp('conn_desc',          'From retail to manufacturing, from inventory to accounting — GoldMatrix brings everything together in one powerful ERP platform.'),
 
-            // ── BUSINESS SOLUTIONS (3 CARDS) ──
+            // ── BUSINESS SOLUTIONS (4 CARDS) ──
             'solutions_enabled' => $this->hp('solutions_enabled', '1'),
-            'solutions_badge'   => $this->hp('solutions_badge',   'BUSINESS SOLUTIONS'),
+            'solutions_badge'   => $this->hp('solutions_badge',   'GLOBAL JEWELLERY PLATFORM'),
             'solutions_title'   => $this->hp('solutions_title',   'Built for Every Jewellery Business Model'),
-            'solutions_desc'    => $this->hp('solutions_desc',    'Whether you run a retail showroom, wholesale operation, or manufacturing unit — GoldMatrix is built to fit your exact workflow.'),
-            'solutions_items'   => !empty($this->hpItems('solutions_cards')) ? $this->hpItems('solutions_cards') : [
-                [
-                    'id'           => 1,
-                    'badge'        => 'RETAIL SOFTWARE',
-                    'title'        => 'Jewellery Retail & Showroom',
-                    'description'  => 'POS billing, inventory, old gold exchange, customer management, gold rates and Tax in one screen — built for showroom counters.',
-                    'icon'         => 'bi-shop',
-                    'accent_color' => '#D97706',
-                    'extra'        => 'bi-gem',
-                    'features'     => json_encode([
-                        'Fast POS & Touch Billing',
-                        'Barcode & RFID Scanning',
-                        'Gold Rate Board Sync',
-                        'Old Gold Exchange',
-                        'Customer CRM & KYC'
-                    ]),
-                    'btn1_text'    => 'Explore Retail Software',
-                    'btn1_link'    => '/solutions/jewellery-retail',
-                    'image'        => '/assets/images/solution-retail-rings.jpg',
-                    'alt_text'     => 'Jewellery Retail & Showroom POS Software',
-                    'sort_order'   => 1,
-                    'is_active'    => 1
-                ],
-                [
-                    'id'           => 2,
-                    'badge'        => 'WHOLESALE SOFTWARE',
-                    'title'        => 'Jewellery Wholesale & Trading',
-                    'description'  => 'Manage wholesale orders, branch transfers, vendor accounts, multi-party billing, and stock across locations — all connected.',
-                    'icon'         => 'bi-handshake',
-                    'accent_color' => '#2563EB',
-                    'extra'        => 'bi-bar-chart-fill',
-                    'features'     => json_encode([
-                        'Wholesale Order Management',
-                        'Multi-Branch Stock Control',
-                        'Vendor & Party Ledgers',
-                        'Branch Transfer & Audit',
-                        'Bulk Billing & Pricing'
-                    ]),
-                    'btn1_text'    => 'Explore Wholesale Software',
-                    'btn1_link'    => '/solutions/jewellery-wholesale',
-                    'image'        => '/assets/images/solution-wholesale-bullion.jpg',
-                    'alt_text'     => 'Jewellery Wholesale & Bullion Trading ERP',
-                    'sort_order'   => 2,
-                    'is_active'    => 1
-                ],
-                [
-                    'id'           => 3,
-                    'badge'        => 'MANUFACTURING SOFTWARE',
-                    'title'        => 'Jewellery Manufacturing & Jobwork',
-                    'description'  => 'Track production orders, jobwork assignments, metal loss, jobwork queue, outsourced work, and WIP inventory stage by stage.',
-                    'icon'         => 'bi-gear-wide-connected',
-                    'accent_color' => '#059669',
-                    'extra'        => 'bi-hammer',
-                    'features'     => json_encode([
-                        'Production & Work Orders',
-                        'Jobwork & Process Allocation',
-                        'Metal Loss & Wastage Tracking',
-                        'WIP Stage Tracking',
-                        'Manufacturing Reports'
-                    ]),
-                    'btn1_text'    => 'Explore Manufacturing Software',
-                    'btn1_link'    => '/solutions/jewellery-manufacturing',
-                    'image'        => '/assets/images/solution-manufacturing-craft.jpg',
-                    'alt_text'     => 'Jewellery Manufacturing & Jobwork ERP',
-                    'sort_order'   => 3,
-                    'is_active'    => 1
-                ]
-            ],
+            'solutions_desc'    => $this->hp('solutions_desc',    'Engineered for high-growth jewellery retail, wholesale, and export brands across UAE, Dubai, India, and worldwide markets.'),
+            'solutions_items'   => $this->getSolutionsItems(),
 
             // ── MODULES ──
             'modules_title'     => $this->hp('modules_title',      'Modules That Work Seamlessly'),
