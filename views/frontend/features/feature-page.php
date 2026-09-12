@@ -555,6 +555,17 @@ $hasTabs = !empty($mod['tabs']);
               <h3 class="subfeat-title"><?= e($feat['title']) ?></h3>
               <p class="subfeat-desc"><?= e($feat['desc']) ?></p>
 
+              <?php if (!empty($feat['workflow_text'])): ?>
+                <div class="subfeat-workflow-box my-2 p-2 rounded" style="background:#F8FAFC; border:1px solid #E2E8F0; font-size:11.5px;">
+                  <div class="d-flex align-items-center gap-1 fw-bold text-uppercase mb-1" style="font-size:10px; color:#D97706; letter-spacing:0.8px;">
+                    <i class="bi bi-diagram-3-fill"></i> Production Workflow Pipeline
+                  </div>
+                  <div class="text-secondary fw-semibold" style="line-height:1.45;">
+                    <?= e($feat['workflow_text']) ?>
+                  </div>
+                </div>
+              <?php endif; ?>
+
               <?php if (!empty($feat['points'])): ?>
                 <ul class="subfeat-points">
                   <?php foreach ($feat['points'] as $pt): ?>

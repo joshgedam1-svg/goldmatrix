@@ -677,6 +677,17 @@ foreach ($highlights as $h) {
             <h3 class="srv-cap-title"><?= e($cap['title']) ?></h3>
             <p class="srv-cap-desc"><?= e($cap['desc']) ?></p>
 
+            <?php if (!empty($cap['workflow_text'])): ?>
+              <div class="srv-cap-workflow-box my-2 p-2 rounded" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14); font-size:11.5px;">
+                <div class="d-flex align-items-center gap-1 fw-bold text-uppercase mb-1" style="font-size:10px; color:#FBBF24; letter-spacing:0.8px;">
+                  <i class="bi bi-diagram-3-fill"></i> Production Workflow Pipeline
+                </div>
+                <div class="text-light fw-medium" style="line-height:1.45; font-size:11.5px;">
+                  <?= e($cap['workflow_text']) ?>
+                </div>
+              </div>
+            <?php endif; ?>
+
             <ul class="srv-cap-checklist">
               <?php foreach ($cap['points'] as $pt): ?>
                 <li class="srv-cap-check-item">

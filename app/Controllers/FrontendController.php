@@ -1485,10 +1485,29 @@ class FrontendController {
                 ],
                 'capabilities'   => [
                     [
-                        'icon'  => 'bi-receipt-cutoff',
-                        'title' => 'Barcode Jobwork Slip Generation',
-                        'desc'  => 'Create digital job sheets with customer design photos, exact metal weight issued, purity, required stone count, and delivery deadlines.',
-                        'points'=> ['Custom design attachment', 'Unique barcode per job bag', 'Stage-wise routing definition', 'Priority flag for urgent orders']
+                        'icon'  => 'bi-diagram-3-fill',
+                        'title' => 'Department-Wise Production Tracking',
+                        'desc'  => 'Track jewellery production department by department, including in-house and outsourced work.',
+                        'points'=> [
+                            'Department-wise work allocation',
+                            'Insource & outsource tracking',
+                            'Jobwork queue',
+                            'Manufacturing process tracking',
+                            'Worklog & jobcard tracking'
+                        ]
+                    ],
+                    [
+                        'icon'  => 'bi-arrow-repeat',
+                        'title' => 'Jobwork & Manufacturing Workflow',
+                        'desc'  => 'Manage manufacturing work orders and follow jewellery production from department allocation through jobwork and completion.',
+                        'workflow_text' => 'Manufacturing Work Order → Department Allocation → Jobwork Queue → Manufacturing Process → Worklog / Jobcard → Loss Tracking → Closing Report',
+                        'points'=> [
+                            'Manufacturing work orders',
+                            'Department-wise processing',
+                            'Jobwork queue management',
+                            'Loss tracking',
+                            'Daily manufacturing summary'
+                        ]
                     ],
                     [
                         'icon'  => 'bi-percent',
@@ -1509,23 +1528,20 @@ class FrontendController {
                         'points'=> ['Carat, cut, color, clarity tracking', 'Broken stone approval workflow', 'Sieve size classification', 'Findings weight reconciliation']
                     ],
                     [
-                        'icon'  => 'bi-wallet2',
-                        'title' => 'Karigar Payroll & Labor Settlement',
-                        'desc'  => 'Automate karigar labor calculations based on piece rate, weight-based labor, stone setting count, or daily wages with advance deductions.',
-                        'points'=> ['Piece-wise & gram-wise labor tariffs', 'Karigar advance payment ledger', 'Automated TDS calculation', 'Biometric attendance sync']
-                    ],
-                    [
-                        'icon'  => 'bi-patch-check',
-                        'title' => 'Quality Control & BIS Hallmarking',
-                        'desc'  => 'Integrated QC inspection checklists before dispatching to hallmarking centres and transferring finished goods to retail showrooms.',
-                        'points'=> ['HUID number assignment', 'XRF purity testing logs', 'Reject & rework routing', 'Finished stock barcode tagging']
+                        'icon'  => 'bi-pie-chart-fill',
+                        'title' => 'Daily Closing & Karigar Settlement',
+                        'desc'  => 'Automate karigar labor calculations based on piece rate, weight-based labor, stone setting count, and daily manufacturing summaries with full audit trails.',
+                        'points'=> ['Piece-wise & gram-wise labor tariffs', 'Karigar advance payment ledger', 'Daily factory balance sheet', 'Direct stock tag conversion']
                     ]
                 ],
                 'workflow'       => [
-                    ['step' => '01', 'title' => 'Design & Job Card Creation', 'desc' => 'Generate barcode job sheet with 3D CAD design, metal specification, purity, and diamond count.'],
-                    ['step' => '02', 'title' => 'Metal & Material Issue', 'desc' => 'Issue gold/silver alloy, stones, and findings to karigar. System records exact gross and net weight.'],
-                    ['step' => '03', 'title' => 'Stage Processing & Loss Audit', 'desc' => 'Track order through casting, filing, setting, and polishing. Calculate stage-wise metal recovery and loss.'],
-                    ['step' => '04', 'title' => 'QC, Hallmarking & Transfer', 'desc' => 'Conduct final quality audit, assign HUID barcode tag, and transfer finished jewelry to showroom inventory.']
+                    ['step' => '01', 'title' => 'Manufacturing Work Order', 'desc' => 'Generate barcode job sheet with 3D CAD design, Bill of Materials, metal purity, and diamond specifications.'],
+                    ['step' => '02', 'title' => 'Department Allocation', 'desc' => 'Allocate work orders to internal workshop departments or outside specialized jobwork contractors.'],
+                    ['step' => '03', 'title' => 'Jobwork Queue', 'desc' => 'Live workshop floor queue management with express order flags and artisan task prioritization.'],
+                    ['step' => '04', 'title' => 'Manufacturing Process', 'desc' => 'Execute casting, filing, stone setting, and polishing with strict alloy and temperature standards.'],
+                    ['step' => '05', 'title' => 'Worklog & Jobcard', 'desc' => 'Scan barcode jobcards at each station to record worker clock-ins, station handovers, and time logs.'],
+                    ['step' => '06', 'title' => 'Loss Tracking', 'desc' => 'Compare issued metal vs finished piece and recovered scrap with milligram-precision allowable loss audit.'],
+                    ['step' => '07', 'title' => 'Closing Report', 'desc' => 'Generate daily closing balance sheet, verify BIS hallmarking/HUID, and transfer stock to retail showroom.']
                 ],
                 'kpis'           => [
                     ['stat' => '0%', 'label' => 'Untracked Metal Leakage', 'sub' => 'Strict issue-return balance'],
@@ -2292,24 +2308,90 @@ class FrontendController {
             'meta_desc'     => 'Complete jewellery manufacturing software. Manage production work orders, jobwork, metal loss tracking, WIP inventory and manufacturing reports.',
             'meta_keywords' => 'jewellery manufacturing software, jewellery jobwork software, workshop management software, jewellery production software',
             'page_type'     => 'manufacturing',
-            'page_title'    => 'Jewellery Manufacturing Software',
-            'page_badge'    => 'MANUFACTURING SOFTWARE',
-            'page_headline' => 'Built for Jewellery Manufacturers & Workshop Operations',
-            'page_subtitle' => 'Plan production, assign jobwork, track metal loss, manage WIP stages and control outsourced manufacturing from one platform.',
+            'page_title'    => 'Jewellery Manufacturing & Jobwork Software',
+            'page_badge'    => 'MANUFACTURING & JOBWORK ERP',
+            'page_headline' => 'Milligram-Precision Jewellery Manufacturing & Jobwork Control',
+            'page_subtitle' => 'Track jewellery production department by department, follow live jobwork queues, audit metal loss tolerances, and streamline in-house and outsourced workshop operations.',
             'page_icon'     => 'bi-hammer',
             'features'      => [
-                ['icon'=>'bi-clipboard-check',  'title'=>'Production Work Orders',        'desc'=>'Create and track manufacturing work orders with design, weight specs, timeline and jobwork assignment.'],
-                ['icon'=>'bi-person-badge-fill','title'=>'Jobwork Process Allocation',    'desc'=>'Assign jobwork to in-house or outsourced units, track issue/receipt and calculate labor charges.'],
-                ['icon'=>'bi-exclamation-triangle-fill','title'=>'Metal Loss & Wastage', 'desc'=>'Track actual vs. allowable metal wastage by process, workshop and item type with automatic reconciliation.'],
-                ['icon'=>'bi-layers-fill',      'title'=>'WIP Stage Tracking',           'desc'=>'Monitor work-in-progress inventory at each manufacturing stage — casting, polishing, setting, finishing.'],
-                ['icon'=>'bi-arrow-repeat',     'title'=>'Outsourced Manufacturing',      'desc'=>'Track items sent for outsourced manufacturing, follow up status, receive finished goods and verify weight.'],
-                ['icon'=>'bi-graph-up',         'title'=>'Manufacturing Reports',         'desc'=>'Production efficiency, metal consumption, process performance, WIP status and cost-per-item analytics.'],
+                [
+                    'icon'   => 'bi-diagram-3-fill',
+                    'title'  => 'Department-Wise Production Tracking',
+                    'desc'   => 'Track jewellery production department by department, including in-house and outsourced work.',
+                    'points' => [
+                        'Department-wise work allocation',
+                        'Insource & outsource tracking',
+                        'Jobwork queue',
+                        'Manufacturing process tracking',
+                        'Worklog & jobcard tracking'
+                    ]
+                ],
+                [
+                    'icon'   => 'bi-arrow-repeat',
+                    'title'  => 'Jobwork & Manufacturing Workflow',
+                    'desc'   => 'Manage manufacturing work orders and follow jewellery production from department allocation through jobwork and completion.',
+                    'workflow_text' => 'Manufacturing Work Order → Department Allocation → Jobwork Queue → Manufacturing Process → Worklog / Jobcard → Loss Tracking → Closing Report',
+                    'points' => [
+                        'Manufacturing work orders',
+                        'Department-wise processing',
+                        'Jobwork queue management',
+                        'Loss tracking',
+                        'Daily manufacturing summary'
+                    ]
+                ],
+                [
+                    'icon'   => 'bi-receipt-cutoff',
+                    'title'  => 'Barcode Jobcard & Worklog Print',
+                    'desc'   => 'Generate durable barcode jobcards with design specs, karat purity, and stone counts for instant workshop kiosk scanning.',
+                    'points' => [
+                        'Unique barcode & QR per job card',
+                        'Station clock-in / clock-out timestamps',
+                        'Diamond & stone carat allocation',
+                        'Operator accountability logs'
+                    ]
+                ],
+                [
+                    'icon'   => 'bi-percent',
+                    'title'  => 'Metal Loss & Wastage Tracking',
+                    'desc'   => 'Automated allowable vs actual wastage calculation across casting, filing, setting, and polishing with zero gold leakage.',
+                    'points' => [
+                        '0.001g milligram precision audit',
+                        'Karigar-wise loss scorecards',
+                        'Scrap & dust recovery ledger',
+                        'Fine gold equivalency conversion'
+                    ]
+                ],
+                [
+                    'icon'   => 'bi-kanban',
+                    'title'  => 'Live Jobwork Queue & WIP Pipeline',
+                    'desc'   => 'Real-time bottleneck alerts and visual queue tracking across melting, casting, setting, meena, rhodium, and hallmarking.',
+                    'points' => [
+                        'Express order prioritization flags',
+                        'Department capacity scheduling',
+                        'Stage completion alerts',
+                        'Target delivery date monitoring'
+                    ]
+                ],
+                [
+                    'icon'   => 'bi-pie-chart-fill',
+                    'title'  => 'Daily Manufacturing Closing Summary',
+                    'desc'   => 'Consolidated daily executive closing reports showing total fine gold issued, scrap recovered, yield efficiency, and stock handovers.',
+                    'points' => [
+                        'Daily workshop yield efficiency',
+                        'Vault balance reconciliation',
+                        'Direct retail barcode stock transfer',
+                        'Karigar payroll & labor settlement'
+                    ]
+                ],
             ],
             'workflow'      => [
-                ['step'=>'01','title'=>'Create Work Order',  'desc'=>'Design specification, metal weight, purity, process assignment and target date.'],
-                ['step'=>'02','title'=>'Issue Metal',        'desc'=>'Issue gold/silver from stock to workshop with proper voucher and weight record.'],
-                ['step'=>'03','title'=>'Track Production',   'desc'=>'Monitor WIP stages, receive partial completions, track metal balance.'],
-                ['step'=>'04','title'=>'Receive & Audit',    'desc'=>'Receive finished goods, weigh, verify, calculate loss allowance and close order.'],
+                ['step'=>'01','title'=>'Manufacturing Work Order', 'desc'=>'Create work order with BOM, CAD design, purity, metal weight, and delivery timeline.'],
+                ['step'=>'02','title'=>'Department Allocation',   'desc'=>'Allocate jobs to specialized in-house or outsourced casting, setting, and polishing units.'],
+                ['step'=>'03','title'=>'Jobwork Queue',            'desc'=>'Manage active workshop floor queues with express order prioritization and live status.'],
+                ['step'=>'04','title'=>'Manufacturing Process',    'desc'=>'Execute standardized crafting stages under strict temperature, alloy, and time control.'],
+                ['step'=>'05','title'=>'Worklog & Jobcard',        'desc'=>'Scan barcode jobcards at each station to log worker timestamps, labor, and materials.'],
+                ['step'=>'06','title'=>'Loss Tracking',            'desc'=>'Audit actual vs allowable metal loss per artisan with milligram-precision variance flags.'],
+                ['step'=>'07','title'=>'Closing Report',           'desc'=>'Generate daily closing summary, reconcile metal accounts, and transfer finished goods.']
             ],
         ]);
         view('frontend.solutions.solution-page', $data);
@@ -2724,7 +2806,8 @@ class FrontendController {
                 'intro'          => 'Uncontrolled metal loss and delayed karigar jobwork destroy jewellery manufacturing profit margins. GoldMatrix\'s Production module is purpose-built for jewellery workshops and factory floors. Manage department-wise workflows (Melting, Casting, Filing, Setting, Polishing, Rhodium), track real-time jobwork queues, generate barcode jobcards, audit allowable vs. actual metal loss, and print daily manufacturing summaries with 0.001g accuracy.',
                 'description'    => 'Full-cycle jewellery manufacturing software tracking WIP departments, karigar jobwork queues, metal loss, and daily closing summaries.',
                 'bullets'        => [
-                    'Department-wise Insource & Outsource reports',
+                    'Department-Wise Production Tracking (Insource & Outsource)',
+                    'Jobwork & Manufacturing Workflow (Order to Closing)',
                     'Jobwork Queue + Real-time Queue Report',
                     'Loss Tracking & Daily Manufacturing Closing Report',
                     'Worklog, Jobcard Report & Barcode Jobcard Print'
@@ -2734,21 +2817,40 @@ class FrontendController {
                 'sub_features'   => [
                     [
                         'icon'   => 'bi-diagram-3-fill',
-                        'title'  => 'Department',
+                        'title'  => 'Department-Wise Production Tracking',
+                        'desc'   => 'Track jewellery production department by department, including in-house and outsourced work.',
+                        'points' => [
+                            'Department-wise work allocation',
+                            'Insource & outsource tracking',
+                            'Jobwork queue',
+                            'Manufacturing process tracking',
+                            'Worklog & jobcard tracking'
+                        ]
+                    ],
+                    [
+                        'icon'   => 'bi-arrow-repeat',
+                        'title'  => 'Jobwork & Manufacturing Workflow',
+                        'desc'   => 'Manage manufacturing work orders and follow jewellery production from department allocation through jobwork and completion.',
+                        'workflow_text' => 'Manufacturing Work Order → Department Allocation → Jobwork Queue → Manufacturing Process → Worklog / Jobcard → Loss Tracking → Closing Report',
+                        'points' => [
+                            'Manufacturing work orders',
+                            'Department-wise processing',
+                            'Jobwork queue management',
+                            'Loss tracking',
+                            'Daily manufacturing summary'
+                        ]
+                    ],
+                    [
+                        'icon'   => 'bi-diagram-3',
+                        'title'  => 'Department Allocation',
                         'desc'   => 'Configure specialized workshop departments (Melting, Casting, Filing, Diamond Setting, Polishing, Rhodium, Hallmarking) with custom stage sequences.',
                         'points' => ['Multi-stage department routing', 'Stage-wise WIP inventory balance', 'Department capacity scheduling', 'Operator station mapping']
                     ],
                     [
                         'icon'   => 'bi-person-workspace',
-                        'title'  => 'Insource Department Report',
-                        'desc'   => 'Track production volume, fine gold issued, scrap returned, and cycle times across all internal workshop departments with operator efficiency KPIs.',
-                        'points' => ['Internal station productivity', 'Stage-by-stage metal weight ledger', 'Scrap recovery tracking', 'WIP inventory valuation']
-                    ],
-                    [
-                        'icon'   => 'bi-share-fill',
-                        'title'  => 'Outsource Department Report',
-                        'desc'   => 'Monitor metal issued to external jobworkers and outside casting units with transit tracking, delivery challans, and return weight audits.',
-                        'points' => ['Outside contractor metal balance', 'External jobwork challans', 'Return weight reconciliation', 'Labor charge settlement']
+                        'title'  => 'Insource & Outsource Tracking',
+                        'desc'   => 'Monitor metal issued to in-house artisans as well as external casting contractors with transit challans and return weight audits.',
+                        'points' => ['Internal station productivity', 'Outside contractor metal balance', 'Transit delivery challans', 'Return weight reconciliation']
                     ],
                     [
                         'icon'   => 'bi-list-task',
@@ -2758,7 +2860,7 @@ class FrontendController {
                     ],
                     [
                         'icon'   => 'bi-gear',
-                        'title'  => 'Manufacturing Process',
+                        'title'  => 'Manufacturing Process Tracking',
                         'desc'   => 'Define standard process parameters, allowable wastage percentages, labor charge rates (per gram or per piece), and target turnaround hours.',
                         'points' => ['Process-wise wastage standards', 'Labor calculation formulas', 'Standard operating workflows', 'Quality check checkpoints']
                     ],
@@ -2770,15 +2872,9 @@ class FrontendController {
                     ],
                     [
                         'icon'   => 'bi-clock-history',
-                        'title'  => 'Worklog Report',
-                        'desc'   => 'Maintain timestamped audit logs of worker clock-ins, jobcard station handovers, labor time spent, and process completions.',
-                        'points' => ['Worker station timestamps', 'Time spent per manufacturing stage', 'Operator productivity log', 'Audit-ready job history']
-                    ],
-                    [
-                        'icon'   => 'bi-qr-code-scan',
-                        'title'  => 'Jobcard Report & Jobcard Print',
-                        'desc'   => 'Generate detailed jobcard summaries and print durable barcode tags with design photos, metal specs, and stone requirements for quick scanning.',
-                        'points' => ['Barcode & QR jobcard printouts', 'Design photo attachment', 'Required gold & stone specifications', 'Direct finished stock tag conversion']
+                        'title'  => 'Worklog & Jobcard Tracking',
+                        'desc'   => 'Maintain timestamped audit logs of worker clock-ins, jobcard station handovers, labor time spent, and barcode scanning.',
+                        'points' => ['Worker station timestamps', 'Time spent per manufacturing stage', 'Barcode & QR jobcard printouts', 'Audit-ready job history']
                     ],
                     [
                         'icon'   => 'bi-pie-chart-fill',

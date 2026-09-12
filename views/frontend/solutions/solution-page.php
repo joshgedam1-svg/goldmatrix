@@ -42,14 +42,36 @@ require __DIR__ . '/../partials/header.php';
       <div style="display:inline-flex;align-items:center;gap:8px;background:#FEF3C7;color:#92400E;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:50rem;border:1px solid #FDE68A;margin-bottom:12px;">WHAT IT DOES</div>
       <h2 style="font-family:var(--gm-font-display);font-size:clamp(1.6rem,2.8vw,2.3rem);font-weight:800;color:#0F172A;">Key Capabilities</h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(340px, 1fr));gap:24px;">
       <?php foreach($features as $feat): ?>
-      <div style="background:#FFFFFF;border-radius:10px;border:1px solid #E2E8F0;padding:26px 22px;transition:all 0.15s ease-in-out;box-shadow:0 1px 3px rgba(0,0,0,0.04);">
-        <div style="width:44px;height:44px;background:#FEF3C7;border:1px solid #FDE68A;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
-          <i class="bi <?= e($feat['icon'] ?? 'bi-stars') ?>" style="font-size:18px;color:#92400E;"></i>
+      <div style="background:#FFFFFF;border-radius:12px;border:1px solid #E2E8F0;padding:26px 22px;transition:all 0.2s ease-in-out;box-shadow:0 2px 6px rgba(15,23,42,0.04);display:flex;flex-direction:column;">
+        <div style="width:46px;height:46px;background:#FEF3C7;border:1px solid #FDE68A;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;flex-shrink:0;">
+          <i class="bi <?= e($feat['icon'] ?? 'bi-stars') ?>" style="font-size:20px;color:#92400E;"></i>
         </div>
-        <h3 style="font-family:var(--gm-font-display);font-size:1.05rem;font-weight:700;color:#0F172A;margin-bottom:8px;"><?= e($feat['title']) ?></h3>
-        <p style="font-size:13.5px;color:#64748B;line-height:1.6;margin:0;"><?= e($feat['desc']) ?></p>
+        <h3 style="font-family:var(--gm-font-display);font-size:1.1rem;font-weight:700;color:#0F172A;margin-bottom:8px;"><?= e($feat['title']) ?></h3>
+        <p style="font-size:13.5px;color:#64748B;line-height:1.6;margin-bottom:14px;"><?= e($feat['desc']) ?></p>
+        
+        <?php if (!empty($feat['workflow_text'])): ?>
+          <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:10px 12px;margin-bottom:14px;font-size:11.5px;">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#D97706;letter-spacing:0.8px;margin-bottom:4px;display:flex;align-items:center;gap:4px;">
+              <i class="bi bi-diagram-3-fill"></i> Production Workflow
+            </div>
+            <div style="color:#334155;font-weight:600;line-height:1.45;">
+              <?= e($feat['workflow_text']) ?>
+            </div>
+          </div>
+        <?php endif; ?>
+
+        <?php if (!empty($feat['points'])): ?>
+          <ul style="list-style:none;padding:0;margin:auto 0 0;border-top:1px solid #F1F5F9;padding-top:14px;display:flex;flex-direction:column;gap:7px;">
+            <?php foreach($feat['points'] as $pt): ?>
+              <li style="font-size:12.5px;color:#334155;display:flex;align-items:baseline;gap:8px;line-height:1.45;">
+                <i class="bi bi-check2-circle" style="color:#059669;font-size:13px;flex-shrink:0;"></i>
+                <span><?= e($pt) ?></span>
+              </li>
+            <?php endforeach; ?>
+          </ul>
+        <?php endif; ?>
       </div>
       <?php endforeach; ?>
     </div>
@@ -60,20 +82,19 @@ require __DIR__ . '/../partials/header.php';
 <!-- HOW IT WORKS -->
 <?php if (!empty($workflow)): ?>
 <section style="padding:72px 5%; background-color:#F8FAFC; border-top:1px solid #E2E8F0; border-bottom:1px solid #E2E8F0;">
-  <div style="max-width:1100px;margin:0 auto;">
+  <div style="max-width:1200px;margin:0 auto;">
     <div style="text-align:center;margin-bottom:48px;">
       <div style="display:inline-flex;align-items:center;gap:8px;background:#FEF3C7;color:#92400E;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:50rem;border:1px solid #FDE68A;margin-bottom:12px;">HOW IT WORKS</div>
-      <h2 style="font-family:var(--gm-font-display);font-size:clamp(1.6rem,2.8vw,2.3rem);font-weight:800;color:#0F172A;">Simple 4-Step Process</h2>
+      <h2 style="font-family:var(--gm-font-display);font-size:clamp(1.6rem,2.8vw,2.3rem);font-weight:800;color:#0F172A;"><?= count($workflow) ?>-Step End-to-End Workflow</h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;">
-      <div style="position:absolute;top:28px;left:12.5%;right:12.5%;height:2px;background:#E2E8F0;z-index:0;"></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:20px;position:relative;">
       <?php foreach($workflow as $step): ?>
-      <div style="text-align:center;padding:0 16px;position:relative;z-index:1;">
-        <div style="width:52px;height:52px;background:#0F172A;border:2px solid #FBBF24;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:var(--gm-font-display);font-size:16px;font-weight:800;color:#FFFFFF;">
+      <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:24px 18px;text-align:center;position:relative;box-shadow:0 1px 3px rgba(0,0,0,0.03);">
+        <div style="width:48px;height:48px;background:#0F172A;border:2px solid #FBBF24;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-family:var(--gm-font-display);font-size:15px;font-weight:800;color:#FFFFFF;">
           <?= e($step['step']) ?>
         </div>
-        <h4 style="font-family:var(--gm-font-display);font-size:15px;font-weight:700;color:#0F172A;margin-bottom:8px;"><?= e($step['title']) ?></h4>
-        <p style="font-size:13px;color:#64748B;line-height:1.6;margin:0;"><?= e($step['desc']) ?></p>
+        <h4 style="font-family:var(--gm-font-display);font-size:14.5px;font-weight:700;color:#0F172A;margin-bottom:8px;"><?= e($step['title']) ?></h4>
+        <p style="font-size:12.5px;color:#64748B;line-height:1.55;margin:0;"><?= e($step['desc']) ?></p>
       </div>
       <?php endforeach; ?>
     </div>
