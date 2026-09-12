@@ -144,7 +144,7 @@ $slides = !empty($hero_slides) ? $hero_slides : [
                     </div>
                   </div>
                   <div style="background: rgba(245,158,11,0.1); border: 1px dashed rgba(245,158,11,0.3); padding: 12px; border-radius: 8px; font-size: 12px; color: #F59E0B; text-align: center;">
-                    ✓ GST Return Filed • Tally Synced • 3 Branches Online
+                    ✓ Tax Return Filed • Tally Synced • 3 Branches Online
                   </div>
                 </div>
               <?php endif; ?>
@@ -199,238 +199,6 @@ $slides = !empty($hero_slides) ? $hero_slides : [
   </div>
 </section>
 <?php endif; ?>
-
-<!-- ════════════════════════════════
-     5-CARD POWERFUL FEATURES SECTION (BELOW TRUST BAR)
-════════════════════════════════ -->
-<?php if (($pfeat_enabled ?? '1') == '1' && !empty($pfeat_items)): ?>
-<section class="section-pfeatures" id="powerful-features">
-  <div class="container-fluid px-3 px-xl-5" style="max-width: 1440px;">
-    
-    <!-- Section Header -->
-    <div class="pfeat-header-wrap">
-      <?php if (!empty($pfeat_badge)): ?>
-        <div class="pfeat-badge">
-          <span><?= e($pfeat_badge) ?></span>
-        </div>
-      <?php endif; ?>
-
-      <?php if (!empty($pfeat_title)): ?>
-        <h2 class="pfeat-main-heading">
-          <?= e($pfeat_title) ?>
-        </h2>
-        <span class="pfeat-gold-curve"></span>
-      <?php endif; ?>
-
-      <?php if (!empty($pfeat_desc)): ?>
-        <p class="pfeat-desc">
-          <?= e($pfeat_desc) ?>
-        </p>
-      <?php endif; ?>
-    </div>
-
-    <!-- 5-Card Responsive Grid -->
-    <div class="pfeat-grid">
-      <?php foreach ($pfeat_items as $card): ?>
-        <div class="pfeat-card">
-          <div class="pfeat-icon-badge">
-            <i class="bi <?= e($card['icon'] ?: 'bi-star-fill') ?>"></i>
-          </div>
-          <h3 class="pfeat-title"><?= e($card['title']) ?></h3>
-          <p class="pfeat-desc"><?= e($card['description']) ?></p>
-        </div>
-      <?php endforeach; ?>
-    </div>
-
-  </div>
-</section>
-<?php endif; ?>
-
-<!-- ════════════════════════════════
-     FEATURE SHOWCASE SECTION (3 CARDS)
-════════════════════════════════ -->
-<?php if (($showcase_enabled ?? '1') == '1' && !empty($showcase_items)): ?>
-<section class="section-showcase" id="showcase">
-  <div class="container-fluid px-3 px-xl-5 py-2" style="max-width:1440px;">
-    
-    <!-- Section Header -->
-    <div class="showcase-header-wrap">
-      <?php if (!empty($showcase_badge)): ?>
-        <div class="showcase-badge">
-          <span><?= e($showcase_badge) ?></span>
-        </div>
-      <?php endif; ?>
-      
-      <h2 class="showcase-main-heading">
-        <?= e($showcase_title ?? 'The only software for Jewelry business') ?>
-      </h2>
-      <span class="showcase-gold-curve"></span>
-
-      <?php if (!empty($showcase_desc)): ?>
-        <p class="text-muted mt-3 mb-0 fs-6 mx-auto" style="max-width:720px;"><?= e($showcase_desc) ?></p>
-      <?php endif; ?>
-    </div>
-
-    <!-- 3-Column Responsive Cards Grid -->
-    <div class="row g-4 justify-content-center">
-      <?php 
-      $cardCount = count($showcase_items);
-      $colClass = $cardCount >= 3 ? 'col-lg-4 col-md-6 col-12' : ($cardCount === 2 ? 'col-lg-6 col-md-6 col-12' : 'col-lg-8 col-12');
-      foreach ($showcase_items as $idx => $card): 
-      ?>
-        <div class="<?= $colClass ?>">
-          <div class="showcase-saas-card">
-            
-            <h3 class="showcase-card-title"><?= e($card['title']) ?></h3>
-            <p class="showcase-card-desc"><?= e($card['description']) ?></p>
-
-            <div class="showcase-img-holder">
-              <?php if (!empty($card['image'])): ?>
-                <img src="<?= e($card['image']) ?>" alt="<?= e(!empty($card['alt_text']) ? $card['alt_text'] : $card['title']) ?>" class="showcase-screen-img" loading="lazy">
-              <?php else: ?>
-                <div class="text-center p-3">
-                  <i class="bi bi-image fs-1 text-muted opacity-50 mb-2"></i>
-                  <div class="fw-bold text-dark fs-13"><?= e($card['title']) ?></div>
-                </div>
-              <?php endif; ?>
-            </div>
-
-          </div>
-        </div>
-      <?php endforeach; ?>
-    </div>
-
-  </div>
-</section>
-<?php endif; ?>
-
-<!-- ════════════════════════════════
-     FEATURE SPOTLIGHT (ZIG-ZAG DEEP DIVE SECTION)
-════════════════════════════════ -->
-<?php if (($spotlight_enabled ?? '1') == '1' && !empty($spotlight_items)): ?>
-<section class="section-spotlight" id="spotlight">
-  <div class="container-fluid px-3 px-xl-5" style="max-width: 1400px;">
-    
-    <?php if (!empty($spotlight_title) || !empty($spotlight_badge)): ?>
-      <div class="spotlight-header-wrap">
-        <?php if (!empty($spotlight_badge)): ?>
-          <div class="spotlight-badge">
-            <span><?= e($spotlight_badge) ?></span>
-          </div>
-        <?php endif; ?>
-        
-        <?php if (!empty($spotlight_title)): ?>
-          <h2 class="spotlight-main-heading">
-            <?= e($spotlight_title) ?>
-          </h2>
-          <span class="spotlight-gold-curve"></span>
-        <?php endif; ?>
-
-        <?php if (!empty($spotlight_desc)): ?>
-          <p class="mt-3 mb-0 fs-6 mx-auto" style="max-width: 720px; color: #94A3B8;"><?= e($spotlight_desc) ?></p>
-        <?php endif; ?>
-      </div>
-    <?php endif; ?>
-
-    <!-- Alternating Zig-Zag Rows -->
-    <div class="spotlight-rows-wrap">
-      <?php foreach ($spotlight_items as $idx => $card): 
-        $points = !empty($card['features']) ? json_decode($card['features'], true) : [];
-        $isReversed = ($idx % 2 === 1);
-      ?>
-        <div class="row align-items-center g-4 g-lg-5 spotlight-row <?= $isReversed ? 'flex-lg-row-reverse' : '' ?>">
-          
-          <!-- Text Column -->
-          <div class="col-lg-6 col-12">
-            <div class="spotlight-text-col <?= $isReversed ? 'ps-lg-4' : 'pe-lg-4' ?>">
-              
-              <h3 class="spotlight-title"><?= e($card['title']) ?></h3>
-              <p class="spotlight-desc"><?= e($card['description']) ?></p>
-
-              <?php if (!empty($points) && is_array($points)): ?>
-                <ul class="spotlight-checklist">
-                  <?php foreach ($points as $p): 
-                    if (empty(trim((string)$p))) continue;
-                  ?>
-                    <li class="spotlight-check-item">
-                      <i class="bi bi-check-circle-fill"></i>
-                      <span><?= e($p) ?></span>
-                    </li>
-                  <?php endforeach; ?>
-                </ul>
-              <?php endif; ?>
-
-            </div>
-          </div>
-
-          <!-- Screenshot Column -->
-          <div class="col-lg-6 col-12">
-            <div class="spotlight-img-wrap">
-              <?php if (!empty($card['image'])): ?>
-                <img src="<?= e($card['image']) ?>" alt="<?= e(!empty($card['alt_text']) ? $card['alt_text'] : $card['title']) ?>" class="spotlight-img" loading="lazy">
-              <?php else: ?>
-                <div class="spotlight-img-placeholder">
-                  <i class="bi bi-display fs-1 text-warning mb-2"></i>
-                  <div class="fw-bold text-white fs-15"><?= e($card['title']) ?></div>
-                </div>
-              <?php endif; ?>
-            </div>
-          </div>
-
-        </div>
-      <?php endforeach; ?>
-    </div>
-
-  </div>
-</section>
-<?php endif; ?>
-
-<!-- ════════════════════════════════
-     CONNECTED / FEATURES SECTION
-════════════════════════════════ -->
-<section class="section-conn" id="features">
-  <div class="conn-wrap">
-    <div class="conn-top">
-      <div class="conn-left">
-        <div class="conn-badge">ONE PLATFORM</div>
-        <h2 class="conn-title">
-          <?= e($conn_title ?? 'Every Part of Your Jewellery Business,') ?><br>
-          <span style="color:var(--gm-luxury-gold);"><?= e($conn_title2 ?? 'Connected.') ?></span>
-        </h2>
-      </div>
-      <div class="conn-right">
-        <p class="conn-desc">
-          <?= e($conn_desc ?? 'From retail to manufacturing, from inventory to accounting — GoldMatrix brings everything together in one powerful ERP platform.') ?>
-        </p>
-      </div>
-    </div>
-
-    <!-- Feature Cards (6 Pillars) -->
-    <div class="feat-grid">
-      <?php
-      $defaultFeats = [
-        ['bi bi-images', 'Digital Catalogue', 'Category-wise digital catalogue (Gold, Silver, Diamond & Stones) with product images, item codes, live price, weight details, and 1-click WhatsApp sharing to customers.'],
-        ['bi bi-whatsapp', 'WhatsApp Integration', 'Direct WhatsApp connectivity to chat with customers, send digital invoices, gold rate updates, order status alerts, and instant catalogue items.'],
-        ['bi bi-upc-scan', 'RFID Scanner (Instant Inventory)', 'Advanced RFID (Radio Frequency Identification) scanner to calculate stock rapidly, scan multiple tags in seconds, and maintain 100% accurate inventory.'],
-        ['bi bi-receipt-cutoff', 'GST Invoicing & Bill Printing', 'Generate and print professional GST-compliant tax invoices, barcode labels, and maintain complete digital billing records after bill generation.']
-      ];
-
-      $renderFeats = !empty($features_items) && count($features_items) >= 4 ?
-        array_map(fn($f)=>[$f['icon'] ?: 'bi bi-stars', $f['title'], $f['description']], $features_items) : $defaultFeats;
-
-      foreach($renderFeats as $f): 
-      ?>
-      <div class="feat-card">
-        <div class="feat-icon">
-          <i class="<?= e(trim($f[0])) ?>"></i>
-        </div>
-        <h3 class="feat-title"><?= $f[1] ?></h3>
-        <p class="feat-desc"><?= $f[2] ?></p>
-      </div>
-      <?php endforeach; ?>
-    </div>
-  </div>
-</section>
 
 <!-- ════════════════════════════════
      SOLUTIONS — 3 BUSINESS TYPES (EDITABLE CMS SECTION)
@@ -792,6 +560,134 @@ $slides = !empty($hero_slides) ? $hero_slides : [
 <?php endif; ?>
 
 <!-- ════════════════════════════════
+     FEATURE SPOTLIGHT (ZIG-ZAG DEEP DIVE SECTION)
+════════════════════════════════ -->
+<?php if (($spotlight_enabled ?? '1') == '1' && !empty($spotlight_items)): ?>
+<section class="section-spotlight" id="spotlight">
+  <div class="container-fluid px-3 px-xl-5" style="max-width: 1400px;">
+    
+    <?php if (!empty($spotlight_title) || !empty($spotlight_badge)): ?>
+      <div class="spotlight-header-wrap">
+        <?php if (!empty($spotlight_badge)): ?>
+          <div class="spotlight-badge">
+            <span><?= e($spotlight_badge) ?></span>
+          </div>
+        <?php endif; ?>
+        
+        <?php if (!empty($spotlight_title)): ?>
+          <h2 class="spotlight-main-heading">
+            <?= e($spotlight_title) ?>
+          </h2>
+          <span class="spotlight-gold-curve"></span>
+        <?php endif; ?>
+
+        <?php if (!empty($spotlight_desc)): ?>
+          <p class="mt-3 mb-0 fs-6 mx-auto" style="max-width: 720px; color: #94A3B8;"><?= e($spotlight_desc) ?></p>
+        <?php endif; ?>
+      </div>
+    <?php endif; ?>
+
+    <!-- Alternating Zig-Zag Rows -->
+    <div class="spotlight-rows-wrap">
+      <?php foreach ($spotlight_items as $idx => $card): 
+        $points = !empty($card['features']) ? json_decode($card['features'], true) : [];
+        $isReversed = ($idx % 2 === 1);
+      ?>
+        <div class="row align-items-center g-4 g-lg-5 spotlight-row <?= $isReversed ? 'flex-lg-row-reverse' : '' ?>">
+          
+          <!-- Text Column -->
+          <div class="col-lg-6 col-12">
+            <div class="spotlight-text-col <?= $isReversed ? 'ps-lg-4' : 'pe-lg-4' ?>">
+              
+              <h3 class="spotlight-title"><?= e($card['title']) ?></h3>
+              <p class="spotlight-desc"><?= e($card['description']) ?></p>
+
+              <?php if (!empty($points) && is_array($points)): ?>
+                <ul class="spotlight-checklist">
+                  <?php foreach ($points as $p): 
+                    if (empty(trim((string)$p))) continue;
+                  ?>
+                    <li class="spotlight-check-item">
+                      <i class="bi bi-check-circle-fill"></i>
+                      <span><?= e($p) ?></span>
+                    </li>
+                  <?php endforeach; ?>
+                </ul>
+              <?php endif; ?>
+
+            </div>
+          </div>
+
+          <!-- Screenshot Column -->
+          <div class="col-lg-6 col-12">
+            <div class="spotlight-img-wrap">
+              <?php if (!empty($card['image'])): ?>
+                <img src="<?= e($card['image']) ?>" alt="<?= e(!empty($card['alt_text']) ? $card['alt_text'] : $card['title']) ?>" class="spotlight-img" loading="lazy">
+              <?php else: ?>
+                <div class="spotlight-img-placeholder">
+                  <i class="bi bi-display fs-1 text-warning mb-2"></i>
+                  <div class="fw-bold text-white fs-15"><?= e($card['title']) ?></div>
+                </div>
+              <?php endif; ?>
+            </div>
+          </div>
+
+        </div>
+      <?php endforeach; ?>
+    </div>
+
+  </div>
+</section>
+<?php endif; ?>
+
+<!-- ════════════════════════════════
+     CONNECTED / FEATURES SECTION
+════════════════════════════════ -->
+<section class="section-conn" id="features">
+  <div class="conn-wrap">
+    <div class="conn-top">
+      <div class="conn-left">
+        <div class="conn-badge">ONE PLATFORM</div>
+        <h2 class="conn-title">
+          <?= e($conn_title ?? 'Every Part of Your Jewellery Business,') ?><br>
+          <span style="color:var(--gm-luxury-gold);"><?= e($conn_title2 ?? 'Connected.') ?></span>
+        </h2>
+      </div>
+      <div class="conn-right">
+        <p class="conn-desc">
+          <?= e($conn_desc ?? 'From retail to manufacturing, from inventory to accounting — GoldMatrix brings everything together in one powerful ERP platform.') ?>
+        </p>
+      </div>
+    </div>
+
+    <!-- Feature Cards (6 Pillars) -->
+    <div class="feat-grid">
+      <?php
+      $defaultFeats = [
+        ['bi bi-images', 'Digital Catalogue', 'Category-wise digital catalogue (Gold, Silver, Diamond & Stones) with product images, item codes, live price, weight details, and 1-click WhatsApp sharing to customers.'],
+        ['bi bi-whatsapp', 'WhatsApp Integration', 'Direct WhatsApp connectivity to chat with customers, send digital invoices, gold rate updates, order status alerts, and instant catalogue items.'],
+        ['bi bi-upc-scan', 'RFID Scanner (Instant Inventory)', 'Advanced RFID (Radio Frequency Identification) scanner to calculate stock rapidly, scan multiple tags in seconds, and maintain 100% accurate inventory.'],
+        ['bi bi-receipt-cutoff', 'Tax Invoicing & Bill Printing', 'Generate and print professional Tax-compliant invoices, barcode labels, and maintain complete digital billing records after bill generation.']
+      ];
+
+      $renderFeats = !empty($features_items) && count($features_items) >= 4 ?
+        array_map(fn($f)=>[$f['icon'] ?: 'bi bi-stars', $f['title'], $f['description']], $features_items) : $defaultFeats;
+
+      foreach($renderFeats as $f): 
+      ?>
+      <div class="feat-card">
+        <div class="feat-icon">
+          <i class="<?= e(trim($f[0])) ?>"></i>
+        </div>
+        <h3 class="feat-title"><?= $f[1] ?></h3>
+        <p class="feat-desc"><?= $f[2] ?></p>
+      </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
      14 ERP MODULES
 ════════════════════════════════ -->
 <section class="section-modules" id="modules">
@@ -813,7 +709,7 @@ $slides = !empty($hero_slides) ? $hero_slides : [
         ['bi-hammer', 'Production', 'Work order allocation, metal loss & allowable wastage math, stage-wise WIP production, and labor payroll automation.'],
         ['bi-pie-chart', 'Financial Statement', 'Automated Balance Sheet, Profit & Loss (P&L), Trial Balance, Party Ledgers, Cash Book, Day Book, and journal entries.'],
         ['bi-file-earmark-bar-graph', 'Report Analysis', '180+ business intelligence reports — top selling designs, sales vs targets, production efficiency, and metal profitability analysis.'],
-        ['bi-percent', 'GST Reports', 'Automated GSTR-1, GSTR-3B summaries, e-Way bill generation, IRN e-Invoicing, and 100% tax audit compliance.'],
+        ['bi-percent', 'Tax Reports', 'Automated tax summaries, e-Way bill generation, IRN e-Invoicing, and 100% tax audit compliance.'],
         ['bi-people-fill', 'Employee Management', 'Staff attendance, commission calculation on sales, daily target tracking, and role-based permissions & security.'],
         ['bi-gear-fill', 'Settings', 'System configuration, multi-branch control, automated cloud backups, audit trails, and custom invoice header designer.']
       ];

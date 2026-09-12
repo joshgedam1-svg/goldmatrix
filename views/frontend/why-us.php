@@ -397,8 +397,8 @@ require __DIR__ . '/partials/header.php';
             <div class="why-feat-icon"><i class="bi bi-calculator"></i></div>
             <span class="why-module-badge">Module 06</span>
           </div>
-          <h3 class="why-feat-title">Financial Statements &amp; GST/VAT</h3>
-          <p class="why-feat-desc">Automated split gold value and making charges GST/VAT invoices, 1-click E-Way bills, E-Invoicing JSON, and dual party ledgers.</p>
+          <h3 class="why-feat-title">Financial Statements &amp; Tax/VAT</h3>
+          <p class="why-feat-desc">Automated split gold value and making charges Tax/VAT invoices, 1-click E-Way bills, E-Invoicing JSON, and dual party ledgers.</p>
           <div class="why-feat-highlight">
             <i class="bi bi-check-circle-fill"></i>
             <span>Audit-ready tax compliance</span>

@@ -247,7 +247,7 @@ class FrontendController {
                     'id'           => 1,
                     'badge'        => 'RETAIL SOFTWARE',
                     'title'        => 'Jewellery Retail & Showroom',
-                    'description'  => 'POS billing, inventory, old gold exchange, customer management, gold rates and GST in one screen — built for showroom counters.',
+                    'description'  => 'POS billing, inventory, old gold exchange, customer management, gold rates and Tax in one screen — built for showroom counters.',
                     'icon'         => 'bi-shop',
                     'accent_color' => '#D97706',
                     'extra'        => 'bi-gem',

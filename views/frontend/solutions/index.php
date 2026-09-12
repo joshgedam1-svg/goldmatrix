@@ -23,7 +23,7 @@ require __DIR__ . '/../partials/header.php';
         </div>
         <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.4px;color:#D97706;margin-bottom:8px;">RETAIL</div>
         <h2 style="font-family:var(--gm-font-display);font-size:1.25rem;font-weight:700;color:#0F172A;margin-bottom:10px;">Jewellery Retail &amp; Showroom</h2>
-        <p style="font-size:13.5px;color:#64748B;line-height:1.6;margin-bottom:18px;">POS, inventory, old gold exchange, CRM, gold rates &amp; GST in one screen.</p>
+        <p style="font-size:13.5px;color:#64748B;line-height:1.6;margin-bottom:18px;">POS, inventory, old gold exchange, CRM, gold rates &amp; Tax in one screen.</p>
         <span style="color:#D97706;font-size:13px;font-weight:700;">Explore → </span>
       </div>
     </a>

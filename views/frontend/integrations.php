@@ -46,11 +46,11 @@ require __DIR__ . '/partials/header.php';
         ]
       ],
       [
-        'category' => 'GST & Compliance',
+        'category' => 'Tax & Compliance',
         'icon'     => 'bi-file-earmark-check',
         'items'    => [
-          ['name'=>'E-Way Bill',    'icon'=>'bi-truck',                  'desc'=>'Generate e-way bills for GST-registered goods movement.'],
-          ['name'=>'E-Invoice',     'icon'=>'bi-file-earmark-check',     'desc'=>'IRN-based e-invoicing for GST-registered businesses.'],
+          ['name'=>'E-Way Bill',    'icon'=>'bi-truck',                  'desc'=>'Generate e-way bills for tax-registered goods movement.'],
+          ['name'=>'E-Invoice',     'icon'=>'bi-file-earmark-check',     'desc'=>'IRN-based e-invoicing for tax-registered businesses.'],
           ['name'=>'AML Compliance','icon'=>'bi-shield-check',           'desc'=>'Anti-money laundering compliance support for jewellers.'],
         ]
       ],
