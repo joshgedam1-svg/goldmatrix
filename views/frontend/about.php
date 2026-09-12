@@ -533,7 +533,7 @@ $ctaBg = setting('about_cta_bg_image', 'https://images.unsplash.com/photo-151556
 
       <div class="col-lg-6">
         <div class="ab-img-wrapper">
-          <img src="<?= e(setting('about_hero_image', 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=1000&auto=format&fit=crop&q=80')) ?>" alt="GoldMatrix International Jewellery Environment" class="ab-img-fluid" loading="eager">
+          <img src="<?= e(setting('about_hero_image', 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=1000&auto=format&fit=crop&q=80')) ?>" alt="GoldMatrix International Jewellery Environment" class="ab-img-fluid" loading="eager" fetchpriority="high" decoding="async">
         </div>
       </div>
 
@@ -550,7 +550,7 @@ $ctaBg = setting('about_cta_bg_image', 'https://images.unsplash.com/photo-151556
       
       <div class="col-lg-6 order-2 order-lg-1">
         <div class="ab-img-wrapper">
-          <img src="<?= e(setting('about_whoweare_image', 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1000&auto=format&fit=crop&q=80')) ?>" alt="GoldMatrix Company Team & Workspace" class="ab-img-fluid" loading="lazy">
+          <img src="<?= e(setting('about_whoweare_image', 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1000&auto=format&fit=crop&q=80')) ?>" alt="GoldMatrix Company Team & Workspace" class="ab-img-fluid" loading="lazy" decoding="async">
         </div>
       </div>
 
@@ -581,7 +581,7 @@ $ctaBg = setting('about_cta_bg_image', 'https://images.unsplash.com/photo-151556
 
       <div class="col-lg-6">
         <div class="ab-img-wrapper">
-          <img src="<?= e(setting('about_purpose_image', 'https://images.unsplash.com/photo-1531973576160-7125cd663d86?w=1000&auto=format&fit=crop&q=80')) ?>" alt="Jewellery Business Operations & Retail Integration" class="ab-img-fluid" loading="lazy">
+          <img src="<?= e(setting('about_purpose_image', 'https://images.unsplash.com/photo-1531973576160-7125cd663d86?w=1000&auto=format&fit=crop&q=80')) ?>" alt="Jewellery Business Operations & Retail Integration" class="ab-img-fluid" loading="lazy" decoding="async">
         </div>
       </div>
 
@@ -640,7 +640,7 @@ $ctaBg = setting('about_cta_bg_image', 'https://images.unsplash.com/photo-151556
 
       <div class="row justify-content-center">
         <div class="col-lg-10">
-          <img src="<?= e(setting('about_whatwedo_image', '/uploads/homepage/hp_6a9207ee140eb.png')) ?>" alt="GoldMatrix Jewellery ERP Software Suite" class="software-preview-img" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop&q=80'">
+          <img src="<?= e(setting('about_whatwedo_image', '/uploads/homepage/hp_6a9207ee140eb.png')) ?>" alt="GoldMatrix Jewellery ERP Software Suite" class="software-preview-img" loading="lazy" decoding="async" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop&q=80'">
         </div>
       </div>
     </div>
@@ -706,7 +706,7 @@ $ctaBg = setting('about_cta_bg_image', 'https://images.unsplash.com/photo-151556
 
       <div class="col-lg-6">
         <div class="ab-img-wrapper">
-          <img src="<?= e(setting('about_howwework_image', 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1000&auto=format&fit=crop&q=80')) ?>" alt="GoldMatrix Customer Consultation & Implementation" class="ab-img-fluid" loading="lazy">
+          <img src="<?= e(setting('about_howwework_image', 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1000&auto=format&fit=crop&q=80')) ?>" alt="GoldMatrix Customer Consultation & Implementation" class="ab-img-fluid" loading="lazy" decoding="async">
         </div>
       </div>
 
@@ -731,7 +731,7 @@ $ctaBg = setting('about_cta_bg_image', 'https://images.unsplash.com/photo-151556
       <?php foreach ($builtForItems as $bf): ?>
         <div class="col-lg-3 col-md-6">
           <div class="quad-grid-card">
-            <img src="<?= e($bf['img'] ?? '') ?>" alt="<?= e($bf['title'] ?? '') ?>" class="quad-grid-img" loading="lazy">
+            <img src="<?= e($bf['img'] ?? '') ?>" alt="<?= e($bf['title'] ?? '') ?>" class="quad-grid-img" loading="lazy" decoding="async">
             <div class="quad-grid-caption">
               <h3 class="quad-grid-title"><?= e($bf['title'] ?? '') ?></h3>
               <p class="quad-grid-desc"><?= e($bf['desc'] ?? '') ?></p>
@@ -851,7 +851,7 @@ $ctaBg = setting('about_cta_bg_image', 'https://images.unsplash.com/photo-151556
       
       <div class="col-lg-6">
         <div class="ab-img-wrapper">
-          <img src="<?= e(setting('about_commitment_image', 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1000&auto=format&fit=crop&q=80')) ?>" alt="GoldMatrix Team Long-term Partnership" class="ab-img-fluid" loading="lazy">
+          <img src="<?= e(setting('about_commitment_image', 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1000&auto=format&fit=crop&q=80')) ?>" alt="GoldMatrix Team Long-term Partnership" class="ab-img-fluid" loading="lazy" decoding="async">
         </div>
       </div>
 

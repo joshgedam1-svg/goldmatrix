@@ -191,7 +191,7 @@ $companyName = setting('company_name', 'GoldMatrix');
       <div>
         <div class="footer-logo-card">
           <?php if (!empty($siteLogo)): ?>
-            <img src="<?= e($siteLogo) ?>" alt="<?= e($companyName) ?>" class="footer-logo-img">
+            <img src="<?= e($siteLogo) ?>" alt="<?= e($companyName) ?>" class="footer-logo-img" loading="lazy" decoding="async">
           <?php else: ?>
             <div class="d-flex align-items-center gap-2">
               <div style="width:34px;height:34px;background:#001540;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#DC9423;font-weight:900;font-size:14px;">GM</div>

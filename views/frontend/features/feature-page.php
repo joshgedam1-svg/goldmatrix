@@ -627,7 +627,8 @@ $hasTabs = !empty($mod['tabs']);
           <img src="<?= e(!empty($mod['visual_image']) ? $mod['visual_image'] : '/assets/images/why-goldmatrix-mockup.png') ?>" 
                alt="<?= e($mod['title']) ?> Software Interface" 
                class="clust-visual-img" 
-               loading="lazy">
+               loading="lazy"
+               decoding="async">
         </div>
       </div>
     </div>

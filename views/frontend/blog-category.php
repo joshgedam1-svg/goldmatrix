@@ -62,7 +62,7 @@ include __DIR__ . '/partials/header.php';
             <div class="card h-100 border-0 shadow-sm" style="border-radius:12px;transition:transform .2s,box-shadow .2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 40px rgba(0,0,0,.12)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow=''">
               <div style="height:200px;overflow:hidden;border-radius:12px 12px 0 0">
                 <?php if (!empty($post['featured_image'])): ?>
-                  <img src="<?= e($post['featured_image']) ?>" class="w-100 h-100" style="object-fit:cover" alt="<?= e($post['title']) ?>">
+                  <img src="<?= e($post['featured_image']) ?>" class="w-100 h-100" style="object-fit:cover" alt="<?= e($post['title']) ?>" loading="lazy" decoding="async">
                 <?php else: ?>
                   <div class="w-100 h-100 d-flex align-items-center justify-content-center" style="background-color:#0F172A">
                     <i class="bi bi-file-text-fill text-warning" style="font-size:3rem;opacity:.3"></i>

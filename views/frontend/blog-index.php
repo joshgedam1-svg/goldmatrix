@@ -58,7 +58,7 @@ include __DIR__ . '/partials/header.php';
               <div class="row g-0 align-items-stretch">
                 <div class="col-lg-6">
                   <?php if (!empty($featured['featured_image'])): ?>
-                    <img src="<?= e($featured['featured_image']) ?>" class="img-fluid h-100 w-100" style="object-fit:cover;min-height:320px" alt="<?= e($featured['title']) ?>">
+                    <img src="<?= e($featured['featured_image']) ?>" class="img-fluid h-100 w-100" style="object-fit:cover;min-height:320px" alt="<?= e($featured['title']) ?>" loading="eager" fetchpriority="high" decoding="async">
                   <?php else: ?>
                     <div class="h-100 d-flex align-items-center justify-content-center" style="background-color:#0F172A;min-height:320px">
                       <i class="bi bi-file-text-fill text-warning" style="font-size:5rem;opacity:.3"></i>
@@ -103,7 +103,7 @@ include __DIR__ . '/partials/header.php';
               <!-- Image -->
               <div style="height:200px;overflow:hidden;border-radius:12px 12px 0 0">
                 <?php if (!empty($post['featured_image'])): ?>
-                  <img src="<?= e($post['featured_image']) ?>" class="w-100 h-100" style="object-fit:cover;transition:transform .3s" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" alt="<?= e($post['title']) ?>">
+                  <img src="<?= e($post['featured_image']) ?>" class="w-100 h-100" style="object-fit:cover;transition:transform .3s" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" alt="<?= e($post['title']) ?>" loading="lazy" decoding="async">
                 <?php else: ?>
                   <div class="w-100 h-100 d-flex align-items-center justify-content-center" style="background-color:#0F172A">
                     <i class="bi bi-file-text-fill text-warning" style="font-size:3rem;opacity:.3"></i>

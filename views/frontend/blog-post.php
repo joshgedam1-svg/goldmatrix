@@ -80,7 +80,7 @@ $readingTime = max(1, ceil($wordCount / 200));
         <!-- Featured Image -->
         <?php if (!empty($post['featured_image'])): ?>
           <div class="mb-4" style="border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.1)">
-            <img src="<?= e($post['featured_image']) ?>" class="img-fluid w-100" style="max-height:480px;object-fit:cover" alt="<?= e($post['title']) ?>">
+            <img src="<?= e($post['featured_image']) ?>" class="img-fluid w-100" style="max-height:480px;object-fit:cover" alt="<?= e($post['title']) ?>" loading="eager" fetchpriority="high" decoding="async">
           </div>
         <?php endif; ?>
 
@@ -123,7 +123,7 @@ $readingTime = max(1, ceil($wordCount / 200));
               <a href="<?= site_url('blog/' . $rp['slug']) ?>" class="text-decoration-none">
                 <div class="card border-0 shadow-sm h-100" style="border-radius:10px;transition:transform .2s" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='none'">
                   <?php if (!empty($rp['featured_image'])): ?>
-                    <img src="<?= e($rp['featured_image']) ?>" class="card-img-top" style="height:140px;object-fit:cover;border-radius:10px 10px 0 0" alt="<?= e($rp['title']) ?>">
+                    <img src="<?= e($rp['featured_image']) ?>" class="card-img-top" style="height:140px;object-fit:cover;border-radius:10px 10px 0 0" alt="<?= e($rp['title']) ?>" loading="lazy" decoding="async">
                   <?php endif; ?>
                   <div class="card-body p-3">
                     <h6 class="fw-bold text-dark mb-1 fs-14 lh-sm"><?= e($rp['title']) ?></h6>
@@ -186,7 +186,7 @@ $readingTime = max(1, ceil($wordCount / 200));
             <?php foreach ($recentPosts as $rp): ?>
               <a href="<?= site_url('blog/' . $rp['slug']) ?>" class="d-flex gap-3 text-decoration-none py-2 border-bottom align-items-start">
                 <?php if (!empty($rp['featured_image'])): ?>
-                  <img src="<?= e($rp['featured_image']) ?>" class="rounded" style="width:56px;height:44px;object-fit:cover;flex-shrink:0" alt="">
+                  <img src="<?= e($rp['featured_image']) ?>" class="rounded" style="width:56px;height:44px;object-fit:cover;flex-shrink:0" alt="" loading="lazy" decoding="async">
                 <?php else: ?>
                   <div class="rounded d-flex align-items-center justify-content-center bg-light" style="width:56px;height:44px;flex-shrink:0">
                     <i class="bi bi-file-text text-muted"></i>

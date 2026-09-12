@@ -233,9 +233,107 @@ if (!function_exists('get_enabled_languages')) {
     }
 }
 
+if (!function_exists('compress_and_save_image')) {
+    /**
+     * Compress, resize, and optimize an uploaded image to lightweight WebP/JPEG
+     * Converts heavy 5-10MB images into crisp, fast-loading 80-250KB files
+     */
+    function compress_and_save_image(string $tmpPath, string $targetPath, string $ext, int $maxWidth = 1920, int $maxHeight = 1920, int $quality = 82): bool {
+        if (!extension_loaded('gd')) {
+            return @move_uploaded_file($tmpPath, $targetPath);
+        }
+
+        $info = @getimagesize($tmpPath);
+        if (!$info) {
+            return @move_uploaded_file($tmpPath, $targetPath);
+        }
+
+        $origWidth = $info[0];
+        $origHeight = $info[1];
+        $mime = $info['mime'] ?? '';
+
+        $srcImg = null;
+        switch ($mime) {
+            case 'image/jpeg':
+            case 'image/pjpeg':
+                $srcImg = @imagecreatefromjpeg($tmpPath);
+                break;
+            case 'image/png':
+                $srcImg = @imagecreatefrompng($tmpPath);
+                break;
+            case 'image/webp':
+                if (function_exists('imagecreatefromwebp')) {
+                    $srcImg = @imagecreatefromwebp($tmpPath);
+                }
+                break;
+            case 'image/avif':
+                if (function_exists('imagecreatefromavif')) {
+                    $srcImg = @imagecreatefromavif($tmpPath);
+                }
+                break;
+            case 'image/gif':
+                $srcImg = @imagecreatefromgif($tmpPath);
+                break;
+            default:
+                break;
+        }
+
+        if (!$srcImg) {
+            return @move_uploaded_file($tmpPath, $targetPath);
+        }
+
+        // Calculate proportional downscaling if image exceeds max bounds
+        $scale = 1.0;
+        if ($origWidth > $maxWidth || $origHeight > $maxHeight) {
+            $scale = min($maxWidth / $origWidth, $maxHeight / $origHeight);
+        }
+        $newWidth = max(1, (int)round($origWidth * $scale));
+        $newHeight = max(1, (int)round($origHeight * $scale));
+
+        // Create target canvas
+        $dstImg = imagecreatetruecolor($newWidth, $newHeight);
+
+        // Preserve alpha transparency for PNG / WebP / GIF / AVIF
+        if (in_array($mime, ['image/png', 'image/webp', 'image/gif', 'image/avif'], true)) {
+            imagealphablending($dstImg, false);
+            imagesavealpha($dstImg, true);
+            $transparent = imagecolorallocatealpha($dstImg, 0, 0, 0, 127);
+            imagefilledrectangle($dstImg, 0, 0, $newWidth, $newHeight, $transparent);
+        }
+
+        // High quality bicubic resampling
+        imagecopyresampled($dstImg, $srcImg, 0, 0, 0, 0, $newWidth, $newHeight, $origWidth, $origHeight);
+
+        // Save output format
+        $targetExt = strtolower(pathinfo($targetPath, PATHINFO_EXTENSION));
+        $saved = false;
+
+        if ($targetExt === 'webp' && function_exists('imagewebp')) {
+            $saved = @imagewebp($dstImg, $targetPath, $quality);
+        } elseif (in_array($targetExt, ['jpg', 'jpeg'], true)) {
+            $saved = @imagejpeg($dstImg, $targetPath, $quality);
+        } elseif ($targetExt === 'png') {
+            $saved = @imagepng($dstImg, $targetPath, 8);
+        } elseif ($targetExt === 'gif') {
+            $saved = @imagegif($dstImg, $targetPath);
+        } else {
+            $saved = @imagejpeg($dstImg, $targetPath, $quality);
+        }
+
+        @imagedestroy($srcImg);
+        @imagedestroy($dstImg);
+
+        if (!$saved) {
+            return @move_uploaded_file($tmpPath, $targetPath);
+        }
+
+        return true;
+    }
+}
+
 if (!function_exists('secure_upload_image')) {
     /**
-     * Upload an image securely with binary MIME inspection, extension validation, and SVG sanitization
+     * Upload an image securely with binary MIME inspection, automatic compression & WebP optimization
      */
     function secure_upload_image(string $field, string $subfolder = 'general', array $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp', 'avif', 'gif', 'svg', 'ico'], int $maxBytes = 10485760): ?string {
         if (empty($_FILES[$field]['name']) || empty($_FILES[$field]['tmp_name']) || $_FILES[$field]['error'] !== UPLOAD_ERR_OK) {
@@ -288,10 +386,23 @@ if (!function_exists('secure_upload_image')) {
             @mkdir($upDir, 0755, true);
         }
 
-        $filename = $subfolder . '_' . bin2hex(random_bytes(8)) . '.' . $ext;
+        // For rasters (jpg, jpeg, png, webp), compress to modern high-speed WebP format
+        $targetExt = $ext;
+        if (in_array($ext, ['jpg', 'jpeg', 'png', 'webp'], true) && function_exists('imagewebp') && $ext !== 'svg' && $ext !== 'ico' && $ext !== 'gif') {
+            $targetExt = 'webp';
+        }
+
+        $filename = $subfolder . '_' . bin2hex(random_bytes(8)) . '.' . $targetExt;
         $targetPath = $upDir . $filename;
 
-        if (move_uploaded_file($tmpPath, $targetPath)) {
+        $saved = false;
+        if (in_array($ext, ['jpg', 'jpeg', 'png', 'webp', 'avif', 'gif'], true) && extension_loaded('gd') && $ext !== 'svg' && $ext !== 'ico') {
+            $saved = compress_and_save_image($tmpPath, $targetPath, $targetExt, 1920, 1920, 82);
+        } else {
+            $saved = move_uploaded_file($tmpPath, $targetPath);
+        }
+
+        if ($saved) {
             // Also mirror to root uploads/ if directory exists
             $rootUpDir = dirname(__DIR__, 2) . '/uploads/' . preg_replace('/[^a-zA-Z0-9_\-]/', '', $subfolder) . '/';
             if (!is_dir($rootUpDir)) {

@@ -187,7 +187,7 @@ $slides = !empty($hero_slides) ? $hero_slides : [
       <?php foreach($brand_logos as $b): ?>
         <?php if (!empty($b['image'])): ?>
           <a href="<?= (!empty($b['link']) && $b['link'] !== '#') ? e($b['link']) : 'javascript:void(0)' ?>" class="brand-logo" <?= (!empty($b['link']) && $b['link'] !== '#') ? 'target="_blank" rel="noopener"' : '' ?> title="<?= e($b['title']) ?>">
-            <img src="<?= e($b['image']) ?>" alt="<?= e($b['title']) ?>">
+            <img src="<?= e($b['image']) ?>" alt="<?= e($b['title']) ?>" loading="lazy" decoding="async">
           </a>
         <?php else: ?>
           <div class="brand-logo" title="<?= e($b['title']) ?>">
@@ -1020,7 +1020,7 @@ $allSlidingCards = array_merge($renderCountriesList, $renderCountriesList);
     <!-- Right: Mockup Image -->
     <div class="why-media">
       <div class="why-img-holder">
-        <img src="/assets/images/why-goldmatrix-mockup.png" alt="GoldMatrix Jewellery ERP Laptop & Mobile" class="why-mockup-img">
+        <img src="/assets/images/why-goldmatrix-mockup.png" alt="GoldMatrix Jewellery ERP Laptop & Mobile" class="why-mockup-img" loading="lazy" decoding="async">
       </div>
     </div>
 
@@ -1052,7 +1052,7 @@ $allSlidingCards = array_merge($renderCountriesList, $renderCountriesList);
         <p class="testi-q">"<?= e($t[3]) ?>"</p>
         <div class="testi-auth">
           <?php if (!empty($t[4])): ?>
-            <img class="testi-photo" src="<?= e($t[4]) ?>" alt="<?= e($t[1]) ?>">
+            <img class="testi-photo" src="<?= e($t[4]) ?>" alt="<?= e($t[1]) ?>" loading="lazy" decoding="async">
           <?php else: ?>
             <div class="testi-av"><?= mb_substr(e($t[1]), 0, 1) ?></div>
           <?php endif; ?>
