@@ -143,13 +143,9 @@ class FrontendController {
         if (empty($dbItems) || count($dbItems) < 4) {
             $needsReset = true;
         } else {
-            $firstTitle = $dbItems[0]['title'] ?? '';
-            if ($firstTitle !== 'Digital Jewellery Catalogue') {
-                $needsReset = true;
-            }
             foreach ($dbItems as $it) {
                 $t = $it['title'] ?? '';
-                if (stripos($t, 'Jewellery Retail & Showroom') !== false || stripos($t, 'Manufacturing & Jobwork') !== false || stripos($t, 'Interactive') !== false) {
+                if (stripos($t, 'Jewellery Retail & Showroom') !== false || stripos($t, 'Manufacturing & Jobwork') !== false) {
                     $needsReset = true;
                     break;
                 }

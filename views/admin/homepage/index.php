@@ -13,7 +13,7 @@ $tabs = [
     'spotlight'    => ['label' => 'Feature Spotlight',  'icon' => 'bi-layout-split',          'badge' => count($spotlight_items ?? []) ?: 'ZigZag'],
     'pfeatures'    => ['label' => 'Powerful Features',  'icon' => 'bi-grid-1x2-fill',         'badge' => count($pfeat_items ?? []) ?: '5'],
     'features'     => ['label' => 'Connected Platform', 'icon' => 'bi-grid-3x3-gap',          'badge' => count($features_items ?? [])],
-    'solutions'    => ['label' => 'Business Solutions', 'icon' => 'bi-briefcase-fill',        'badge' => count($solutions_cards ?? []) ?: '3'],
+    'solutions'    => ['label' => 'Business Solutions & Cards', 'icon' => 'bi-briefcase-fill',        'badge' => count($solutions_cards ?? []) ?: '4'],
     'modules'      => ['label' => 'ERP Modules',        'icon' => 'bi-cpu-fill',              'badge' => count($modules_items ?? []) ?: '14'],
     'countries'    => ['label' => 'Sliding Countries',  'icon' => 'bi-globe-americas',        'badge' => count($sliding_countries ?? []) ?: 'Map'],
     'integrations' => ['label' => 'Integrations',       'icon' => 'bi-puzzle-fill',           'badge' => count($integrations_items ?? []) ?: 'Tools'],
@@ -1911,9 +1911,9 @@ $tabs = [
       <div class="card-header bg-white py-3 d-flex flex-wrap align-items-center justify-content-between gap-2">
         <div>
           <h5 class="card-title fw-bold mb-0">
-            <i class="bi bi-collection-fill text-primary me-2"></i>Business Solution Cards (3 Pillars)
+            <i class="bi bi-collection-fill text-primary me-2"></i>Business Solution Cards (Featured Showcase &amp; Companion Cards)
           </h5>
-          <p class="text-muted fs-12 mb-0">Manage card headings, descriptions, 5 bullet points, button links, and 3D product images.</p>
+          <p class="text-muted fs-12 mb-0">Card #1 is the Top Featured Showcase (Digital Jewellery Catalogue). Cards #2, #3, #4 are the companion cards. Edit headings, descriptions, bullet points, button links, and images anytime.</p>
         </div>
         <button class="btn btn-gold btn-sm d-inline-flex align-items-center gap-1 fw-bold shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#addSolutionCardCollapse" aria-expanded="false">
           <i class="bi bi-plus-lg"></i>
@@ -1930,12 +1930,12 @@ $tabs = [
 
             <div class="row g-3">
               <div class="col-md-4">
-                <label class="form-label fs-12 fw-semibold text-secondary">Card Eyebrow / Badge <span class="text-danger">*</span></label>
-                <input type="text" name="badge" class="form-control form-control-sm fw-bold" placeholder="e.g. RETAIL SOFTWARE" required>
+                <label class="form-label fs-12 fw-semibold text-secondary">Card Eyebrow / Badge <span class="text-muted">(Optional)</span></label>
+                <input type="text" name="badge" class="form-control form-control-sm fw-bold" placeholder="e.g. MULTI-CURRENCY">
               </div>
               <div class="col-md-5">
                 <label class="form-label fs-12 fw-semibold text-secondary">Card Title <span class="text-danger">*</span></label>
-                <input type="text" name="title" class="form-control form-control-sm fw-bold" placeholder="e.g. Jewellery Retail &amp; Showroom" required>
+                <input type="text" name="title" class="form-control form-control-sm fw-bold" placeholder="e.g. Digital Jewellery Catalogue" required>
               </div>
               <div class="col-md-3">
                 <label class="form-label fs-12 fw-semibold text-secondary">Sort Order</label>
@@ -1944,17 +1944,17 @@ $tabs = [
 
               <div class="col-12">
                 <label class="form-label fs-12 fw-semibold text-secondary">Card Description <span class="text-danger">*</span></label>
-                <textarea name="description" rows="2" class="form-control fs-13" placeholder="POS billing, inventory, old gold exchange..." required></textarea>
+                <textarea name="description" rows="2" class="form-control fs-13" placeholder="Create instant digital catalogues with live gold rates..." required></textarea>
               </div>
 
               <!-- 5 BULLET CHECKPOINTS -->
               <div class="col-md-6">
                 <div class="p-3 bg-white rounded-3 border">
                   <label class="form-label fs-12 fw-bold text-dark mb-2">
-                    <i class="bi bi-check-circle-fill text-success me-1"></i>5 Feature Checkpoints (1 per line)
+                    <i class="bi bi-check-circle-fill text-success me-1"></i>Feature Checkpoints (1 bullet per line)
                   </label>
-                  <textarea name="features" rows="5" class="form-control fs-13" placeholder="Fast POS &amp; Touch Billing&#10;Barcode &amp; RFID Scanning&#10;Gold Rate Board Sync&#10;Old Gold Exchange&#10;Customer CRM &amp; KYC"></textarea>
-                  <div class="fs-11 text-muted mt-1">Enter each bullet on a new line.</div>
+                  <textarea name="features" rows="5" class="form-control fs-13" placeholder="Category-Wise Jewellery Showcase&#10;Real-Time Gold Rate &amp; Weight Sync&#10;1-Click WhatsApp Share with Photos&#10;Instant Customer Quotations"></textarea>
+                  <div class="fs-11 text-muted mt-1">Enter each bullet point on a new line.</div>
                 </div>
               </div>
 
@@ -1964,30 +1964,31 @@ $tabs = [
                   <div class="row g-2 mb-2">
                     <div class="col-6">
                       <label class="form-label fs-12 fw-semibold text-secondary">Main Card Icon</label>
-                      <input type="text" name="icon" class="form-control form-control-sm" placeholder="e.g. bi-shop" value="bi-shop">
+                      <input type="text" name="icon" class="form-control form-control-sm" placeholder="e.g. bi-images" value="bi-images">
                     </div>
                     <div class="col-6">
                       <label class="form-label fs-12 fw-semibold text-secondary">Watermark Icon</label>
-                      <input type="text" name="extra" class="form-control form-control-sm" placeholder="e.g. bi-gem" value="bi-gem">
+                      <input type="text" name="extra" class="form-control form-control-sm" placeholder="e.g. bi-whatsapp" value="bi-whatsapp">
                     </div>
                   </div>
                   <div class="row g-2 mb-2">
                     <div class="col-6">
                       <label class="form-label fs-12 fw-semibold text-secondary">Button CTA Text</label>
-                      <input type="text" name="btn1_text" class="form-control form-control-sm" value="Explore Retail Software">
+                      <input type="text" name="btn1_text" class="form-control form-control-sm" value="Explore Digital Catalogue">
                     </div>
                     <div class="col-6">
                       <label class="form-label fs-12 fw-semibold text-secondary">Button Link URL</label>
-                      <input type="text" name="btn1_link" class="form-control form-control-sm" value="/solutions/jewellery-retail">
+                      <input type="text" name="btn1_link" class="form-control form-control-sm" value="/features">
                     </div>
                   </div>
                   <div class="row g-2">
                     <div class="col-12">
                       <label class="form-label fs-12 fw-semibold text-secondary">Theme Color / Preset</label>
                       <select name="accent_color" class="form-select form-select-sm">
-                        <option value="#D97706">Retail Software (Light Amber &amp; Warm Gold)</option>
-                        <option value="#2563EB">Wholesale Software (Luxury Dark Navy &amp; Blue)</option>
-                        <option value="#059669">Manufacturing Software (Light Mint &amp; Emerald Green)</option>
+                        <option value="#D97706">Gold &amp; Warm Amber (Catalogue)</option>
+                        <option value="#2563EB">Luxury Dark Navy &amp; Blue (Multi-Currency)</option>
+                        <option value="#059669">Emerald Green (RFID Audit)</option>
+                        <option value="#7C3AED">Royal Purple (VAT &amp; Compliance)</option>
                       </select>
                     </div>
                   </div>
@@ -1996,12 +1997,12 @@ $tabs = [
 
               <!-- IMAGE UPLOAD -->
               <div class="col-md-6">
-                <label class="form-label fs-12 fw-semibold text-secondary">Upload 3D Product Image / Photo</label>
+                <label class="form-label fs-12 fw-semibold text-secondary">Upload 3D Product Image / Screenshot</label>
                 <input type="file" name="image" accept="image/*" class="form-control form-control-sm">
               </div>
               <div class="col-md-6">
                 <label class="form-label fs-12 fw-semibold text-secondary">Or Image Direct URL</label>
-                <input type="text" name="image_url" class="form-control form-control-sm" placeholder="/assets/images/solution-retail-rings.jpg">
+                <input type="text" name="image_url" class="form-control form-control-sm" placeholder="/assets/images/digital-jewellery-catalogue.png">
               </div>
 
               <div class="col-12 text-end">
@@ -2051,9 +2052,15 @@ $tabs = [
                     <?php endif; ?>
                   </td>
                   <td>
-                    <span class="badge mb-1 fs-10 text-uppercase fw-bold" style="background:<?= e($card['accent_color'] ?: '#D97706') ?>20;color:<?= e($card['accent_color'] ?: '#D97706') ?>;border:1px solid <?= e($card['accent_color'] ?: '#D97706') ?>40;">
-                      <?= e($card['badge'] ?: 'SOLUTION') ?>
-                    </span>
+                    <?php if (!empty($card['badge'])): ?>
+                      <span class="badge mb-1 fs-10 text-uppercase fw-bold" style="background:<?= e($card['accent_color'] ?: '#D97706') ?>20;color:<?= e($card['accent_color'] ?: '#D97706') ?>;border:1px solid <?= e($card['accent_color'] ?: '#D97706') ?>40;">
+                        <?= e($card['badge']) ?>
+                      </span>
+                    <?php else: ?>
+                      <span class="badge mb-1 fs-10 text-uppercase fw-bold bg-warning-subtle text-warning border border-warning-subtle">
+                        Featured Card #1
+                      </span>
+                    <?php endif; ?>
                     <div class="fw-bold text-dark fs-13"><?= e($card['title']) ?></div>
                     <div class="text-muted fs-11 text-truncate" style="max-width:280px;"><?= e($card['description']) ?></div>
                   </td>
@@ -2067,7 +2074,7 @@ $tabs = [
                           <div class="text-muted">+<?= count($feats) - 3 ?> more</div>
                         <?php endif; ?>
                       <?php else: ?>
-                        <span class="text-muted">Standard 5 features</span>
+                        <span class="text-muted">Standard 4 features</span>
                       <?php endif; ?>
                     </div>
                   </td>
@@ -2108,8 +2115,8 @@ $tabs = [
                             <div class="modal-body p-4">
                               <div class="row g-3">
                                 <div class="col-md-4">
-                                  <label class="form-label fs-12 fw-semibold text-secondary">Card Eyebrow / Badge <span class="text-danger">*</span></label>
-                                  <input type="text" name="badge" value="<?= e($card['badge'] ?? '') ?>" class="form-control form-control-sm fw-bold" required>
+                                  <label class="form-label fs-12 fw-semibold text-secondary">Card Eyebrow / Badge <span class="text-muted">(Optional)</span></label>
+                                  <input type="text" name="badge" value="<?= e($card['badge'] ?? '') ?>" class="form-control form-control-sm fw-bold">
                                 </div>
                                 <div class="col-md-5">
                                   <label class="form-label fs-12 fw-semibold text-secondary">Card Title <span class="text-danger">*</span></label>
@@ -2129,7 +2136,7 @@ $tabs = [
                                 <div class="col-md-6">
                                   <div class="p-3 bg-light rounded-3 border">
                                     <label class="form-label fs-12 fw-bold text-dark mb-2">
-                                      <i class="bi bi-check-circle-fill text-success me-1"></i>5 Feature Checkpoints (1 per line)
+                                      <i class="bi bi-check-circle-fill text-success me-1"></i>Feature Checkpoints (1 bullet per line)
                                     </label>
                                     <?php 
                                       $featText = '';
