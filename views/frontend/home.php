@@ -973,17 +973,6 @@ $renderCountriesList = !empty($sliding_countries) ? $sliding_countries : $defaul
     <!-- Section Header (GoldMatrix Brand System) -->
     <div class="awards-header-wrap">
       
-      <!-- Top Trophy Tag -->
-      <div class="awards-pill-tag">
-        <i class="fa-solid fa-trophy"></i>
-        <span>#1 RATED JEWELLERY ERP</span>
-      </div>
-
-      <!-- Eyebrow Badge -->
-      <div class="awards-badge">
-        <span><?= e(!empty($awards_badge) ? $awards_badge : 'AWARDS & RECOGNITION') ?></span>
-      </div>
-
       <!-- Main Heading -->
       <h2 class="awards-main-heading">
         <?= e(!empty($awards_title) ? $awards_title : 'Recognized & Awarded by Industry Leaders') ?>
@@ -1073,50 +1062,6 @@ $renderCountriesList = !empty($sliding_countries) ? $sliding_countries : $defaul
 .awards-header-wrap {
   text-align: center;
   margin-bottom: 48px;
-}
-
-/* Top Pill Badge */
-.awards-pill-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(245, 158, 11, 0.1);
-  color: #D97706;
-  border: 1px solid rgba(245, 158, 11, 0.28);
-  border-radius: 50rem;
-  padding: 6px 18px;
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-}
-.awards-pill-tag i {
-  color: #F59E0B;
-  font-size: 12px;
-}
-
-/* Eyebrow with Gold Lines */
-.awards-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  color: var(--gm-luxury-gold, #F59E0B);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-  width: 100%;
-}
-.awards-badge::before,
-.awards-badge::after {
-  content: "";
-  display: inline-block;
-  width: 28px;
-  height: 1.5px;
-  background: var(--gm-luxury-gold, #F59E0B);
 }
 
 /* Main Heading */
