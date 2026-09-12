@@ -867,7 +867,7 @@ class FrontendController {
             '@type'       => 'Organization',
             'name'        => 'GoldMatrix Software Technologies',
             'url'         => site_url('/'),
-            'description' => setting('about_seo_meta_desc', 'Discover GoldMatrix Software story, mission, and leadership.'),
+            'description' => setting('about_seo_meta_desc', 'Learn about GoldMatrix, a jewellery-focused software provider delivering ERP, POS, inventory, manufacturing, accounting, CRM and business management solutions for jewellery businesses.'),
             'contactPoint' => [
                 '@type'       => 'ContactPoint',
                 'telephone'   => setting('contact_uae_phone', '+971 56 324 0319'),
@@ -876,29 +876,29 @@ class FrontendController {
         ];
 
         $data = [
-            // SEO Meta
-            'meta_title'             => setting('about_seo_meta_title', 'About Us | GoldMatrix — Leading Jewellery ERP Software Company'),
-            'meta_desc'              => setting('about_seo_meta_desc', 'Discover GoldMatrix Software story, mission, and leadership. Powering 1,500+ jewellery businesses across UAE, India, Hong Kong, and worldwide since 2010.'),
-            'meta_keywords'          => setting('about_seo_keywords', 'about goldmatrix, jewellery erp company, gold software developers, jewelry tech uae india'),
+            // SEO Meta (Aligned with Recommended SEO & E-E-A-T Standards)
+            'meta_title'             => setting('about_seo_meta_title', 'About GoldMatrix | Jewellery ERP & Business Software'),
+            'meta_desc'              => setting('about_seo_meta_desc', 'Learn about GoldMatrix, a jewellery-focused software provider delivering ERP, POS, inventory, manufacturing, accounting, CRM and business management solutions for jewellery businesses.'),
+            'meta_keywords'          => setting('about_seo_keywords', 'about goldmatrix, jewellery erp software, jewellery pos, jewellery inventory management, jewelry manufacturing software, jewellery accounting crm'),
             'canonical_url'          => site_url('about'),
-            'og_title'               => setting('about_seo_meta_title', 'About Us | GoldMatrix — Leading Jewellery ERP Software Company'),
-            'og_desc'                => setting('about_seo_meta_desc', 'Discover GoldMatrix Software story, mission, and leadership.'),
+            'og_title'               => setting('about_seo_meta_title', 'About GoldMatrix | Jewellery ERP & Business Software'),
+            'og_desc'                => setting('about_seo_meta_desc', 'Learn about GoldMatrix, a jewellery-focused software provider delivering ERP, POS, inventory, manufacturing, accounting, CRM and business management solutions for jewellery businesses.'),
             'og_image'               => setting('about_seo_og_image', ''),
             'schema_json'            => [$breadcrumbsSchema, $orgSchema],
 
             // Section 1: Hero
             'about_hero_enabled'     => setting('about_hero_enabled', '1'),
-            'about_hero_eyebrow'     => setting('about_hero_eyebrow', 'COMPANY & LEADERSHIP'),
-            'about_hero_title'       => setting('about_hero_title', 'Powering the Global Jewellery Industry with Next-Gen ERP'),
-            'about_hero_sub'         => setting('about_hero_sub', 'From boutique showrooms to multi-factory bullion networks, GoldMatrix provides precision-engineered software that turns intricate jewellery operations into seamless growth.'),
+            'about_hero_eyebrow'     => setting('about_hero_eyebrow', 'ABOUT GOLDMATRIX'),
+            'about_hero_title'       => setting('about_hero_title', 'Technology Built Around the Jewellery Business'),
+            'about_hero_sub'         => setting('about_hero_sub', 'GoldMatrix is a jewellery-focused software technology provider helping businesses manage the complexity of modern jewellery operations through connected, purpose-built business software.'),
             'about_hero_bg_style'    => setting('about_hero_bg_style', 'dark'),
 
             // Section 2: Story
             'about_story_enabled'    => setting('about_story_enabled', '1'),
-            'about_story_badge'      => setting('about_story_badge', 'OUR STORY & HERITAGE'),
-            'about_story_title'      => setting('about_story_title', 'Engineered Exclusively for the Intricacies of Gold & Diamond Commerce'),
-            'about_story_p1'         => setting('about_story_p1', 'GoldMatrix was born out of a simple observation: generic ERP software cannot handle the real-world complexities of the jewellery business — varying metal purities, wastage calculations, fluctuating market gold rates, Karigar manufacturing loss, and multi-branch inventory.'),
-            'about_story_p2'         => setting('about_story_p2', 'Over the past 15+ years, we have collaborated with master goldsmiths, retail chain owners, and bullion traders across Dubai, India, and East Asia to craft an end-to-end platform combining deep industry-specific logic with enterprise cloud technology.'),
+            'about_story_badge'      => setting('about_story_badge', 'PURPOSE-BUILT ARCHITECTURE'),
+            'about_story_title'      => setting('about_story_title', 'Built for the Realities of Jewellery Businesses'),
+            'about_story_p1'         => setting('about_story_p1', 'Jewellery businesses operate differently from conventional retail and trading businesses. Products can involve precious metals, diamonds and stones, varying purity and carat values, weight-based transactions, changing rates, manufacturing processes, jobwork, repairs, stock transfers and high-value inventory.'),
+            'about_story_p2'         => setting('about_story_p2', 'GoldMatrix brings these requirements together in a single business-management environment.'),
             'about_story_image'      => setting('about_story_image', 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1000&auto=format&fit=crop&q=80'),
 
             // Section 3: Stats
@@ -907,28 +907,28 @@ class FrontendController {
 
             // Section 4: Values
             'about_values_enabled'   => setting('about_values_enabled', '1'),
-            'about_values_badge'     => setting('about_values_badge', 'OUR CORE PRINCIPLES'),
-            'about_values_title'     => setting('about_values_title', 'What Guides Our Product Engineering'),
+            'about_values_badge'     => setting('about_values_badge', 'OUR APPROACH'),
+            'about_values_title'     => setting('about_values_title', 'Technology With a Customer-First Approach'),
             'values'                 => $values,
 
             // Section 5: Timeline
             'about_timeline_enabled' => setting('about_timeline_enabled', '1'),
-            'about_timeline_badge'   => setting('about_timeline_badge', 'MILESTONES'),
-            'about_timeline_title'   => setting('about_timeline_title', '15 Years of Domain Leadership'),
+            'about_timeline_badge'   => setting('about_timeline_badge', 'DOMAIN MASTERY'),
+            'about_timeline_title'   => setting('about_timeline_title', 'Jewellery Industry Expertise at the Core'),
             'timeline'               => $timeline,
 
             // Section 6: Global Hubs
             'about_hubs_enabled'     => setting('about_hubs_enabled', '1'),
             'about_hubs_badge'       => setting('about_hubs_badge', 'GLOBAL PRESENCE'),
-            'about_hubs_title'       => setting('about_hubs_title', 'Operating Across Key Jewellery Capitals'),
+            'about_hubs_title'       => setting('about_hubs_title', 'Built for Jewellery Businesses Worldwide'),
 
             // Section 7: CTA
             'about_cta_enabled'      => setting('about_cta_enabled', '1'),
-            'about_cta_title'        => setting('about_cta_title', 'Ready to Modernize Your Jewellery Operations?'),
-            'about_cta_desc'         => setting('about_cta_desc', 'Join 1,500+ jewellery businesses running faster, more accurate, and more profitable operations with GoldMatrix ERP.'),
-            'about_cta_btn1_text'    => setting('about_cta_btn1_text', 'Schedule Executive Demo'),
+            'about_cta_title'        => setting('about_cta_title', 'Ready to Modernize Your Jewellery Business?'),
+            'about_cta_desc'         => setting('about_cta_desc', 'Discover how GoldMatrix can bring your sales, inventory, manufacturing, accounting, customer management and reporting into one connected software platform.'),
+            'about_cta_btn1_text'    => setting('about_cta_btn1_text', 'Book a Personal Demo'),
             'about_cta_btn1_link'    => setting('about_cta_btn1_link', '/contact'),
-            'about_cta_btn2_text'    => setting('about_cta_btn2_text', 'Chat on WhatsApp'),
+            'about_cta_btn2_text'    => setting('about_cta_btn2_text', 'Talk to Our Team'),
             'about_cta_whatsapp'     => setting('about_cta_whatsapp', '+91 92703 69937'),
 
             // Menus
