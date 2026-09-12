@@ -894,6 +894,7 @@ $defaultSlidingCountries = [
 ];
 
 $renderCountriesList = !empty($sliding_countries) ? $sliding_countries : $defaultSlidingCountries;
+$allSlidingCards = array_merge($renderCountriesList, $renderCountriesList);
 ?>
 <section class="section-countries-slider" id="global-reach">
   <div class="countries-header-wrap">
@@ -904,7 +905,7 @@ $renderCountriesList = !empty($sliding_countries) ? $sliding_countries : $defaul
 
   <div class="countries-slide-viewport">
     <div class="countries-slide-track" id="countriesSlideTrack">
-      <?php foreach ($renderCountriesList as $c): ?>
+      <?php foreach ($allSlidingCards as $c): ?>
         <div class="country-map-card">
           <div class="country-map-img-box">
             <?php if (!empty($c['image'])): ?>
