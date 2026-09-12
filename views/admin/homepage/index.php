@@ -1126,16 +1126,17 @@ if (!isset($tabs[$activeTab])) {
     </div>
 
   <?php /* ══════════════════════════════════════════════════
-          TAB: BUSINESS SOLUTIONS (3 PILLARS: RETAIL, WHOLESALE, MFG)
+          TAB: DIGITAL JEWELLERY CATALOGUE & SOLUTIONS
           ══════════════════════════════════════════════════ */
   elseif ($activeTab === 'solutions'): ?>
 
     <!-- 1. Section Header Settings Form -->
     <div class="card border-0 shadow-sm mb-4">
-      <div class="card-header bg-white py-3">
-        <h5 class="card-title fw-bold mb-0">
-          <i class="bi bi-briefcase-fill text-warning me-2"></i>Business Solutions Section Heading &amp; Text
+      <div class="card-header bg-white py-3 d-flex align-items-center justify-content-between">
+        <h5 class="card-title fw-bold mb-0 text-dark">
+          <i class="bi bi-images text-primary me-2"></i>Digital Jewellery Catalogue &amp; Business Solutions
         </h5>
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2.5 py-1">Position #3 on Homepage</span>
       </div>
       <div class="card-body p-4">
         <form method="POST" action="/admin/homepage?tab=solutions">
@@ -1145,27 +1146,28 @@ if (!isset($tabs[$activeTab])) {
           <div class="form-check form-switch mb-3 p-3 bg-light rounded-3 border">
             <input class="form-check-input ms-0 me-2" type="checkbox" name="solutions_enabled" value="1" id="solutionsEnabled" <?= ($solutions_enabled ?? '1') == '1' ? 'checked' : '' ?>>
             <label class="form-check-label fw-bold text-dark fs-13" for="solutionsEnabled">
-              Enable Business Solutions 3-Cards Section on Homepage
+              Enable Digital Catalogue &amp; Business Solutions Section on Homepage
             </label>
+            <div class="fs-11 text-muted mt-1">Displayed directly below the Brand Logos banner on the live website.</div>
           </div>
 
           <div class="row g-3 mb-3">
             <div class="col-md-4">
-              <label class="form-label fw-semibold fs-13 text-secondary">Section Eyebrow / Badge</label>
-              <input type="text" name="solutions_badge" value="<?= e($solutions_badge ?? 'BUSINESS SOLUTIONS') ?>" class="form-control" placeholder="BUSINESS SOLUTIONS">
+              <label class="form-label fw-semibold fs-12 text-secondary">Section Eyebrow / Badge</label>
+              <input type="text" name="solutions_badge" value="<?= e($solutions_badge ?? 'GLOBAL JEWELLERY PLATFORM') ?>" class="form-control form-control-sm" placeholder="GLOBAL JEWELLERY PLATFORM">
             </div>
             <div class="col-md-8">
-              <label class="form-label fw-semibold fs-13 text-secondary">Main Section Heading <span class="text-danger">*</span></label>
-              <input type="text" name="solutions_title" value="<?= e($solutions_title ?? 'Built for Every Jewellery Business Model') ?>" class="form-control fw-bold" required>
+              <label class="form-label fw-semibold fs-12 text-secondary">Main Section Heading <span class="text-danger">*</span></label>
+              <input type="text" name="solutions_title" value="<?= e($solutions_title ?? 'Built for Every Jewellery Business Model') ?>" class="form-control form-control-sm fw-bold" required>
             </div>
             <div class="col-12">
-              <label class="form-label fw-semibold fs-13 text-secondary">Section Description Paragraph</label>
-              <textarea name="solutions_desc" rows="2" class="form-control fs-13" placeholder="Whether you run a retail showroom, wholesale operation, or manufacturing unit..."><?= e($solutions_desc ?? '') ?></textarea>
+              <label class="form-label fw-semibold fs-12 text-secondary">Section Description Paragraph</label>
+              <textarea name="solutions_desc" rows="2" class="form-control fs-13" placeholder="Engineered for high-growth jewellery retail, wholesale, and export brands..."><?= e($solutions_desc ?? '') ?></textarea>
             </div>
           </div>
           <div class="d-flex justify-content-end">
-            <button type="submit" class="btn btn-navy fw-bold px-4">
-              <i class="bi bi-floppy-fill me-1"></i> Save Section Settings
+            <button type="submit" class="btn btn-navy btn-sm fw-semibold px-4 py-2">
+              <i class="bi bi-floppy-fill me-1 text-warning"></i> Save Section Settings
             </button>
           </div>
         </form>
@@ -1174,22 +1176,28 @@ if (!isset($tabs[$activeTab])) {
 
     <!-- 2. Cards Management (List & Add/Edit) -->
     <div class="card border-0 shadow-sm mb-4">
-      <div class="card-header bg-white py-3 d-flex flex-wrap align-items-center justify-content-between gap-2">
+      <div class="card-header bg-white py-3 d-flex flex-wrap align-items-center justify-content-between gap-2 border-bottom">
         <div>
-          <h5 class="card-title fw-bold mb-0">
-            <i class="bi bi-collection-fill text-primary me-2"></i>Business Solution Cards (Featured Showcase &amp; Companion Cards)
+          <h5 class="card-title fw-bold mb-0 text-dark">
+            <i class="bi bi-collection-fill text-primary me-2"></i>Showcase &amp; Companion Solution Cards
           </h5>
-          <p class="text-muted fs-12 mb-0">Card #1 is the Top Featured Showcase (Digital Jewellery Catalogue). Cards #2, #3, #4 are the companion cards. Edit headings, descriptions, bullet points, button links, and images anytime.</p>
+          <p class="text-muted fs-12 mb-0 mt-0.5">Card #1 is the Top Featured Showcase (Digital Jewellery Catalogue). Cards #2, #3, #4 are companion solution cards.</p>
         </div>
-        <button class="btn btn-gold btn-sm d-inline-flex align-items-center gap-1 fw-bold shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#addSolutionCardCollapse" aria-expanded="false">
-          <i class="bi bi-plus-lg"></i>
-          <span>+ Add New Solution Card</span>
+        <button class="btn btn-navy btn-sm d-inline-flex align-items-center gap-2 px-3 py-2 fw-semibold shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#addSolutionCardCollapse" aria-expanded="false">
+          <i class="bi bi-plus-circle-fill text-warning"></i>
+          <span>Add New Card</span>
         </button>
       </div>
 
       <!-- COLLAPSIBLE ADD CARD FORM -->
       <div class="collapse border-bottom bg-light" id="addSolutionCardCollapse">
         <div class="card-body p-4">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <h6 class="fw-bold text-dark mb-0">
+              <i class="bi bi-plus-circle-fill text-success me-2"></i>Create New Solution Card
+            </h6>
+            <button type="button" class="btn-close" data-bs-toggle="collapse" data-bs-target="#addSolutionCardCollapse"></button>
+          </div>
           <form method="POST" action="/admin/homepage?tab=solutions" enctype="multipart/form-data">
             <?= csrf_field() ?>
             <input type="hidden" name="action" value="add_solution_card">
@@ -1197,7 +1205,7 @@ if (!isset($tabs[$activeTab])) {
             <div class="row g-3">
               <div class="col-md-4">
                 <label class="form-label fs-12 fw-semibold text-secondary">Card Eyebrow / Badge <span class="text-muted">(Optional)</span></label>
-                <input type="text" name="badge" class="form-control form-control-sm fw-bold" placeholder="e.g. MULTI-CURRENCY">
+                <input type="text" name="badge" class="form-control form-control-sm" placeholder="e.g. MULTI-CURRENCY">
               </div>
               <div class="col-md-5">
                 <label class="form-label fs-12 fw-semibold text-secondary">Card Title <span class="text-danger">*</span></label>
@@ -1215,7 +1223,7 @@ if (!isset($tabs[$activeTab])) {
 
               <!-- 5 BULLET CHECKPOINTS -->
               <div class="col-md-6">
-                <div class="p-3 bg-white rounded-3 border">
+                <div class="p-3 bg-white rounded-3 border h-100">
                   <label class="form-label fs-12 fw-bold text-dark mb-2">
                     <i class="bi bi-check-circle-fill text-success me-1"></i>Feature Checkpoints (1 bullet per line)
                   </label>
@@ -1251,7 +1259,7 @@ if (!isset($tabs[$activeTab])) {
                     <div class="col-12">
                       <label class="form-label fs-12 fw-semibold text-secondary">Theme Color / Preset</label>
                       <select name="accent_color" class="form-select form-select-sm">
-                        <option value="#D97706">Gold &amp; Warm Amber (Catalogue)</option>
+                        <option value="#D97706">Gold &amp; Warm Amber (Catalogue Showcase)</option>
                         <option value="#2563EB">Luxury Dark Navy &amp; Blue (Multi-Currency)</option>
                         <option value="#059669">Emerald Green (RFID Audit)</option>
                         <option value="#7C3AED">Royal Purple (VAT &amp; Compliance)</option>
@@ -1271,9 +1279,10 @@ if (!isset($tabs[$activeTab])) {
                 <input type="text" name="image_url" class="form-control form-control-sm" placeholder="/assets/images/digital-jewellery-catalogue.png">
               </div>
 
-              <div class="col-12 text-end">
-                <button type="submit" class="btn btn-gold btn-sm fw-bold px-4">
-                  <i class="bi bi-plus-circle me-1"></i> Add Solution Card
+              <div class="col-12 text-end pt-2 border-top">
+                <button type="button" class="btn btn-light btn-sm me-2" data-bs-toggle="collapse" data-bs-target="#addSolutionCardCollapse">Cancel</button>
+                <button type="submit" class="btn btn-navy btn-sm fw-semibold px-4">
+                  <i class="bi bi-plus-circle me-1 text-warning"></i> Save Card
                 </button>
               </div>
             </div>
@@ -1284,20 +1293,21 @@ if (!isset($tabs[$activeTab])) {
       <!-- CARDS TABLE LIST -->
       <div class="table-responsive">
         <table class="table table-hover align-middle mb-0">
-          <thead class="table-light fs-12 text-uppercase text-secondary">
+          <thead class="bg-light text-secondary fs-12 text-uppercase fw-semibold border-bottom" style="background-color:#F8FAFC;">
             <tr>
-              <th style="width:50px;">#</th>
-              <th style="width:110px;">Asset Visual</th>
-              <th>Pillar &amp; Title</th>
-              <th>Bullet Points</th>
-              <th style="width:90px;">Status</th>
-              <th style="width:140px;" class="text-end pe-3">Actions</th>
+              <th class="ps-3 py-3" style="width:50px;">#</th>
+              <th style="width:110px;">Visual</th>
+              <th style="width:340px;">Title &amp; Pillar</th>
+              <th>Feature Checkpoints</th>
+              <th style="width:100px;">Status</th>
+              <th style="width:130px;" class="text-end pe-3">Actions</th>
             </tr>
           </thead>
           <tbody>
             <?php if (empty($solutions_cards)): ?>
               <tr>
-                <td colspan="6" class="text-center py-4 text-muted">
+                <td colspan="6" class="text-center py-5 text-muted">
+                  <i class="bi bi-inbox fs-3 d-block mb-1 text-secondary"></i>
                   No solution cards configured. Default cards are active on the website.
                 </td>
               </tr>
@@ -1305,39 +1315,49 @@ if (!isset($tabs[$activeTab])) {
               <?php foreach ($solutions_cards as $idx => $card): 
                 $feats = !empty($card['features']) ? (is_array($card['features']) ? $card['features'] : json_decode($card['features'], true)) : [];
                 $cardImg = !empty($card['image']) ? $card['image'] : '';
+                $isFirst = ($idx === 0);
               ?>
                 <tr>
-                  <td class="fw-bold text-muted"><?= $idx + 1 ?></td>
+                  <td class="ps-3 fw-bold text-muted"><?= $idx + 1 ?></td>
                   <td>
                     <?php if (!empty($cardImg)): ?>
-                      <img src="<?= e($cardImg) ?>" alt="<?= e($card['title']) ?>" class="rounded border bg-light shadow-sm" style="width:80px;height:55px;object-fit:contain;">
+                      <div class="bg-white rounded-2 border p-1 shadow-xs d-inline-flex align-items-center justify-content-center" style="width:75px;height:52px;">
+                        <img src="<?= e($cardImg) ?>" alt="<?= e($card['title']) ?>" style="max-width:100%;max-height:100%;object-fit:contain;" class="rounded">
+                      </div>
                     <?php else: ?>
-                      <div class="bg-light rounded text-center d-flex align-items-center justify-content-center border" style="width:80px;height:55px;">
-                        <i class="bi <?= e($card['icon'] ?: 'bi-briefcase') ?> fs-4 text-secondary"></i>
+                      <div class="bg-light rounded-2 text-center d-inline-flex align-items-center justify-content-center border" style="width:75px;height:52px;">
+                        <i class="bi <?= e($card['icon'] ?: 'bi-images') ?> fs-4 text-secondary"></i>
                       </div>
                     <?php endif; ?>
                   </td>
                   <td>
-                    <?php if (!empty($card['badge'])): ?>
-                      <span class="badge mb-1 fs-10 text-uppercase fw-bold" style="background:<?= e($card['accent_color'] ?: '#D97706') ?>20;color:<?= e($card['accent_color'] ?: '#D97706') ?>;border:1px solid <?= e($card['accent_color'] ?: '#D97706') ?>40;">
+                    <?php if ($isFirst): ?>
+                      <span class="badge mb-1.5 fs-11 fw-semibold d-inline-flex align-items-center gap-1" style="background:#FEF3C7;color:#92400E;border:1px solid #FCD34D;">
+                        <i class="bi bi-stars" style="color:#D97706;"></i> Featured Showcase (Card #1)
+                      </span>
+                    <?php elseif (!empty($card['badge'])): ?>
+                      <span class="badge mb-1.5 fs-11 fw-semibold text-uppercase" style="background:#EFF6FF;color:#1E40AF;border:1px solid #BFDBFE;">
                         <?= e($card['badge']) ?>
                       </span>
                     <?php else: ?>
-                      <span class="badge mb-1 fs-10 text-uppercase fw-bold bg-warning-subtle text-warning border border-warning-subtle">
-                        Featured Card #1
+                      <span class="badge mb-1.5 fs-11 fw-semibold text-muted bg-light border">
+                        Companion Card
                       </span>
                     <?php endif; ?>
-                    <div class="fw-bold text-dark fs-13"><?= e($card['title']) ?></div>
-                    <div class="text-muted fs-11 text-truncate" style="max-width:280px;"><?= e($card['description']) ?></div>
+                    <div class="fw-bold text-dark fs-13 mb-0.5"><?= e($card['title']) ?></div>
+                    <div class="text-muted fs-12 text-truncate" style="max-width:300px;"><?= e($card['description']) ?></div>
                   </td>
                   <td>
-                    <div class="fs-11 text-secondary">
+                    <div class="d-flex flex-column gap-1 fs-12">
                       <?php if (!empty($feats) && is_array($feats)): ?>
                         <?php foreach (array_slice($feats, 0, 3) as $f): ?>
-                          <div>✓ <?= e($f) ?></div>
+                          <div class="d-flex align-items-center gap-2 text-secondary">
+                            <i class="bi bi-check2-circle fs-13 flex-shrink-0" style="color:#10B981;"></i>
+                            <span class="text-truncate"><?= e($f) ?></span>
+                          </div>
                         <?php endforeach; ?>
                         <?php if (count($feats) > 3): ?>
-                          <div class="text-muted">+<?= count($feats) - 3 ?> more</div>
+                          <span class="badge bg-light text-muted border align-self-start fs-10 mt-0.5">+<?= count($feats) - 3 ?> more features</span>
                         <?php endif; ?>
                       <?php else: ?>
                         <span class="text-muted">Standard 4 features</span>
@@ -1345,11 +1365,25 @@ if (!isset($tabs[$activeTab])) {
                     </div>
                   </td>
                   <td>
-                    <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1">Active</span>
+                    <form method="POST" action="/admin/homepage?tab=solutions" class="d-inline">
+                      <?= csrf_field() ?>
+                      <input type="hidden" name="action" value="toggle_solution_status">
+                      <input type="hidden" name="item_id" value="<?= $card['id'] ?>">
+                      <input type="hidden" name="is_active" value="<?= ($card['is_active'] ?? 1) ? 0 : 1 ?>">
+                      <button type="submit" class="border-0 bg-transparent p-0" title="Click to toggle status">
+                        <?php if ($card['is_active'] ?? 1): ?>
+                          <span class="badge bg-success-subtle text-success border border-success-subtle px-2.5 py-1 rounded-pill fs-11 fw-semibold d-inline-flex align-items-center gap-1">
+                            <span style="width:6px;height:6px;border-radius:50%;background:#16A34A;display:inline-block;"></span> Active
+                          </span>
+                        <?php else: ?>
+                          <span class="badge bg-secondary-subtle text-secondary border px-2.5 py-1 rounded-pill fs-11 fw-semibold">Draft</span>
+                        <?php endif; ?>
+                      </button>
+                    </form>
                   </td>
                   <td class="text-end pe-3">
-                    <div class="btn-group btn-group-sm">
-                      <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editSolutionModal<?= $card['id'] ?>">
+                    <div class="btn-group btn-group-sm rounded-2">
+                      <button type="button" class="btn btn-outline-primary btn-sm px-2.5 py-1" data-bs-toggle="modal" data-bs-target="#editSolutionModal<?= $card['id'] ?>" title="Edit Card">
                         <i class="bi bi-pencil-fill"></i>
                       </button>
                       <form method="POST" action="/admin/homepage?tab=solutions" onsubmit="return confirm('Delete this solution card?');" class="d-inline">
@@ -1357,7 +1391,7 @@ if (!isset($tabs[$activeTab])) {
                         <input type="hidden" name="action" value="delete_item">
                         <input type="hidden" name="section" value="solutions_cards">
                         <input type="hidden" name="item_id" value="<?= $card['id'] ?>">
-                        <button type="submit" class="btn btn-outline-danger">
+                        <button type="submit" class="btn btn-outline-danger btn-sm px-2.5 py-1" title="Delete Card">
                           <i class="bi bi-trash3-fill"></i>
                         </button>
                       </form>
@@ -1366,9 +1400,9 @@ if (!isset($tabs[$activeTab])) {
                     <!-- EDIT MODAL -->
                     <div class="modal fade" id="editSolutionModal<?= $card['id'] ?>" tabindex="-1">
                       <div class="modal-dialog modal-lg modal-dialog-centered text-start">
-                        <div class="modal-content border-0 shadow">
-                          <div class="modal-header bg-navy text-white">
-                            <h6 class="modal-title fw-bold text-white">
+                        <div class="modal-content border-0 shadow-lg rounded-3">
+                          <div class="modal-header bg-navy text-white py-3">
+                            <h6 class="modal-title fw-bold text-white mb-0">
                               <i class="bi bi-pencil-square text-warning me-2"></i>Edit Solution Card: <?= e($card['title']) ?>
                             </h6>
                             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
@@ -1382,7 +1416,7 @@ if (!isset($tabs[$activeTab])) {
                               <div class="row g-3">
                                 <div class="col-md-4">
                                   <label class="form-label fs-12 fw-semibold text-secondary">Card Eyebrow / Badge <span class="text-muted">(Optional)</span></label>
-                                  <input type="text" name="badge" value="<?= e($card['badge'] ?? '') ?>" class="form-control form-control-sm fw-bold">
+                                  <input type="text" name="badge" value="<?= e($card['badge'] ?? '') ?>" class="form-control form-control-sm">
                                 </div>
                                 <div class="col-md-5">
                                   <label class="form-label fs-12 fw-semibold text-secondary">Card Title <span class="text-danger">*</span></label>
@@ -1400,7 +1434,7 @@ if (!isset($tabs[$activeTab])) {
 
                                 <!-- BULLET POINTS -->
                                 <div class="col-md-6">
-                                  <div class="p-3 bg-light rounded-3 border">
+                                  <div class="p-3 bg-light rounded-3 border h-100">
                                     <label class="form-label fs-12 fw-bold text-dark mb-2">
                                       <i class="bi bi-check-circle-fill text-success me-1"></i>Feature Checkpoints (1 bullet per line)
                                     </label>
@@ -1420,30 +1454,31 @@ if (!isset($tabs[$activeTab])) {
                                     <div class="row g-2 mb-2">
                                       <div class="col-6">
                                         <label class="form-label fs-12 fw-semibold text-secondary">Main Icon</label>
-                                        <input type="text" name="icon" value="<?= e($card['icon'] ?? 'bi-shop') ?>" class="form-control form-control-sm">
+                                        <input type="text" name="icon" value="<?= e($card['icon'] ?? 'bi-images') ?>" class="form-control form-control-sm">
                                       </div>
                                       <div class="col-6">
                                         <label class="form-label fs-12 fw-semibold text-secondary">Watermark Icon</label>
-                                        <input type="text" name="extra" value="<?= e($card['extra'] ?? 'bi-gem') ?>" class="form-control form-control-sm">
+                                        <input type="text" name="extra" value="<?= e($card['extra'] ?? 'bi-whatsapp') ?>" class="form-control form-control-sm">
                                       </div>
                                     </div>
                                     <div class="row g-2 mb-2">
                                       <div class="col-6">
                                         <label class="form-label fs-12 fw-semibold text-secondary">Button Text</label>
-                                        <input type="text" name="btn1_text" value="<?= e($card['btn1_text'] ?? 'Explore Software') ?>" class="form-control form-control-sm">
+                                        <input type="text" name="btn1_text" value="<?= e($card['btn1_text'] ?? 'Explore Digital Catalogue') ?>" class="form-control form-control-sm">
                                       </div>
                                       <div class="col-6">
                                         <label class="form-label fs-12 fw-semibold text-secondary">Button Link</label>
-                                        <input type="text" name="btn1_link" value="<?= e($card['btn1_link'] ?? '#') ?>" class="form-control form-control-sm">
+                                        <input type="text" name="btn1_link" value="<?= e($card['btn1_link'] ?? '/features') ?>" class="form-control form-control-sm">
                                       </div>
                                     </div>
                                     <div class="row g-2">
                                       <div class="col-12">
                                         <label class="form-label fs-12 fw-semibold text-secondary">Theme Color Preset</label>
                                         <select name="accent_color" class="form-select form-select-sm">
-                                          <option value="#D97706" <?= ($card['accent_color'] ?? '') === '#D97706' ? 'selected' : '' ?>>Retail Software (Light Amber &amp; Gold)</option>
-                                          <option value="#2563EB" <?= ($card['accent_color'] ?? '') === '#2563EB' ? 'selected' : '' ?>>Wholesale Software (Luxury Dark Navy &amp; Blue)</option>
-                                          <option value="#059669" <?= ($card['accent_color'] ?? '') === '#059669' ? 'selected' : '' ?>>Manufacturing Software (Light Mint &amp; Green)</option>
+                                          <option value="#D97706" <?= ($card['accent_color'] ?? '') === '#D97706' ? 'selected' : '' ?>>Gold &amp; Warm Amber (Catalogue Showcase)</option>
+                                          <option value="#2563EB" <?= ($card['accent_color'] ?? '') === '#2563EB' ? 'selected' : '' ?>>Luxury Dark Navy &amp; Blue (Multi-Currency)</option>
+                                          <option value="#059669" <?= ($card['accent_color'] ?? '') === '#059669' ? 'selected' : '' ?>>Emerald Green (RFID Audit)</option>
+                                          <option value="#7C3AED" <?= ($card['accent_color'] ?? '') === '#7C3AED' ? 'selected' : '' ?>>Royal Purple (VAT &amp; Compliance)</option>
                                         </select>
                                       </div>
                                     </div>
@@ -1469,8 +1504,8 @@ if (!isset($tabs[$activeTab])) {
                             </div>
                             <div class="modal-footer bg-light py-2">
                               <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
-                              <button type="submit" class="btn btn-gold btn-sm fw-bold px-4">
-                                <i class="bi bi-check2-circle me-1"></i> Update Card
+                              <button type="submit" class="btn btn-navy btn-sm fw-semibold px-4">
+                                <i class="bi bi-check2-circle me-1 text-warning"></i> Update Card
                               </button>
                             </div>
                           </form>
