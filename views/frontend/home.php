@@ -968,55 +968,85 @@ $renderCountriesList = !empty($sliding_countries) ? $sliding_countries : $defaul
 ════════════════════════════════ -->
 <?php if (!empty($awards_enabled) && $awards_enabled != '0'): ?>
 <section class="section-awards" id="awards">
-  <div class="awards-container">
+  <div class="container" style="max-width: 1280px; margin: 0 auto; padding: 0 20px;">
 
-    <!-- Top Ribbon & Medal Header -->
+    <!-- Section Header (GoldMatrix Brand System) -->
     <div class="awards-header-wrap">
-      <div class="awards-badge-assembly">
-        <!-- Hanging Medal #1 -->
-        <div class="awards-medal">
-          <div class="ribbon-tail left"></div>
-          <div class="ribbon-tail right"></div>
-          <div class="medal-circle">
-            <span class="medal-num">1</span>
-          </div>
-        </div>
-        <!-- Golden Plaque -->
-        <div class="awards-plaque">
-          <h2 class="awards-title"><?= e($awards_title ?? 'Awards') ?></h2>
-        </div>
+      
+      <!-- Top Trophy Tag -->
+      <div class="awards-pill-tag">
+        <i class="fa-solid fa-trophy"></i>
+        <span>#1 RATED JEWELLERY ERP</span>
       </div>
+
+      <!-- Eyebrow Badge -->
+      <div class="awards-badge">
+        <span><?= e(!empty($awards_badge) ? $awards_badge : 'AWARDS & RECOGNITION') ?></span>
+      </div>
+
+      <!-- Main Heading -->
+      <h2 class="awards-main-heading">
+        <?= e(!empty($awards_title) ? $awards_title : 'Recognized & Awarded by Industry Leaders') ?>
+      </h2>
+      
+      <!-- Gold Curve Accent -->
+      <span class="awards-gold-curve"></span>
+
+      <!-- Subtitle -->
       <?php if (!empty($awards_subtitle)): ?>
-        <p class="awards-subtitle"><?= e($awards_subtitle) ?></p>
+        <p class="awards-desc">
+          <?= e($awards_subtitle) ?>
+        </p>
+      <?php else: ?>
+        <p class="awards-desc">
+          Recognized by industry leaders for outstanding performance, usability, and customer trust.
+        </p>
       <?php endif; ?>
     </div>
 
-    <!-- Awards Grid / Row -->
+    <!-- Awards Grid Cards -->
     <div class="awards-grid">
       <?php if (!empty($awards_items) && count($awards_items) > 0): ?>
         <?php foreach ($awards_items as $award): ?>
           <div class="award-card" data-aos="fade-up">
             <div class="award-img-box">
-              <img src="<?= e($award['image'] ?? '') ?>" alt="<?= e($award['title'] ?? 'Award') ?>" loading="lazy">
+              <img src="<?= e($award['image'] ?? '') ?>" alt="<?= e($award['title'] ?? 'GoldMatrix Award Badge') ?>" loading="lazy">
             </div>
-            <?php if (!empty($award['title']) && empty($award['image'])): ?>
-              <div class="award-fallback-info">
-                <h4><?= e($award['title']) ?></h4>
-                <?php if (!empty($award['year'])): ?><span><?= e($award['year']) ?></span><?php endif; ?>
+            <?php if (!empty($award['title']) || !empty($award['subtitle'])): ?>
+              <div class="award-meta-info">
+                <span class="award-meta-title"><?= e($award['title'] ?? '') ?></span>
+                <?php if (!empty($award['subtitle'])): ?>
+                  <span class="award-meta-year"><?= e($award['subtitle']) ?></span>
+                <?php endif; ?>
               </div>
             <?php endif; ?>
           </div>
         <?php endforeach; ?>
       <?php else: ?>
-        <div class="award-card"><img src="/assets/images/awards/award-high-performer.svg" alt="High Performer" loading="lazy"></div>
-        <div class="award-card"><img src="/assets/images/awards/award-customers-choice.svg" alt="Customers Choice" loading="lazy"></div>
-        <div class="award-card"><img src="/assets/images/awards/award-best-usability.svg" alt="Best Usability" loading="lazy"></div>
-        <div class="award-card"><img src="/assets/images/awards/award-best-support.svg" alt="Best Support" loading="lazy"></div>
-        <div class="award-card"><img src="/assets/images/awards/award-most-popular.svg" alt="Most Popular" loading="lazy"></div>
+        <div class="award-card" data-aos="fade-up">
+          <div class="award-img-box"><img src="/assets/images/awards/award-high-performer.svg" alt="High Performer" loading="lazy"></div>
+          <div class="award-meta-info"><span class="award-meta-title">High Performer</span><span class="award-meta-year">Winter 2023</span></div>
+        </div>
+        <div class="award-card" data-aos="fade-up">
+          <div class="award-img-box"><img src="/assets/images/awards/award-customers-choice.svg" alt="Customers Choice" loading="lazy"></div>
+          <div class="award-meta-info"><span class="award-meta-title">Customers Choice</span><span class="award-meta-year">Summer 2022</span></div>
+        </div>
+        <div class="award-card" data-aos="fade-up">
+          <div class="award-img-box"><img src="/assets/images/awards/award-best-usability.svg" alt="Best Usability" loading="lazy"></div>
+          <div class="award-meta-info"><span class="award-meta-title">Best Usability</span><span class="award-meta-year">2021</span></div>
+        </div>
+        <div class="award-card" data-aos="fade-up">
+          <div class="award-img-box"><img src="/assets/images/awards/award-best-support.svg" alt="Best Support" loading="lazy"></div>
+          <div class="award-meta-info"><span class="award-meta-title">Best Support</span><span class="award-meta-year">2021</span></div>
+        </div>
+        <div class="award-card" data-aos="fade-up">
+          <div class="award-img-box"><img src="/assets/images/awards/award-most-popular.svg" alt="Most Popular" loading="lazy"></div>
+          <div class="award-meta-info"><span class="award-meta-title">Most Popular</span><span class="award-meta-year">Fall 2020</span></div>
+        </div>
       <?php endif; ?>
     </div>
 
-    <!-- Indicator Dots (Matching Screenshot) -->
+    <!-- Indicator Dots (Theme Gold) -->
     <div class="awards-dots">
       <span class="dot active"></span>
       <span class="dot"></span>
@@ -1028,138 +1058,95 @@ $renderCountriesList = !empty($sliding_countries) ? $sliding_countries : $defaul
 
 <style>
 /* ──────────────────────────────────────────────
-   AWARDS SECTION STYLING
+   AWARDS SECTION (GoldMatrix Premium Design System)
 ────────────────────────────────────────────── */
 .section-awards {
   position: relative;
-  background: linear-gradient(180deg, #FFFDF8 0%, #FFF8E7 40%, #FFF3D6 75%, #FFFDF8 100%);
-  padding: 85px 5% 75px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(245, 158, 11, 0.05) 0%, rgba(255, 255, 255, 0) 65%), #FFFFFF;
+  padding: 85px 0 90px;
   overflow: hidden;
-  border-top: 1px solid rgba(230, 161, 34, 0.15);
-  border-bottom: 1px solid rgba(230, 161, 34, 0.12);
+  border-top: 1px solid #E2E8F0;
+  border-bottom: 1px solid #E2E8F0;
 }
 
-.section-awards::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 900px;
-  height: 350px;
-  background: radial-gradient(ellipse at 50% 30%, rgba(251, 191, 36, 0.22) 0%, rgba(255, 248, 231, 0) 70%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.awards-container {
-  max-width: 1240px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-  text-align: center;
-}
-
-/* Header & Medal Plaque */
+/* Header Section */
 .awards-header-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: center;
   margin-bottom: 48px;
 }
 
-.awards-badge-assembly {
-  position: relative;
+/* Top Pill Badge */
+.awards-pill-tag {
   display: inline-flex;
-  flex-direction: column;
   align-items: center;
-  padding-top: 24px;
+  gap: 8px;
+  background: rgba(245, 158, 11, 0.1);
+  color: #D97706;
+  border: 1px solid rgba(245, 158, 11, 0.28);
+  border-radius: 50rem;
+  padding: 6px 18px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.awards-pill-tag i {
+  color: #F59E0B;
+  font-size: 12px;
 }
 
-/* Round Gold Medal */
-.awards-medal {
-  position: absolute;
-  top: -6px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.medal-circle {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #FFE57F 0%, #E5A823 60%, #B87B14 100%);
-  border: 2px solid #FFF3C4;
-  box-shadow: 0 4px 12px rgba(184, 123, 20, 0.45), inset 0 2px 4px rgba(255, 255, 255, 0.6);
-  display: flex;
+/* Eyebrow with Gold Lines */
+.awards-badge {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  z-index: 3;
+  gap: 12px;
+  color: var(--gm-luxury-gold, #F59E0B);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  width: 100%;
+}
+.awards-badge::before,
+.awards-badge::after {
+  content: "";
+  display: inline-block;
+  width: 28px;
+  height: 1.5px;
+  background: var(--gm-luxury-gold, #F59E0B);
 }
 
-.medal-num {
-  font-family: var(--gm-font-display, inherit);
-  font-size: 22px;
-  font-weight: 900;
-  color: #784700;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
-  line-height: 1;
-}
-
-/* Ribbon Tails */
-.ribbon-tail {
-  position: absolute;
-  bottom: -4px;
-  width: 12px;
-  height: 18px;
-  background: #DC2626;
-  z-index: 1;
-}
-.ribbon-tail.left {
-  left: 10px;
-  transform: rotate(15deg);
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 75%, 0 100%);
-}
-.ribbon-tail.right {
-  right: 10px;
-  transform: rotate(-15deg);
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 75%, 0 100%);
-}
-
-/* Golden Plaque / Ribbon Banner */
-.awards-plaque {
-  background: linear-gradient(180deg, #E6A122 0%, #C48212 100%);
-  border-radius: 12px;
-  padding: 10px 54px 12px;
-  box-shadow: 0 8px 24px rgba(184, 123, 20, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  min-width: 220px;
-}
-
-.awards-title {
-  font-family: var(--gm-font-display, inherit);
-  font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+/* Main Heading */
+.awards-main-heading {
+  font-family: var(--gm-font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(2rem, 3.2vw, 2.7rem);
   font-weight: 800;
-  color: #1E3A5F;
+  color: var(--gm-navy, #001540);
+  letter-spacing: -0.5px;
+  line-height: 1.25;
   margin: 0;
-  letter-spacing: 0.5px;
-  line-height: 1.15;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-.awards-subtitle {
-  margin-top: 14px;
-  font-size: 15px;
+/* Gold Curve Accent */
+.awards-gold-curve {
+  display: block;
+  width: 170px;
+  height: 6px;
+  margin: 12px auto 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 6' fill='none'%3E%3Cpath d='M2 4.5C40 1.5 110 1.5 148 4.5' stroke='%23F59E0B' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center;
+  background-size: contain;
+}
+
+/* Subtitle Description */
+.awards-desc {
   color: #64748B;
-  max-width: 580px;
-  line-height: 1.6;
+  font-size: 15.5px;
+  line-height: 1.65;
+  max-width: 760px;
+  margin: 16px auto 0;
 }
 
 /* Awards Cards Grid */
@@ -1167,109 +1154,134 @@ $renderCountriesList = !empty($sliding_countries) ? $sliding_countries : $defaul
   display: flex;
   justify-content: center;
   align-items: stretch;
-  gap: 22px;
+  gap: 24px;
   flex-wrap: wrap;
-  margin-bottom: 36px;
+  margin-bottom: 38px;
 }
 
+/* Clean White Award Card */
 .award-card {
   background: #FFFFFF;
   border-radius: 20px;
-  padding: 24px 20px;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  flex: 0 1 205px;
-  min-width: 175px;
-  max-width: 230px;
+  padding: 26px 20px 20px;
+  box-shadow: 0 6px 24px rgba(0, 21, 64, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+  border: 1px solid #E2E8F0;
+  flex: 0 1 210px;
+  min-width: 185px;
+  max-width: 235px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   transition: transform 0.35s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.award-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #F59E0B, #FBBF24);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .award-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 18px 36px rgba(184, 123, 20, 0.15), 0 4px 12px rgba(0, 0, 0, 0.04);
-  border-color: rgba(230, 161, 34, 0.35);
+  box-shadow: 0 18px 38px rgba(0, 21, 64, 0.08), 0 4px 12px rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.award-card:hover::after {
+  opacity: 1;
 }
 
 .award-img-box {
   width: 100%;
-  height: 150px;
+  height: 155px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 4px;
 }
 
 .award-img-box img {
   max-width: 100%;
-  max-height: 145px;
+  max-height: 150px;
   width: auto;
   height: auto;
   object-fit: contain;
   transition: transform 0.3s ease;
+  filter: drop-shadow(0 2px 6px rgba(0, 21, 64, 0.04));
 }
 
 .award-card:hover .award-img-box img {
   transform: scale(1.04);
 }
 
-.award-fallback-info {
-  margin-top: 10px;
+/* Card Meta Info */
+.award-meta-info {
+  margin-top: 14px;
   text-align: center;
+  width: 100%;
+  padding-top: 12px;
+  border-top: 1px dashed #F1F5F9;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
-.award-fallback-info h4 {
-  font-size: 14px;
+.award-meta-title {
+  font-size: 13.5px;
   font-weight: 700;
-  color: #0F172A;
-  margin: 0 0 4px;
+  color: var(--gm-navy, #001540);
+  line-height: 1.25;
 }
-.award-fallback-info span {
-  font-size: 12px;
-  color: #64748B;
+.award-meta-year {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #D97706;
 }
 
-/* Dots Indicator (Matches reference image) */
+/* Dots Indicator */
 .awards-dots {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
-  margin-top: 10px;
+  margin-top: 6px;
 }
 
 .awards-dots .dot {
-  width: 9px;
-  height: 9px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: transparent;
-  border: 1.5px solid #64748B;
-  opacity: 0.5;
+  background: #CBD5E1;
   transition: all 0.3s ease;
 }
 
 .awards-dots .dot.active {
-  width: 10px;
-  height: 10px;
-  background: #4F46E5;
-  border-color: #4F46E5;
-  opacity: 1;
+  width: 24px;
+  border-radius: 12px;
+  background: var(--gm-luxury-gold, #F59E0B);
 }
 
-/* Responsive adjustments */
+/* Responsive */
 @media (max-width: 768px) {
   .section-awards {
-    padding: 60px 4% 50px;
+    padding: 60px 0 65px;
   }
   .awards-grid {
     gap: 14px;
   }
   .award-card {
-    flex: 0 1 150px;
-    min-width: 140px;
-    padding: 16px 12px;
+    flex: 0 1 155px;
+    min-width: 145px;
+    padding: 18px 12px 14px;
     border-radius: 16px;
   }
   .award-img-box {
@@ -1278,9 +1290,9 @@ $renderCountriesList = !empty($sliding_countries) ? $sliding_countries : $defaul
   .award-img-box img {
     max-height: 115px;
   }
-  .awards-plaque {
-    padding: 8px 36px 10px;
-    min-width: 180px;
+  .awards-pill-tag {
+    font-size: 10.5px;
+    padding: 5px 14px;
   }
 }
 </style>

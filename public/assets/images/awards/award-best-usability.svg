@@ -1,42 +1,48 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 260" width="100%" height="100%">
   <defs>
-    <filter id="shadow3" x="-8%" y="-8%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#0284C7" flood-opacity="0.15"/>
+    <filter id="shadow3" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#0F172A" flood-opacity="0.08"/>
     </filter>
+    <linearGradient id="goldGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="50%" stop-color="#FBBF24"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="blueBanner3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0284C7"/>
+      <stop offset="100%" stop-color="#0369A1"/>
+    </linearGradient>
   </defs>
 
   <!-- Main Shield Outer -->
-  <path d="M 120 18 C 175 18 205 32 205 78 C 205 142 165 190 120 216 C 75 190 35 142 35 78 C 35 32 65 18 120 18 Z" fill="#FFFFFF" stroke="#0284C7" stroke-width="3.5" filter="url(#shadow3)"/>
+  <path d="M 120 18 C 176 18 206 32 206 80 C 206 144 165 192 120 210 C 75 192 34 144 34 80 C 34 32 64 18 120 18 Z" fill="#FFFFFF" stroke="#0284C7" stroke-width="3" filter="url(#shadow3)"/>
 
-  <!-- Inner Blue Dotted Border -->
-  <path d="M 120 26 C 168 26 195 38 195 78 C 195 135 160 180 120 204 C 80 180 45 135 45 78 C 45 38 72 26 120 26 Z" fill="none" stroke="#0284C7" stroke-width="1.6" stroke-dasharray="3,2"/>
+  <!-- Inner Blue Gradient Layer -->
+  <path d="M 120 24 C 170 24 198 36 198 78 C 198 138 160 182 120 200 C 80 182 42 138 42 78 C 42 36 70 24 120 24 Z" fill="#F0F9FF" opacity="0.6"/>
 
-  <!-- 5 Gold Stars -->
-  <g transform="translate(120, 44)" fill="#F59E0B">
-    <!-- Star 1 -->
-    <path d="M -36 2 L -34 -3 L -29 -3 L -33 -6 L -31 -11 L -36 -8 L -41 -11 L -39 -6 L -43 -3 L -38 -3 Z" transform="scale(0.85)"/>
-    <!-- Star 2 -->
-    <path d="M -18 0 L -16 -5 L -11 -5 L -15 -8 L -13 -13 L -18 -10 L -23 -13 L -21 -8 L -25 -5 L -20 -5 Z" transform="scale(0.85)"/>
-    <!-- Center Star (Star 3) -->
-    <path d="M 0 -2 L 2 -7 L 7 -7 L 3 -10 L 5 -15 L 0 -12 L -5 -15 L -3 -10 L -7 -7 L -2 -7 Z" transform="scale(0.95)"/>
-    <!-- Star 4 -->
-    <path d="M 18 0 L 20 -5 L 25 -5 L 21 -8 L 23 -13 L 18 -10 L 13 -13 L 15 -8 L 11 -5 L 16 -5 Z" transform="scale(0.85)"/>
-    <!-- Star 5 -->
-    <path d="M 36 2 L 38 -3 L 43 -3 L 39 -6 L 41 -11 L 36 -8 L 31 -11 L 33 -6 L 29 -3 L 34 -3 Z" transform="scale(0.85)"/>
+  <!-- Five Stars -->
+  <g transform="translate(120, 42)" fill="url(#goldGrad3)">
+    <polygon points="-30,3 -25,0 -20,3 -22,-3 -17,-7 -23,-7 -25,-13 -27,-7 -33,-7 -28,-3" transform="scale(0.55) translate(-10, 0)"/>
+    <polygon points="-15,3 -10,0 -5,3 -7,-3 -2,-7 -8,-7 -10,-13 -12,-7 -18,-7 -13,-3" transform="scale(0.65) translate(15, -4)"/>
+    <polygon points="0,3 5,0 10,3 8,-3 13,-7 7,-7 5,-13 3,-7 -3,-7 2,-3" transform="scale(0.8) translate(140, -10)"/>
+    <polygon points="15,3 20,0 25,3 23,-3 28,-7 22,-7 20,-13 18,-7 12,-7 17,-3" transform="scale(0.65) translate(265, -4)"/>
+    <polygon points="30,3 35,0 40,3 38,-3 43,-7 37,-7 35,-13 33,-7 27,-7 32,-3" transform="scale(0.55) translate(400, 0)"/>
   </g>
 
-  <!-- SoftwareSuggest Text -->
-  <text x="120" y="76" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="800" fill="#0369A1" text-anchor="middle" letter-spacing="0.4">
-    Software<tspan font-size="9" font-weight="900" dy="-4">®</tspan><tspan font-size="14" font-weight="800" dy="4">UGGEST</tspan>
-  </text>
+  <!-- SoftwareSuggest Clean Brand Logo -->
+  <g transform="translate(120, 70)">
+    <text x="0" y="0" font-family="'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="800" fill="#0369A1" text-anchor="middle" letter-spacing="0.3">
+      Software<tspan font-weight="900" fill="#0284C7">Suggest</tspan>
+    </text>
+  </g>
 
   <!-- Main Banner Badge -->
   <g transform="translate(0, 88)">
-    <rect x="24" y="8" width="192" height="42" rx="4" fill="#0369A1"/>
-    <rect x="27" y="11" width="186" height="36" rx="2" fill="none" stroke="#38BDF8" stroke-width="1" stroke-opacity="0.5"/>
-    <text x="120" y="34" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.6">Best Usability</text>
+    <rect x="24" y="8" width="192" height="42" rx="5" fill="url(#blueBanner3)"/>
+    <rect x="27" y="11" width="186" height="36" rx="3" fill="none" stroke="#38BDF8" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="120" y="34" font-family="'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.6">Best Usability</text>
   </g>
 
   <!-- Year -->
-  <text x="120" y="172" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="900" fill="#0F172A" text-anchor="middle" letter-spacing="0.5">— 2021 —</text>
+  <text x="120" y="172" font-family="'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="900" fill="#0F172A" text-anchor="middle" letter-spacing="0.5">— 2021 —</text>
 </svg>
