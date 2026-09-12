@@ -1557,8 +1557,8 @@ $tabs = [
                       <input type="file" name="image" accept="image/*" class="form-control form-control-sm mt-2">
                     </div>
                     <div class="mb-2">
-                      <label class="form-label fs-11 text-secondary">Or Image Direct URL:</label>
-                      <input type="url" name="image_url" class="form-control form-control-sm" placeholder="https://images.unsplash.com/...">
+                      <label class="form-label fs-11 text-secondary">Or Image Direct URL / Path:</label>
+                      <input type="text" name="image_url" class="form-control form-control-sm" placeholder="https://... or /assets/images/...">
                     </div>
                   </div>
 
@@ -1712,8 +1712,8 @@ $tabs = [
                                   <input type="file" name="image" accept="image/*" class="form-control form-control-sm">
                                 </div>
                                 <div class="col-md-6">
-                                  <label class="form-label fs-12 fw-semibold text-secondary">Or Photo Direct URL</label>
-                                  <input type="url" name="image_url" value="<?= e($card['image'] ?? '') ?>" class="form-control form-control-sm">
+                                  <label class="form-label fs-12 fw-semibold text-secondary">Or Photo Direct URL / Path</label>
+                                  <input type="text" name="image_url" value="<?= e($card['image'] ?? '') ?>" class="form-control form-control-sm" placeholder="https://... or /assets/images/...">
                                 </div>
                               </div>
                             </div>
@@ -2495,7 +2495,7 @@ $tabs = [
 
                 <div class="col-md-8">
                   <label class="form-label fs-12 fw-semibold text-secondary">Or Flag Image URL / CDN Link</label>
-                  <input type="url" name="flag_url" class="form-control form-control-sm" placeholder="https://goldmatrixsoftware.com/wp-content/uploads/...">
+                  <input type="text" name="flag_url" class="form-control form-control-sm" placeholder="https://flagcdn.com/w80/ae.png or /assets/...">
                 </div>
 
                 <div class="col-md-4 d-flex align-items-end">
@@ -2605,7 +2605,7 @@ $tabs = [
 
                         <div class="mb-3">
                           <label class="form-label fs-12 fw-semibold text-secondary">Flag Image URL / CDN</label>
-                          <input type="url" name="flag_url" value="<?= e($item['image']) ?>" class="form-control form-control-sm" placeholder="https://...">
+                          <input type="text" name="flag_url" value="<?= e($item['image']) ?>" class="form-control form-control-sm" placeholder="https://... or /assets/...">
                         </div>
 
                         <div class="mb-3">
@@ -2781,8 +2781,8 @@ $tabs = [
                       <input type="file" name="image" accept="image/*" class="form-control form-control-sm mt-2">
                     </div>
                     <div class="mb-2">
-                      <label class="form-label fs-11 text-secondary">Or Logo Direct URL:</label>
-                      <input type="url" name="image_url" class="form-control form-control-sm" placeholder="https://cdn.worldvectorlogo.com/...">
+                      <label class="form-label fs-11 text-secondary">Or Logo Direct URL / Path:</label>
+                      <input type="text" name="image_url" class="form-control form-control-sm" placeholder="https://... or /assets/images/integrations/...">
                     </div>
                   </div>
 
@@ -2930,8 +2930,8 @@ $tabs = [
                                   <input type="file" name="image" accept="image/*" class="form-control form-control-sm">
                                 </div>
                                 <div class="col-md-6">
-                                  <label class="form-label fs-12 fw-semibold text-secondary">Or Logo Direct URL</label>
-                                  <input type="url" name="image_url" value="<?= e($tool['image'] ?? '') ?>" class="form-control form-control-sm">
+                                  <label class="form-label fs-12 fw-semibold text-secondary">Or Logo Direct URL / Path</label>
+                                  <input type="text" name="image_url" value="<?= e($tool['image'] ?? '') ?>" class="form-control form-control-sm" placeholder="https://... or /assets/images/integrations/...">
                                 </div>
                               </div>
                             </div>

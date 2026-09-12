@@ -343,7 +343,7 @@ class HomepageController {
                         'description' => 'Enable instant customer communication and automated message workflows',
                         'icon'        => 'bi-whatsapp',
                         'link'        => '#contact',
-                        'image'       => 'https://cdn.worldvectorlogo.com/logos/whatsapp-symbol.svg',
+                        'image'       => '/assets/images/integrations/whatsapp.svg',
                         'alt_text'    => 'WhatsApp Business Automation',
                         'sort_order'  => 3
                     ],
@@ -809,7 +809,12 @@ class HomepageController {
                     $cleanVal = trim((string)$val);
                     $this->setHP($key, $cleanVal);
                     try {
-                        $this->db->query("INSERT OR REPLACE INTO settings (setting_key, setting_value) VALUES (?, ?)", [$key, $cleanVal]);
+                        $exists = $this->db->fetch("SELECT 1 FROM settings WHERE setting_key = ?", [$key]);
+                        if ($exists) {
+                            $this->db->query("UPDATE settings SET setting_value = ? WHERE setting_key = ?", [$cleanVal, $key]);
+                        } else {
+                            $this->db->query("INSERT INTO settings (setting_key, setting_value) VALUES (?, ?)", [$key, $cleanVal]);
+                        }
                     } catch (\Throwable $t) {}
                 }
 

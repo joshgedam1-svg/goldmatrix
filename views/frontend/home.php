@@ -921,7 +921,7 @@ $renderCountriesList = !empty($sliding_countries) ? $sliding_countries : $defaul
           
           <div class="integ-logo-wrap">
             <?php if (!empty($tool['image'])): ?>
-              <img src="<?= e($tool['image']) ?>" alt="<?= e(!empty($tool['alt_text']) ? $tool['alt_text'] : $tool['title']) ?>" class="integ-logo-img" loading="lazy">
+              <img src="<?= e($tool['image']) ?>" alt="<?= e(!empty($tool['alt_text']) ? $tool['alt_text'] : $tool['title']) ?>" class="integ-logo-img" loading="lazy" onerror="this.onerror=null;this.parentElement.innerHTML='<i class=\'bi <?= e($tool['icon'] ?: 'bi-puzzle-fill') ?> fs-2 text-warning\'></i>';">
             <?php else: ?>
               <i class="bi <?= e($tool['icon'] ?: 'bi-puzzle-fill') ?> fs-2 text-warning"></i>
             <?php endif; ?>

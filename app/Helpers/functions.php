@@ -265,7 +265,7 @@ if (!function_exists('secure_upload_image')) {
             'gif'  => ['image/gif'],
             'avif' => ['image/avif', 'image/heif'],
             'ico'  => ['image/x-icon', 'image/vnd.microsoft.icon'],
-            'svg'  => ['image/svg+xml', 'text/xml', 'text/plain'],
+            'svg'  => ['image/svg+xml', 'image/svg', 'text/xml', 'text/plain', 'application/xml'],
         ];
 
         if (!isset($allowedMimes[$ext]) || !in_array($mime, $allowedMimes[$ext], true)) {
@@ -274,8 +274,11 @@ if (!function_exists('secure_upload_image')) {
 
         // SVG XSS Protection: Inspect contents for script tags, event handlers, or foreign objects
         if ($ext === 'svg') {
-            $svgContent = file_get_contents($tmpPath);
-            if (preg_match('/<script|onload=|onerror=|onclick=|javascript:|<foreignObject/i', $svgContent)) {
+            $svgContent = (string)file_get_contents($tmpPath);
+            if (stripos($svgContent, '<svg') === false) {
+                return null;
+            }
+            if (preg_match('/<script|onload\s*=|onerror\s*=|onclick\s*=|javascript:|<foreignObject/i', $svgContent)) {
                 return null; // Malicious SVG blocked
             }
         }
