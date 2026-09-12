@@ -36,21 +36,29 @@ class FrontendController {
 
     private function getSolutionsItems(): array {
         $dbItems = $this->hpItems('solutions_cards');
-        $hasCatalogue = false;
+        $needsReset = false;
 
-        foreach ($dbItems as $it) {
-            $t = $it['title'] ?? '';
-            if (stripos($t, 'Catalogue') !== false || stripos($t, 'Catalog') !== false) {
-                $hasCatalogue = true;
+        if (empty($dbItems) || count($dbItems) < 4) {
+            $needsReset = true;
+        } else {
+            $firstTitle = $dbItems[0]['title'] ?? '';
+            if (stripos($firstTitle, 'Catalogue') === false && stripos($firstTitle, 'Catalog') === false) {
+                $needsReset = true;
+            }
+            foreach ($dbItems as $it) {
+                $t = $it['title'] ?? '';
+                if (stripos($t, 'Jewellery Retail & Showroom') !== false || stripos($t, 'Manufacturing & Jobwork') !== false) {
+                    $needsReset = true;
+                    break;
+                }
             }
         }
 
-        if (count($dbItems) < 4 || !$hasCatalogue) {
+        if ($needsReset) {
             try {
-                $currentBadge = $this->hp('solutions_badge', '');
-                if ($currentBadge === 'BUSINESS SOLUTIONS' || empty($currentBadge)) {
-                    $this->setHP('solutions_badge', 'GLOBAL JEWELLERY PLATFORM');
-                }
+                $this->setHP('solutions_badge', 'GLOBAL JEWELLERY PLATFORM');
+                $this->setHP('solutions_title', 'Built for Every Jewellery Business Model');
+                $this->setHP('solutions_desc', 'Engineered for high-growth jewellery retail, wholesale, and export brands across UAE, Dubai, India, and worldwide markets.');
 
                 $this->db->query("DELETE FROM homepage_items WHERE section = 'solutions_cards'");
 
