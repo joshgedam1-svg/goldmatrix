@@ -205,6 +205,20 @@ $slides = !empty($hero_slides) ? $hero_slides : [
 ════════════════════════════════ -->
 <?php if (($solutions_enabled ?? '1') == '1' && !empty($solutions_items)): 
   $firstCard = $solutions_items[0] ?? null;
+  if ($firstCard && (stripos($firstCard['title'] ?? '', 'Jewellery Retail & Showroom') !== false || stripos($firstCard['title'] ?? '', 'Retail Software') !== false)) {
+    $firstCard['badge'] = 'DIGITAL CATALOGUE & WHATSAPP';
+    $firstCard['title'] = 'Interactive Jewellery Catalogue & 1-Click WhatsApp Sharing';
+    $firstCard['description'] = "Create stunning digital catalogues with real-time metal rates and weight calculations. Share product photos, item codes, and prices directly to your customer's WhatsApp with one click.";
+    $firstCard['features'] = [
+      'Category-Wise Showcase (Gold, Diamond, Platinum, Silver)',
+      'Real-Time Metal Rate & Net Weight Calculation',
+      '1-Click Direct WhatsApp Share with Photo & Price',
+      'Instant Quotation & Customer Order Generation'
+    ];
+    $firstCard['image'] = '/assets/images/digital-jewellery-catalogue.png';
+    $firstCard['btn1_text'] = 'Explore Digital Catalogue';
+    $firstCard['btn1_link'] = '/features';
+  }
   $subCards  = array_slice($solutions_items, 1);
   $firstCardFeatures = !empty($firstCard['features']) ? (is_array($firstCard['features']) ? $firstCard['features'] : json_decode($firstCard['features'], true)) : [];
 ?>
