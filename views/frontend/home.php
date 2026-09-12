@@ -618,15 +618,21 @@ $slides = !empty($hero_slides) ? $hero_slides : [
             </div>
           </div>
 
-          <!-- Screenshot Column -->
+          <!-- Screenshot / Visual Column -->
           <div class="col-lg-6 col-12">
             <div class="spotlight-img-wrap">
               <?php if (!empty($card['image'])): ?>
-                <img src="<?= e($card['image']) ?>" alt="<?= e(!empty($card['alt_text']) ? $card['alt_text'] : $card['title']) ?>" class="spotlight-img" loading="lazy">
+                <img src="<?= e($card['image']) ?>" alt="<?= e(!empty($card['alt_text']) ? $card['alt_text'] : $card['title']) ?>" class="spotlight-img" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="spotlight-img-placeholder" style="display:none; width: 100%;">
+                  <div class="spotlight-card-box">
+                    <span><?= e($card['title']) ?></span>
+                  </div>
+                </div>
               <?php else: ?>
-                <div class="spotlight-img-placeholder">
-                  <i class="bi bi-display fs-1 text-warning mb-2"></i>
-                  <div class="fw-bold text-white fs-15"><?= e($card['title']) ?></div>
+                <div class="spotlight-img-placeholder" style="width: 100%;">
+                  <div class="spotlight-card-box">
+                    <span><?= e($card['title']) ?></span>
+                  </div>
                 </div>
               <?php endif; ?>
             </div>
@@ -637,6 +643,32 @@ $slides = !empty($hero_slides) ? $hero_slides : [
     </div>
 
   </div>
+
+  <style>
+  .spotlight-card-box {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 52px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 15.5px;
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+  .spotlight-img-wrap:hover .spotlight-card-box {
+    border-color: rgba(245, 158, 11, 0.4);
+    background: rgba(255, 255, 255, 0.05);
+  }
+  </style>
 </section>
 <?php endif; ?>
 
