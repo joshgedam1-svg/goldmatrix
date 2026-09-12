@@ -12,7 +12,7 @@ $sec = $expandedSection ?? 'hero';
       <i class="bi bi-file-earmark-richtext text-warning me-2"></i>About Us Page CMS Editor
     </h4>
     <p class="text-muted fs-13 mb-0">
-      Manage all 13 sections of the live About Us page (<a href="<?= site_url('about') ?>" target="_blank" class="text-primary text-decoration-none fw-semibold"><i class="bi bi-box-arrow-up-right me-1"></i>/about</a>) including titles, supporting texts, and images.
+      Manage all 13 sections of the live About Us page (<a href="<?= site_url('about') ?>" target="_blank" class="text-primary text-decoration-none fw-semibold"><i class="bi bi-box-arrow-up-right me-1"></i>/about</a>) including titles, descriptions, and images.
     </p>
   </div>
   <div class="d-flex align-items-center gap-2">
@@ -85,7 +85,7 @@ $sec = $expandedSection ?? 'hero';
               </div>
 
               <div class="col-12">
-                <label class="form-label fw-bold fs-13 text-dark">Hero Supporting Text (1–2 Lines)</label>
+                <label class="form-label fw-bold fs-13 text-dark">Hero Supporting Description</label>
                 <textarea name="about_hero_lead" class="form-control fs-14" rows="3"><?= e($settings['about_hero_lead'] ?? 'GoldMatrix is a jewellery business software company helping jewellery businesses simplify operations, improve control and grow with confidence.') ?></textarea>
               </div>
 
@@ -130,7 +130,7 @@ $sec = $expandedSection ?? 'hero';
               </div>
 
               <div class="col-12">
-                <label class="form-label fw-bold fs-13 text-dark">Supporting Text (1–2 Lines)</label>
+                <label class="form-label fw-bold fs-13 text-dark">Supporting Description</label>
                 <textarea name="about_whoweare_text" class="form-control fs-14" rows="3"><?= e($settings['about_whoweare_text'] ?? 'We build practical business solutions for jewellery retailers, wholesalers, manufacturers and growing jewellery enterprises.') ?></textarea>
               </div>
 
@@ -162,7 +162,7 @@ $sec = $expandedSection ?? 'hero';
               </div>
 
               <div class="col-12">
-                <label class="form-label fw-bold fs-13 text-dark">Supporting Text (1–2 Lines)</label>
+                <label class="form-label fw-bold fs-13 text-dark">Supporting Description</label>
                 <textarea name="about_purpose_text" class="form-control fs-14" rows="3"><?= e($settings['about_purpose_text'] ?? 'To make complex jewellery business operations simpler, more accurate and easier to manage.') ?></textarea>
               </div>
 
@@ -194,7 +194,7 @@ $sec = $expandedSection ?? 'hero';
               </div>
 
               <div class="col-12">
-                <label class="form-label fw-bold fs-13 text-dark">Supporting Text (1–2 Lines)</label>
+                <label class="form-label fw-bold fs-13 text-dark">Supporting Description</label>
                 <textarea name="about_journey_text" class="form-control fs-14" rows="3"><?= e($settings['about_journey_text'] ?? 'Our journey is shaped by continuous experience, customer relationships and a deep understanding of jewellery business operations.') ?></textarea>
               </div>
 
@@ -216,7 +216,7 @@ $sec = $expandedSection ?? 'hero';
               </div>
 
               <div class="col-12">
-                <label class="form-label fw-bold fs-13 text-dark">Supporting Text (1–2 Lines)</label>
+                <label class="form-label fw-bold fs-13 text-dark">Supporting Description</label>
                 <textarea name="about_whatwedo_text" class="form-control fs-14" rows="3"><?= e($settings['about_whatwedo_text'] ?? 'We provide connected business solutions covering the key operations of modern jewellery businesses.') ?></textarea>
               </div>
 
@@ -248,7 +248,7 @@ $sec = $expandedSection ?? 'hero';
               </div>
 
               <div class="col-12">
-                <label class="form-label fw-bold fs-13 text-dark">Supporting Text</label>
+                <label class="form-label fw-bold fs-13 text-dark">Supporting Description</label>
                 <textarea name="about_solutions_text" class="form-control fs-14" rows="2"><?= e($settings['about_solutions_text'] ?? 'Explore our dedicated solution modules built exclusively for jewellery commerce.') ?></textarea>
               </div>
 
@@ -270,7 +270,7 @@ $sec = $expandedSection ?? 'hero';
               </div>
 
               <div class="col-12">
-                <label class="form-label fw-bold fs-13 text-dark">Supporting Text (1–2 Lines)</label>
+                <label class="form-label fw-bold fs-13 text-dark">Supporting Description</label>
                 <textarea name="about_howwework_text" class="form-control fs-14" rows="2"><?= e($settings['about_howwework_text'] ?? 'A structured, customer-first approach to deploying software that fits your operations.') ?></textarea>
               </div>
 
@@ -307,7 +307,7 @@ $sec = $expandedSection ?? 'hero';
               </div>
 
               <div class="col-12">
-                <label class="form-label fw-bold fs-13 text-dark">Supporting Text (1–2 Lines)</label>
+                <label class="form-label fw-bold fs-13 text-dark">Supporting Description</label>
                 <textarea name="about_builtfor_text" class="form-control fs-14" rows="3"><?= e($settings['about_builtfor_text'] ?? 'Our solutions are designed around the unique requirements of jewellery retail, wholesale, manufacturing and business operations.') ?></textarea>
               </div>
 
@@ -329,7 +329,7 @@ $sec = $expandedSection ?? 'hero';
               </div>
 
               <div class="col-12">
-                <label class="form-label fw-bold fs-13 text-dark">Supporting Text</label>
+                <label class="form-label fw-bold fs-13 text-dark">Supporting Description</label>
                 <textarea name="about_why_text" class="form-control fs-14" rows="2"><?= e($settings['about_why_text'] ?? 'Engineered specifically for the demands and operational integrity of the jewellery industry.') ?></textarea>
               </div>
 
@@ -350,7 +350,7 @@ $sec = $expandedSection ?? 'hero';
               </div>
 
               <div class="col-12">
-                <label class="form-label fw-bold fs-13 text-dark">Supporting Text (1–2 Lines)</label>
+                <label class="form-label fw-bold fs-13 text-dark">Supporting Description</label>
                 <textarea name="about_whoweserve_text" class="form-control fs-14" rows="3"><?= e($settings['about_whoweserve_text'] ?? 'From individual jewellery businesses to growing enterprises, GoldMatrix supports different stages of the jewellery business.') ?></textarea>
               </div>
 
@@ -372,7 +372,7 @@ $sec = $expandedSection ?? 'hero';
               </div>
 
               <div class="col-12">
-                <label class="form-label fw-bold fs-13 text-dark">Supporting Text (1–2 Lines)</label>
+                <label class="form-label fw-bold fs-13 text-dark">Supporting Description</label>
                 <textarea name="about_global_text" class="form-control fs-14" rows="3"><?= e($settings['about_global_text'] ?? 'GoldMatrix is built with an international outlook to support jewellery businesses across different markets and business environments.') ?></textarea>
               </div>
 
@@ -393,7 +393,7 @@ $sec = $expandedSection ?? 'hero';
               </div>
 
               <div class="col-12">
-                <label class="form-label fw-bold fs-13 text-dark">Supporting Text (1–2 Lines)</label>
+                <label class="form-label fw-bold fs-13 text-dark">Supporting Description</label>
                 <textarea name="about_commitment_text" class="form-control fs-14" rows="3"><?= e($settings['about_commitment_text'] ?? 'We focus on reliable solutions, continuous improvement and long-term relationships with the businesses we serve.') ?></textarea>
               </div>
 
@@ -425,7 +425,7 @@ $sec = $expandedSection ?? 'hero';
               </div>
 
               <div class="col-12">
-                <label class="form-label fw-bold fs-13 text-dark">Supporting Subtitle Text</label>
+                <label class="form-label fw-bold fs-13 text-dark">Supporting Description / Subtitle</label>
                 <textarea name="about_cta_desc" class="form-control fs-14" rows="3"><?= e($settings['about_cta_desc'] ?? 'Discover how GoldMatrix can help simplify your jewellery business and bring greater control to your daily operations.') ?></textarea>
               </div>
 
