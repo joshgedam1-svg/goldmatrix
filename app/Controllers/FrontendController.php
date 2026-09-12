@@ -56,54 +56,54 @@ class FrontendController {
     private function getSolutionsItems(): array {
         $defaultCards = [
             [
-                'badge'        => 'DIGITAL CATALOGUE & WHATSAPP',
-                'title'        => 'Interactive Jewellery Catalogue & 1-Click WhatsApp Sharing',
-                'description'  => 'Create stunning digital catalogues with real-time metal rates and weight calculations. Share product photos, item codes, and prices directly to your customer\'s WhatsApp with one click.',
+                'badge'        => '',
+                'title'        => 'Digital Jewellery Catalogue',
+                'description'  => 'Create instant digital catalogues with live gold rates and net weight. Share items and quotations directly to WhatsApp in 1 click.',
                 'features'     => json_encode([
-                    'Category-Wise Showcase (Gold, Diamond, Platinum, Silver)',
-                    'Real-Time Metal Rate & Net Weight Calculation',
-                    '1-Click Direct WhatsApp Share with Photo & Price',
-                    'Instant Quotation & Customer Order Generation'
+                    'Category-Wise Jewellery Showcase',
+                    'Real-Time Gold Rate & Weight Sync',
+                    '1-Click WhatsApp Share with Photos',
+                    'Instant Customer Quotations'
                 ], JSON_UNESCAPED_SLASHES),
                 'icon'         => 'bi-images',
                 'extra'        => 'bi-whatsapp',
                 'accent_color' => '#D97706',
                 'image'        => '/assets/images/digital-jewellery-catalogue.png',
-                'alt_text'     => 'GoldMatrix Premium Jewellery Digital Catalogue with WhatsApp Sharing',
+                'alt_text'     => 'GoldMatrix Digital Jewellery Catalogue with WhatsApp Sharing',
                 'btn1_text'    => 'Explore Digital Catalogue',
                 'btn1_link'    => '/features',
                 'sort_order'   => 1,
                 'is_active'    => 1
             ],
             [
-                'badge'        => 'MULTI-CURRENCY & BULLION',
-                'title'        => 'Live Bullion Rate Auto-Sync & Multi-Currency Billing',
-                'description'  => 'Auto-sync live market rates from Dubai Gold & Commodities Exchange (DGCX) and bullion boards. Bill seamlessly in AED, USD, SAR, and INR with zero counter errors.',
+                'badge'        => 'MULTI-CURRENCY',
+                'title'        => 'Live Bullion Rates',
+                'description'  => 'Auto-sync live Dubai and bullion market gold rates with multi-currency billing in AED, USD, SAR, and INR.',
                 'features'     => json_encode([
-                    'Auto-Sync Live Gold & Silver Market Feeds',
-                    'Multi-Currency Invoicing (AED, USD, SAR, INR)',
-                    'Automated Karat, Purity & Touch Calculation',
-                    'Locked Counter Rates with Zero Manipulation'
+                    'Auto-Sync Live Gold & Silver Feeds',
+                    'Multi-Currency Billing (AED, USD, SAR)',
+                    'Automated Purity & Touch Calculation',
+                    'Locked Counter Rates'
                 ], JSON_UNESCAPED_SLASHES),
                 'icon'         => 'bi-currency-exchange',
                 'extra'        => 'bi-globe2',
                 'accent_color' => '#2563EB',
                 'image'        => '/assets/images/solution-wholesale-bullion.jpg',
-                'alt_text'     => 'Live Bullion Rate Auto-Sync & Multi-Currency Billing',
+                'alt_text'     => 'Live Bullion Rates & Multi-Currency Billing',
                 'btn1_text'    => 'Explore Multi-Currency',
                 'btn1_link'    => '/solutions/jewellery-wholesale',
                 'sort_order'   => 2,
                 'is_active'    => 1
             ],
             [
-                'badge'        => 'HIGH-SPEED AUDIT',
-                'title'        => 'RFID Instant Vault & Tray Inventory Tally',
-                'description'  => 'Audit 10,000+ jewellery items across showroom trays and vaults in under 5 minutes. Detect missing items instantly with automated discrepancy alerts.',
+                'badge'        => 'INSTANT AUDIT',
+                'title'        => 'RFID Instant Audit',
+                'description'  => 'Audit 10,000+ jewellery items across trays and vaults in under 5 minutes with zero stock leakage.',
                 'features'     => json_encode([
                     'Scan Entire Trays in 5 Seconds Flat',
-                    '100% Real-Time Stock & Vault Tally',
-                    'Zero Stock Leakage with Anti-Theft Alerts',
-                    'Tamper-Evident RFID & Barcode Tracking'
+                    '100% Real-Time Stock Count',
+                    'Automated Missing Item Alerts',
+                    'Tamper-Evident RFID Tracking'
                 ], JSON_UNESCAPED_SLASHES),
                 'icon'         => 'bi-upc-scan',
                 'extra'        => 'bi-shield-check',
@@ -117,19 +117,19 @@ class FrontendController {
             ],
             [
                 'badge'        => '100% COMPLIANCE',
-                'title'        => 'UAE FTA VAT & International Hallmark Compliance',
-                'description'  => 'Pre-configured for UAE Federal Tax Authority (FTA) 5% VAT, Indian Tax e-Invoicing, and 1-click BIS Hallmark HUID verification for audit-proof operations.',
+                'title'        => 'VAT & Compliance',
+                'description'  => 'Pre-configured for UAE FTA 5% VAT, Indian Tax e-Invoicing, and 1-click BIS Hallmark HUID verification.',
                 'features'     => json_encode([
-                    '100% UAE FTA 5% VAT & Tax Invoicing',
-                    '1-Click BIS Hallmark & HUID Verification',
-                    'Customs Bullion Import & Export Documentation',
-                    'Automated P&L, Balance Sheet & Day Book'
+                    '100% UAE FTA 5% VAT Invoicing',
+                    '1-Click BIS Hallmark & HUID',
+                    'Bullion Import & Export Docs',
+                    'Automated P&L & Balance Sheet'
                 ], JSON_UNESCAPED_SLASHES),
                 'icon'         => 'bi-receipt-cutoff',
                 'extra'        => 'bi-award',
                 'accent_color' => '#7C3AED',
                 'image'        => '/assets/images/solution-retail-rings.jpg',
-                'alt_text'     => 'UAE FTA VAT & International Hallmark Compliance',
+                'alt_text'     => 'UAE FTA VAT & Hallmark Compliance',
                 'btn1_text'    => 'Explore Compliance',
                 'btn1_link'    => '/solutions/jewellery-retail',
                 'sort_order'   => 4,
@@ -144,12 +144,12 @@ class FrontendController {
             $needsReset = true;
         } else {
             $firstTitle = $dbItems[0]['title'] ?? '';
-            if (stripos($firstTitle, 'Catalogue') === false && stripos($firstTitle, 'Catalog') === false) {
+            if ($firstTitle !== 'Digital Jewellery Catalogue') {
                 $needsReset = true;
             }
             foreach ($dbItems as $it) {
                 $t = $it['title'] ?? '';
-                if (stripos($t, 'Jewellery Retail & Showroom') !== false || stripos($t, 'Manufacturing & Jobwork') !== false) {
+                if (stripos($t, 'Jewellery Retail & Showroom') !== false || stripos($t, 'Manufacturing & Jobwork') !== false || stripos($t, 'Interactive') !== false) {
                     $needsReset = true;
                     break;
                 }

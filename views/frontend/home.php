@@ -205,15 +205,19 @@ $slides = !empty($hero_slides) ? $hero_slides : [
 ════════════════════════════════ -->
 <?php if (($solutions_enabled ?? '1') == '1' && !empty($solutions_items)): 
   $firstCard = $solutions_items[0] ?? null;
-  if ($firstCard && (stripos($firstCard['title'] ?? '', 'Jewellery Retail & Showroom') !== false || stripos($firstCard['title'] ?? '', 'Retail Software') !== false)) {
-    $firstCard['badge'] = 'DIGITAL CATALOGUE & WHATSAPP';
-    $firstCard['title'] = 'Interactive Jewellery Catalogue & 1-Click WhatsApp Sharing';
-    $firstCard['description'] = "Create stunning digital catalogues with real-time metal rates and weight calculations. Share product photos, item codes, and prices directly to your customer's WhatsApp with one click.";
+  if ($firstCard && (
+      stripos($firstCard['title'] ?? '', 'Jewellery Retail & Showroom') !== false || 
+      stripos($firstCard['title'] ?? '', 'Retail Software') !== false ||
+      stripos($firstCard['title'] ?? '', 'Interactive') !== false
+  )) {
+    $firstCard['badge'] = '';
+    $firstCard['title'] = 'Digital Jewellery Catalogue';
+    $firstCard['description'] = "Create instant digital catalogues with live gold rates and net weight. Share items and quotations directly to WhatsApp in 1 click.";
     $firstCard['features'] = [
-      'Category-Wise Showcase (Gold, Diamond, Platinum, Silver)',
-      'Real-Time Metal Rate & Net Weight Calculation',
-      '1-Click Direct WhatsApp Share with Photo & Price',
-      'Instant Quotation & Customer Order Generation'
+      'Category-Wise Jewellery Showcase',
+      'Real-Time Gold Rate & Weight Sync',
+      '1-Click WhatsApp Share with Photos',
+      'Instant Customer Quotations'
     ];
     $firstCard['image'] = '/assets/images/digital-jewellery-catalogue.png';
     $firstCard['btn1_text'] = 'Explore Digital Catalogue';
@@ -226,21 +230,21 @@ $slides = !empty($hero_slides) ? $hero_slides : [
   <div class="container-fluid px-3 px-xl-5" style="max-width: 1400px;">
 
     <!-- Section Header (SEO-Friendly Clean Title & Badges) -->
-    <div class="text-center mb-5">
+    <div class="text-center mb-4 mb-md-5">
       <?php if (!empty($solutions_badge)): ?>
-        <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(217,119,6,0.1); color:#D97706; font-size:11px; font-weight:800; letter-spacing:1.8px; text-transform:uppercase; padding:6px 16px; border-radius:20px; border:1px solid rgba(217,119,6,0.25); margin-bottom:16px;">
+        <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(217,119,6,0.1); color:#D97706; font-size:11px; font-weight:800; letter-spacing:1.8px; text-transform:uppercase; padding:6px 16px; border-radius:20px; border:1px solid rgba(217,119,6,0.25); margin-bottom:14px;">
           <?= e($solutions_badge) ?>
         </div>
       <?php endif; ?>
-      <h2 style="font-family:var(--gm-font-display); font-size:clamp(1.8rem,3.2vw,2.6rem); font-weight:850; color:#0F172A; letter-spacing:-0.02em; margin-bottom:14px;">
+      <h2 style="font-family:var(--gm-font-display); font-size:clamp(1.75rem,3.2vw,2.5rem); font-weight:850; color:#0F172A; letter-spacing:-0.02em; margin-bottom:12px;">
         <?= e($solutions_title ?? 'Built for Every Jewellery Business Model') ?>
       </h2>
-      <p style="font-size:16px; color:#64748B; max-width:680px; margin:0 auto; line-height:1.65;">
+      <p style="font-size:15px; color:#64748B; max-width:680px; margin:0 auto; line-height:1.6;">
         <?= e($solutions_desc ?? 'Engineered for high-growth jewellery retail, wholesale, and export brands across UAE, Dubai, India, and worldwide markets.') ?>
       </p>
     </div>
 
-    <!-- 1. TOP FEATURED SHOWCASE CARD (Product Jewellery Catalogue & 1-Click WhatsApp) -->
+    <!-- 1. TOP FEATURED SHOWCASE CARD (Digital Jewellery Catalogue) -->
     <?php if ($firstCard): ?>
       <div class="gm-sol-featured-hero mb-4">
         <div class="row align-items-center g-4 g-lg-5">
@@ -248,13 +252,9 @@ $slides = !empty($hero_slides) ? $hero_slides : [
           <!-- Left Content Column -->
           <div class="col-lg-6 col-12">
             <div class="gm-sol-featured-content">
-              <div class="d-flex align-items-center flex-wrap gap-2 mb-3">
-                <span class="gm-sol-badge-featured"><?= e($firstCard['badge'] ?? 'DIGITAL CATALOGUE & WHATSAPP') ?></span>
-                <span class="gm-sol-pill-whatsapp"><i class="bi bi-whatsapp me-1"></i> 1-Click WhatsApp Share</span>
-              </div>
               
-              <h3 class="gm-sol-featured-title"><?= e($firstCard['title']) ?></h3>
-              <p class="gm-sol-featured-desc"><?= e($firstCard['description']) ?></p>
+              <h3 class="gm-sol-featured-title"><?= e($firstCard['title'] ?: 'Digital Jewellery Catalogue') ?></h3>
+              <p class="gm-sol-featured-desc"><?= e($firstCard['description'] ?: 'Create instant digital catalogues with live gold rates and net weight. Share items and quotations directly to WhatsApp in 1 click.') ?></p>
               
               <?php if (!empty($firstCardFeatures) && is_array($firstCardFeatures)): ?>
                 <ul class="gm-sol-featured-list">
@@ -269,13 +269,13 @@ $slides = !empty($hero_slides) ? $hero_slides : [
                 </ul>
               <?php endif; ?>
 
-              <div class="d-flex align-items-center flex-wrap gap-3 pt-2">
+              <div class="d-flex align-items-center flex-wrap gap-3 pt-1 gm-sol-action-row">
                 <a href="<?= e($firstCard['btn1_link'] ?: '/features') ?>" class="btn-gold-solid">
                   <span><?= e($firstCard['btn1_text'] ?: 'Explore Digital Catalogue') ?></span>
                   <i class="bi bi-arrow-right"></i>
                 </a>
                 <span class="text-secondary fs-12 d-inline-flex align-items-center gap-1">
-                  <i class="bi bi-lightning-charge-fill text-warning"></i> Real-time Rates &amp; WhatsApp Ready
+                  <i class="bi bi-whatsapp text-success"></i> Direct WhatsApp Ready
                 </span>
               </div>
             </div>
@@ -288,7 +288,7 @@ $slides = !empty($hero_slides) ? $hero_slides : [
                 <img src="<?= e($firstCard['image'] ?: '/assets/images/digital-jewellery-catalogue.png') ?>" alt="<?= e($firstCard['alt_text'] ?: $firstCard['title']) ?>" class="gm-sol-featured-img" loading="lazy">
                 <div class="gm-sol-floating-pill">
                   <i class="bi bi-whatsapp text-success"></i>
-                  <span>Direct WhatsApp Catalogue Share</span>
+                  <span>WhatsApp Catalogue Share</span>
                 </div>
               </div>
             </div>
@@ -367,7 +367,7 @@ $slides = !empty($hero_slides) ? $hero_slides : [
 <style>
 .section-solutions {
   background: #F8FAFC;
-  padding: 90px 0;
+  padding: 85px 0;
   position: relative;
 }
 
@@ -376,7 +376,7 @@ $slides = !empty($hero_slides) ? $hero_slides : [
   background: #0B1528;
   border: 1px solid #1E293B;
   border-radius: 24px;
-  padding: 42px 40px;
+  padding: 40px 38px;
   position: relative;
   overflow: hidden;
   box-shadow: 0 16px 40px rgba(0, 21, 64, 0.08);
@@ -396,50 +396,25 @@ $slides = !empty($hero_slides) ? $hero_slides : [
   position: relative;
   z-index: 1;
 }
-.gm-sol-badge-featured {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(245, 158, 11, 0.14);
-  color: #FBBF24;
-  border: 1px solid rgba(245, 158, 11, 0.3);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 5px 14px;
-  border-radius: 20px;
-}
-.gm-sol-pill-whatsapp {
-  display: inline-flex;
-  align-items: center;
-  background: rgba(37, 211, 102, 0.12);
-  color: #4ADE80;
-  border: 1px solid rgba(37, 211, 102, 0.25);
-  font-size: 11px;
-  font-weight: 700;
-  padding: 5px 12px;
-  border-radius: 20px;
-}
 .gm-sol-featured-title {
   font-family: var(--gm-font-display, inherit);
-  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  font-size: clamp(1.55rem, 2.5vw, 2.15rem);
   font-weight: 850;
   color: #FFFFFF;
   line-height: 1.25;
   letter-spacing: -0.02em;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 .gm-sol-featured-desc {
   font-size: 15px;
   color: #94A3B8;
-  line-height: 1.65;
-  margin-bottom: 22px;
+  line-height: 1.6;
+  margin-bottom: 20px;
 }
 .gm-sol-featured-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 26px;
+  margin: 0 0 24px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px 18px;
@@ -471,6 +446,7 @@ $slides = !empty($hero_slides) ? $hero_slides : [
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
   background: #020B1F;
   transition: transform 0.3s ease, border-color 0.3s ease;
+  width: 100%;
 }
 .gm-sol-featured-mockup-frame:hover {
   transform: translateY(-4px);
@@ -511,7 +487,7 @@ $slides = !empty($hero_slides) ? $hero_slides : [
   background: #FFFFFF;
   border: 1px solid #E2E8F0;
   border-radius: 20px;
-  padding: 30px 26px 24px;
+  padding: 28px 24px 22px;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -530,7 +506,7 @@ $slides = !empty($hero_slides) ? $hero_slides : [
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 .gm-sol-compact-icon {
   width: 44px;
@@ -550,7 +526,7 @@ $slides = !empty($hero_slides) ? $hero_slides : [
 }
 .gm-sol-compact-title {
   font-family: var(--gm-font-display, inherit);
-  font-size: 1.22rem;
+  font-size: 1.2rem;
   font-weight: 800;
   line-height: 1.3;
   color: #0F172A;
@@ -560,12 +536,12 @@ $slides = !empty($hero_slides) ? $hero_slides : [
   font-size: 13.5px;
   color: #64748B;
   line-height: 1.55;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 .gm-sol-compact-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 20px;
+  margin: 0 0 18px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -613,16 +589,74 @@ $slides = !empty($hero_slides) ? $hero_slides : [
 }
 
 @media (max-width: 991px) {
+  .section-solutions {
+    padding: 60px 0;
+  }
   .gm-sol-featured-hero {
     padding: 30px 22px;
+    border-radius: 20px;
   }
   .gm-sol-featured-list {
     grid-template-columns: 1fr;
     gap: 10px;
+    margin-bottom: 22px;
   }
   .gm-sol-subgrid {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-solutions {
+    padding: 45px 0;
+  }
+  .gm-sol-featured-hero {
+    padding: 24px 16px;
+    border-radius: 16px;
+  }
+  .gm-sol-featured-title {
+    font-size: 1.45rem;
+    margin-bottom: 10px;
+  }
+  .gm-sol-featured-desc {
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin-bottom: 18px;
+  }
+  .gm-sol-featured-list li {
+    font-size: 12.5px;
+    gap: 8px;
+  }
+  .gm-sol-action-row {
+    flex-direction: column;
+    align-items: stretch !important;
+    gap: 10px !important;
+  }
+  .gm-sol-action-row .btn-gold-solid {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+  .gm-sol-action-row span {
+    justify-content: center;
+  }
+  .gm-sol-floating-pill {
+    bottom: 10px;
+    right: 10px;
+    padding: 4px 10px;
+    font-size: 10.5px;
+    gap: 5px;
+  }
+  .gm-sol-compact-card {
+    padding: 22px 18px 20px;
+    border-radius: 16px;
+  }
+  .gm-sol-compact-title {
+    font-size: 1.15rem;
+  }
+  .gm-sol-compact-desc {
+    font-size: 13px;
   }
 }
 </style>
