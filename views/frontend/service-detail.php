@@ -613,7 +613,7 @@ foreach ($highlights as $h) {
       </div>
       <div class="col-lg-6">
         <div class="srv-spotlight-img-box">
-          <img src="https://goldmatrixsoftware.com/wp-content/uploads/2026/02/imgi_53_erp-mockup01.png" alt="Calculation Engine" class="srv-spotlight-img" loading="lazy">
+          <img src="/assets/images/why-goldmatrix-mockup.png" alt="Calculation Engine" class="srv-spotlight-img" loading="lazy">
         </div>
       </div>
     </div>

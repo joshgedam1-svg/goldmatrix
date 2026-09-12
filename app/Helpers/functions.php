@@ -289,6 +289,13 @@ if (!function_exists('secure_upload_image')) {
         $targetPath = $upDir . $filename;
 
         if (move_uploaded_file($tmpPath, $targetPath)) {
+            // Also mirror to root uploads/ if directory exists
+            $rootUpDir = dirname(__DIR__, 2) . '/uploads/' . preg_replace('/[^a-zA-Z0-9_\-]/', '', $subfolder) . '/';
+            if (!is_dir($rootUpDir)) {
+                @mkdir($rootUpDir, 0755, true);
+            }
+            @copy($targetPath, $rootUpDir . $filename);
+
             return '/uploads/' . $subfolder . '/' . $filename;
         }
 

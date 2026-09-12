@@ -98,9 +98,10 @@ class UsersController {
         }
 
         $hash = password_hash($password, PASSWORD_DEFAULT);
+        $now = date('Y-m-d H:i:s');
         $this->db->query(
-            "INSERT INTO users (name, email, password, role_id, status, created_at, updated_at) VALUES (?, ?, ?, ?, ?, datetime('now'), datetime('now'))",
-            [$name, $email, $hash, $roleId, $status]
+            "INSERT INTO users (name, email, password, role_id, status, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            [$name, $email, $hash, $roleId, $status, $now, $now]
         );
 
         $newId = $this->db->lastInsertId();
@@ -172,14 +173,16 @@ class UsersController {
                 return;
             }
             $hash = password_hash($password, PASSWORD_DEFAULT);
+            $now = date('Y-m-d H:i:s');
             $this->db->query(
-                "UPDATE users SET name = ?, email = ?, password = ?, role_id = ?, status = ?, updated_at = datetime('now') WHERE id = ?",
-                [$name, $email, $hash, $roleId, $status, $id]
+                "UPDATE users SET name = ?, email = ?, password = ?, role_id = ?, status = ?, updated_at = ? WHERE id = ?",
+                [$name, $email, $hash, $roleId, $status, $now, $id]
             );
         } else {
+            $now = date('Y-m-d H:i:s');
             $this->db->query(
-                "UPDATE users SET name = ?, email = ?, role_id = ?, status = ?, updated_at = datetime('now') WHERE id = ?",
-                [$name, $email, $roleId, $status, $id]
+                "UPDATE users SET name = ?, email = ?, role_id = ?, status = ?, updated_at = ? WHERE id = ?",
+                [$name, $email, $roleId, $status, $now, $id]
             );
         }
 

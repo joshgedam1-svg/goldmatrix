@@ -67,6 +67,10 @@ class Database {
         return $this->driver;
     }
 
+    public function lastInsertId(?string $name = null): string {
+        return $this->pdo->lastInsertId($name);
+    }
+
     /**
      * Automatically initialize SQLite schema & initial seed user if MySQL is off
      */

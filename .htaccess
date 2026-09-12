@@ -11,6 +11,9 @@ Options -Indexes
     </IfModule>
 </FilesMatch>
 
+# ── Block direct access to internal application directories ──
+RewriteRule ^(app|config|database|storage|routes|views|scratch|includes)/ - [F,L,NC]
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
@@ -18,12 +21,13 @@ Options -Indexes
     RewriteCond %{REQUEST_URI} ^/public/ [NC]
     RewriteRule ^ - [L]
 
-    # If static file/asset exists inside public/, serve it directly
-    RewriteCond %{DOCUMENT_ROOT}/public/$1 -f [OR]
-    RewriteCond %{DOCUMENT_ROOT}/public/$1 -d
-    RewriteRule ^(.*)$ public/$1 [L]
+    # Explicit direct rewrites for assets and uploads to public/ (Guarantees image loading on Hostinger/LiteSpeed)
+    RewriteRule ^assets/(.*)$ public/assets/$1 [L]
+    RewriteRule ^uploads/(.*)$ public/uploads/$1 [L]
+    RewriteRule ^favicon\.ico$ public/favicon.ico [L]
+    RewriteRule ^robots\.txt$ public/robots.txt [L]
 
-    # Check relative path for subfolder deployments
+    # Rewrite all other requests to public/index.php
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ public/index.php [L,QSA]

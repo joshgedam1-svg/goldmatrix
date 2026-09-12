@@ -47,7 +47,10 @@ class RolesController {
                 // Grant all to role 1 (Super Admin)
                 $allPermIds = $this->db->fetchAll("SELECT id FROM permissions");
                 foreach ($allPermIds as $p) {
-                    $this->db->query("INSERT OR IGNORE INTO role_permissions (role_id, permission_id) VALUES (1, ?)", [$p['id']]);
+                    $has = $this->db->fetch("SELECT 1 FROM role_permissions WHERE role_id = 1 AND permission_id = ?", [$p['id']]);
+                    if (!$has) {
+                        $this->db->query("INSERT INTO role_permissions (role_id, permission_id) VALUES (1, ?)", [$p['id']]);
+                    }
                 }
             }
         } catch (\Throwable $e) {}
@@ -107,9 +110,10 @@ class RolesController {
             return;
         }
 
+        $now = date('Y-m-d H:i:s');
         $this->db->query(
-            "INSERT INTO roles (name, slug, description, created_at) VALUES (?, ?, ?, datetime('now'))",
-            [$name, $slug, $description]
+            "INSERT INTO roles (name, slug, description, created_at, updated_at) VALUES (?, ?, ?, ?, ?)",
+            [$name, $slug, $description, $now, $now]
         );
         $newId = (int)$this->db->lastInsertId();
 

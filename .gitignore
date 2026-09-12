@@ -21,6 +21,10 @@ scratch/
 *.tmp
 *.log
 
+# Root-level mirrored folders (canonical assets live in public/)
+/assets/
+/uploads/
+
 # OS & Editor files
 .DS_Store
 Thumbs.db

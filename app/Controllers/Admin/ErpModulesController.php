@@ -175,11 +175,13 @@ class ErpModulesController {
                 :name, :slug, :badge, :category, :icon, :h1, :h2, :headline, :subtitle, :intro, :description,
                 :bullets, :target_persona, :persona_desc, :sub_features, :visual_title, :visual_desc,
                 :visual_points, :visual_image, :faqs, :related, :meta_title, :meta_desc, :meta_keywords,
-                :canonical_url, :status, :display_order, datetime('now'), datetime('now')
+                :canonical_url, :status, :display_order, :now, :now
             )
         ");
 
+        $now = date('Y-m-d H:i:s');
         $stmt->execute([
+            ':now'            => $now,
             ':name'           => $data['name'],
             ':slug'           => $data['slug'],
             ':badge'          => $data['badge'],
@@ -312,11 +314,13 @@ class ErpModulesController {
                 canonical_url = :canonical_url,
                 status = :status,
                 display_order = :display_order,
-                updated_at = datetime('now')
+                updated_at = :now
             WHERE id = :id
         ");
 
+        $now = date('Y-m-d H:i:s');
         $stmt->execute([
+            ':now'            => $now,
             ':id'             => $id,
             ':name'           => $data['name'],
             ':slug'           => $data['slug'],
@@ -508,11 +512,13 @@ class ErpModulesController {
                         :name, :slug, :badge, :category, :icon, :h1, :h2, :headline, :subtitle, :intro, :description,
                         :bullets, :target_persona, :persona_desc, :sub_features, :visual_title, :visual_desc,
                         :visual_points, :visual_image, :faqs, :related, :meta_title, :meta_desc, :meta_keywords,
-                        :canonical_url, 'published', :display_order, datetime('now'), datetime('now')
+                        :canonical_url, 'published', :display_order, :now, :now
                     )
                 ");
 
+                $now = date('Y-m-d H:i:s');
                 $stmt->execute([
+                    ':now'            => $now,
                     ':name'           => $mod['title'] ?? ucfirst(str_replace('-', ' ', $slug)),
                     ':slug'           => $slug,
                     ':badge'          => $mod['badge'] ?? 'CORE MODULE',

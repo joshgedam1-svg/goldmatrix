@@ -184,7 +184,8 @@ class PagesController {
         }
 
         $pdo = $this->db->getPdo();
-        $stmt = $pdo->prepare("INSERT INTO pages (title, slug, subtitle, template, status, content, meta_title, meta_description, created_at, updated_at) VALUES (:title, :slug, :subtitle, :template, :status, :content, :meta_title, :meta_description, datetime('now'), datetime('now'))");
+        $now = date('Y-m-d H:i:s');
+        $stmt = $pdo->prepare("INSERT INTO pages (title, slug, subtitle, template, status, content, meta_title, meta_description, created_at, updated_at) VALUES (:title, :slug, :subtitle, :template, :status, :content, :meta_title, :meta_description, :now, :now)");
         $stmt->execute([
             'title' => $title,
             'slug' => $slug,
@@ -193,7 +194,8 @@ class PagesController {
             'status' => $status,
             'content' => $content,
             'meta_title' => $meta_title ?: $title . ' | GoldMatrix ERP',
-            'meta_description' => $meta_description
+            'meta_description' => $meta_description ?: substr(strip_tags($content), 0, 160),
+            'now' => $now
         ]);
 
         set_flash('success', "Page '{$title}' created successfully!");
@@ -312,7 +314,8 @@ class PagesController {
             $slug = slugify($slug);
         }
 
-        $stmt = $pdo->prepare("UPDATE pages SET title = :title, slug = :slug, subtitle = :subtitle, template = :template, content = :content, meta_title = :meta_title, meta_description = :meta_description, status = :status, updated_at = datetime('now') WHERE id = :id");
+        $now = date('Y-m-d H:i:s');
+        $stmt = $pdo->prepare("UPDATE pages SET title = :title, slug = :slug, subtitle = :subtitle, template = :template, content = :content, meta_title = :meta_title, meta_description = :meta_description, status = :status, updated_at = :now WHERE id = :id");
         $stmt->execute([
             'id' => $id,
             'title' => $title,
@@ -322,7 +325,8 @@ class PagesController {
             'content' => $content,
             'meta_title' => $meta_title,
             'meta_description' => $meta_description,
-            'status' => $status
+            'status' => $status,
+            'now' => $now
         ]);
 
         set_flash('success', "Page '{$title}' content and settings saved & synced successfully!");
@@ -396,7 +400,8 @@ class PagesController {
             set_flash('success', "Card '{$title}' updated successfully!");
         } else {
             // Insert new card
-            $stmt = $pdo->prepare("INSERT INTO homepage_items (section, title, subtitle, badge, icon, description, features, image, sort_order, is_active, created_at) VALUES (:sec, :title, :subtitle, :badge, :icon, :desc, :feats, :img, :sort, :act, datetime('now'))");
+            $now = date('Y-m-d H:i:s');
+            $stmt = $pdo->prepare("INSERT INTO homepage_items (section, title, subtitle, badge, icon, description, features, image, sort_order, is_active, created_at) VALUES (:sec, :title, :subtitle, :badge, :icon, :desc, :feats, :img, :sort, :act, :now)");
             $stmt->execute([
                 'sec'      => $section,
                 'title'    => $title,
@@ -407,7 +412,8 @@ class PagesController {
                 'feats'    => $featuresJson,
                 'img'      => $imagePath,
                 'sort'     => $sortOrder,
-                'act'      => $isActive
+                'act'      => $isActive,
+                'now'      => $now
             ]);
             set_flash('success', "New card '{$title}' created successfully!");
         }
@@ -436,12 +442,13 @@ class PagesController {
         $pdo = $this->db->getPdo();
         $exists = $pdo->prepare("SELECT 1 FROM settings WHERE setting_key = :k LIMIT 1");
         $exists->execute(['k' => $key]);
+        $now = date('Y-m-d H:i:s');
         if ($exists->fetchColumn()) {
-            $update = $pdo->prepare("UPDATE settings SET setting_value = :v, updated_at = datetime('now') WHERE setting_key = :k");
-            $update->execute(['v' => $val, 'k' => $key]);
+            $update = $pdo->prepare("UPDATE settings SET setting_value = :v, updated_at = :now WHERE setting_key = :k");
+            $update->execute(['v' => $val, 'k' => $key, 'now' => $now]);
         } else {
-            $insert = $pdo->prepare("INSERT INTO settings (group_name, setting_key, setting_value, label, type, created_at, updated_at) VALUES ('page_content', :k, :v, :k, 'text', datetime('now'), datetime('now'))");
-            $insert->execute(['k' => $key, 'v' => $val]);
+            $insert = $pdo->prepare("INSERT INTO settings (group_name, setting_key, setting_value, label, type, created_at, updated_at) VALUES ('page_content', :k, :v, :k, 'text', :now, :now)");
+            $insert->execute(['k' => $key, 'v' => $val, 'now' => $now]);
         }
     }
 
@@ -453,8 +460,9 @@ class PagesController {
         $id = (int)($_POST['id'] ?? 0);
         if ($id > 0) {
             $pdo = $this->db->getPdo();
-            $stmt = $pdo->prepare("UPDATE pages SET deleted_at = datetime('now') WHERE id = :id");
-            $stmt->execute(['id' => $id]);
+            $now = date('Y-m-d H:i:s');
+            $stmt = $pdo->prepare("UPDATE pages SET deleted_at = :now WHERE id = :id");
+            $stmt->execute(['id' => $id, 'now' => $now]);
             set_flash('success', 'Page deleted successfully.');
         }
         redirect(admin_url('pages'));

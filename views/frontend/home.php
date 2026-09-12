@@ -842,16 +842,16 @@ $slides = !empty($hero_slides) ? $hero_slides : [
 <?php if (($countries_slider_enabled ?? '1') == '1'): ?>
 <?php
 $defaultSlidingCountries = [
-    ['title' => 'UAE',           'image' => 'https://goldmatrixsoftware.com/wp-content/uploads/2026/02/imgi_57_United-Arab-Emirates.png'],
-    ['title' => 'United States', 'image' => 'https://goldmatrixsoftware.com/wp-content/uploads/2026/02/imgi_58_United-States.png'],
-    ['title' => 'Indonesia',     'image' => 'https://goldmatrixsoftware.com/wp-content/uploads/2026/02/pngegg-1.png'],
-    ['title' => 'Malaysia',      'image' => 'https://goldmatrixsoftware.com/wp-content/uploads/2026/02/pngtree-malaysia-flag-map-region-png-image_10768067.png'],
-    ['title' => 'Mexico',        'image' => 'https://goldmatrixsoftware.com/wp-content/uploads/2026/02/imgi_61_Mexico.png'],
-    ['title' => 'Italy',         'image' => 'https://goldmatrixsoftware.com/wp-content/uploads/2026/02/imgi_62_Italy.png'],
-    ['title' => 'Spain',         'image' => 'https://goldmatrixsoftware.com/wp-content/uploads/2026/02/imgi_63_spain.png'],
-    ['title' => 'India',         'image' => 'https://goldmatrixsoftware.com/wp-content/uploads/2026/02/imgi_54_india01.png'],
-    ['title' => 'Thailand',      'image' => 'https://goldmatrixsoftware.com/wp-content/uploads/2026/02/imgi_55_thailand.png'],
-    ['title' => 'Hong Kong',     'image' => 'https://goldmatrixsoftware.com/wp-content/uploads/2026/02/imgi_56_HK.png'],
+    ['title' => 'UAE',           'image' => 'https://flagcdn.com/w80/ae.png'],
+    ['title' => 'United States', 'image' => 'https://flagcdn.com/w80/us.png'],
+    ['title' => 'Indonesia',     'image' => 'https://flagcdn.com/w80/id.png'],
+    ['title' => 'Malaysia',      'image' => 'https://flagcdn.com/w80/my.png'],
+    ['title' => 'Mexico',        'image' => 'https://flagcdn.com/w80/mx.png'],
+    ['title' => 'Italy',         'image' => 'https://flagcdn.com/w80/it.png'],
+    ['title' => 'Spain',         'image' => 'https://flagcdn.com/w80/es.png'],
+    ['title' => 'India',         'image' => 'https://flagcdn.com/w80/in.png'],
+    ['title' => 'Thailand',      'image' => 'https://flagcdn.com/w80/th.png'],
+    ['title' => 'Hong Kong',     'image' => 'https://flagcdn.com/w80/hk.png'],
 ];
 
 $renderCountriesList = !empty($sliding_countries) ? $sliding_countries : $defaultSlidingCountries;

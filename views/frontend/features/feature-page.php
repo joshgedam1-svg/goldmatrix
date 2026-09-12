@@ -613,7 +613,7 @@ $hasTabs = !empty($mod['tabs']);
 
       <div class="col-lg-6">
         <div class="clust-visual-frame">
-          <img src="<?= e($mod['visual_image'] ?? 'https://goldmatrixsoftware.com/wp-content/uploads/2026/02/imgi_53_erp-mockup01.png') ?>" 
+          <img src="<?= e(!empty($mod['visual_image']) ? $mod['visual_image'] : '/assets/images/why-goldmatrix-mockup.png') ?>" 
                alt="<?= e($mod['title']) ?> Software Interface" 
                class="clust-visual-img" 
                loading="lazy">

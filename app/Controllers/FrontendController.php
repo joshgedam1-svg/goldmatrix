@@ -1195,7 +1195,7 @@ class FrontendController {
                 'category'       => 'Retail & Billing Automation',
                 'hero_subtitle'  => 'High-speed billing, live gold rate valuation, touch-screen estimations, and automated purity conversion for modern jewellery retailers.',
                 'hero_desc'      => 'GoldMatrix Retail POS transforms your jewellery store counter operations into a frictionless, ultra-fast checkout experience. Built specifically for complex weight calculations, making charges, gemstone valuation, and instant GST invoicing.',
-                'hero_image'     => 'https://goldmatrixsoftware.com/wp-content/uploads/2026/02/imgi_53_erp-mockup01.png',
+                'hero_image'     => '/assets/images/why-goldmatrix-mockup.png',
                 'meta_title'     => 'Jewelry Retail POS & Billing Software | GoldMatrix ERP',
                 'meta_desc'      => 'High-speed Jewelry Retail POS software for modern jewelers. Touch-screen billing, automated weight calculations, old gold exchange, and instant GST invoices.',
                 'meta_keywords'  => 'jewelry retail pos software, jewellery store billing system, gold billing software, jewellery counter pos, jewelry estimation to invoice',
@@ -1989,19 +1989,20 @@ class FrontendController {
 
         try {
             $pdo = $this->db->getPdo();
+            $now = date('Y-m-d H:i:s');
             
             // 1. Insert into demo_requests
             $stmt = $pdo->prepare("INSERT INTO demo_requests (name, company, email, phone, country, business_type, number_of_branches, current_software, requirements, preferred_date, preferred_time, source, status, created_at, updated_at) 
-                                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'new', datetime('now'), datetime('now'))");
+                                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'new', ?, ?)");
             $stmt->execute([
-                $name, $company, $email, $phone, $country, $businessType, $branches, $currentSoftware, $requirements, $preferredDate, $preferredTime, $source
+                $name, $company, $email, $phone, $country, $businessType, $branches, $currentSoftware, $requirements, $preferredDate, $preferredTime, $source, $now, $now
             ]);
 
             // 2. Also log as a high-priority lead in leads table
             $leadMsg = "Requested Free Live Demo for {$company} ({$businessType}, {$branches} branch). Requirements: {$requirements}";
             $leadStmt = $pdo->prepare("INSERT INTO leads (name, company, email, phone, country, message, source, status, created_at, updated_at) 
-                                       VALUES (?, ?, ?, ?, ?, ?, 'Free Demo Request', 'new', datetime('now'), datetime('now'))");
-            $leadStmt->execute([$name, $company, $email, $phone, $country, $leadMsg]);
+                                       VALUES (?, ?, ?, ?, ?, ?, 'Free Demo Request', 'new', ?, ?)");
+            $leadStmt->execute([$name, $company, $email, $phone, $country, $leadMsg, $now, $now]);
 
             \App\Services\AuthService::recordAttempt($throttleKey, 3600);
 
@@ -2253,7 +2254,7 @@ class FrontendController {
                     'Live rate numbers updating in real time (24K/22K/18K/14K and 925 Silver)',
                     'Multi-branch stock and sales summary tiles updating live from one login'
                 ],
-                'visual_image'   => 'https://goldmatrixsoftware.com/wp-content/uploads/2026/02/imgi_53_erp-mockup01.png',
+                'visual_image'   => '/assets/images/why-goldmatrix-mockup.png',
                 'faqs'           => [
                     [
                         'q' => 'How do role-based dashboards benefit different teams in a jewellery enterprise?',
@@ -2611,7 +2612,7 @@ class FrontendController {
                     'Milligram-precision loss tracking comparing issued gold vs finished pieces',
                     '1-Click barcode jobcard printing for station scanning'
                 ],
-                'visual_image'   => 'https://goldmatrixsoftware.com/wp-content/uploads/2026/02/imgi_53_erp-mockup01.png',
+                'visual_image'   => '/assets/images/why-goldmatrix-mockup.png',
                 'faqs'           => [
                     [
                         'q' => 'How does GoldMatrix calculate karigar metal loss and wastage allowance?',

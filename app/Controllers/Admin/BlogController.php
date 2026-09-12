@@ -18,6 +18,9 @@ class BlogController {
      *  SCHEMA GUARD
      * ───────────────────────────────────────────── */
     private function ensureSchema(): void {
+        if (\App\Services\Database::getInstance()->getDriver() !== 'sqlite') {
+            return;
+        }
         $this->pdo->exec("CREATE TABLE IF NOT EXISTS blog_categories (
             id          INTEGER PRIMARY KEY AUTOINCREMENT,
             name        TEXT NOT NULL,
@@ -192,8 +195,9 @@ class BlogController {
                     set_flash('danger', 'Category name is required.');
                 } else {
                     if ($catId > 0) {
-                        $this->pdo->prepare("UPDATE blog_categories SET name=?, slug=?, description=?, color=?, updated_at=datetime('now') WHERE id=?")
-                            ->execute([$name, $slug, $desc, $color, $catId]);
+                        $now = date('Y-m-d H:i:s');
+                        $this->pdo->prepare("UPDATE blog_categories SET name=?, slug=?, description=?, color=?, updated_at=? WHERE id=?")
+                            ->execute([$name, $slug, $desc, $color, $now, $catId]);
                         set_flash('success', "Category '{$name}' updated successfully.");
                     } else {
                         // Ensure unique slug
@@ -300,32 +304,38 @@ class BlogController {
                 title=?, slug=?, excerpt=?, content=?, featured_image=?, alt_text=?,
                 category_id=?, tags=?, author_name=?, status=?, focus_keyword=?,
                 meta_title=?, meta_description=?, canonical_url=?, robots=?,
+            $now = date('Y-m-d H:i:s');
+            $stmt = $this->pdo->prepare("UPDATE blog_posts SET 
+                title=?, slug=?, excerpt=?, content=?, featured_image=?, alt_text=?,
+                category_id=?, tags=?, author_name=?, status=?, focus_keyword=?,
+                meta_title=?, meta_description=?, canonical_url=?, robots=?,
                 og_title=?, og_description=?, og_image=?, schema_type=?,
-                reading_time=?, published_at=?, updated_at=datetime('now') 
+                reading_time=?, published_at=?, updated_at=? 
                 WHERE id=?");
             $stmt->execute([
                 $title, $slug, $excerpt, $content, $featuredImage, $altText,
                 $categoryId, $tags, $authorName, $status, $focusKeyword,
                 $metaTitle ?: $title, $metaDesc, $canonicalUrl, $robots,
                 $ogTitle, $ogDesc, $ogImage, $schemaType,
-                $readingTime, $publishedAt, $id
+                $readingTime, $publishedAt, $now, $id
             ]);
             set_flash('success', "Post '{$title}' updated successfully.");
             redirect(admin_url('blog/edit?id=' . $id));
         } else {
+            $now = date('Y-m-d H:i:s');
             $stmt = $this->pdo->prepare("INSERT INTO blog_posts (
                 title, slug, excerpt, content, featured_image, alt_text,
                 category_id, tags, author_name, status, focus_keyword,
                 meta_title, meta_description, canonical_url, robots,
                 og_title, og_description, og_image, schema_type,
                 reading_time, published_at, created_at, updated_at
-            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,datetime('now'),datetime('now'))");
+            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             $stmt->execute([
                 $title, $slug, $excerpt, $content, $featuredImage, $altText,
                 $categoryId, $tags, $authorName, $status, $focusKeyword,
                 $metaTitle ?: $title, $metaDesc, $canonicalUrl, $robots,
                 $ogTitle, $ogDesc, $ogImage, $schemaType,
-                $readingTime, $publishedAt
+                $readingTime, $publishedAt, $now, $now
             ]);
             $newId = (int)$this->pdo->lastInsertId();
             set_flash('success', "Post '{$title}' created successfully.");

@@ -25,6 +25,50 @@ if (file_exists($envFile)) {
     }
 }
 
+// Direct Static Asset Streaming Fallback (Guarantees images/assets load on Hostinger / Apache rewrites)
+$requestUri = $_SERVER['REQUEST_URI'] ?? '/';
+$reqPath = urldecode((string)parse_url($requestUri, PHP_URL_PATH));
+$baseFolder = parse_url($_ENV['APP_URL'] ?? '', PHP_URL_PATH) ?? '';
+if ($baseFolder && strpos($reqPath, $baseFolder) === 0) {
+    $reqPath = substr($reqPath, strlen($baseFolder));
+}
+$cleanPath = '/' . ltrim($reqPath, '/');
+
+if (preg_match('#^/(uploads|assets)/(.*)$#i', $cleanPath)) {
+    $candidates = [
+        __DIR__ . $cleanPath,
+        dirname(__DIR__) . '/public' . $cleanPath,
+        dirname(__DIR__) . $cleanPath,
+    ];
+    foreach ($candidates as $filePath) {
+        if (is_file($filePath)) {
+            $ext = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
+            $mimes = [
+                'png'   => 'image/png',
+                'jpg'   => 'image/jpeg',
+                'jpeg'  => 'image/jpeg',
+                'webp'  => 'image/webp',
+                'gif'   => 'image/gif',
+                'svg'   => 'image/svg+xml',
+                'ico'   => 'image/x-icon',
+                'avif'  => 'image/avif',
+                'css'   => 'text/css',
+                'js'    => 'application/javascript',
+                'woff'  => 'font/woff',
+                'woff2' => 'font/woff2',
+                'ttf'   => 'font/ttf',
+            ];
+            $mime = $mimes[$ext] ?? (function_exists('mime_content_type') ? mime_content_type($filePath) : 'application/octet-stream');
+            header("Content-Type: $mime");
+            header("Content-Length: " . filesize($filePath));
+            header("Cache-Control: public, max-age=31536000");
+            header("Access-Control-Allow-Origin: *");
+            readfile($filePath);
+            exit;
+        }
+    }
+}
+
 // Register Autoloader
 require_once __DIR__ . '/../app/Autoloader.php';
 \App\Autoloader::register();
