@@ -428,6 +428,13 @@ class FrontendController {
                 ]
             ],
 
+            // ── AWARDS & RECOGNITION ──
+            'awards_enabled'  => $this->hp('awards_enabled', '1'),
+            'awards_badge'    => $this->hp('awards_badge', 'AWARDS'),
+            'awards_title'    => $this->hp('awards_title', 'Awards'),
+            'awards_subtitle' => $this->hp('awards_subtitle', 'Recognized by industry leaders for performance, usability, and customer trust.'),
+            'awards_items'    => $this->hpItems('awards'),
+
             // ── DYNAMIC ITEMS FROM DB ──
             'trust_countries'   => $this->hpItems('trust_countries'),
             'features_items'    => $this->hpItems('features'),

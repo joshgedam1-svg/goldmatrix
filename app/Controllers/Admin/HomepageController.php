@@ -70,6 +70,7 @@ class HomepageController {
         $this->seedDefaultSolutionsCards();
         $this->seedDefaultBrandLogos();
         $this->seedDefaultTestimonials();
+        $this->seedDefaultAwards();
     }
 
     private function seedDefaultTestimonials(): void {
@@ -766,6 +767,73 @@ class HomepageController {
         } catch (\Exception $e) {
             return [];
         }
+    }
+
+    private function allAwards(): array {
+        try {
+            return $this->db->fetchAll(
+                "SELECT * FROM homepage_items WHERE section = 'awards' ORDER BY sort_order ASC, id ASC"
+            ) ?? [];
+        } catch (\Exception $e) {
+            return [];
+        }
+    }
+
+    private function seedDefaultAwards(): void {
+        try {
+            $count = (int)$this->db->fetchColumn("SELECT COUNT(*) FROM homepage_items WHERE section = 'awards'");
+            if ($count === 0) {
+                $awards = [
+                    [
+                        'title'       => 'High Performer',
+                        'subtitle'    => 'Winter 2023',
+                        'badge'       => 'SoftwareSuggest',
+                        'description' => 'SoftwareSuggest High Performer Award Winter 2023',
+                        'image'       => '/assets/images/awards/award-high-performer.svg',
+                        'sort_order'  => 1
+                    ],
+                    [
+                        'title'       => 'Customers Choice',
+                        'subtitle'    => 'Summer 2022',
+                        'badge'       => 'SoftwareSuggest',
+                        'description' => 'SoftwareSuggest Customers Choice Award Summer 2022',
+                        'image'       => '/assets/images/awards/award-customers-choice.svg',
+                        'sort_order'  => 2
+                    ],
+                    [
+                        'title'       => 'Best Usability',
+                        'subtitle'    => '2021',
+                        'badge'       => 'SoftwareSuggest',
+                        'description' => 'SoftwareSuggest Best Usability Award 2021',
+                        'image'       => '/assets/images/awards/award-best-usability.svg',
+                        'sort_order'  => 3
+                    ],
+                    [
+                        'title'       => 'Best Support',
+                        'subtitle'    => '2021',
+                        'badge'       => 'SoftwareSuggest',
+                        'description' => 'SoftwareSuggest Best Support Award 2021',
+                        'image'       => '/assets/images/awards/award-best-support.svg',
+                        'sort_order'  => 4
+                    ],
+                    [
+                        'title'       => 'Most Popular',
+                        'subtitle'    => 'Fall 2020',
+                        'badge'       => 'SoftwareSuggest',
+                        'description' => 'SoftwareSuggest Most Popular Award Fall 2020',
+                        'image'       => '/assets/images/awards/award-most-popular.svg',
+                        'sort_order'  => 5
+                    ]
+                ];
+                foreach ($awards as $a) {
+                    $this->db->query(
+                        "INSERT INTO homepage_items (section, title, subtitle, badge, description, image, sort_order, is_active)
+                         VALUES ('awards', ?, ?, ?, ?, ?, ?, 1)",
+                        [$a['title'], $a['subtitle'], $a['badge'], $a['description'], $a['image'], $a['sort_order']]
+                    );
+                }
+            }
+        } catch (\Exception $e) {}
     }
 
     private function handleImageUpload(string $field = 'image'): string {
@@ -1973,11 +2041,119 @@ class HomepageController {
                 redirect('/admin/homepage?tab=integrations');
                 return;
             }
+
+            /* ── SAVE AWARDS SETTINGS ── */
+            if ($action === 'save_awards_settings') {
+                $enabled  = isset($_POST['awards_enabled']) ? '1' : '0';
+                $badge    = strip_tags(trim($_POST['awards_badge'] ?? 'AWARDS'));
+                $title    = strip_tags(trim($_POST['awards_title'] ?? 'Awards'));
+                $subtitle = strip_tags(trim($_POST['awards_subtitle'] ?? ''));
+
+                $this->setHP('awards_enabled', $enabled);
+                $this->setHP('awards_badge', $badge);
+                $this->setHP('awards_title', $title);
+                $this->setHP('awards_subtitle', $subtitle);
+
+                set_flash('success', '✅ Awards section settings updated successfully!');
+                redirect('/admin/homepage?tab=awards');
+                return;
+            }
+
+            /* ── ADD AWARD ITEM ── */
+            if ($action === 'add_award_item') {
+                $title       = strip_tags(trim($_POST['title'] ?? ''));
+                $subtitle    = strip_tags(trim($_POST['subtitle'] ?? ''));
+                $badge       = strip_tags(trim($_POST['badge'] ?? ''));
+                $description = strip_tags(trim($_POST['description'] ?? ''));
+                $link        = strip_tags(trim($_POST['link'] ?? ''));
+                $imageUrl    = strip_tags(trim($_POST['image_url'] ?? ''));
+                $sortOrder   = (int)($_POST['sort_order'] ?? 0);
+                $isActive    = isset($_POST['is_active']) ? (int)$_POST['is_active'] : 1;
+
+                $upload = $this->handleImageUpload('image');
+                $finalImage = $upload ?: $imageUrl;
+
+                if (!$sortOrder) {
+                    $sortOrder = (int)$this->db->fetchColumn(
+                        "SELECT COALESCE(MAX(sort_order), 0) + 1 FROM homepage_items WHERE section = 'awards'"
+                    );
+                }
+
+                $this->db->query(
+                    "INSERT INTO homepage_items (section, title, subtitle, badge, description, image, link, sort_order, is_active)
+                     VALUES ('awards', ?, ?, ?, ?, ?, ?, ?, ?)",
+                    [$title, $subtitle, $badge, $description, $finalImage, $link, $sortOrder, $isActive]
+                );
+
+                set_flash('success', '🏆 New award added successfully!');
+                redirect('/admin/homepage?tab=awards');
+                return;
+            }
+
+            /* ── UPDATE AWARD ITEM ── */
+            if ($action === 'update_award_item') {
+                $id          = (int)($_POST['item_id'] ?? 0);
+                $title       = strip_tags(trim($_POST['title'] ?? ''));
+                $subtitle    = strip_tags(trim($_POST['subtitle'] ?? ''));
+                $badge       = strip_tags(trim($_POST['badge'] ?? ''));
+                $description = strip_tags(trim($_POST['description'] ?? ''));
+                $link        = strip_tags(trim($_POST['link'] ?? ''));
+                $imageUrl    = strip_tags(trim($_POST['image_url'] ?? ''));
+                $sortOrder   = (int)($_POST['sort_order'] ?? 0);
+                $isActive    = isset($_POST['is_active']) ? (int)$_POST['is_active'] : 1;
+
+                $upload = $this->handleImageUpload('image');
+
+                $this->db->query(
+                    "UPDATE homepage_items SET
+                        title = ?, subtitle = ?, badge = ?, description = ?, link = ?, sort_order = ?, is_active = ?
+                     WHERE id = ? AND section = 'awards'",
+                    [$title, $subtitle, $badge, $description, $link, $sortOrder, $isActive, $id]
+                );
+
+                if (!empty($_POST['remove_award_image'])) {
+                    $this->db->query("UPDATE homepage_items SET image = '' WHERE id = ? AND section = 'awards'", [$id]);
+                } elseif ($upload) {
+                    $this->db->query("UPDATE homepage_items SET image = ? WHERE id = ? AND section = 'awards'", [$upload, $id]);
+                } elseif (isset($_POST['image_url'])) {
+                    $this->db->query("UPDATE homepage_items SET image = ? WHERE id = ? AND section = 'awards'", [$imageUrl, $id]);
+                }
+
+                set_flash('success', '✅ Award updated successfully!');
+                redirect('/admin/homepage?tab=awards');
+                return;
+            }
+
+            /* ── DELETE AWARD ITEM ── */
+            if ($action === 'delete_award_item') {
+                $id = (int)($_POST['item_id'] ?? 0);
+                $this->db->query("DELETE FROM homepage_items WHERE id = ? AND section = 'awards'", [$id]);
+                set_flash('success', '🗑️ Award deleted.');
+                redirect('/admin/homepage?tab=awards');
+                return;
+            }
+
+            /* ── TOGGLE AWARD ITEM ── */
+            if ($action === 'toggle_award_item') {
+                $id  = (int)($_POST['item_id'] ?? 0);
+                $cur = (int)$this->db->fetchColumn("SELECT is_active FROM homepage_items WHERE id = ? AND section = 'awards'", [$id]);
+                $this->db->query("UPDATE homepage_items SET is_active = ? WHERE id = ?", [$cur ? 0 : 1, $id]);
+                set_flash('success', $cur ? 'Award hidden.' : 'Award published.');
+                redirect('/admin/homepage?tab=awards');
+                return;
+            }
         }
 
         /* ── LOAD ALL DATA FOR VIEW ── */
         $data = [
             'activeTab'          => $activeTab,
+
+            // ── AWARDS SECTION ──
+            'awards_enabled'  => $this->hp('awards_enabled',  '1'),
+            'awards_badge'    => $this->hp('awards_badge',    'AWARDS'),
+            'awards_title'    => $this->hp('awards_title',    'Awards'),
+            'awards_subtitle' => $this->hp('awards_subtitle', 'Recognized by industry leaders for performance, usability, and customer trust.'),
+            'awards_items'    => $this->allAwards(),
 
             // ── INTEGRATIONS SECTION ──
             'integrations_enabled' => $this->hp('integrations_enabled', '1'),

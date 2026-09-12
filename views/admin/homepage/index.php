@@ -21,6 +21,7 @@ $tabs = [
     'stats'        => ['label' => 'Stats Counters',     'icon' => 'bi-graph-up-arrow',        'badge' => '4'],
     'testimonials' => ['label' => 'Testimonials',       'icon' => 'bi-star-fill',             'badge' => count($testimonials ?? [])],
     'mobile_app'   => ['label' => 'Mobile App',         'icon' => 'bi-phone-fill',            'badge' => count($mobile_app_cards ?? []) ?: 'App'],
+    'awards'       => ['label' => 'Awards & Recognition', 'icon' => 'bi-trophy-fill',         'badge' => count($awards_items ?? []) ?: 'Awards'],
     'faqs'         => ['label' => 'FAQ Accordion',      'icon' => 'bi-question-circle',       'badge' => count($faqs ?? [])],
     'cta'          => ['label' => 'CTA Banner',         'icon' => 'bi-megaphone',             'badge' => 'Bottom'],
     'footer'       => ['label' => 'Footer Info',        'icon' => 'bi-layout-text-window',    'badge' => 'Global'],
@@ -4057,6 +4058,307 @@ $tabs = [
               </table>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+  <?php /* ══════════════════════════════════════════════════
+          TAB: AWARDS & RECOGNITION
+          ══════════════════════════════════════════════════ */
+  elseif ($activeTab === 'awards'): ?>
+
+    <!-- 1. SECTION SETTINGS CARD -->
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-header bg-white py-3 d-flex align-items-center justify-content-between">
+        <h5 class="card-title fw-bold mb-0 text-dark">
+          <i class="bi bi-trophy-fill text-warning me-2"></i>Awards Section Settings
+        </h5>
+        <span class="badge bg-warning-subtle text-warning border border-warning-subtle px-3 py-1 fw-bold">Live Below Mobile App</span>
+      </div>
+      <div class="card-body p-4">
+        <form method="POST" action="/admin/homepage?tab=awards">
+          <?= csrf_field() ?>
+          <input type="hidden" name="action" value="save_awards_settings">
+
+          <div class="row g-3 align-items-center mb-3">
+            <div class="col-md-3">
+              <div class="form-check form-switch fs-14">
+                <input class="form-check-input" type="checkbox" name="awards_enabled" id="awardsEnabled" value="1" <?= ($awards_enabled ?? '1') == '1' ? 'checked' : '' ?>>
+                <label class="form-check-label fw-bold" for="awardsEnabled">Enable Awards Section</label>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label fs-12 fw-semibold text-secondary">Badge / Eyebrow</label>
+              <input type="text" name="awards_badge" class="form-control form-control-sm" value="<?= e($awards_badge ?? 'AWARDS') ?>" placeholder="AWARDS">
+            </div>
+            <div class="col-md-3">
+              <label class="form-label fs-12 fw-semibold text-secondary">Section Title</label>
+              <input type="text" name="awards_title" class="form-control form-control-sm fw-bold" value="<?= e($awards_title ?? 'Awards') ?>" placeholder="Awards">
+            </div>
+            <div class="col-md-3">
+              <label class="form-label fs-12 fw-semibold text-secondary">Section Subtitle</label>
+              <input type="text" name="awards_subtitle" class="form-control form-control-sm" value="<?= e($awards_subtitle ?? 'Recognized by industry leaders for performance, usability, and customer trust.') ?>" placeholder="Subtitle...">
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-navy btn-sm px-4 fw-bold">
+              <i class="bi bi-check2-circle me-1"></i> Save Section Settings
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- 2. AWARDS LIST & ADD CARD -->
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-header bg-white py-3 d-flex flex-wrap align-items-center justify-content-between gap-2">
+        <div>
+          <h5 class="card-title fw-bold mb-0 text-dark">
+            <i class="bi bi-award-fill text-warning me-2"></i>Awards & Badges List
+          </h5>
+          <div class="text-muted fs-12 mt-1">Manage, upload, and reorder awards displayed on the homepage.</div>
+        </div>
+        <button class="btn btn-navy btn-sm d-inline-flex align-items-center gap-2 px-3 py-2" data-bs-toggle="collapse" data-bs-target="#addAwardCollapse">
+          <i class="bi bi-plus-circle-fill text-warning"></i>
+          <span class="fw-bold">+ Add New Award</span>
+        </button>
+      </div>
+
+      <!-- ADD NEW AWARD COLLAPSIBLE FORM -->
+      <div class="collapse <?= empty($awards_items) ? 'show' : '' ?>" id="addAwardCollapse">
+        <div class="card-body bg-light border-bottom p-4">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <h6 class="fw-bold text-dark mb-0">
+              <i class="bi bi-plus-square-fill text-primary me-2"></i>Add New Award / Accolade
+            </h6>
+            <button type="button" class="btn-close btn-sm" data-bs-toggle="collapse" data-bs-target="#addAwardCollapse"></button>
+          </div>
+
+          <form method="POST" action="/admin/homepage?tab=awards" enctype="multipart/form-data">
+            <?= csrf_field() ?>
+            <input type="hidden" name="action" value="add_award_item">
+
+            <div class="row g-3">
+              <div class="col-md-4">
+                <label class="form-label fs-12 fw-semibold text-secondary">Award Title <span class="text-danger">*</span></label>
+                <input type="text" name="title" class="form-control fw-bold" placeholder="e.g. High Performer / Best Usability" required>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label fs-12 fw-semibold text-secondary">Season / Year</label>
+                <input type="text" name="subtitle" class="form-control" placeholder="e.g. Winter 2023 / 2022">
+              </div>
+              <div class="col-md-3">
+                <label class="form-label fs-12 fw-semibold text-secondary">Platform / Issuer</label>
+                <input type="text" name="badge" class="form-control" placeholder="e.g. SoftwareSuggest / G2 / Capterra">
+              </div>
+              <div class="col-md-2">
+                <label class="form-label fs-12 fw-semibold text-secondary">Sort Order</label>
+                <input type="number" name="sort_order" class="form-control" placeholder="1, 2, 3...">
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label fs-12 fw-semibold text-secondary">Upload Award Badge Image (PNG, SVG, JPG, WebP)</label>
+                <input type="file" name="image" class="form-control" accept="image/*">
+                <div class="form-text fs-11">Recommended: Clean PNG with transparent background or SVG badge.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fs-12 fw-semibold text-secondary">Or Direct Image URL / Path</label>
+                <input type="text" name="image_url" class="form-control" placeholder="https://... or /assets/images/awards/...">
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label fs-12 fw-semibold text-secondary">External Link (Optional)</label>
+                <input type="text" name="link" class="form-control" placeholder="https://www.softwaresuggest.com/...">
+              </div>
+              <div class="col-md-3">
+                <label class="form-label fs-12 fw-semibold text-secondary">Status</label>
+                <select name="is_active" class="form-select">
+                  <option value="1">Active / Published</option>
+                  <option value="0">Draft / Hidden</option>
+                </select>
+              </div>
+              <div class="col-md-3 d-flex align-items-end">
+                <button type="submit" class="btn btn-navy w-100 py-2 fw-bold">
+                  <i class="bi bi-cloud-arrow-up-fill me-1"></i> Save Award
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- AWARDS LIST TABLE -->
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0">
+            <thead class="bg-light text-secondary fs-12">
+              <tr>
+                <th style="width:70px;" class="ps-3">Order</th>
+                <th style="width:110px;">Badge</th>
+                <th>Award Details</th>
+                <th>Platform</th>
+                <th>Status</th>
+                <th style="width:150px;" class="text-end pe-3">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php if (empty($awards_items)): ?>
+                <tr>
+                  <td colspan="6" class="text-center py-5 text-muted">
+                    <i class="bi bi-award fs-1 d-block mb-2 text-warning opacity-50"></i>
+                    No awards added yet. Click <strong>+ Add New Award</strong> to get started.
+                  </td>
+                </tr>
+              <?php else: ?>
+                <?php foreach ($awards_items as $item): ?>
+                  <tr>
+                    <td class="ps-3 fw-bold text-muted"><?= (int)$item['sort_order'] ?></td>
+                    <td>
+                      <?php if (!empty($item['image'])): ?>
+                        <div style="width:65px; height:65px; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:12px; display:flex; align-items:center; justify-content:center; padding:6px;">
+                          <img src="<?= e($item['image']) ?>" alt="<?= e($item['title']) ?>" style="max-width:100%; max-height:100%; object-fit:contain;">
+                        </div>
+                      <?php else: ?>
+                        <div style="width:65px; height:65px; background:#FEF3C7; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#D97706; font-size:24px;">
+                          <i class="bi bi-award"></i>
+                        </div>
+                      <?php endif; ?>
+                    </td>
+                    <td>
+                      <div class="fw-bold text-dark fs-14"><?= e($item['title']) ?></div>
+                      <div class="text-muted fs-12"><?= e($item['subtitle']) ?></div>
+                    </td>
+                    <td>
+                      <span class="badge bg-light text-dark border fs-12"><?= e($item['badge'] ?: 'Award') ?></span>
+                    </td>
+                    <td>
+                      <?php if ($item['is_active']): ?>
+                        <span class="badge bg-success-subtle text-success border border-success-subtle fs-11">Active</span>
+                      <?php else: ?>
+                        <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle fs-11">Hidden</span>
+                      <?php endif; ?>
+                    </td>
+                    <td class="text-end pe-3">
+                      <div class="d-inline-flex gap-1">
+                        <!-- Toggle Button -->
+                        <form method="POST" action="/admin/homepage?tab=awards" class="d-inline">
+                          <?= csrf_field() ?>
+                          <input type="hidden" name="action" value="toggle_award_item">
+                          <input type="hidden" name="item_id" value="<?= $item['id'] ?>">
+                          <button type="submit" class="btn btn-sm btn-light border" title="<?= $item['is_active'] ? 'Hide' : 'Publish' ?>">
+                            <i class="bi bi-<?= $item['is_active'] ? 'eye-slash' : 'eye' ?>"></i>
+                          </button>
+                        </form>
+
+                        <!-- Edit Button -->
+                        <button type="button" class="btn btn-sm btn-light border text-primary" data-bs-toggle="modal" data-bs-target="#editAwardModal<?= $item['id'] ?>" title="Edit">
+                          <i class="bi bi-pencil-square"></i>
+                        </button>
+
+                        <!-- Delete Button -->
+                        <form method="POST" action="/admin/homepage?tab=awards" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this award?')">
+                          <?= csrf_field() ?>
+                          <input type="hidden" name="action" value="delete_award_item">
+                          <input type="hidden" name="item_id" value="<?= $item['id'] ?>">
+                          <button type="submit" class="btn btn-sm btn-light border text-danger" title="Delete">
+                            <i class="bi bi-trash"></i>
+                          </button>
+                        </form>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- EDIT AWARD MODAL -->
+                  <div class="modal fade" id="editAwardModal<?= $item['id'] ?>" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                      <div class="modal-content border-0 shadow">
+                        <div class="modal-header bg-navy text-white">
+                          <h6 class="modal-title fw-bold text-white">
+                            <i class="bi bi-pencil-square text-warning me-2"></i>Edit Award: <?= e($item['title']) ?>
+                          </h6>
+                          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                        </div>
+                        <form method="POST" action="/admin/homepage?tab=awards" enctype="multipart/form-data">
+                          <?= csrf_field() ?>
+                          <input type="hidden" name="action" value="update_award_item">
+                          <input type="hidden" name="item_id" value="<?= $item['id'] ?>">
+
+                          <div class="modal-body p-4">
+                            <div class="row g-3">
+                              <div class="col-md-5">
+                                <label class="form-label fs-12 fw-semibold text-secondary">Award Title <span class="text-danger">*</span></label>
+                                <input type="text" name="title" class="form-control fw-bold" value="<?= e($item['title']) ?>" required>
+                              </div>
+                              <div class="col-md-4">
+                                <label class="form-label fs-12 fw-semibold text-secondary">Season / Year</label>
+                                <input type="text" name="subtitle" class="form-control" value="<?= e($item['subtitle']) ?>" placeholder="Winter 2023">
+                              </div>
+                              <div class="col-md-3">
+                                <label class="form-label fs-12 fw-semibold text-secondary">Platform / Issuer</label>
+                                <input type="text" name="badge" class="form-control" value="<?= e($item['badge']) ?>" placeholder="SoftwareSuggest">
+                              </div>
+
+                              <div class="col-12">
+                                <label class="form-label fs-12 fw-semibold text-secondary">Current Badge Image</label>
+                                <div class="d-flex align-items-center gap-3 p-3 bg-light rounded border">
+                                  <?php if (!empty($item['image'])): ?>
+                                    <div style="width:70px; height:70px; background:#FFFFFF; border:1px solid #CBD5E1; border-radius:10px; display:flex; align-items:center; justify-content:center; padding:6px;">
+                                      <img src="<?= e($item['image']) ?>" alt="<?= e($item['title']) ?>" style="max-width:100%; max-height:100%; object-fit:contain;">
+                                    </div>
+                                    <div>
+                                      <div class="fs-12 text-secondary font-monospace"><?= e($item['image']) ?></div>
+                                      <div class="form-check mt-1">
+                                        <input class="form-check-input" type="checkbox" name="remove_award_image" id="remImg<?= $item['id'] ?>" value="1">
+                                        <label class="form-check-label fs-12 text-danger" for="remImg<?= $item['id'] ?>">Remove Image</label>
+                                      </div>
+                                    </div>
+                                  <?php else: ?>
+                                    <span class="text-muted fs-12">No image uploaded</span>
+                                  <?php endif; ?>
+                                </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                <label class="form-label fs-12 fw-semibold text-secondary">Upload New Badge File</label>
+                                <input type="file" name="image" class="form-control form-control-sm" accept="image/*">
+                              </div>
+                              <div class="col-md-6">
+                                <label class="form-label fs-12 fw-semibold text-secondary">Or Direct Image URL / Path</label>
+                                <input type="text" name="image_url" class="form-control form-control-sm" value="<?= e($item['image']) ?>" placeholder="https://... or /assets/images/awards/...">
+                              </div>
+
+                              <div class="col-md-6">
+                                <label class="form-label fs-12 fw-semibold text-secondary">External Link</label>
+                                <input type="text" name="link" class="form-control form-control-sm" value="<?= e($item['link']) ?>">
+                              </div>
+                              <div class="col-md-3">
+                                <label class="form-label fs-12 fw-semibold text-secondary">Sort Order</label>
+                                <input type="number" name="sort_order" class="form-control form-control-sm" value="<?= (int)$item['sort_order'] ?>">
+                              </div>
+                              <div class="col-md-3">
+                                <label class="form-label fs-12 fw-semibold text-secondary">Status</label>
+                                <select name="is_active" class="form-select form-select-sm">
+                                  <option value="1" <?= $item['is_active'] ? 'selected' : '' ?>>Active / Visible</option>
+                                  <option value="0" <?= !$item['is_active'] ? 'selected' : '' ?>>Draft / Hidden</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal-footer bg-light">
+                            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-gold btn-sm fw-bold px-4">
+                              <i class="bi bi-check2-circle me-1"></i> Save Changes
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                <?php endforeach; ?>
+              <?php endif; ?>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

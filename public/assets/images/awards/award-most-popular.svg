@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 260" width="100%" height="100%">
+  <defs>
+    <filter id="shadow5" x="-8%" y="-8%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#0284C7" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- Hexagon Outer -->
+  <polygon points="120,20 205,65 205,175 120,220 35,175 35,65" fill="#FFFFFF" stroke="#0284C7" stroke-width="3.5" filter="url(#shadow5)"/>
+
+  <!-- Inner Dotted Hexagon -->
+  <polygon points="120,28 196,69 196,170 120,211 44,170 44,69" fill="none" stroke="#0284C7" stroke-width="1.6" stroke-dasharray="3,2"/>
+
+  <!-- Stars -->
+  <g transform="translate(120, 52)" fill="#F59E0B">
+    <path d="M -22 0 L -20 -4 L -15 -4 L -19 -7 L -17 -11 L -22 -8 L -27 -11 L -25 -7 L -29 -4 L -24 -4 Z" transform="scale(0.85)"/>
+    <path d="M 0 -3 L 2 -8 L 7 -8 L 3 -11 L 5 -16 L 0 -13 L -5 -16 L -3 -11 L -7 -8 L -2 -8 Z" transform="scale(0.95)"/>
+    <path d="M 22 0 L 24 -4 L 29 -4 L 25 -7 L 27 -11 L 22 -8 L 17 -11 L 19 -7 L 15 -4 L 20 -4 Z" transform="scale(0.85)"/>
+  </g>
+
+  <!-- MOST POPULAR Heading -->
+  <text x="120" y="88" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="900" fill="#0C4A6E" text-anchor="middle" letter-spacing="1.2">MOST</text>
+  <text x="120" y="106" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="900" fill="#0C4A6E" text-anchor="middle" letter-spacing="1.2">POPULAR</text>
+
+  <!-- Banner Ribbon Tails -->
+  <path d="M 20 135 L 5 150 L 20 165 L 35 150 Z" fill="#0C4A6E"/>
+  <path d="M 220 135 L 235 150 L 220 165 L 205 150 Z" fill="#0C4A6E"/>
+
+  <!-- Blue Banner -->
+  <rect x="18" y="132" width="204" height="38" rx="3" fill="#0369A1"/>
+  <rect x="21" y="135" width="198" height="32" rx="1.5" fill="none" stroke="#38BDF8" stroke-width="1" stroke-opacity="0.5"/>
+
+  <!-- SoftwareSuggest on Banner -->
+  <text x="120" y="156" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.4">
+    Software<tspan font-size="8" font-weight="900" dy="-3">®</tspan><tspan font-size="13.5" font-weight="800" dy="3">UGGEST</tspan>
+  </text>
+
+  <!-- Fall 2020 -->
+  <text x="120" y="196" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#64748B" text-anchor="middle" letter-spacing="0.8">— Fall 2020 —</text>
+</svg>

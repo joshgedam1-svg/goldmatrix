@@ -964,6 +964,329 @@ $renderCountriesList = !empty($sliding_countries) ? $sliding_countries : $defaul
 <?php endif; ?>
 
 <!-- ════════════════════════════════
+     AWARDS & RECOGNITION SECTION
+════════════════════════════════ -->
+<?php if (!empty($awards_enabled) && $awards_enabled != '0'): ?>
+<section class="section-awards" id="awards">
+  <div class="awards-container">
+
+    <!-- Top Ribbon & Medal Header -->
+    <div class="awards-header-wrap">
+      <div class="awards-badge-assembly">
+        <!-- Hanging Medal #1 -->
+        <div class="awards-medal">
+          <div class="ribbon-tail left"></div>
+          <div class="ribbon-tail right"></div>
+          <div class="medal-circle">
+            <span class="medal-num">1</span>
+          </div>
+        </div>
+        <!-- Golden Plaque -->
+        <div class="awards-plaque">
+          <h2 class="awards-title"><?= e($awards_title ?? 'Awards') ?></h2>
+        </div>
+      </div>
+      <?php if (!empty($awards_subtitle)): ?>
+        <p class="awards-subtitle"><?= e($awards_subtitle) ?></p>
+      <?php endif; ?>
+    </div>
+
+    <!-- Awards Grid / Row -->
+    <div class="awards-grid">
+      <?php if (!empty($awards_items) && count($awards_items) > 0): ?>
+        <?php foreach ($awards_items as $award): ?>
+          <div class="award-card" data-aos="fade-up">
+            <div class="award-img-box">
+              <img src="<?= e($award['image'] ?? '') ?>" alt="<?= e($award['title'] ?? 'Award') ?>" loading="lazy">
+            </div>
+            <?php if (!empty($award['title']) && empty($award['image'])): ?>
+              <div class="award-fallback-info">
+                <h4><?= e($award['title']) ?></h4>
+                <?php if (!empty($award['year'])): ?><span><?= e($award['year']) ?></span><?php endif; ?>
+              </div>
+            <?php endif; ?>
+          </div>
+        <?php endforeach; ?>
+      <?php else: ?>
+        <div class="award-card"><img src="/assets/images/awards/award-high-performer.svg" alt="High Performer" loading="lazy"></div>
+        <div class="award-card"><img src="/assets/images/awards/award-customers-choice.svg" alt="Customers Choice" loading="lazy"></div>
+        <div class="award-card"><img src="/assets/images/awards/award-best-usability.svg" alt="Best Usability" loading="lazy"></div>
+        <div class="award-card"><img src="/assets/images/awards/award-best-support.svg" alt="Best Support" loading="lazy"></div>
+        <div class="award-card"><img src="/assets/images/awards/award-most-popular.svg" alt="Most Popular" loading="lazy"></div>
+      <?php endif; ?>
+    </div>
+
+    <!-- Indicator Dots (Matching Screenshot) -->
+    <div class="awards-dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+
+  </div>
+</section>
+
+<style>
+/* ──────────────────────────────────────────────
+   AWARDS SECTION STYLING
+────────────────────────────────────────────── */
+.section-awards {
+  position: relative;
+  background: linear-gradient(180deg, #FFFDF8 0%, #FFF8E7 40%, #FFF3D6 75%, #FFFDF8 100%);
+  padding: 85px 5% 75px;
+  overflow: hidden;
+  border-top: 1px solid rgba(230, 161, 34, 0.15);
+  border-bottom: 1px solid rgba(230, 161, 34, 0.12);
+}
+
+.section-awards::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 350px;
+  background: radial-gradient(ellipse at 50% 30%, rgba(251, 191, 36, 0.22) 0%, rgba(255, 248, 231, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.awards-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+/* Header & Medal Plaque */
+.awards-header-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 48px;
+}
+
+.awards-badge-assembly {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 24px;
+}
+
+/* Round Gold Medal */
+.awards-medal {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.medal-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #FFE57F 0%, #E5A823 60%, #B87B14 100%);
+  border: 2px solid #FFF3C4;
+  box-shadow: 0 4px 12px rgba(184, 123, 20, 0.45), inset 0 2px 4px rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 3;
+}
+
+.medal-num {
+  font-family: var(--gm-font-display, inherit);
+  font-size: 22px;
+  font-weight: 900;
+  color: #784700;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+  line-height: 1;
+}
+
+/* Ribbon Tails */
+.ribbon-tail {
+  position: absolute;
+  bottom: -4px;
+  width: 12px;
+  height: 18px;
+  background: #DC2626;
+  z-index: 1;
+}
+.ribbon-tail.left {
+  left: 10px;
+  transform: rotate(15deg);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 75%, 0 100%);
+}
+.ribbon-tail.right {
+  right: 10px;
+  transform: rotate(-15deg);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 75%, 0 100%);
+}
+
+/* Golden Plaque / Ribbon Banner */
+.awards-plaque {
+  background: linear-gradient(180deg, #E6A122 0%, #C48212 100%);
+  border-radius: 12px;
+  padding: 10px 54px 12px;
+  box-shadow: 0 8px 24px rgba(184, 123, 20, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  min-width: 220px;
+}
+
+.awards-title {
+  font-family: var(--gm-font-display, inherit);
+  font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+  font-weight: 800;
+  color: #1E3A5F;
+  margin: 0;
+  letter-spacing: 0.5px;
+  line-height: 1.15;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.awards-subtitle {
+  margin-top: 14px;
+  font-size: 15px;
+  color: #64748B;
+  max-width: 580px;
+  line-height: 1.6;
+}
+
+/* Awards Cards Grid */
+.awards-grid {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 22px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+
+.award-card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 24px 20px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  flex: 0 1 205px;
+  min-width: 175px;
+  max-width: 230px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  cursor: pointer;
+}
+
+.award-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 36px rgba(184, 123, 20, 0.15), 0 4px 12px rgba(0, 0, 0, 0.04);
+  border-color: rgba(230, 161, 34, 0.35);
+}
+
+.award-img-box {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.award-img-box img {
+  max-width: 100%;
+  max-height: 145px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.award-card:hover .award-img-box img {
+  transform: scale(1.04);
+}
+
+.award-fallback-info {
+  margin-top: 10px;
+  text-align: center;
+}
+.award-fallback-info h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0 0 4px;
+}
+.award-fallback-info span {
+  font-size: 12px;
+  color: #64748B;
+}
+
+/* Dots Indicator (Matches reference image) */
+.awards-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.awards-dots .dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1.5px solid #64748B;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.awards-dots .dot.active {
+  width: 10px;
+  height: 10px;
+  background: #4F46E5;
+  border-color: #4F46E5;
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .section-awards {
+    padding: 60px 4% 50px;
+  }
+  .awards-grid {
+    gap: 14px;
+  }
+  .award-card {
+    flex: 0 1 150px;
+    min-width: 140px;
+    padding: 16px 12px;
+    border-radius: 16px;
+  }
+  .award-img-box {
+    height: 120px;
+  }
+  .award-img-box img {
+    max-height: 115px;
+  }
+  .awards-plaque {
+    padding: 8px 36px 10px;
+    min-width: 180px;
+  }
+}
+</style>
+<?php endif; ?>
+
+<!-- ════════════════════════════════
      FINAL CTA SECTION
 ════════════════════════════════ -->
 <section style="background-color: #0F172A; padding: 75px 5%; position:relative; border-top: 1px solid #1E293B;">
