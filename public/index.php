@@ -113,9 +113,44 @@ if (!empty($_SESSION['logged_in'])) {
 // Initialize Router
 $router = new \App\Services\Router();
 
-// Register Routes
-require_once __DIR__ . '/../routes/web.php';
-require_once __DIR__ . '/../routes/admin.php';
+// Register Routes (Multi-path fallback resolver for various hosting setups)
+$routesBase = null;
+$possibleRouteDirs = [
+    dirname(__DIR__) . '/routes',
+    __DIR__ . '/../routes',
+    __DIR__ . '/routes',
+    dirname(__DIR__) . '/Routes',
+    __DIR__ . '/../Routes',
+];
+
+foreach ($possibleRouteDirs as $dir) {
+    if (is_dir($dir) && file_exists($dir . '/web.php')) {
+        $routesBase = rtrim($dir, '/\\');
+        break;
+    }
+}
+
+if ($routesBase !== null) {
+    require_once $routesBase . '/web.php';
+    if (file_exists($routesBase . '/admin.php')) {
+        require_once $routesBase . '/admin.php';
+    }
+} else {
+    http_response_code(500);
+    echo "<div style='font-family:system-ui,-apple-system,sans-serif;max-width:720px;margin:40px auto;padding:24px;background:#FEF2F2;border:1px solid #F87171;border-radius:12px;color:#991B1B;'>";
+    echo "<h2 style='margin-top:0;font-size:20px;'>⚠️ Missing 'routes' Directory on Server</h2>";
+    echo "<p style='font-size:14px;line-height:1.6;'>GoldMatrix could not locate <code>routes/web.php</code> on your hosting server.</p>";
+    echo "<p style='font-size:13px;'><strong>Expected Location:</strong> <code>" . htmlspecialchars(dirname(__DIR__) . '/routes/web.php') . "</code></p>";
+    echo "<hr style='border:0;border-top:1px solid #FECACA;margin:16px 0;'>";
+    echo "<p style='font-weight:600;margin-bottom:8px;'>Quick Fix Instructions:</p>";
+    echo "<ul style='font-size:13.5px;line-height:1.7;padding-left:20px;margin:0;'>";
+    echo "<li><strong>If using Git:</strong> Run <code>git pull origin main</code> in your server directory (<code>" . htmlspecialchars(dirname(__DIR__)) . "</code>).</li>";
+    echo "<li><strong>If using Hostinger File Manager / FTP:</strong> Upload the <code>routes</code> folder (containing <code>web.php</code> and <code>admin.php</code>) into <code>" . htmlspecialchars(dirname(__DIR__)) . "</code>.</li>";
+    echo "<li>Verify folder permissions are set to <code>755</code> and files to <code>644</code>.</li>";
+    echo "</ul>";
+    echo "</div>";
+    exit;
+}
 
 // Dispatch Request
 $requestMethod = $_SERVER['REQUEST_METHOD'] ?? 'GET';
