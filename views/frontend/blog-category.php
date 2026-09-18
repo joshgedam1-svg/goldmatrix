@@ -99,8 +99,8 @@ include __DIR__ . '/partials/header.php';
 <section style="background-color:#0F172A;padding:64px 0">
   <div class="container text-center text-white">
     <h2 class="fw-bold mb-3">Ready to Modernise Your Jewellery Business?</h2>
-    <p class="text-white-50 mb-4">Connect with our team to explore a tailored walkthrough of GoldMatrix ERP.</p>
-    <button type="button" class="btn btn-warning fw-bold px-5 py-3 open-demo-modal" data-bs-toggle="modal" data-bs-target="#bookDemoModal"><i class="bi bi-people-fill me-1"></i> Connect with Our Team</button>
+    <p class="text-white-50 mb-4">Get a free personalised demo of GoldMatrix ERP.</p>
+    <button type="button" class="btn btn-warning fw-bold px-5 py-3 open-demo-modal" data-bs-toggle="modal" data-bs-target="#bookDemoModal">Book Free Demo</button>
   </div>
 </section>
 

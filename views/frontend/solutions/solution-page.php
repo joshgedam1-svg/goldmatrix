@@ -23,8 +23,8 @@ require __DIR__ . '/../partials/header.php';
     </p>
 
     <div class="d-flex flex-wrap gap-3">
-      <a href="#bookDemoModal" data-bs-toggle="modal" data-bs-target="#bookDemoModal" class="btn btn-warning text-dark fw-bold px-4 py-3 open-demo-modal">
-        <i class="bi bi-people-fill me-1"></i> Connect with Our Team
+      <a href="#bookDemoModal" data-bs-toggle="modal" data-bs-target="#bookDemoModal" class="btn btn-warning text-dark fw-bold px-4 py-3">
+        <i class="bi bi-calendar-check-fill me-1"></i> Book Free Demo
       </a>
       <a href="/contact" class="btn btn-outline-light fw-semibold px-4 py-3">
         <i class="bi bi-telephone-fill me-1"></i> Talk to an Expert
@@ -107,10 +107,10 @@ require __DIR__ . '/../partials/header.php';
   <h2 style="font-family:var(--gm-font-display);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;color:#FFFFFF;margin-bottom:12px;">
     Ready to See It in Action?
   </h2>
-  <p style="color:#94A3B8;font-size:15.5px;margin-bottom:28px;">Connect with our specialists for a tailored walkthrough of GoldMatrix for your jewellery business.</p>
+  <p style="color:#94A3B8;font-size:15.5px;margin-bottom:28px;">Book a free personalized demo and see GoldMatrix work for your exact business.</p>
   <div class="d-flex justify-content-center">
-    <a href="#bookDemoModal" data-bs-toggle="modal" data-bs-target="#bookDemoModal" class="btn btn-warning text-dark fw-bold px-4 py-3 open-demo-modal">
-      <i class="bi bi-people-fill me-1"></i> Connect with Our Team
+    <a href="#bookDemoModal" data-bs-toggle="modal" data-bs-target="#bookDemoModal" class="btn btn-warning text-dark fw-bold px-4 py-3">
+      <i class="bi bi-calendar-check-fill me-1"></i> Book Free Demo — It's Free
     </a>
   </div>
 </section>

@@ -2373,10 +2373,10 @@ body {
  * ══════════════════════════════════════════════════════
  */
 $showTopBar    = (setting('enable_top_notification_bar', '1') == '1');
-$topBarMessage = setting('top_notification_text',   '🎉 Special Offer: Connect with Our Team Today & Get 30 Days Free Trial on GoldMatrix ERP!');
+$topBarMessage = setting('top_notification_text',   '🎉 Exclusive Offer: Get 3 Months Free on GoldMatrix ERP — Limited Slots Available!');
 $topBarLink    = setting('top_notification_link',   '#bookDemoModal');
 $topBarBadge   = setting('top_notification_badge',  'LIMITED OFFER');
-$topBarCTA     = setting('top_notification_cta',    'Connect with Our Team');
+$topBarCTA     = setting('top_notification_cta',    'Book Free Demo');
 $topBarIsModal = !empty($topBarLink) && strpos($topBarLink, '#') === 0;
 ?>
 
@@ -2614,8 +2614,8 @@ $topBarIsModal = !empty($topBarLink) && strpos($topBarLink, '#') === 0;
     <?php endforeach; ?>
   </div>
 
-  <!-- Right Actions: Compact Flag Switcher + Primary CTA -->
-  <div class="nav-actions d-none d-lg-flex align-items-center gap-3">
+  <!-- Right Actions: Compact Flag Switcher -->
+  <div class="nav-actions d-none d-lg-flex align-items-center gap-2">
     <?php if ($isMultilangEnabled && ($langSwitcherPos === 'header' || $langSwitcherPos === 'both') && !empty($enabledLangs)): ?>
       <div class="dropdown nav-lang-dropdown">
         <button class="btn-lang-compact dropdown-toggle" type="button" id="headerLangDropdown" data-bs-toggle="dropdown" aria-expanded="false" title="Change Language (<?= e($activeLangInfo['name']) ?>)">
@@ -2642,12 +2642,6 @@ $topBarIsModal = !empty($topBarLink) && strpos($topBarLink, '#') === 0;
         </ul>
       </div>
     <?php endif; ?>
-
-    <!-- Primary Desktop Header CTA -->
-    <a href="#bookDemoModal" data-bs-toggle="modal" data-bs-target="#bookDemoModal" class="btn btn-gold-solid py-2 px-3 open-demo-modal" style="font-size:13px; font-weight:700;">
-      <i class="bi bi-people-fill me-1"></i>
-      <span>Connect with Our Team</span>
-    </a>
   </div>
 
   <!-- Mobile Right Area: Compact Flag Button + Hamburger -->
@@ -2764,7 +2758,7 @@ $topBarIsModal = !empty($topBarLink) && strpos($topBarLink, '#') === 0;
         </div>
       </div>
       <a href="#bookDemoModal" data-bs-toggle="modal" data-bs-target="#bookDemoModal" class="btn btn-gold-solid w-100 justify-content-center py-2 open-demo-modal" data-bs-dismiss="offcanvas">
-        <span>Connect with Our Team</span>
+        <span>Book Free Demo</span>
         <i class="bi bi-arrow-right ms-2"></i>
       </a>
     </div>
