@@ -236,7 +236,7 @@ class FrontendController {
             if ($t === 'Manufacturing') $needsRename = true;
         }
 
-        if (count($dbItems) < 4 || !$hasGirvi || !$hasCRM || $needsRename || !$hasWholesale) {
+        if (count($dbItems) < 5 || !$hasGirvi || !$hasCRM || $needsRename || !$hasWholesale) {
             try {
                 if ($needsRename) {
                     $this->db->query("UPDATE homepage_items SET title = ? WHERE section = 'feature_spotlight' AND title = 'Manufacturing'", ["Manufacturer's"]);
@@ -270,7 +270,7 @@ class FrontendController {
                         VALUES ('feature_spotlight', 'Girvi ( Mortgage)', 
                         'Streamline Gold Loan & Girvi Operations with Automated Interest',
                         'GoldMatrix Girvi (Mortgage) Software provides a secure, reliable pawn broking and gold loan system built specifically for jewellery businesses. Calculate daily, monthly, or compounding interest accurately, issue legal pledge receipts, and maintain safe vault management.',
-                        ?, 'Girvi Mortgage & Gold Loan Software Interface', '', 3, 1)
+                        ?, 'Girvi Mortgage & Gold Loan Software Interface', '', 4, 1)
                     ", [$girviFeatures]);
                 }
                 if (!$hasCRM) {
@@ -286,9 +286,17 @@ class FrontendController {
                         VALUES ('feature_spotlight', 'CRM', 
                         'Jewellery Customer Relationship Management & Loyalty Schemes',
                         'GoldMatrix Jewellery CRM Software helps retail jewellers nurture customer relationships, increase repeat showroom visits, and boost customer lifetime value. Seamlessly manage 11+1 monthly gold savings schemes, automated festive wishes, and personalized WhatsApp catalogs.',
-                        ?, 'Jewellery CRM & Customer Loyalty Software Interface', '', 4, 1)
+                        ?, 'Jewellery CRM & Customer Loyalty Software Interface', '', 5, 1)
                     ", [$crmFeatures]);
                 }
+
+                // Enforce exact ordering across all spotlight items
+                $this->db->query("UPDATE homepage_items SET sort_order = 1 WHERE section = 'feature_spotlight' AND title LIKE '%Retail%'");
+                $this->db->query("UPDATE homepage_items SET sort_order = 2 WHERE section = 'feature_spotlight' AND title LIKE '%Wholesale%'");
+                $this->db->query("UPDATE homepage_items SET sort_order = 3 WHERE section = 'feature_spotlight' AND title LIKE '%Manufacturer%'");
+                $this->db->query("UPDATE homepage_items SET sort_order = 4 WHERE section = 'feature_spotlight' AND title LIKE '%Girvi%'");
+                $this->db->query("UPDATE homepage_items SET sort_order = 5 WHERE section = 'feature_spotlight' AND title = 'CRM'");
+
                 $dbItems = $this->hpItems('feature_spotlight');
             } catch (\Throwable $e) {}
         }
