@@ -69,12 +69,12 @@ $companyName = setting('company_name', 'GoldMatrix');
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  box-shadow: none !important;
 }
 
 /* ════════════════════════════════════════════════════
-   UNIVERSAL SOCIAL BRAND COLORS & DEDICATED HOVER
+   UNIVERSAL SOCIAL BRAND COLORS (CLEAN - NO GLOW)
    ════════════════════════════════════════════════════ */
 .footer-social-icon.social-facebook {
   color: #1877F2;
@@ -83,19 +83,19 @@ $companyName = setting('company_name', 'GoldMatrix');
   background: #1877F2;
   color: #FFFFFF !important;
   border-color: #1877F2;
-  transform: translateY(-3px) scale(1.08);
-  box-shadow: 0 6px 16px rgba(24, 119, 242, 0.45);
+  transform: translateY(-2px);
+  box-shadow: none !important;
 }
 
 .footer-social-icon.social-instagram {
   color: #E4405F;
 }
 .footer-social-icon.social-instagram:hover {
-  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  background: linear-gradient(45deg, #f09433 0%, #dc2743 50%, #bc1888 100%);
   color: #FFFFFF !important;
   border-color: transparent;
-  transform: translateY(-3px) scale(1.08);
-  box-shadow: 0 6px 16px rgba(225, 48, 108, 0.45);
+  transform: translateY(-2px);
+  box-shadow: none !important;
 }
 
 .footer-social-icon.social-linkedin {
@@ -105,19 +105,19 @@ $companyName = setting('company_name', 'GoldMatrix');
   background: #0A66C2;
   color: #FFFFFF !important;
   border-color: #0A66C2;
-  transform: translateY(-3px) scale(1.08);
-  box-shadow: 0 6px 16px rgba(10, 102, 194, 0.45);
+  transform: translateY(-2px);
+  box-shadow: none !important;
 }
 
 .footer-social-icon.social-twitter {
-  color: #E2E8F0;
+  color: #CBD5E1;
 }
 .footer-social-icon.social-twitter:hover {
   background: #000000;
-  color: #1DA1F2 !important;
-  border-color: #1DA1F2;
-  transform: translateY(-3px) scale(1.08);
-  box-shadow: 0 6px 16px rgba(29, 161, 242, 0.4);
+  color: #FFFFFF !important;
+  border-color: #475569;
+  transform: translateY(-2px);
+  box-shadow: none !important;
 }
 
 .footer-social-icon.social-youtube {
@@ -127,8 +127,8 @@ $companyName = setting('company_name', 'GoldMatrix');
   background: #FF0000;
   color: #FFFFFF !important;
   border-color: #FF0000;
-  transform: translateY(-3px) scale(1.08);
-  box-shadow: 0 6px 16px rgba(255, 0, 0, 0.45);
+  transform: translateY(-2px);
+  box-shadow: none !important;
 }
 
 .footer-social-icon.social-whatsapp {
@@ -138,8 +138,8 @@ $companyName = setting('company_name', 'GoldMatrix');
   background: #25D366;
   color: #FFFFFF !important;
   border-color: #25D366;
-  transform: translateY(-3px) scale(1.08);
-  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.45);
+  transform: translateY(-2px);
+  box-shadow: none !important;
 }
 
 .footer-social-icon.social-pinterest {
@@ -149,8 +149,8 @@ $companyName = setting('company_name', 'GoldMatrix');
   background: #E60023;
   color: #FFFFFF !important;
   border-color: #E60023;
-  transform: translateY(-3px) scale(1.08);
-  box-shadow: 0 6px 16px rgba(230, 0, 35, 0.45);
+  transform: translateY(-2px);
+  box-shadow: none !important;
 }
 
 .footer-social-icon.social-telegram {
@@ -160,8 +160,8 @@ $companyName = setting('company_name', 'GoldMatrix');
   background: #24A1DE;
   color: #FFFFFF !important;
   border-color: #24A1DE;
-  transform: translateY(-3px) scale(1.08);
-  box-shadow: 0 6px 16px rgba(36, 161, 222, 0.45);
+  transform: translateY(-2px);
+  box-shadow: none !important;
 }
 
 .footer-social-icon.social-custom {
@@ -171,8 +171,8 @@ $companyName = setting('company_name', 'GoldMatrix');
   background: #DC9423;
   color: #FFFFFF !important;
   border-color: #DC9423;
-  transform: translateY(-3px) scale(1.08);
-  box-shadow: 0 6px 16px rgba(220, 148, 35, 0.45);
+  transform: translateY(-2px);
+  box-shadow: none !important;
 }
 
 /* Headings */
