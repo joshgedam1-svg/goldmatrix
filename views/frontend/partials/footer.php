@@ -55,22 +55,124 @@ $companyName = setting('company_name', 'GoldMatrix');
 .footer-social-row {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 .footer-social-icon {
-  color: #FFFFFF;
   font-size: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  transition: color 0.2s ease, transform 0.2s ease;
-  opacity: 0.9;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
 }
-.footer-social-icon:hover {
-  color: var(--gm-luxury-gold, #DC9423);
-  transform: translateY(-2px);
-  opacity: 1;
+
+/* ════════════════════════════════════════════════════
+   UNIVERSAL SOCIAL BRAND COLORS & DEDICATED HOVER
+   ════════════════════════════════════════════════════ */
+.footer-social-icon.social-facebook {
+  color: #1877F2;
+}
+.footer-social-icon.social-facebook:hover {
+  background: #1877F2;
+  color: #FFFFFF !important;
+  border-color: #1877F2;
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 6px 16px rgba(24, 119, 242, 0.45);
+}
+
+.footer-social-icon.social-instagram {
+  color: #E4405F;
+}
+.footer-social-icon.social-instagram:hover {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: #FFFFFF !important;
+  border-color: transparent;
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 6px 16px rgba(225, 48, 108, 0.45);
+}
+
+.footer-social-icon.social-linkedin {
+  color: #0A66C2;
+}
+.footer-social-icon.social-linkedin:hover {
+  background: #0A66C2;
+  color: #FFFFFF !important;
+  border-color: #0A66C2;
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 6px 16px rgba(10, 102, 194, 0.45);
+}
+
+.footer-social-icon.social-twitter {
+  color: #E2E8F0;
+}
+.footer-social-icon.social-twitter:hover {
+  background: #000000;
+  color: #1DA1F2 !important;
+  border-color: #1DA1F2;
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 6px 16px rgba(29, 161, 242, 0.4);
+}
+
+.footer-social-icon.social-youtube {
+  color: #FF0000;
+}
+.footer-social-icon.social-youtube:hover {
+  background: #FF0000;
+  color: #FFFFFF !important;
+  border-color: #FF0000;
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 6px 16px rgba(255, 0, 0, 0.45);
+}
+
+.footer-social-icon.social-whatsapp {
+  color: #25D366;
+}
+.footer-social-icon.social-whatsapp:hover {
+  background: #25D366;
+  color: #FFFFFF !important;
+  border-color: #25D366;
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.45);
+}
+
+.footer-social-icon.social-pinterest {
+  color: #E60023;
+}
+.footer-social-icon.social-pinterest:hover {
+  background: #E60023;
+  color: #FFFFFF !important;
+  border-color: #E60023;
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 6px 16px rgba(230, 0, 35, 0.45);
+}
+
+.footer-social-icon.social-telegram {
+  color: #24A1DE;
+}
+.footer-social-icon.social-telegram:hover {
+  background: #24A1DE;
+  color: #FFFFFF !important;
+  border-color: #24A1DE;
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 6px 16px rgba(36, 161, 222, 0.45);
+}
+
+.footer-social-icon.social-custom {
+  color: #CBD5E1;
+}
+.footer-social-icon.social-custom:hover {
+  background: #DC9423;
+  color: #FFFFFF !important;
+  border-color: #DC9423;
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 6px 16px rgba(220, 148, 35, 0.45);
 }
 
 /* Headings */
@@ -218,28 +320,28 @@ $companyName = setting('company_name', 'GoldMatrix');
             $customSocialList = json_decode($customSocialRaw, true) ?: [];
           ?>
           <?php if (!empty($fb) && $fb !== '#'): ?>
-            <a href="<?= e($fb) ?>" class="footer-social-icon" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="<?= e($fb) ?>" class="footer-social-icon social-facebook" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><i class="bi bi-facebook"></i></a>
           <?php endif; ?>
           <?php if (!empty($ig) && $ig !== '#'): ?>
-            <a href="<?= e($ig) ?>" class="footer-social-icon" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="<?= e($ig) ?>" class="footer-social-icon social-instagram" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="bi bi-instagram"></i></a>
           <?php endif; ?>
           <?php if (!empty($li) && $li !== '#'): ?>
-            <a href="<?= e($li) ?>" class="footer-social-icon" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            <a href="<?= e($li) ?>" class="footer-social-icon social-linkedin" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
           <?php endif; ?>
           <?php if (!empty($tw) && $tw !== '#'): ?>
-            <a href="<?= e($tw) ?>" class="footer-social-icon" target="_blank" rel="noopener" aria-label="Twitter / X" title="Twitter / X"><i class="bi bi-twitter-x"></i></a>
+            <a href="<?= e($tw) ?>" class="footer-social-icon social-twitter" target="_blank" rel="noopener" aria-label="Twitter / X" title="Twitter / X"><i class="bi bi-twitter-x"></i></a>
           <?php endif; ?>
           <?php if (!empty($yt) && $yt !== '#'): ?>
-            <a href="<?= e($yt) ?>" class="footer-social-icon" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><i class="bi bi-youtube"></i></a>
+            <a href="<?= e($yt) ?>" class="footer-social-icon social-youtube" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><i class="bi bi-youtube"></i></a>
           <?php endif; ?>
           <?php if (!empty($wa) && $wa !== '#'): ?>
-            <a href="<?= e($wa) ?>" class="footer-social-icon" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+            <a href="<?= e($wa) ?>" class="footer-social-icon social-whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
           <?php endif; ?>
           <?php if (!empty($pin) && $pin !== '#'): ?>
-            <a href="<?= e($pin) ?>" class="footer-social-icon" target="_blank" rel="noopener" aria-label="Pinterest" title="Pinterest"><i class="bi bi-pinterest"></i></a>
+            <a href="<?= e($pin) ?>" class="footer-social-icon social-pinterest" target="_blank" rel="noopener" aria-label="Pinterest" title="Pinterest"><i class="bi bi-pinterest"></i></a>
           <?php endif; ?>
           <?php if (!empty($tg) && $tg !== '#'): ?>
-            <a href="<?= e($tg) ?>" class="footer-social-icon" target="_blank" rel="noopener" aria-label="Telegram" title="Telegram"><i class="bi bi-telegram"></i></a>
+            <a href="<?= e($tg) ?>" class="footer-social-icon social-telegram" target="_blank" rel="noopener" aria-label="Telegram" title="Telegram"><i class="bi bi-telegram"></i></a>
           <?php endif; ?>
 
           <?php foreach ($customSocialList as $cs): 
@@ -248,7 +350,7 @@ $companyName = setting('company_name', 'GoldMatrix');
             $cIcon = !empty($cs['icon']) ? $cs['icon'] : 'bi-link-45deg';
             if (empty($cUrl) || $cUrl === '#') continue;
           ?>
-            <a href="<?= e($cUrl) ?>" class="footer-social-icon" target="_blank" rel="noopener" aria-label="<?= e($cTitle) ?>" title="<?= e($cTitle) ?>">
+            <a href="<?= e($cUrl) ?>" class="footer-social-icon social-custom" target="_blank" rel="noopener" aria-label="<?= e($cTitle) ?>" title="<?= e($cTitle) ?>">
               <i class="bi <?= e($cIcon) ?>"></i>
             </a>
           <?php endforeach; ?>
