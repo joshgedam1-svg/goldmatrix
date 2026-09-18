@@ -187,19 +187,37 @@ class FrontendController {
         $dbItems = $this->hpItems('feature_spotlight');
         $hasGirvi = false;
         $hasCRM = false;
+        $hasWholesale = false;
         $needsRename = false;
 
         foreach ($dbItems as $it) {
             $t = $it['title'] ?? '';
             if (stripos($t, 'Girvi') !== false) $hasGirvi = true;
             if (stripos($t, 'CRM') !== false) $hasCRM = true;
+            if (stripos($t, 'Wholesale') !== false) $hasWholesale = true;
             if ($t === 'Manufacturing') $needsRename = true;
         }
 
-        if (count($dbItems) < 4 || !$hasGirvi || !$hasCRM || $needsRename) {
+        if (count($dbItems) < 4 || !$hasGirvi || !$hasCRM || $needsRename || !$hasWholesale) {
             try {
                 if ($needsRename) {
                     $this->db->query("UPDATE homepage_items SET title = ? WHERE section = 'feature_spotlight' AND title = 'Manufacturing'", ["Manufacturer's"]);
+                }
+                if (!$hasWholesale) {
+                    $wholesaleFeatures = json_encode([
+                        'Bulk purchase and sales order management with multi-party billing',
+                        'Party-wise ledger with outstanding, credit limit, and ageing reports',
+                        'Karigar / jobwork order tracking with material issue and receipt',
+                        'Multi-location stock transfer and inter-branch settlement'
+                    ], JSON_UNESCAPED_SLASHES);
+                    $this->db->query("
+                        INSERT INTO homepage_items 
+                        (section, title, subtitle, description, features, alt_text, image, sort_order, is_active)
+                        VALUES ('feature_spotlight', 'Wholesale Management', 
+                        'Streamline Jewellery Wholesale & Bulk Trade Operations',
+                        'GoldMatrix Wholesale Management Software gives jewellery traders complete control over bulk orders, party accounts, and inter-branch inventory. Manage karigar jobwork, multi-party billing, and outstanding dues from a single dashboard.',
+                        ?, 'Jewellery Wholesale Management Software Interface', '', 2, 1)
+                    ", [$wholesaleFeatures]);
                 }
                 if (!$hasGirvi) {
                     $girviFeatures = json_encode([
@@ -257,6 +275,22 @@ class FrontendController {
                 ],
                 [
                     'id'          => 2,
+                    'title'       => 'Wholesale Management',
+                    'subtitle'    => 'Streamline Jewellery Wholesale & Bulk Trade Operations',
+                    'description' => 'GoldMatrix Wholesale Management Software gives jewellery traders complete control over bulk orders, party accounts, and inter-branch inventory. Manage karigar jobwork, multi-party billing, and outstanding dues from a single dashboard.',
+                    'features'    => json_encode([
+                        'Bulk purchase and sales order management with multi-party billing',
+                        'Party-wise ledger with outstanding, credit limit, and ageing reports',
+                        'Karigar / jobwork order tracking with material issue and receipt',
+                        'Multi-location stock transfer and inter-branch settlement'
+                    ]),
+                    'alt_text'    => 'Jewellery Wholesale Management Software Interface',
+                    'image'       => '',
+                    'sort_order'  => 2,
+                    'is_active'   => 1
+                ],
+                [
+                    'id'          => 3,
                     'title'       => "Manufacturer's",
                     'subtitle'    => 'Improve Productivity with Jewellery Manufacturing Software',
                     'description' => 'GoldMatrix Manufacturing Software is designed to support jewellery manufacturers by simplifying production management and improving operational control. It helps businesses plan, track, and optimize manufacturing activities while maintaining accuracy and cost efficiency.',
@@ -268,11 +302,11 @@ class FrontendController {
                     ]),
                     'alt_text'    => 'Jewellery Manufacturing & Production Dashboard',
                     'image'       => '/uploads/homepage/hp_6a92088a510d9.png',
-                    'sort_order'  => 2,
+                    'sort_order'  => 3,
                     'is_active'   => 1
                 ],
                 [
-                    'id'          => 3,
+                    'id'          => 4,
                     'title'       => 'Girvi ( Mortgage)',
                     'subtitle'    => 'Streamline Gold Loan & Girvi Operations with Automated Interest',
                     'description' => 'GoldMatrix Girvi (Mortgage) Software provides a secure, reliable pawn broking and gold loan system built specifically for jewellery businesses. Calculate daily, monthly, or compounding interest accurately, issue legal pledge receipts, and maintain safe vault management.',
@@ -284,11 +318,11 @@ class FrontendController {
                     ]),
                     'alt_text'    => 'Girvi Mortgage & Gold Loan Software Interface',
                     'image'       => '',
-                    'sort_order'  => 3,
+                    'sort_order'  => 4,
                     'is_active'   => 1
                 ],
                 [
-                    'id'          => 4,
+                    'id'          => 5,
                     'title'       => 'CRM',
                     'subtitle'    => 'Jewellery Customer Relationship Management & Loyalty Schemes',
                     'description' => 'GoldMatrix Jewellery CRM Software helps retail jewellers nurture customer relationships, increase repeat showroom visits, and boost customer lifetime value. Seamlessly manage 11+1 monthly gold savings schemes, automated festive wishes, and personalized WhatsApp catalogs.',
@@ -300,7 +334,7 @@ class FrontendController {
                     ]),
                     'alt_text'    => 'Jewellery CRM & Customer Loyalty Software Interface',
                     'image'       => '',
-                    'sort_order'  => 4,
+                    'sort_order'  => 5,
                     'is_active'   => 1
                 ]
             ];

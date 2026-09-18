@@ -2347,29 +2347,177 @@ body {
 <!-- Hidden Google Translate Element -->
 <div id="google_translate_element"></div>
 
-<?php 
-$showTopNotice = (setting('enable_top_notification_bar', '0') == '1');
-$topNoticeText = setting('top_notification_text', '');
-$topNoticeLink = setting('top_notification_link', '#bookDemoModal');
-$topNoticeBadge = setting('top_notification_badge', 'NEW');
+<?php
+/*
+ * ══════════════════════════════════════════════════════
+ *  TOP ANNOUNCEMENT / NOTIFICATION BAR — CONFIGURATION
+ *
+ *  Controlled via Admin Panel → Settings → Top Bar
+ *  OR edit the defaults below for a static bar:
+ *
+ *  $topBarMessage  — Main message text
+ *  $topBarBadge    — Pill badge label (e.g. "NEW", "OFFER")
+ *  $topBarLink     — CTA URL ('#bookDemoModal' opens demo modal)
+ *  $topBarCTA      — CTA button text
+ *  $showTopBar     — true/false to force show
+ * ══════════════════════════════════════════════════════
+ */
+$showTopBar    = (setting('enable_top_notification_bar', '1') == '1');
+$topBarMessage = setting('top_notification_text',   '🎉 Exclusive Offer: Get 3 Months Free on GoldMatrix ERP — Limited Slots Available!');
+$topBarLink    = setting('top_notification_link',   '#bookDemoModal');
+$topBarBadge   = setting('top_notification_badge',  'LIMITED OFFER');
+$topBarCTA     = setting('top_notification_cta',    'Book Free Demo');
+$topBarIsModal = !empty($topBarLink) && strpos($topBarLink, '#') === 0;
 ?>
-<?php if ($showTopNotice && !empty($topNoticeText)): ?>
+<?php if ($showTopBar && !empty($topBarMessage)): ?>
 <!-- ════════════════════════════════
-     WEBSITE TOP ANNOUNCEMENT / NOTIFICATION BAR
+     TOP ANNOUNCEMENT / NOTIFICATION BAR
 ════════════════════════════════ -->
-<div class="top-announcement-bar" id="topAnnouncementBar" style="background:#000B2A; color:#FFFFFF; font-size:12px; padding:6px 16px; border-bottom:1px solid rgba(245,158,11,0.25); text-align:center; z-index:1005; position:relative;">
-  <div class="container-fluid d-flex align-items-center justify-content-center gap-2 flex-wrap px-2">
-    <?php if (!empty($topNoticeBadge)): ?>
-      <span class="badge bg-warning text-dark fw-bold fs-10 px-2 py-0.5 rounded-pill"><?= e($topNoticeBadge) ?></span>
+<style>
+/* ── Top Announcement Bar ── */
+.gm-top-bar {
+  background: linear-gradient(90deg, #050F28 0%, #0A1F45 50%, #050F28 100%);
+  border-bottom: 1px solid rgba(245,158,11,0.3);
+  position: relative;
+  z-index: 1010;
+  overflow: hidden;
+}
+.gm-top-bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+    transparent 0%, rgba(245,158,11,0.04) 30%,
+    rgba(245,158,11,0.04) 70%, transparent 100%);
+  pointer-events: none;
+}
+.gm-top-bar-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+}
+.gm-top-bar-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  background: linear-gradient(135deg, #F59E0B, #D97706);
+  color: #000;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.gm-top-bar-msg {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #E2E8F0;
+  text-align: center;
+  line-height: 1.4;
+}
+.gm-top-bar-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 14px;
+  background: rgba(245,158,11,0.12);
+  border: 1px solid rgba(245,158,11,0.4);
+  border-radius: 20px;
+  color: #FBBF24;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.18s ease, border-color 0.18s ease;
+  flex-shrink: 0;
+}
+.gm-top-bar-cta:hover {
+  background: rgba(245,158,11,0.22);
+  border-color: rgba(245,158,11,0.7);
+  color: #FDE68A;
+}
+.gm-top-bar-close {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #64748B;
+  font-size: 16px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 2px 5px;
+  border-radius: 4px;
+  transition: color 0.15s ease;
+}
+.gm-top-bar-close:hover { color: #FFFFFF; }
+@media (max-width: 576px) {
+  .gm-top-bar-inner { padding: 7px 40px 7px 14px; gap: 7px; }
+  .gm-top-bar-msg { font-size: 11.5px; }
+  .gm-top-bar-cta { display: none; } /* CTA hidden on smallest screens, badge+msg only */
+}
+</style>
+
+<div class="gm-top-bar" id="gmTopBar" role="banner" aria-label="Site Announcement">
+  <div class="gm-top-bar-inner">
+    <?php if (!empty($topBarBadge)): ?>
+      <span class="gm-top-bar-badge"><?= e($topBarBadge) ?></span>
     <?php endif; ?>
-    <span class="text-light text-truncate" style="max-width:85vw;"><?= e($topNoticeText) ?></span>
-    <?php if (!empty($topNoticeLink)): ?>
-      <a href="<?= e($topNoticeLink) ?>" <?= strpos($topNoticeLink, '#') === 0 ? 'data-bs-toggle="modal" data-bs-target="' . e($topNoticeLink) . '" class="open-demo-modal"' : '' ?> class="text-warning fw-semibold text-decoration-none ms-1 text-nowrap">
-        Explore Now <i class="bi bi-arrow-right fs-11"></i>
+
+    <span class="gm-top-bar-msg"><?= e($topBarMessage) ?></span>
+
+    <?php if (!empty($topBarLink) && !empty($topBarCTA)): ?>
+      <a href="<?= e($topBarLink) ?>"
+         class="gm-top-bar-cta"
+         <?php if ($topBarIsModal): ?>
+           data-bs-toggle="modal"
+           data-bs-target="<?= e($topBarLink) ?>"
+         <?php else: ?>
+           target="_blank" rel="noopener"
+         <?php endif; ?>>
+        <?= e($topBarCTA) ?> <i class="bi bi-arrow-right" style="font-size:10px;"></i>
       </a>
     <?php endif; ?>
+
+    <!-- Dismiss Button -->
+    <button class="gm-top-bar-close" id="gmTopBarClose" aria-label="Close announcement" title="Dismiss">
+      <i class="bi bi-x-lg"></i>
+    </button>
   </div>
 </div>
+
+<script>
+/* Top Bar dismiss — remembers for 24h via localStorage */
+(function () {
+  var key = 'gmTopBarDismissed';
+  var bar = document.getElementById('gmTopBar');
+  var btn = document.getElementById('gmTopBarClose');
+  if (!bar) return;
+  try {
+    var ts = parseInt(localStorage.getItem(key) || '0', 10);
+    if (ts && Date.now() - ts < 86400000) { bar.style.display = 'none'; return; }
+  } catch(e){}
+  if (btn) {
+    btn.addEventListener('click', function () {
+      bar.style.height = bar.offsetHeight + 'px';
+      bar.style.overflow = 'hidden';
+      bar.style.transition = 'height 0.25s ease, opacity 0.25s ease';
+      bar.style.opacity = '0';
+      bar.style.height = '0';
+      setTimeout(function () { bar.style.display = 'none'; }, 260);
+      try { localStorage.setItem(key, Date.now().toString()); } catch(e){}
+    });
+  }
+})();
+</script>
 <?php endif; ?>
 
 <!-- ════════════════════════════════

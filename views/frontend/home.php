@@ -799,6 +799,209 @@ $slides = !empty($hero_slides) ? $hero_slides : [
 <?php endif; ?>
 
 <!-- ════════════════════════════════
+     TRUSTED BY LEADING JEWELLERS — POWER POINTS STRIP
+════════════════════════════════ -->
+<section class="section-trusted-jewellers" id="trusted-jewellers">
+  <div class="tj-inner">
+
+    <!-- Heading -->
+    <div class="tj-heading">
+      <span class="tj-badge"><i class="bi bi-shield-check-fill"></i> VERIFIED</span>
+      <h2 class="tj-title">Trusted by Leading Jewellers</h2>
+      <p class="tj-sub">Across UAE, India & 12+ Countries — GoldMatrix powers the complete jewellery business lifecycle.</p>
+    </div>
+
+    <!-- Power Points Row -->
+    <div class="tj-points">
+      <?php
+      /* ── EASILY EDITABLE: Add / remove points below ── */
+      $tj_points = [
+        ['bi-gem',              'Complete ERP',           'Single platform for retail, manufacturing, wholesale &amp; export.'],
+        ['bi-people-fill',      'Trusted by 1,500+',      'Businesses across India, UAE, Dubai, UK &amp; global markets.'],
+        ['bi-star-fill',        'Gold-Standard Support',  '24/7 dedicated onboarding &amp; after-sale support team.'],
+        ['bi-graph-up-arrow',   'Proven ROI',             'Average 3× efficiency gain within 60 days of going live.'],
+        ['bi-shield-lock-fill', '100% Data Security',     'Encrypted, role-based, cloud-ready infrastructure.'],
+        ['bi-globe2',           '12+ Countries',          'Deployed across UAE, India, UK, USA, Kenya &amp; more.'],
+      ];
+      foreach ($tj_points as $pt): ?>
+      <div class="tj-point">
+        <div class="tj-point-icon"><i class="bi <?= e($pt[0]) ?>"></i></div>
+        <div>
+          <div class="tj-point-title"><?= $pt[1] ?></div>
+          <div class="tj-point-desc"><?= $pt[2] ?></div>
+        </div>
+      </div>
+      <?php endforeach; ?>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="tj-stats">
+      <?php
+      /* ── EASILY EDITABLE: Stats ── */
+      $tj_stats = [
+        ['1,500+', 'Businesses Powered'],
+        ['12+',    'Countries'],
+        ['25+',    'Years Experience'],
+        ['99.9%',  'Uptime SLA'],
+      ];
+      foreach ($tj_stats as $s): ?>
+      <div class="tj-stat">
+        <span class="tj-stat-num"><?= $s[0] ?></span>
+        <span class="tj-stat-label"><?= $s[1] ?></span>
+      </div>
+      <?php endforeach; ?>
+    </div>
+
+  </div>
+</section>
+
+<style>
+/* ══════════════════════════════
+   TRUSTED BY LEADING JEWELLERS
+══════════════════════════════ */
+.section-trusted-jewellers {
+  background: linear-gradient(135deg, #001540 0%, #072554 60%, #001540 100%);
+  padding: 72px 5% 60px;
+  position: relative;
+  overflow: hidden;
+}
+.section-trusted-jewellers::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(245,158,11,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.tj-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+}
+.tj-heading {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.tj-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(245,158,11,0.12);
+  color: #FBBF24;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(245,158,11,0.25);
+  margin-bottom: 14px;
+}
+.tj-title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 900;
+  color: #FFFFFF;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+.tj-sub {
+  font-size: 15px;
+  color: #94A3B8;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+/* Power Points Grid */
+.tj-points {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 44px;
+}
+.tj-point {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 18px 20px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.tj-point:hover {
+  background: rgba(245,158,11,0.07);
+  border-color: rgba(245,158,11,0.22);
+}
+.tj-point-icon {
+  width: 38px;
+  height: 38px;
+  background: rgba(245,158,11,0.12);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FBBF24;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.tj-point-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 3px;
+}
+.tj-point-desc {
+  font-size: 12px;
+  color: #94A3B8;
+  line-height: 1.5;
+}
+/* Stats Row */
+.tj-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.tj-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 22px 16px;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+}
+.tj-stat:last-child { border-right: none; }
+.tj-stat-num {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #FBBF24;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.tj-stat-label {
+  font-size: 11.5px;
+  color: #94A3B8;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+@media (max-width: 991px) {
+  .tj-points { grid-template-columns: 1fr 1fr; }
+  .tj-stats  { grid-template-columns: 1fr 1fr; }
+  .tj-stat   { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .tj-stat:nth-child(odd)   { border-right: 1px solid rgba(255,255,255,0.1); }
+  .tj-stat:nth-last-child(-n+2) { border-bottom: none; }
+}
+@media (max-width: 576px) {
+  .section-trusted-jewellers { padding: 48px 5% 40px; }
+  .tj-points { grid-template-columns: 1fr; gap: 12px; }
+  .tj-stats  { grid-template-columns: 1fr 1fr; }
+}
+</style>
+
+<!-- ════════════════════════════════
      CONNECTED / FEATURES SECTION
 ════════════════════════════════ -->
 <section class="section-conn" id="features">
@@ -1105,27 +1308,87 @@ $allSlidingCards = array_merge($renderCountriesList, $renderCountriesList);
     </div>
     <div class="testi-grid">
       <?php
+      /*
+       * ══════════════════════════════════════════════════════════
+       *  TESTIMONIALS — EASILY EDITABLE
+       *  Format: [avatar_letter_or_image_url, name, company, quote, image_url_or_empty, stars]
+       *
+       *  To add a photo: set index [4] to the image URL e.g. '/uploads/reviews/rajesh.jpg'
+       *  To use avatar initials: leave index [4] as '' (empty string)
+       *  Stars: 1–5 (index [5])
+       * ══════════════════════════════════════════════════════════
+       */
       $defaultTestis = [
-        ['R','Rajesh Mehta','Mehta Jewellers, Mumbai','GoldMatrix has completely transformed the way we manage our business.'],
-        ['A','Anita Shah','Shah Gold Palace, Surat','Excellent support and best software for jewellery business management.'],
-        ['V','Vikram Malhotra','Malhotra Jewellers, Delhi','We can now manage multiple branches and inventory in real-time.'],
+        /* [0]=initial, [1]=name, [2]=company, [3]=quote, [4]=photo_url ('' = placeholder avatar), [5]=stars */
+        [
+          'R',
+          'Rajesh Mehta',
+          'Mehta Jewellers, Mumbai',
+          'GoldMatrix has completely transformed the way we manage our business. Inventory, billing, and production — all in one place.',
+          '', /* 📸 Replace '' with '/uploads/reviews/rajesh-mehta.jpg' when photo is available */
+          5
+        ],
+        [
+          'A',
+          'Anita Shah',
+          'Shah Gold Palace, Surat',
+          'Excellent support and the best software for jewellery business management. The WhatsApp catalogue feature is a game-changer.',
+          '', /* 📸 Replace '' with '/uploads/reviews/anita-shah.jpg' when photo is available */
+          5
+        ],
+        [
+          'V',
+          'Vikram Malhotra',
+          'Malhotra Jewellers, Delhi',
+          'We can now manage multiple branches and inventory in real-time. The RFID integration alone saves us hours every week.',
+          '', /* 📸 Replace '' with '/uploads/reviews/vikram-malhotra.jpg' when photo is available */
+          5
+        ],
       ];
-      $renderTestis = !empty($testimonials) ?
-        array_map(fn($t)=>[$t['image'] ?: $t['title'][0], $t['title'], $t['subtitle'], $t['description'], $t['image'], (int)($t['extra'] ?: 5)], $testimonials) :
-        $defaultTestis;
-      foreach($renderTestis as $t): ?>
+      /* CMS testimonials override defaults when available */
+      $renderTestis = !empty($testimonials)
+        ? array_map(fn($t) => [
+            $t['image'] ?: mb_substr($t['title'], 0, 1),
+            $t['title'],
+            $t['subtitle'],
+            $t['description'],
+            $t['image'] ?? '',
+            (int)($t['extra'] ?: 5)
+          ], $testimonials)
+        : $defaultTestis;
+
+      foreach ($renderTestis as $t):
+        $tPhoto   = $t[4] ?? '';
+        $tName    = $t[1] ?? '';
+        $tCompany = $t[2] ?? '';
+        $tQuote   = $t[3] ?? '';
+        $tStars   = (int)($t[5] ?? 5);
+        $tInitial = mb_strtoupper(mb_substr($tName, 0, 1));
+      ?>
       <div class="testi-card">
-        <div class="testi-stars"><?= str_repeat('★', isset($t[5]) ? $t[5] : 5) ?></div>
-        <p class="testi-q">"<?= e($t[3]) ?>"</p>
+        <!-- Star Rating -->
+        <div class="testi-stars"><?= str_repeat('★', max(1, min(5, $tStars))) ?></div>
+        <!-- Review Quote -->
+        <p class="testi-q">"<?= e($tQuote) ?>"</p>
+        <!-- Author Row -->
         <div class="testi-auth">
-          <?php if (!empty($t[4])): ?>
-            <img class="testi-photo" src="<?= e($t[4]) ?>" alt="<?= e($t[1]) ?>" loading="lazy" decoding="async">
+          <?php if (!empty($tPhoto)): ?>
+            <!-- Photo: sourced from CMS or manual upload -->
+            <img class="testi-photo"
+                 src="<?= e($tPhoto) ?>"
+                 alt="<?= e($tName) ?>"
+                 loading="lazy"
+                 decoding="async"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <!-- Fallback avatar if photo fails to load -->
+            <div class="testi-av" style="display:none;"><?= e($tInitial) ?></div>
           <?php else: ?>
-            <div class="testi-av"><?= mb_substr(e($t[1]), 0, 1) ?></div>
+            <!-- Avatar placeholder (initials) — replace with photo URL above when available -->
+            <div class="testi-av"><?= e($tInitial) ?></div>
           <?php endif; ?>
           <div>
-            <div class="testi-name"><?= e($t[1]) ?></div>
-            <div class="testi-company"><?= e($t[2]) ?></div>
+            <div class="testi-name"><?= e($tName) ?></div>
+            <div class="testi-company"><?= e($tCompany) ?></div>
           </div>
         </div>
       </div>
