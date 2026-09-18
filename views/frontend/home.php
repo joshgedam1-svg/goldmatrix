@@ -16,7 +16,7 @@ $slides = !empty($hero_slides) ? $hero_slides : [
         'title'       => 'The Complete Jewellery ERP Built to Run Your Business.',
         'description' => $hero_desc ?? 'Manage inventory, sales, manufacturing, accounting, POS, CRM, wholesale and multi-branch operations from one powerful platform.',
         'features'    => json_encode(['Cloud Based', 'Multi Branch', 'Real-time Data', 'Secure & Scalable']),
-        'btn1_text'   => $hero_btn1_text ?? 'Book a Free Demo',
+        'btn1_text'   => $hero_btn1_text ?? 'Connect with Our Team',
         'btn1_link'   => $hero_btn1_link ?? '#contact',
         'btn2_text'   => $hero_btn2_text ?? 'Start 7-Day Free Trial',
         'btn2_link'   => $hero_btn2_link ?? '#contact',
@@ -1722,12 +1722,12 @@ $allSlidingCards = array_merge($renderCountriesList, $renderCountriesList);
 ════════════════════════════════ -->
 <section style="background-color: #0F172A; padding: 75px 5%; position:relative; border-top: 1px solid #1E293B;">
   <div style="max-width:900px; margin:0 auto; text-align:center; position:relative; z-index:1;">
-    <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(251,191,36,0.1);color:#FBBF24;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 16px;border-radius:50rem;border:1px solid rgba(251,191,36,0.25);margin-bottom:20px;">START YOUR FREE DEMO</div>
+    <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(251,191,36,0.1);color:#FBBF24;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 16px;border-radius:50rem;border:1px solid rgba(251,191,36,0.25);margin-bottom:20px;">CONNECT WITH OUR EXPERTS</div>
 
     <h2 style="font-family:var(--gm-font-display);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;color:#FFFFFF;line-height:1.2;margin-bottom:16px;">
       Ready to Transform Your <span style="color:#FBBF24;">Jewellery Business?</span>
     </h2>
-    <p style="font-size:15.5px;color:#94A3B8;max-width:580px;margin:0 auto 36px;line-height:1.7;">Join 1,500+ jewellery businesses across 12+ countries who trust GoldMatrix ERP. Get your personalized free demo today — no commitment required.</p>
+    <p style="font-size:15.5px;color:#94A3B8;max-width:580px;margin:0 auto 36px;line-height:1.7;">Join 1,500+ jewellery businesses across 12+ countries who trust GoldMatrix ERP. Connect with our solution specialists today — personalized walkthrough & consultation.</p>
 
     <!-- Stats Row -->
     <div style="display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-bottom:36px;">
@@ -1741,8 +1741,8 @@ $allSlidingCards = array_merge($renderCountriesList, $renderCountriesList);
 
     <!-- CTAs -->
     <div style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;">
-      <a href="#bookDemoModal" data-bs-toggle="modal" data-bs-target="#bookDemoModal" class="btn btn-warning text-dark fw-bold px-4 py-3">
-        <i class="bi bi-calendar-check-fill me-1"></i> Book Free Demo
+      <a href="#bookDemoModal" data-bs-toggle="modal" data-bs-target="#bookDemoModal" class="btn btn-warning text-dark fw-bold px-4 py-3 open-demo-modal">
+        <i class="bi bi-people-fill me-1"></i> Connect with Our Team
       </a>
       <a href="https://wa.me/971563240319?text=Hi+GoldMatrix,+I+want+to+know+more+about+your+Jewellery+ERP+software." target="_blank" rel="noopener"
          class="btn btn-outline-light fw-semibold px-4 py-3">

@@ -21,7 +21,7 @@ class AboutPageController {
             ['about_hero_title',        'About GoldMatrix', 'Hero Main Heading', 'text'],
             ['about_hero_lead',         'GoldMatrix is a jewellery business software company helping jewellery businesses simplify operations, improve control and grow with confidence.', 'Hero Supporting Text', 'textarea'],
             ['about_hero_image',        'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=1000&auto=format&fit=crop&q=80', 'Hero Right Image URL', 'text'],
-            ['about_hero_btn1_text',    'Book a Free Demo', 'Hero Primary Button Text', 'text'],
+            ['about_hero_btn1_text',    'Connect with Our Team', 'Hero Primary Button Text', 'text'],
             ['about_hero_btn2_text',    'Explore Solutions', 'Hero Secondary Button Text', 'text'],
             ['about_hero_btn2_link',    '/solutions', 'Hero Secondary Button Link', 'text'],
 
@@ -118,7 +118,7 @@ class AboutPageController {
             // ── 13. Final CTA ──
             ['about_cta_title',         'Let\'s Grow Together', 'Final CTA Heading', 'text'],
             ['about_cta_desc',          'Discover how GoldMatrix can help simplify your jewellery business and bring greater control to your daily operations.', 'Final CTA Supporting Text', 'textarea'],
-            ['about_cta_btn1_text',     'Book a Free Demo', 'CTA Button Text', 'text'],
+            ['about_cta_btn1_text',     'Connect with Our Team', 'CTA Button Text', 'text'],
             ['about_cta_whatsapp',      '+91 92703 69937', 'CTA WhatsApp Phone', 'text'],
             ['about_cta_bg_image',      'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1600&auto=format&fit=crop&q=80', 'CTA Background Image URL', 'text'],
 

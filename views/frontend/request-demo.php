@@ -263,8 +263,8 @@ require __DIR__ . '/partials/header.php';
     <div>
       <div class="demo-page-card">
         
-        <h2 style="font-size: 24px; font-weight: 800; color: #0F172A; margin: 0 0 6px;">Book a Free Demo</h2>
-        <p style="font-size: 14px; color: #64748B; margin-bottom: 18px;">See how GoldMatrix can work for your business.</p>
+        <h2 style="font-size: 24px; font-weight: 800; color: #0F172A; margin: 0 0 6px;">Connect with Our Team</h2>
+        <p style="font-size: 14px; color: #64748B; margin-bottom: 18px;">Schedule a tailored walkthrough & consultation for your jewellery business.</p>
 
         <!-- Feature Pills -->
         <div class="d-flex align-items-center gap-3 flex-wrap mb-3.5 pb-1">
@@ -405,7 +405,7 @@ require __DIR__ . '/partials/header.php';
 
           <!-- Submit Button -->
           <button type="submit" id="demoPageSubmitBtn" class="demo-btn-submit">
-            <span id="demoPageBtnText">Request My Demo</span>
+            <span id="demoPageBtnText">Connect with Our Team</span>
             <i class="bi bi-arrow-right"></i>
           </button>
         </form>

@@ -577,7 +577,7 @@ class FrontendController {
             // ── CTA ──
             'cta_title'         => $this->hp('cta_title',          'Ready to Transform Your Jewelry Business?'),
             'cta_desc'          => $this->hp('cta_desc',           'Join 1000+ jewelers who trust GoldMatrix ERP. Get your free demo today.'),
-            'cta_btn1_text'     => $this->hp('cta_btn1_text',      '🚀 Book Free Demo'),
+            'cta_btn1_text'     => $this->hp('cta_btn1_text',      '🚀 Connect with Our Team'),
             'cta_btn1_link'     => $this->hp('cta_btn1_link',      '#contact'),
             'cta_btn2_text'     => $this->hp('cta_btn2_text',      '📞 +91 98765 43210'),
             'cta_btn2_link'     => $this->hp('cta_btn2_link',      'tel:+919876543210'),

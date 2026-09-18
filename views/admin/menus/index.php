@@ -405,8 +405,8 @@ $pageTitle = 'Menus & Navigation';
                   <div class="anchor-chip" onclick="applySectionAnchor('Customer Reviews', '#testimonials')">
                     <i class="bi bi-star text-primary"></i> <strong>Testimonials</strong> <code>#testimonials</code>
                   </div>
-                  <div class="anchor-chip" onclick="applySectionAnchor('Book Free Demo', '#contact')">
-                    <i class="bi bi-envelope text-primary"></i> <strong>Contact / Demo</strong> <code>#contact</code>
+                  <div class="anchor-chip" onclick="applySectionAnchor('Connect with Our Team', '#contact')">
+                    <i class="bi bi-envelope text-primary"></i> <strong>Connect with Our Team</strong> <code>#contact</code>
                   </div>
                 </div>
               </div>

@@ -228,7 +228,7 @@ if (!isset($tabs[$activeTab])) {
                       <div class="row g-3">
                         <div class="col-md-3 col-6">
                           <label class="form-label fs-11 text-muted">Primary Button Text</label>
-                          <input type="text" name="btn1_text" value="Book a Free Demo" class="form-control form-control-sm">
+                          <input type="text" name="btn1_text" value="Connect with Our Team" class="form-control form-control-sm">
                         </div>
                         <div class="col-md-3 col-6">
                           <label class="form-label fs-11 text-muted">Primary Button Link</label>
@@ -484,7 +484,7 @@ if (!isset($tabs[$activeTab])) {
                                     <!-- Buttons -->
                                     <div class="col-md-3 col-6">
                                       <label class="form-label fs-11 text-muted">Primary Button Text</label>
-                                      <input type="text" name="btn1_text" value="<?= e($slide['btn1_text'] ?? 'Book a Free Demo') ?>" class="form-control form-control-sm">
+                                      <input type="text" name="btn1_text" value="<?= e($slide['btn1_text'] ?? 'Connect with Our Team') ?>" class="form-control form-control-sm">
                                     </div>
                                     <div class="col-md-3 col-6">
                                       <label class="form-label fs-11 text-muted">Primary Button Link</label>

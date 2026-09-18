@@ -522,7 +522,7 @@ $ctaBg = setting('about_cta_bg_image', 'https://images.unsplash.com/photo-151556
         </p>
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start gap-3">
           <button type="button" class="btn-ab-gold" data-bs-toggle="modal" data-bs-target="#bookDemoModal">
-            <span><?= e(setting('about_hero_btn1_text', 'Book a Free Demo')) ?></span>
+            <span><?= e(setting('about_hero_btn1_text', 'Connect with Our Team')) ?></span>
             <i class="bi bi-arrow-right"></i>
           </button>
           <a href="<?= e(setting('about_hero_btn2_link', '/solutions')) ?>" class="btn-ab-outline">
@@ -877,7 +877,7 @@ $ctaBg = setting('about_cta_bg_image', 'https://images.unsplash.com/photo-151556
     </p>
     <div class="d-flex flex-wrap justify-content-center gap-3">
       <button type="button" class="btn-ab-gold" data-bs-toggle="modal" data-bs-target="#bookDemoModal">
-        <span><?= e(setting('about_cta_btn1_text', 'Book a Free Demo')) ?></span>
+        <span><?= e(setting('about_cta_btn1_text', 'Connect with Our Team')) ?></span>
         <i class="bi bi-arrow-right"></i>
       </button>
       <a href="https://wa.me/<?= preg_replace('/[^0-9]/', '', setting('about_cta_whatsapp', '919270369937')) ?>?text=Hello%20GoldMatrix%20Team%2C%20I%20would%20like%20to%20learn%20more%20about%20your%20Jewellery%20ERP%20software." target="_blank" class="btn-ab-outline">

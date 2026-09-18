@@ -103,7 +103,7 @@ require __DIR__ . '/partials/header.php';
   <p style="color:#94A3B8;font-size:15px;margin-bottom:28px;">Contact our team and we'll connect GoldMatrix to your specific tools and workflows.</p>
   <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
     <a href="#bookDemoModal" data-bs-toggle="modal" data-bs-target="#bookDemoModal" class="btn btn-warning fw-bold px-4 py-3 text-dark rounded-3 d-inline-flex align-items-center gap-2 open-demo-modal">
-      <i class="bi bi-calendar-check-fill"></i> Book Free Demo
+      <i class="bi bi-people-fill"></i> Connect with Our Team
     </a>
     <a href="/contact" class="btn btn-outline-light fw-bold px-4 py-3 rounded-3 d-inline-flex align-items-center gap-2">
       <i class="bi bi-envelope-fill"></i> Contact Us

@@ -63,10 +63,10 @@ require __DIR__ . '/partials/header.php';
 
 <!-- CTA -->
 <section style="background-color:#0F172A;padding:64px 5%;text-align:center;">
-  <h2 style="font-family:var(--gm-font-display);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;color:#FFFFFF;margin-bottom:12px;">Ready for a Free Demo?</h2>
-  <p style="color:#94A3B8;font-size:15px;margin-bottom:28px;">See GoldMatrix work for your type of jewellery business — live and personalised.</p>
+  <h2 style="font-family:var(--gm-font-display);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;color:#FFFFFF;margin-bottom:12px;">Ready to Elevate Your Jewellery Business?</h2>
+  <p style="color:#94A3B8;font-size:15px;margin-bottom:28px;">Connect with our solution experts to see how GoldMatrix powers businesses like yours.</p>
   <a href="#bookDemoModal" data-bs-toggle="modal" data-bs-target="#bookDemoModal" class="btn btn-warning fw-bold px-4 py-3 text-dark rounded-3 d-inline-flex align-items-center gap-2 open-demo-modal">
-    <i class="bi bi-calendar-check-fill"></i> Book Free Demo
+    <i class="bi bi-people-fill"></i> Connect with Our Team
   </a>
 </section>
 

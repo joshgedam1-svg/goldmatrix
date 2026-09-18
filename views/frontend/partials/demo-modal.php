@@ -256,8 +256,8 @@
       <!-- Modal Body -->
       <div class="modal-body">
         
-        <h2 class="demo-title-h2">Book a Free Demo</h2>
-        <p class="demo-subtitle-p">See how GoldMatrix can work for your business.</p>
+        <h2 class="demo-title-h2">Connect with Our Team</h2>
+        <p class="demo-subtitle-p">Schedule a 1-on-1 walkthrough tailored to your jewellery business.</p>
 
         <!-- 4 Feature Badges Row -->
         <div class="d-flex align-items-center gap-3 flex-wrap mb-3.5 pb-1">
@@ -396,7 +396,7 @@
 
           <!-- Submit Button -->
           <button type="submit" id="demoSubmitBtn" class="demo-btn-submit">
-            <span id="demoSubmitBtnText">Request My Demo</span>
+            <span id="demoSubmitBtnText">Connect with Our Team</span>
             <i class="bi bi-arrow-right" id="demoSubmitBtnIcon"></i>
             <span id="demoSubmitBtnSpinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
           </button>

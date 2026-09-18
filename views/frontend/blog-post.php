@@ -150,9 +150,9 @@ $readingTime = max(1, ceil($wordCount / 200));
                 <i class="bi bi-gem text-dark fs-4"></i>
               </div>
             </div>
-            <h5 class="fw-bold mb-2">Free Demo for Jewellers</h5>
-            <p class="text-white-50 fs-13 mb-3">See GoldMatrix ERP live — tailored for your showroom size and type.</p>
-            <button type="button" class="btn btn-warning fw-bold w-100 py-2 open-demo-modal" data-bs-toggle="modal" data-bs-target="#bookDemoModal">Book Free Demo</button>
+            <h5 class="fw-bold mb-2">Connect with Our Team</h5>
+            <p class="text-white-50 fs-13 mb-3">Speak with our jewellery ERP consultants — tailored for your showroom or wholesale operations.</p>
+            <button type="button" class="btn btn-warning fw-bold w-100 py-2 open-demo-modal" data-bs-toggle="modal" data-bs-target="#bookDemoModal"><i class="bi bi-people-fill me-1"></i> Connect with Our Team</button>
           </div>
         </div>
 

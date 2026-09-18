@@ -330,20 +330,29 @@ h1, h2, h3, h4, h5, h6,
 /* ══════════════════════════════
    NAVBAR & HEADER STYLES
 ══════════════════════════════ */
+.gm-site-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1020;
+  background: #FFFFFF;
+}
+
 .navbar {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 1000;
-  height: 72px;
+  position: relative;
+  width: 100%;
+  height: 74px;
   background-color: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
-  padding: 0 3.5%;
+  gap: 12px;
+  padding: 0 4%;
   border-bottom: 1px solid #E2E8F0;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 .nav-brand {
@@ -351,6 +360,7 @@ h1, h2, h3, h4, h5, h6,
   align-items: center;
   gap: 12px;
   text-decoration: none;
+  flex-shrink: 0;
 }
 .nav-logo {
   width: 40px; height: 40px;
@@ -609,7 +619,7 @@ h1, h2, h3, h4, h5, h6,
 .hero {
   position: relative;
   min-height: 560px;
-  padding-top: 72px;
+  padding-top: 0;
   background: var(--gm-navy, #001540);
   overflow: hidden;
   display: flex;
@@ -2073,7 +2083,7 @@ footer {
   .nav-brand-name { font-size: 16px; }
   .nav-brand-sub { font-size: 8.5px; }
 
-  .hero { min-height: auto; padding-top: 72px; padding-bottom: 40px; }
+  .hero { min-height: auto; padding-top: 0; padding-bottom: 40px; }
   .hero-slide-inner { flex-direction: column; padding: 16px 4% 32px; gap: 20px; text-align: center; }
   .hero-right { order: 1; width: 100%; max-width: 480px; margin: 0 auto; justify-content: center; }
   .hero-slider-img { max-height: 250px; }
@@ -2114,7 +2124,7 @@ footer {
   .nav-brand-sub { font-size: 8px; }
   .nav-toggle-btn { width: 38px; height: 38px; font-size: 20px; }
 
-  .hero { padding-top: 66px; padding-bottom: 28px; }
+  .hero { padding-top: 0; padding-bottom: 28px; }
   .hero-slider-img { max-height: 195px; }
   .hero-h1 { font-size: 1.55rem; }
   .hero-desc { font-size: 13px; }
@@ -2363,24 +2373,29 @@ body {
  * ══════════════════════════════════════════════════════
  */
 $showTopBar    = (setting('enable_top_notification_bar', '1') == '1');
-$topBarMessage = setting('top_notification_text',   '🎉 Exclusive Offer: Get 3 Months Free on GoldMatrix ERP — Limited Slots Available!');
+$topBarMessage = setting('top_notification_text',   '🎉 Special Offer: Connect with Our Team Today & Get 30 Days Free Trial on GoldMatrix ERP!');
 $topBarLink    = setting('top_notification_link',   '#bookDemoModal');
 $topBarBadge   = setting('top_notification_badge',  'LIMITED OFFER');
-$topBarCTA     = setting('top_notification_cta',    'Book Free Demo');
+$topBarCTA     = setting('top_notification_cta',    'Connect with Our Team');
 $topBarIsModal = !empty($topBarLink) && strpos($topBarLink, '#') === 0;
 ?>
-<?php if ($showTopBar && !empty($topBarMessage)): ?>
+
 <!-- ════════════════════════════════
-     TOP ANNOUNCEMENT / NOTIFICATION BAR
+     STICKY HEADER CONTAINER
 ════════════════════════════════ -->
+<header class="gm-site-header" id="gmSiteHeader">
+
+<?php if ($showTopBar && !empty($topBarMessage)): ?>
+<!-- Top Announcement / Notification Bar -->
 <style>
 /* ── Top Announcement Bar ── */
 .gm-top-bar {
   background: linear-gradient(90deg, #050F28 0%, #0A1F45 50%, #050F28 100%);
-  border-bottom: 1px solid rgba(245,158,11,0.3);
+  border-bottom: 1px solid rgba(245,158,11,0.25);
   position: relative;
-  z-index: 1010;
+  z-index: 1021;
   overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease, padding 0.3s ease;
 }
 .gm-top-bar::before {
   content: '';
@@ -2398,13 +2413,13 @@ $topBarIsModal = !empty($topBarLink) && strpos($topBarLink, '#') === 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   position: relative;
 }
 .gm-top-bar-badge {
   display: inline-flex;
   align-items: center;
-  padding: 2px 10px;
+  padding: 2.5px 10px;
   background: linear-gradient(135deg, #F59E0B, #D97706);
   color: #000;
   font-size: 9.5px;
@@ -2414,6 +2429,7 @@ $topBarIsModal = !empty($topBarLink) && strpos($topBarLink, '#') === 0;
   border-radius: 20px;
   white-space: nowrap;
   flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 .gm-top-bar-msg {
   font-size: 12.5px;
@@ -2425,23 +2441,24 @@ $topBarIsModal = !empty($topBarLink) && strpos($topBarLink, '#') === 0;
 .gm-top-bar-cta {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   padding: 4px 14px;
-  background: rgba(245,158,11,0.12);
-  border: 1px solid rgba(245,158,11,0.4);
+  background: rgba(245,158,11,0.15);
+  border: 1px solid rgba(245,158,11,0.5);
   border-radius: 20px;
   color: #FBBF24;
   font-size: 11.5px;
   font-weight: 700;
   text-decoration: none;
   white-space: nowrap;
-  transition: background 0.18s ease, border-color 0.18s ease;
+  transition: all 0.2s ease;
   flex-shrink: 0;
 }
 .gm-top-bar-cta:hover {
-  background: rgba(245,158,11,0.22);
-  border-color: rgba(245,158,11,0.7);
-  color: #FDE68A;
+  background: #F59E0B;
+  border-color: #F59E0B;
+  color: #001540;
+  box-shadow: 0 2px 8px rgba(245,158,11,0.3);
 }
 .gm-top-bar-close {
   position: absolute;
@@ -2450,18 +2467,20 @@ $topBarIsModal = !empty($topBarLink) && strpos($topBarLink, '#') === 0;
   transform: translateY(-50%);
   background: none;
   border: none;
-  color: #64748B;
-  font-size: 16px;
+  color: #94A3B8;
+  font-size: 15px;
   cursor: pointer;
   line-height: 1;
-  padding: 2px 5px;
+  padding: 3px 6px;
   border-radius: 4px;
   transition: color 0.15s ease;
 }
 .gm-top-bar-close:hover { color: #FFFFFF; }
-@media (max-width: 576px) {
-  .gm-top-bar-inner { padding: 7px 40px 7px 14px; gap: 7px; }
+@media (max-width: 768px) {
+  .gm-top-bar-inner { padding: 7px 40px 7px 14px; gap: 8px; }
   .gm-top-bar-msg { font-size: 11.5px; }
+}
+@media (max-width: 576px) {
   .gm-top-bar-cta { display: none; } /* CTA hidden on smallest screens, badge+msg only */
 }
 </style>
@@ -2507,12 +2526,17 @@ $topBarIsModal = !empty($topBarLink) && strpos($topBarLink, '#') === 0;
   } catch(e){}
   if (btn) {
     btn.addEventListener('click', function () {
-      bar.style.height = bar.offsetHeight + 'px';
+      bar.style.maxHeight = bar.offsetHeight + 'px';
       bar.style.overflow = 'hidden';
-      bar.style.transition = 'height 0.25s ease, opacity 0.25s ease';
-      bar.style.opacity = '0';
-      bar.style.height = '0';
-      setTimeout(function () { bar.style.display = 'none'; }, 260);
+      bar.style.transition = 'max-height 0.28s ease, opacity 0.22s ease, padding 0.28s ease';
+      requestAnimationFrame(function() {
+        bar.style.opacity = '0';
+        bar.style.maxHeight = '0';
+        bar.style.paddingTop = '0';
+        bar.style.paddingBottom = '0';
+        bar.style.borderBottomWidth = '0';
+      });
+      setTimeout(function () { bar.style.display = 'none'; }, 300);
       try { localStorage.setItem(key, Date.now().toString()); } catch(e){}
     });
   }
@@ -2590,8 +2614,8 @@ $topBarIsModal = !empty($topBarLink) && strpos($topBarLink, '#') === 0;
     <?php endforeach; ?>
   </div>
 
-  <!-- Right Actions: Compact Flag Switcher + Demo CTA -->
-  <div class="nav-actions d-none d-lg-flex align-items-center gap-2">
+  <!-- Right Actions: Compact Flag Switcher + Primary CTA -->
+  <div class="nav-actions d-none d-lg-flex align-items-center gap-3">
     <?php if ($isMultilangEnabled && ($langSwitcherPos === 'header' || $langSwitcherPos === 'both') && !empty($enabledLangs)): ?>
       <div class="dropdown nav-lang-dropdown">
         <button class="btn-lang-compact dropdown-toggle" type="button" id="headerLangDropdown" data-bs-toggle="dropdown" aria-expanded="false" title="Change Language (<?= e($activeLangInfo['name']) ?>)">
@@ -2618,6 +2642,12 @@ $topBarIsModal = !empty($topBarLink) && strpos($topBarLink, '#') === 0;
         </ul>
       </div>
     <?php endif; ?>
+
+    <!-- Primary Desktop Header CTA -->
+    <a href="#bookDemoModal" data-bs-toggle="modal" data-bs-target="#bookDemoModal" class="btn btn-gold-solid py-2 px-3 open-demo-modal" style="font-size:13px; font-weight:700;">
+      <i class="bi bi-people-fill me-1"></i>
+      <span>Connect with Our Team</span>
+    </a>
   </div>
 
   <!-- Mobile Right Area: Compact Flag Button + Hamburger -->
@@ -2654,6 +2684,8 @@ $topBarIsModal = !empty($topBarLink) && strpos($topBarLink, '#') === 0;
     </button>
   </div>
 </nav>
+
+</header>
 
 <!-- ════════════════════════════════
      MOBILE OFFCANVAS SIDEBAR (DYNAMIC)
@@ -2732,7 +2764,7 @@ $topBarIsModal = !empty($topBarLink) && strpos($topBarLink, '#') === 0;
         </div>
       </div>
       <a href="#bookDemoModal" data-bs-toggle="modal" data-bs-target="#bookDemoModal" class="btn btn-gold-solid w-100 justify-content-center py-2 open-demo-modal" data-bs-dismiss="offcanvas">
-        <span>Book Free Demo</span>
+        <span>Connect with Our Team</span>
         <i class="bi bi-arrow-right ms-2"></i>
       </a>
     </div>

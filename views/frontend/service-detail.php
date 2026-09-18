@@ -853,7 +853,7 @@ foreach ($highlights as $h) {
               </div>
 
               <button type="submit" id="submitLeadBtn" class="btn btn-navy w-100 py-3 fw-bold fs-15 text-white" style="background:#001540;">
-                <span id="btnText">Schedule My Free Demo Now</span>
+                <span id="btnText">Connect with Our Team Now</span>
                 <i class="bi bi-arrow-right ms-1"></i>
               </button>
 
@@ -904,7 +904,7 @@ function handleLeadSubmit(e) {
   })
   .finally(() => {
     btn.disabled = false;
-    btnText.innerText = 'Schedule My Free Demo Now';
+    btnText.innerText = 'Connect with Our Team Now';
   });
 }
 </script>

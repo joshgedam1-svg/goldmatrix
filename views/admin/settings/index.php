@@ -245,7 +245,7 @@ $activeTab = $activeTab ?? 'branding';
         </div>
         <div class="col-md-6">
           <label class="form-label fs-12 fw-semibold">Announcement / Notification Message</label>
-          <input type="text" name="top_notification_text" value="<?= e($settings['top_notification_text'] ?? 'Special Offer: Book a Free Demo Today & Get 30 Days Free Trial on GoldMatrix ERP!') ?>" class="form-control form-control-sm" placeholder="Your announcement message...">
+          <input type="text" name="top_notification_text" value="<?= e($settings['top_notification_text'] ?? 'Special Offer: Connect with Our Team Today & Get 30 Days Free Trial on GoldMatrix ERP!') ?>" class="form-control form-control-sm" placeholder="Your announcement message...">
         </div>
         <div class="col-md-6">
           <label class="form-label fs-12">Action Link / URL (Optional)</label>
