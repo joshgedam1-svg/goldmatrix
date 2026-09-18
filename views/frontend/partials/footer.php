@@ -3,7 +3,7 @@
  * Modular Frontend Footer Partial - Pixel Perfect Match to Screenshot
  * Location: views/frontend/partials/footer.php
  */
-$siteLogo = setting('site_logo', '');
+$siteLogo = setting('site_logo', '') ?: asset('images/logo.svg');
 $companyName = setting('company_name', 'GoldMatrix');
 ?>
 <style>

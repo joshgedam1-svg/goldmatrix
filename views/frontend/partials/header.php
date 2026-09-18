@@ -209,7 +209,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Dynamic Favicon / Site Icon -->
 <?php 
 $siteFavicon = setting('site_favicon', '');
-$siteLogo = setting('site_logo', '');
+$siteLogo = setting('site_logo', '') ?: asset('images/logo.svg');
 $siteLogoHeight = setting('site_logo_height', '38');
 $showBrandText = setting('show_brand_text', '1');
 $companyName = setting('company_name', 'GoldMatrix');

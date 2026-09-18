@@ -29,6 +29,5 @@ RewriteRule ^(app|config|database|storage|routes|views|scratch|includes)/ - [F,L
 
     # Rewrite all other requests to public/index.php
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ public/index.php [L,QSA]
 </IfModule>

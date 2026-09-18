@@ -309,6 +309,47 @@ class FrontendController {
         return $dbItems;
     }
 
+    private function getBrandLogos(): array {
+        $items = $this->hpItems('brand_logos');
+        if (!empty($items)) {
+            return $items;
+        }
+        return [
+            ['id'=>1, 'title'=>'PC Jeweller', 'link'=>'https://www.pcjeweller.com/', 'image'=>'/assets/images/brands/pcjeweller.svg'],
+            ['id'=>2, 'title'=>'Kalyan Jewellers', 'link'=>'https://www.kalyanjewellers.net/', 'image'=>'/assets/images/brands/kalyan.svg'],
+            ['id'=>3, 'title'=>'Jos Alukkas', 'link'=>'https://www.josalukkas.com/', 'image'=>'/assets/images/brands/josalukkas.svg'],
+            ['id'=>4, 'title'=>'Senco Gold & Diamonds', 'link'=>'https://sencogoldanddiamonds.com/', 'image'=>'/assets/images/brands/senco.svg'],
+            ['id'=>5, 'title'=>'Tanishq (A TATA Product)', 'link'=>'https://www.tanishq.co.in/', 'image'=>'/assets/images/brands/tanishq.svg'],
+            ['id'=>6, 'title'=>'Malabar Gold & Diamonds', 'link'=>'https://www.malabargoldanddiamonds.com/', 'image'=>'/assets/images/brands/malabar.svg'],
+            ['id'=>7, 'title'=>'Joyalukkas', 'link'=>'https://www.joyalukkas.in/', 'image'=>'/assets/images/brands/joyalukkas.svg'],
+            ['id'=>8, 'title'=>'TBZ The Original', 'link'=>'https://www.tbztheoriginal.com/', 'image'=>'/assets/images/brands/tbz.svg'],
+            ['id'=>9, 'title'=>'PNG Jewellers', 'link'=>'https://www.pngjewellers.com/', 'image'=>'/assets/images/brands/png.svg'],
+            ['id'=>10, 'title'=>'Bhima Jewellers', 'link'=>'https://www.bhimagold.com/', 'image'=>'/assets/images/brands/bhima.svg'],
+        ];
+    }
+
+    private function getIntegrationsItems(): array {
+        $items = $this->hpItems('integrations');
+        if (!empty($items)) {
+            return $items;
+        }
+        return [
+            ['id'=>1, 'title'=>'Shopify', 'description'=>'Sync products, orders, customers, and payments seamlessly in real time', 'icon'=>'bi-shop', 'link'=>'#contact', 'image'=>'/assets/images/integrations/shopify.svg', 'alt_text'=>'Shopify', 'sort_order'=>1, 'is_active'=>1],
+            ['id'=>2, 'title'=>'WooCommerce', 'description'=>'Manage store data, orders, and inventory directly from WordPress', 'icon'=>'bi-wordpress', 'link'=>'#contact', 'image'=>'/assets/images/integrations/woocommerce.svg', 'alt_text'=>'WooCommerce', 'sort_order'=>2, 'is_active'=>1],
+            ['id'=>3, 'title'=>'WhatsApp', 'description'=>'Enable instant customer communication and automated message workflows', 'icon'=>'bi-whatsapp', 'link'=>'#contact', 'image'=>'/assets/images/integrations/whatsapp.svg', 'alt_text'=>'WhatsApp', 'sort_order'=>3, 'is_active'=>1],
+            ['id'=>4, 'title'=>'Email & SMS', 'description'=>'Send transactional emails, alerts, and notifications with full tracking', 'icon'=>'bi-envelope-at', 'link'=>'#contact', 'image'=>'/assets/images/integrations/email.svg', 'alt_text'=>'Email & SMS', 'sort_order'=>4, 'is_active'=>1],
+            ['id'=>5, 'title'=>'Gmail', 'description'=>'Integrate Gmail to manage conversations and email automation centrally', 'icon'=>'bi-google', 'link'=>'#contact', 'image'=>'/assets/images/integrations/gmail.svg', 'alt_text'=>'Gmail', 'sort_order'=>5, 'is_active'=>1],
+            ['id'=>6, 'title'=>'Authorize.Net', 'description'=>'Authorize.Net A Visa Solution - Secure payment gateway processing', 'icon'=>'bi-credit-card-2-front', 'link'=>'#contact', 'image'=>'/assets/images/integrations/authorizenet.svg', 'alt_text'=>'Authorize.Net', 'sort_order'=>6, 'is_active'=>1],
+            ['id'=>7, 'title'=>'HID Global', 'description'=>'Integrate secure identity access and authentication hardware systems', 'icon'=>'bi-shield-lock', 'link'=>'#contact', 'image'=>'/assets/images/integrations/hid.svg', 'alt_text'=>'HID Global', 'sort_order'=>7, 'is_active'=>1],
+            ['id'=>8, 'title'=>'QuickBooks', 'description'=>'Automate accounting, invoices, expenses, and financial reporting', 'icon'=>'bi-file-earmark-spreadsheet', 'link'=>'#contact', 'image'=>'/assets/images/integrations/quickbooks.svg', 'alt_text'=>'QuickBooks', 'sort_order'=>8, 'is_active'=>1],
+            ['id'=>9, 'title'=>'Chainway', 'description'=>'Connect barcode scanners and RFID devices for smart operations', 'icon'=>'bi-upc-scan', 'link'=>'#contact', 'image'=>'/assets/images/integrations/chainway.svg', 'alt_text'=>'Chainway', 'sort_order'=>9, 'is_active'=>1],
+            ['id'=>10, 'title'=>'Planet Payment', 'description'=>'Accept global card payments with fast and reliable processing', 'icon'=>'bi-globe', 'link'=>'#contact', 'image'=>'/assets/images/integrations/planet.svg', 'alt_text'=>'Planet', 'sort_order'=>10, 'is_active'=>1],
+            ['id'=>11, 'title'=>'E-Way Bill', 'description'=>'E-way Bill E-Way bill system is for GST registered person', 'icon'=>'bi-truck', 'link'=>'#contact', 'image'=>'/assets/images/integrations/ewaybill.svg', 'alt_text'=>'E-Way Bill', 'sort_order'=>11, 'is_active'=>1],
+            ['id'=>12, 'title'=>'E-Invoice', 'description'=>'E-invoice bill system is for GST registered person', 'icon'=>'bi-file-earmark-check', 'link'=>'#contact', 'image'=>'/assets/images/integrations/einvoice.svg', 'alt_text'=>'E-Invoice', 'sort_order'=>12, 'is_active'=>1],
+            ['id'=>13, 'title'=>'AML Compliance', 'description'=>'Jewellery ERP like GoldMatrix can support AML compliance', 'icon'=>'bi-shield-check', 'link'=>'#contact', 'image'=>'/assets/images/integrations/aml.svg', 'alt_text'=>'AML Compliance', 'sort_order'=>13, 'is_active'=>1],
+        ];
+    }
+
     public function home(): void {
         $data = [
             // ── META/SEO ──
@@ -453,25 +494,11 @@ class FrontendController {
             'integrations_badge'   => $this->hp('integrations_badge',   'SEAMLESS CONNECTIVITY'),
             'integrations_title'   => $this->hp('integrations_title',   'Seamless integration with all your essential tools'),
             'integrations_desc'    => $this->hp('integrations_desc',    'Connect GoldMatrix Jewellery ERP with the industry\'s leading e-commerce platforms, payment gateways, accounting software, and hardware.'),
-            'integrations_items'   => !empty($this->hpItems('integrations')) ? $this->hpItems('integrations') : [
-                ['id'=>1, 'title'=>'Shopify', 'description'=>'Sync products, orders, customers, and payments seamlessly in real time', 'icon'=>'bi-shop', 'link'=>'#contact', 'image'=>'https://cdn.worldvectorlogo.com/logos/shopify.svg', 'alt_text'=>'Shopify', 'sort_order'=>1, 'is_active'=>1],
-                ['id'=>2, 'title'=>'WooCommerce', 'description'=>'Manage store data, orders, and inventory directly from WordPress', 'icon'=>'bi-wordpress', 'link'=>'#contact', 'image'=>'https://cdn.worldvectorlogo.com/logos/woocommerce.svg', 'alt_text'=>'WooCommerce', 'sort_order'=>2, 'is_active'=>1],
-                ['id'=>3, 'title'=>'WhatsApp', 'description'=>'Enable instant customer communication and automated message workflows', 'icon'=>'bi-whatsapp', 'link'=>'#contact', 'image'=>'https://cdn.worldvectorlogo.com/logos/whatsapp-symbol.svg', 'alt_text'=>'WhatsApp', 'sort_order'=>3, 'is_active'=>1],
-                ['id'=>4, 'title'=>'Email & SMS', 'description'=>'Send transactional emails, alerts, and notifications with full tracking', 'icon'=>'bi-envelope-at', 'link'=>'#contact', 'image'=>'https://cdn-icons-png.flaticon.com/512/542/542689.png', 'alt_text'=>'Email & SMS', 'sort_order'=>4, 'is_active'=>1],
-                ['id'=>5, 'title'=>'Gmail', 'description'=>'Integrate Gmail to manage conversations and email automation centrally', 'icon'=>'bi-google', 'link'=>'#contact', 'image'=>'https://cdn.worldvectorlogo.com/logos/gmail-icon.svg', 'alt_text'=>'Gmail', 'sort_order'=>5, 'is_active'=>1],
-                ['id'=>6, 'title'=>'Authorize.Net', 'description'=>'Authorize.Net A Visa Solution - Secure payment gateway processing', 'icon'=>'bi-credit-card-2-front', 'link'=>'#contact', 'image'=>'https://cdn.worldvectorlogo.com/logos/authorize-net.svg', 'alt_text'=>'Authorize.Net', 'sort_order'=>6, 'is_active'=>1],
-                ['id'=>7, 'title'=>'HID Global', 'description'=>'Integrate secure identity access and authentication hardware systems', 'icon'=>'bi-shield-lock', 'link'=>'#contact', 'image'=>'https://cdn.worldvectorlogo.com/logos/hid-global.svg', 'alt_text'=>'HID Global', 'sort_order'=>7, 'is_active'=>1],
-                ['id'=>8, 'title'=>'QuickBooks', 'description'=>'Automate accounting, invoices, expenses, and financial reporting', 'icon'=>'bi-file-earmark-spreadsheet', 'link'=>'#contact', 'image'=>'https://cdn.worldvectorlogo.com/logos/quickbooks.svg', 'alt_text'=>'QuickBooks', 'sort_order'=>8, 'is_active'=>1],
-                ['id'=>9, 'title'=>'Chainway', 'description'=>'Connect barcode scanners and RFID devices for smart operations', 'icon'=>'bi-upc-scan', 'link'=>'#contact', 'image'=>'https://www.chainway.net/Public/Home/images/logo.png', 'alt_text'=>'Chainway', 'sort_order'=>9, 'is_active'=>1],
-                ['id'=>10, 'title'=>'Planet Payment', 'description'=>'Accept global card payments with fast and reliable processing', 'icon'=>'bi-globe', 'link'=>'#contact', 'image'=>'https://cdn.worldvectorlogo.com/logos/planet-payment.svg', 'alt_text'=>'Planet', 'sort_order'=>10, 'is_active'=>1],
-                ['id'=>11, 'title'=>'E-Way Bill', 'description'=>'E-way Bill E-Way bill system is for GST registered person', 'icon'=>'bi-truck', 'link'=>'#contact', 'image'=>'https://einvoice1.gst.gov.in/Images/logo.png', 'alt_text'=>'E-Way Bill', 'sort_order'=>11, 'is_active'=>1],
-                ['id'=>12, 'title'=>'E-Invoice', 'description'=>'E-invoice bill system is for GST registered person', 'icon'=>'bi-file-earmark-check', 'link'=>'#contact', 'image'=>'https://einvoice1.gst.gov.in/Images/logo.png', 'alt_text'=>'E-Invoice', 'sort_order'=>12, 'is_active'=>1],
-                ['id'=>13, 'title'=>'AML Compliance', 'description'=>'Jewellery ERP like GoldMatrix can support AML compliance', 'icon'=>'bi-shield-check', 'link'=>'#contact', 'image'=>'https://cdn-icons-png.flaticon.com/512/3135/3135715.png', 'alt_text'=>'AML Compliance', 'sort_order'=>13, 'is_active'=>1],
-            ],
+            'integrations_items'   => $this->getIntegrationsItems(),
 
             // ── BRAND LOGOS STRIP ──
             'brands_title'      => $this->hp('brands_title',       "Trusted By Leading\nJewellery Brands"),
-            'brand_logos'       => $this->hpItems('brand_logos'),
+            'brand_logos'       => $this->getBrandLogos(),
 
             // ── CONNECTED / ABOUT ──
             'conn_badge'        => $this->hp('conn_badge',         'ONE PLATFORM'),
@@ -617,7 +644,7 @@ class FrontendController {
             'why_features'      => $this->hpItems('why_features'),
             'stats_items'       => $this->hpItems('stats'),
             'testimonials'      => $this->hpItems('testimonials'),
-            'brand_logos'       => $this->hpItems('brand_logos'),
+            'brand_logos'       => $this->getBrandLogos(),
             'modules_items'     => $this->hpItems('modules'),
             'faqs'              => $this->hpItems('faqs'),
             'nav_links'         => $this->hpItems('nav_links'),
