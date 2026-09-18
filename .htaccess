@@ -1,33 +1,25 @@
+# Disable directory browsing
 Options -Indexes
-
-# ── Block direct access to hidden files and sensitive extensions ──
-<FilesMatch "^\.|\.(env|sqlite|sql|log|json|lock|bak|md|git|yml|yaml)$">
-    <IfModule mod_authz_core.c>
-        Require all denied
-    </IfModule>
-    <IfModule !mod_authz_core.c>
-        Order deny,allow
-        Deny from all
-    </IfModule>
-</FilesMatch>
-
-# ── Block direct access to internal application directories ──
-RewriteRule ^(app|config|database|storage|routes|views|scratch|includes)/ - [F,L,NC]
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # Prevent loop if already rewritten to public/
-    RewriteCond %{REQUEST_URI} ^/public/ [NC]
-    RewriteRule ^ - [L]
+    # 1. Block direct web access to sensitive internal directories
+    RewriteRule ^(app|config|database|storage|routes|views|scratch|includes)(/.*)?$ - [F,L,NC]
 
-    # Explicit direct rewrites for assets and uploads to public/ (Guarantees image loading on Hostinger/LiteSpeed)
+    # 2. Block direct web access to sensitive environment and backup files
+    RewriteRule \.(env|sqlite|sql|log|lock|bak|yml|yaml)$ - [F,L,NC]
+    RewriteRule (^|/)\.(?!well-known) - [F,L]
+
+    # 3. Direct rewrite for assets and uploads to public directory
+    RewriteCond %{REQUEST_URI} !^/public/
     RewriteRule ^assets/(.*)$ public/assets/$1 [L]
     RewriteRule ^uploads/(.*)$ public/uploads/$1 [L]
     RewriteRule ^favicon\.ico$ public/favicon.ico [L]
     RewriteRule ^robots\.txt$ public/robots.txt [L]
 
-    # Rewrite all other requests to public/index.php
+    # 4. Route all application requests to public/index.php
     RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ public/index.php [L,QSA]
 </IfModule>

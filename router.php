@@ -4,11 +4,11 @@
  * Routes requests to public/index.php (MVC Front Controller)
  * Usage: php -S localhost:8085 router.php
  */
-$url  = parse_url($_SERVER['REQUEST_URI']);
-$path = urldecode($url['path']);
+$url  = parse_url($_SERVER['REQUEST_URI'] ?? '/');
+$path = urldecode($url['path'] ?? '/');
 
-// 0. Block direct access to sensitive files and dotfiles
-if (preg_match('/^\.|\.(env|sqlite|sql|log|json|lock|bak|git|yml|yaml|md)$/i', basename($path))) {
+// 0. Block direct access to sensitive file paths and dotfiles
+if (preg_match('/^\.|\.(env|sqlite|sql|log|lock|bak|git|yml|yaml)$/i', basename($path)) && is_file(__DIR__ . $path)) {
     http_response_code(403);
     echo "<h1>403 - Access Forbidden</h1>";
     exit;
@@ -37,7 +37,7 @@ if ($path !== '/' && is_file($publicFile)) {
         'woff2'=> 'font/woff2',
         'ttf'  => 'font/ttf',
     ];
-    $mime = $mimes[$ext] ?? mime_content_type($publicFile) ?: 'application/octet-stream';
+    $mime = $mimes[$ext] ?? (function_exists('mime_content_type') ? mime_content_type($publicFile) : null) ?: 'application/octet-stream';
     header("Content-Type: $mime");
     header("Content-Length: " . filesize($publicFile));
     readfile($publicFile);
