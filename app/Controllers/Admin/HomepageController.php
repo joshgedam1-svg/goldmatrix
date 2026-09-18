@@ -583,6 +583,20 @@ class HomepageController {
                         'sort_order'  => 1
                     ],
                     [
+                        'title'       => 'Wholesale Management',
+                        'subtitle'    => 'Streamline Jewellery Wholesale & Bulk Trade Operations',
+                        'description' => 'GoldMatrix Wholesale Management Software gives jewellery traders complete control over bulk orders, party accounts, and inter-branch inventory. Manage karigar jobwork, multi-party billing, and outstanding dues from a single dashboard.',
+                        'features'    => json_encode([
+                            'Bulk purchase and sales order management with multi-party billing',
+                            'Party-wise ledger with outstanding, credit limit, and ageing reports',
+                            'Karigar / jobwork order tracking with material issue and receipt',
+                            'Multi-location stock transfer and inter-branch settlement'
+                        ]),
+                        'alt_text'    => 'Jewellery Wholesale Management Software Interface',
+                        'image'       => '',
+                        'sort_order'  => 2
+                    ],
+                    [
                         'title'       => "Manufacturer's",
                         'subtitle'    => 'Improve Productivity with Jewellery Manufacturing Software',
                         'description' => 'GoldMatrix Manufacturing Software is designed to support jewellery manufacturers by simplifying production management and improving operational control. It helps businesses plan, track, and optimize manufacturing activities while maintaining accuracy and cost efficiency.',
@@ -594,7 +608,7 @@ class HomepageController {
                         ]),
                         'alt_text'    => 'Jewellery Manufacturing & Production Dashboard',
                         'image'       => '/uploads/homepage/hp_6a92088a510d9.png',
-                        'sort_order'  => 2
+                        'sort_order'  => 3
                     ],
                     [
                         'title'       => 'Girvi ( Mortgage)',
@@ -608,7 +622,7 @@ class HomepageController {
                         ]),
                         'alt_text'    => 'Girvi Mortgage & Gold Loan Software Interface',
                         'image'       => '',
-                        'sort_order'  => 3
+                        'sort_order'  => 4
                     ],
                     [
                         'title'       => 'CRM',
@@ -622,7 +636,7 @@ class HomepageController {
                         ]),
                         'alt_text'    => 'Jewellery CRM & Customer Loyalty Software Interface',
                         'image'       => '',
-                        'sort_order'  => 4
+                        'sort_order'  => 5
                     ]
                 ];
 
