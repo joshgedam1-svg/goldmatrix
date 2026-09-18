@@ -179,21 +179,37 @@ $slides = !empty($hero_slides) ? $hero_slides : [
      TRUSTED BY LEADING JEWELLERY BRANDS (CLIENT LOGOS STRIP)
 ════════════════════════════════ -->
 <?php if (!empty($brand_logos)): ?>
+<?php
+  /* Build one "set" of brand logos HTML */
+  ob_start();
+  foreach($brand_logos as $b):
+    if (!empty($b['image'])): ?>
+      <a href="<?= (!empty($b['link']) && $b['link'] !== '#') ? e($b['link']) : 'javascript:void(0)' ?>"
+         class="brand-logo"
+         <?= (!empty($b['link']) && $b['link'] !== '#') ? 'target="_blank" rel="noopener"' : '' ?>
+         title="<?= e($b['title']) ?>">
+        <img src="<?= e($b['image']) ?>" alt="<?= e($b['title']) ?>" loading="lazy" decoding="async">
+      </a>
+    <?php else: ?>
+      <div class="brand-logo" title="<?= e($b['title']) ?>">
+        <div class="brand-logo-text"><?= e($b['title']) ?></div>
+      </div>
+    <?php endif;
+  endforeach;
+  $logoSet = ob_get_clean();
+?>
 <section class="section-brands" id="client-brands">
   <div class="brands-wrap">
+    <!-- Left: Fixed heading label -->
     <div class="brands-label"><?= nl2br(e($brands_title ?? "Trusted By Leading\nJewellery Brands")) ?></div>
-    <div class="brands-list">
-      <?php foreach($brand_logos as $b): ?>
-        <?php if (!empty($b['image'])): ?>
-          <a href="<?= (!empty($b['link']) && $b['link'] !== '#') ? e($b['link']) : 'javascript:void(0)' ?>" class="brand-logo" <?= (!empty($b['link']) && $b['link'] !== '#') ? 'target="_blank" rel="noopener"' : '' ?> title="<?= e($b['title']) ?>">
-            <img src="<?= e($b['image']) ?>" alt="<?= e($b['title']) ?>" loading="lazy" decoding="async">
-          </a>
-        <?php else: ?>
-          <div class="brand-logo" title="<?= e($b['title']) ?>">
-            <div class="brand-logo-text"><?= e($b['title']) ?></div>
-          </div>
-        <?php endif; ?>
-      <?php endforeach; ?>
+    <!-- Right: Infinite auto-scrolling slider -->
+    <div class="brands-slider-outer">
+      <div class="brands-track" id="brandsTrack">
+        <!-- Set 1 -->
+        <div class="brands-set"><?= $logoSet ?></div>
+        <!-- Set 2 (duplicate for seamless loop) -->
+        <div class="brands-set" aria-hidden="true"><?= $logoSet ?></div>
+      </div>
     </div>
   </div>
 </section>

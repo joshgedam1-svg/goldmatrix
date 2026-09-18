@@ -797,69 +797,119 @@ h1, h2, h3, h4, h5, h6,
 }
 
 /* ══════════════════════════════
-   CLIENT BRANDS STRIP
+   CLIENT BRANDS STRIP — INFINITE MARQUEE SLIDER
 ══════════════════════════════ */
 .section-brands {
   background: #FFFFFF;
-  padding: 24px 5%;
+  padding: 22px 0;
   border-bottom: 1px solid #E2E8F0;
+  overflow: hidden;
 }
 .brands-wrap {
-  max-width: 1380px;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 28px;
-  flex-wrap: wrap;
+  gap: 0;
 }
+/* Left label column */
 .brands-label {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 800;
   letter-spacing: 1.6px;
   text-transform: uppercase;
   color: #64748B;
   flex-shrink: 0;
-  line-height: 1.5;
+  line-height: 1.55;
+  padding: 0 28px 0 5%;
+  white-space: nowrap;
+  position: relative;
+  z-index: 2;
 }
-.brands-list {
+/* Slider track wrapper */
+.brands-slider-outer {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  min-width: 0;
+}
+/* Fade masks on left & right edges */
+.brands-slider-outer::before,
+.brands-slider-outer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  z-index: 2;
+  pointer-events: none;
+}
+.brands-slider-outer::before {
+  left: 0;
+  background: linear-gradient(to right, #fff 0%, transparent 100%);
+}
+.brands-slider-outer::after {
+  right: 0;
+  background: linear-gradient(to left, #fff 0%, transparent 100%);
+}
+/* The scrolling track */
+.brands-track {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 20px 32px;
-  flex-wrap: wrap;
-  flex: 1;
+  gap: 0;
+  animation: brandsScroll 28s linear infinite;
+  will-change: transform;
 }
+.brands-track:hover {
+  animation-play-state: paused;
+}
+/* One set of logos */
+.brands-set {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-shrink: 0;
+}
+@keyframes brandsScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+/* Individual brand logo card */
 .brand-logo {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  padding: 4px 8px;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  padding: 6px 28px;
+  flex-shrink: 0;
+  border-right: 1px solid #E8EDF4;
+  transition: background 0.2s ease;
 }
 .brand-logo:hover {
-  transform: translateY(-2px);
+  background: #F8FAFF;
 }
 .brand-logo img {
-  height: 32px;
+  height: 34px;
   width: auto;
-  max-width: 135px;
+  max-width: 130px;
   object-fit: contain;
   filter: grayscale(100%);
-  opacity: 0.75;
-  transition: filter 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+  opacity: 0.68;
+  transition: filter 0.25s ease, opacity 0.25s ease, transform 0.2s ease;
+  display: block;
 }
 .brand-logo:hover img {
   filter: grayscale(0%);
   opacity: 1;
-  transform: scale(1.06);
+  transform: scale(1.08);
 }
+/* Text-only fallback */
 .brand-logo-text {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   color: #475569;
   letter-spacing: 0.5px;
+  white-space: nowrap;
 }
 
 /* ══════════════════════════════
@@ -2071,29 +2121,19 @@ footer {
 
   .trust-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px 6px; }
 
-  /* ── Brands strip — stack vertically, centre-aligned on mobile ── */
-  .section-brands { padding: 28px 16px; }
-  .brands-wrap {
-    flex-direction: column;
-    align-items: center;
-    gap: 18px;
-  }
+  /* ── Brands strip — slider on mobile ── */
+  .section-brands { padding: 18px 0; }
+  .brands-wrap { flex-direction: column; gap: 12px; }
   .brands-label {
     text-align: center;
-    font-size: 10px;
+    font-size: 9px;
+    padding: 0 16px;
+    white-space: normal;
   }
-  .brands-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px 16px;
-    justify-items: center;
-    width: 100%;
-  }
-  .brand-logo {
-    width: 100%;
-    justify-content: center;
-  }
-  .brand-logo img { height: 28px; max-width: 100px; }
+  .brands-slider-outer::before,
+  .brands-slider-outer::after { width: 30px; }
+  .brand-logo { padding: 4px 18px; }
+  .brand-logo img { height: 26px; max-width: 90px; }
 
   /* ── feat-grid: force 1-col on small mobile, column layout same as desktop ── */
   .feat-grid { grid-template-columns: 1fr !important; gap: 12px; }
