@@ -232,22 +232,22 @@ class HomepageController {
                         'sort_order'   => 3
                     ],
                     [
-                        'badge'        => '100% COMPLIANCE',
-                        'title'        => 'VAT & Compliance',
-                        'description'  => 'Pre-configured for UAE FTA 5% VAT, Indian Tax e-Invoicing, and 1-click BIS Hallmark HUID verification.',
+                        'badge'        => 'MULTI-LANGUAGE',
+                        'title'        => 'Multi-Language Support & Global Admin',
+                        'description'  => 'Native internationalization across English, Arabic, Hindi, and regional languages with multi-currency and security controls.',
                         'features'     => json_encode([
-                            '100% UAE FTA 5% VAT Invoicing',
-                            '1-Click BIS Hallmark & HUID',
-                            'Bullion Import & Export Docs',
-                            'Automated P&L & Balance Sheet'
+                            'English, Arabic, Hindi & Regional Languages',
+                            'Multi-Currency & Global Multi-Branch Sync',
+                            'Granular User Roles & Permissions',
+                            'Forensic Audit Trail & Activity Logs'
                         ], JSON_UNESCAPED_SLASHES),
-                        'icon'         => 'bi-receipt-cutoff',
-                        'extra'        => 'bi-award',
+                        'icon'         => 'bi-translate',
+                        'extra'        => 'bi-globe2',
                         'accent_color' => '#7C3AED',
                         'image'        => '/assets/images/solution-retail-rings.jpg',
-                        'alt_text'     => 'UAE FTA VAT & Hallmark Compliance',
-                        'btn1_text'    => 'Explore Compliance',
-                        'btn1_link'    => '/solutions/jewellery-retail',
+                        'alt_text'     => 'Multi-Language Support & Global Enterprise Admin',
+                        'btn1_text'    => 'Explore Multi-Language',
+                        'btn1_link'    => '/features/settings-admin',
                         'sort_order'   => 4
                     ]
                 ];

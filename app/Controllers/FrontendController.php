@@ -116,22 +116,22 @@ class FrontendController {
                 'is_active'    => 1
             ],
             [
-                'badge'        => '100% COMPLIANCE',
-                'title'        => 'VAT & Compliance',
-                'description'  => 'Pre-configured for UAE FTA 5% VAT, Indian Tax e-Invoicing, and 1-click BIS Hallmark HUID verification.',
+                'badge'        => 'MULTI-LANGUAGE',
+                'title'        => 'Multi-Language Support & Global Admin',
+                'description'  => 'Native internationalization across English, Arabic, Hindi, and regional languages with multi-currency and security controls.',
                 'features'     => json_encode([
-                    '100% UAE FTA 5% VAT Invoicing',
-                    '1-Click BIS Hallmark & HUID',
-                    'Bullion Import & Export Docs',
-                    'Automated P&L & Balance Sheet'
+                    'English, Arabic, Hindi & Regional Languages',
+                    'Multi-Currency & Global Multi-Branch Sync',
+                    'Granular User Roles & Permissions',
+                    'Forensic Audit Trail & Activity Logs'
                 ], JSON_UNESCAPED_SLASHES),
-                'icon'         => 'bi-receipt-cutoff',
-                'extra'        => 'bi-award',
+                'icon'         => 'bi-translate',
+                'extra'        => 'bi-globe2',
                 'accent_color' => '#7C3AED',
                 'image'        => '/assets/images/solution-retail-rings.jpg',
-                'alt_text'     => 'UAE FTA VAT & Hallmark Compliance',
-                'btn1_text'    => 'Explore Compliance',
-                'btn1_link'    => '/solutions/jewellery-retail',
+                'alt_text'     => 'Multi-Language Support & Global Enterprise Admin',
+                'btn1_text'    => 'Explore Multi-Language',
+                'btn1_link'    => '/features/settings-admin',
                 'sort_order'   => 4,
                 'is_active'    => 1
             ]
@@ -145,7 +145,7 @@ class FrontendController {
         } else {
             foreach ($dbItems as $it) {
                 $t = $it['title'] ?? '';
-                if (stripos($t, 'Jewellery Retail & Showroom') !== false || stripos($t, 'Manufacturing & Jobwork') !== false) {
+                if (stripos($t, 'Jewellery Retail & Showroom') !== false || stripos($t, 'Manufacturing & Jobwork') !== false || stripos($t, 'VAT & Compliance') !== false) {
                     $needsReset = true;
                     break;
                 }
@@ -3467,6 +3467,12 @@ class FrontendController {
                 'target_persona' => 'Enterprise Owners, IT Directors & Showroom System Administrators',
                 'persona_desc'   => 'Built for enterprise owners, IT directors, and system administrators who require bank-grade access security, customized voucher numbering, and automated customer marketing.',
                 'sub_features'   => [
+                    [
+                        'icon'   => 'bi-translate',
+                        'title'  => 'Multi-Language Support',
+                        'desc'   => 'Native internationalization supporting English, Arabic, Hindi, Gujarati, Tamil, and regional languages with instant dialect switching and RTL support.',
+                        'points' => ['Multi-lingual UI & report generation', 'English, Arabic, Hindi & regional dialects', 'RTL (Right-to-Left) Arabic support', 'Instant 1-click language switcher']
+                    ],
                     [
                         'icon'   => 'bi-laptop',
                         'title'  => 'Set Software',
