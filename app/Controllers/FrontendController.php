@@ -53,6 +53,44 @@ class FrontendController {
         }
     }
 
+    private function getFooterOffices(): array {
+        $raw = $this->hp('footer_offices', '');
+        if (empty($raw)) {
+            $raw = setting('footer_offices', '');
+        }
+        if (!empty($raw)) {
+            $decoded = is_array($raw) ? $raw : json_decode($raw, true);
+            if (is_array($decoded) && !empty($decoded)) {
+                return array_filter($decoded, function($o) {
+                    return !isset($o['is_active']) || (int)$o['is_active'] === 1;
+                });
+            }
+        }
+
+        return [
+            [
+                'id'        => 'office_1',
+                'title'     => $this->hp('footer_uae_title', 'Headquarter - UAE'),
+                'badge'     => 'HEADQUARTER',
+                'phone'     => $this->hp('footer_uae_phone', '+971 52 704 2689'),
+                'email'     => $this->hp('footer_email', 'info@goldmatrixsoftware.com'),
+                'address'   => $this->hp('footer_uae_address', "Conqueror tower Ajman UAE"),
+                'map_link'  => '',
+                'is_active' => 1,
+            ],
+            [
+                'id'        => 'office_2',
+                'title'     => $this->hp('footer_india_title', 'India Operations Office'),
+                'badge'     => 'OPERATIONS & TECH HUB',
+                'phone'     => $this->hp('footer_india_phone', '+971 50 274 3168'),
+                'email'     => $this->hp('footer_email_2', 'goldmatrixsoftware@gmail.com'),
+                'address'   => $this->hp('footer_india_address', "India, 01/A, Hingna Rd,\nM.I.D.C, Maharashtra - 440022"),
+                'map_link'  => '',
+                'is_active' => 1,
+            ]
+        ];
+    }
+
     private function getSolutionsItems(): array {
         $defaultCards = [
             [
@@ -592,11 +630,16 @@ class FrontendController {
             'footer_india_phone'   => $this->hp('footer_india_phone',   '+91 92703 69937'),
             'footer_email'         => $this->hp('footer_email',         'info@goldmatrixsoftware.com'),
             'footer_email_2'       => $this->hp('footer_email_2',       'goldmatrixsoftware@gmail.com'),
-            'social_facebook'      => $this->hp('social_facebook',      '#'),
-            'social_twitter'       => $this->hp('social_twitter',       '#'),
-            'social_instagram'     => $this->hp('social_instagram',     '#'),
-            'social_linkedin'      => $this->hp('social_linkedin',      '#'),
+            'social_facebook'      => $this->hp('social_facebook',      setting('social_facebook', 'https://www.facebook.com/goldmatrixsoftware')),
+            'social_twitter'       => $this->hp('social_twitter',       setting('social_twitter', 'https://x.com/goldmatrixerp')),
+            'social_instagram'     => $this->hp('social_instagram',     setting('social_instagram', 'https://www.instagram.com/goldmatrixsoftware')),
+            'social_linkedin'      => $this->hp('social_linkedin',      setting('social_linkedin', 'https://www.linkedin.com/company/goldmatrix-software')),
+            'social_youtube'       => $this->hp('social_youtube',       setting('social_youtube', 'https://www.youtube.com/@goldmatrixsoftware')),
+            'social_whatsapp'      => $this->hp('social_whatsapp',      setting('social_whatsapp', 'https://wa.me/971563240319')),
+            'social_pinterest'     => $this->hp('social_pinterest',     setting('social_pinterest', '')),
+            'social_telegram'      => $this->hp('social_telegram',      setting('social_telegram', '')),
             'footer_copyright'     => $this->hp('footer_copyright',     '© ' . date('Y') . ' GoldMatrix Software. All Rights Reserved.'),
+            'footer_offices'       => $this->getFooterOffices(),
 
             // ── GLOBAL PRESENCE / SLIDING COUNTRIES ──
             'countries_slider_enabled' => $this->hp('countries_slider_enabled', '1'),
@@ -2025,11 +2068,16 @@ class FrontendController {
             'footer_india_phone'   => $this->hp('footer_india_phone',   '+91 92703 69937'),
             'footer_email'         => $this->hp('footer_email',         'info@goldmatrixsoftware.com'),
             'footer_email_2'       => $this->hp('footer_email_2',       'goldmatrixsoftware@gmail.com'),
-            'social_facebook'      => $this->hp('social_facebook',      '#'),
-            'social_twitter'       => $this->hp('social_twitter',       '#'),
-            'social_instagram'     => $this->hp('social_instagram',     '#'),
-            'social_linkedin'      => $this->hp('social_linkedin',      '#'),
+            'social_facebook'      => $this->hp('social_facebook',      setting('social_facebook', 'https://www.facebook.com/goldmatrixsoftware')),
+            'social_twitter'       => $this->hp('social_twitter',       setting('social_twitter', 'https://x.com/goldmatrixerp')),
+            'social_instagram'     => $this->hp('social_instagram',     setting('social_instagram', 'https://www.instagram.com/goldmatrixsoftware')),
+            'social_linkedin'      => $this->hp('social_linkedin',      setting('social_linkedin', 'https://www.linkedin.com/company/goldmatrix-software')),
+            'social_youtube'       => $this->hp('social_youtube',       setting('social_youtube', 'https://www.youtube.com/@goldmatrixsoftware')),
+            'social_whatsapp'      => $this->hp('social_whatsapp',      setting('social_whatsapp', 'https://wa.me/971563240319')),
+            'social_pinterest'     => $this->hp('social_pinterest',     setting('social_pinterest', '')),
+            'social_telegram'      => $this->hp('social_telegram',      setting('social_telegram', '')),
             'footer_copyright'     => $this->hp('footer_copyright',     '© ' . date('Y') . ' GoldMatrix Software. All Rights Reserved.'),
+            'footer_offices'       => $this->getFooterOffices(),
         ];
     }
 

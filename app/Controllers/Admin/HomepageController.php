@@ -797,6 +797,53 @@ class HomepageController {
         }
     }
 
+    private function setSetting(string $key, string $value): void {
+        try {
+            $exists = $this->db->fetch("SELECT 1 FROM settings WHERE setting_key = ?", [$key]);
+            if ($exists) {
+                $this->db->query("UPDATE settings SET setting_value = ? WHERE setting_key = ?", [$value, $key]);
+            } else {
+                $this->db->query("INSERT INTO settings (setting_key, setting_value) VALUES (?, ?)", [$key, $value]);
+            }
+        } catch (\Throwable $t) {}
+    }
+
+    private function getFooterOffices(): array {
+        $raw = $this->hp('footer_offices', '');
+        if (empty($raw)) {
+            $raw = setting('footer_offices', '');
+        }
+        if (!empty($raw)) {
+            $decoded = json_decode($raw, true);
+            if (is_array($decoded) && !empty($decoded)) {
+                return $decoded;
+            }
+        }
+
+        return [
+            [
+                'id'        => 'office_1',
+                'title'     => $this->hp('footer_uae_title', 'Headquarter - UAE'),
+                'badge'     => 'HEADQUARTER',
+                'phone'     => $this->hp('footer_uae_phone', '+971 52 704 2689'),
+                'email'     => $this->hp('footer_email', 'info@goldmatrixsoftware.com'),
+                'address'   => $this->hp('footer_uae_address', "Conqueror tower Ajman UAE"),
+                'map_link'  => '',
+                'is_active' => 1,
+            ],
+            [
+                'id'        => 'office_2',
+                'title'     => $this->hp('footer_india_title', 'India Operations Office'),
+                'badge'     => 'OPERATIONS & TECH HUB',
+                'phone'     => $this->hp('footer_india_phone', '+971 50 274 3168'),
+                'email'     => $this->hp('footer_email_2', 'goldmatrixsoftware@gmail.com'),
+                'address'   => $this->hp('footer_india_address', "India, 01/A, Hingna Rd,\nM.I.D.C, Maharashtra - 440022"),
+                'map_link'  => '',
+                'is_active' => 1,
+            ]
+        ];
+    }
+
     private function hpItems(string $section): array {
         try {
             return $this->db->fetchAll(
@@ -930,25 +977,123 @@ class HomepageController {
         if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
             $action = $_POST['action'] ?? '';
 
-            /* ── SAVE TEXT SETTINGS ── */
+            /* ── SAVE FOOTER & CONTACT SETTINGS (DYNAMIC OFFICES & CHANNELS) ── */
+            if ($action === 'save_footer_settings' || ($action === 'save_settings' && $activeTab === 'footer')) {
+                // 1. Tagline & Copyright
+                $footerTagline   = trim((string)($_POST['footer_tagline'] ?? ''));
+                $footerCopyright = trim((string)($_POST['footer_copyright'] ?? ''));
+                $this->setHP('footer_tagline', $footerTagline);
+                $this->setSetting('footer_tagline', $footerTagline);
+                $this->setHP('footer_copyright', $footerCopyright);
+                $this->setSetting('footer_copyright', $footerCopyright);
+
+                // 2. Official Contact Emails
+                $footerEmail  = trim((string)($_POST['footer_email'] ?? ''));
+                $footerEmail2 = trim((string)($_POST['footer_email_2'] ?? ''));
+                $this->setHP('footer_email', $footerEmail);
+                $this->setSetting('footer_email', $footerEmail);
+                $this->setHP('footer_email_2', $footerEmail2);
+                $this->setSetting('footer_email_2', $footerEmail2);
+
+                // 3. Social Media Channels
+                $socialKeys = [
+                    'social_facebook', 'social_twitter', 'social_instagram', 'social_linkedin',
+                    'social_youtube', 'social_whatsapp', 'social_pinterest', 'social_telegram'
+                ];
+                foreach ($socialKeys as $sKey) {
+                    $sVal = isset($_POST[$sKey]) ? trim((string)$_POST[$sKey]) : '';
+                    $this->setHP($sKey, $sVal);
+                    $this->setSetting($sKey, $sVal);
+                }
+
+                // 4. Dynamic Office Locations Repeater
+                $rawOffices = $_POST['footer_offices'] ?? [];
+                $cleanOffices = [];
+                if (is_array($rawOffices)) {
+                    foreach ($rawOffices as $idx => $off) {
+                        if (!is_array($off)) continue;
+                        $title    = trim(strip_tags((string)($off['title'] ?? '')));
+                        $badge    = trim(strip_tags((string)($off['badge'] ?? '')));
+                        $phone    = trim(strip_tags((string)($off['phone'] ?? '')));
+                        $email    = trim(strip_tags((string)($off['email'] ?? '')));
+                        $address  = trim((string)($off['address'] ?? ''));
+                        $mapLink  = trim(strip_tags((string)($off['map_link'] ?? '')));
+                        $isActive = isset($off['is_active']) ? (int)$off['is_active'] : 1;
+
+                        if ($title !== '' || $address !== '' || $phone !== '' || $email !== '') {
+                            $cleanOffices[] = [
+                                'id'        => !empty($off['id']) ? trim((string)$off['id']) : 'office_' . ($idx + 1),
+                                'title'     => $title,
+                                'badge'     => $badge,
+                                'phone'     => $phone,
+                                'email'     => $email,
+                                'address'   => $address,
+                                'map_link'  => $mapLink,
+                                'is_active' => $isActive,
+                            ];
+                        }
+                    }
+                }
+
+                $jsonOffices = json_encode($cleanOffices, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+                $this->setHP('footer_offices', $jsonOffices);
+                $this->setSetting('footer_offices', $jsonOffices);
+
+                // Legacy keys sync for 100% backward compatibility
+                if (!empty($cleanOffices[0])) {
+                    $this->setHP('footer_uae_title', $cleanOffices[0]['title']);
+                    $this->setSetting('footer_uae_title', $cleanOffices[0]['title']);
+                    $this->setHP('footer_uae_phone', $cleanOffices[0]['phone']);
+                    $this->setSetting('footer_uae_phone', $cleanOffices[0]['phone']);
+                    $this->setHP('footer_uae_address', $cleanOffices[0]['address']);
+                    $this->setSetting('footer_uae_address', $cleanOffices[0]['address']);
+                } else {
+                    $this->setHP('footer_uae_title', '');
+                    $this->setSetting('footer_uae_title', '');
+                    $this->setHP('footer_uae_phone', '');
+                    $this->setSetting('footer_uae_phone', '');
+                    $this->setHP('footer_uae_address', '');
+                    $this->setSetting('footer_uae_address', '');
+                }
+
+                if (!empty($cleanOffices[1])) {
+                    $this->setHP('footer_india_title', $cleanOffices[1]['title']);
+                    $this->setSetting('footer_india_title', $cleanOffices[1]['title']);
+                    $this->setHP('footer_india_phone', $cleanOffices[1]['phone']);
+                    $this->setSetting('footer_india_phone', $cleanOffices[1]['phone']);
+                    $this->setHP('footer_india_address', $cleanOffices[1]['address']);
+                    $this->setSetting('footer_india_address', $cleanOffices[1]['address']);
+                } else {
+                    $this->setHP('footer_india_title', '');
+                    $this->setSetting('footer_india_title', '');
+                    $this->setHP('footer_india_phone', '');
+                    $this->setSetting('footer_india_phone', '');
+                    $this->setHP('footer_india_address', '');
+                    $this->setSetting('footer_india_address', '');
+                }
+
+                set_flash('success', '✅ Footer settings, office locations, and contact info saved successfully!');
+                redirect('/admin/homepage?tab=footer');
+                return;
+            }
+
+            /* ── SAVE TEXT SETTINGS (OTHER TABS) ── */
             if ($action === 'save_settings') {
                 foreach ($_POST as $key => $val) {
                     if (in_array($key, ['action', 'section', 'csrf_token', 'remove_hero_image'])) continue;
-                    $cleanVal = trim((string)$val);
+                    if (is_array($val)) {
+                        $cleanVal = json_encode($val, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+                    } else {
+                        $cleanVal = trim((string)$val);
+                    }
                     $this->setHP($key, $cleanVal);
-                    try {
-                        $exists = $this->db->fetch("SELECT 1 FROM settings WHERE setting_key = ?", [$key]);
-                        if ($exists) {
-                            $this->db->query("UPDATE settings SET setting_value = ? WHERE setting_key = ?", [$cleanVal, $key]);
-                        } else {
-                            $this->db->query("INSERT INTO settings (setting_key, setting_value) VALUES (?, ?)", [$key, $cleanVal]);
-                        }
-                    } catch (\Throwable $t) {}
+                    $this->setSetting($key, $cleanVal);
                 }
 
                 // Remove image if requested
                 if (!empty($_POST['remove_hero_image'])) {
                     $this->setHP('hero_image', '');
+                    $this->setSetting('hero_image', '');
                 }
 
                 // Handle file uploads
@@ -958,12 +1103,24 @@ class HomepageController {
                             $uploaded = $this->handleImageUpload($field);
                             if ($uploaded) {
                                 $this->setHP($field, $uploaded);
+                                $this->setSetting($field, $uploaded);
                             }
                         }
                     }
                 }
 
-                set_flash('success', '✅ Hero banner & settings saved successfully!');
+                $tabNames = [
+                    'hero'         => 'Hero banner',
+                    'why'          => 'Why GoldMatrix section',
+                    'stats'        => 'Stats counter',
+                    'cta'          => 'CTA banner',
+                    'seo'          => 'SEO & Social Meta',
+                    'mobile_app'   => 'Mobile App showcase',
+                    'countries'    => 'Sliding Countries',
+                    'integrations' => 'Integrations',
+                ];
+                $tabLabel = $tabNames[$activeTab] ?? 'Settings';
+                set_flash('success', "✅ {$tabLabel} saved successfully!");
                 redirect('/admin/homepage?tab=' . urlencode($activeTab));
                 return;
             }
@@ -2340,11 +2497,16 @@ class HomepageController {
             'footer_india_phone'   => $this->hp('footer_india_phone',   '+91 92703 69937'),
             'footer_email'         => $this->hp('footer_email',         'info@goldmatrixsoftware.com'),
             'footer_email_2'       => $this->hp('footer_email_2',       'goldmatrixsoftware@gmail.com'),
-            'social_facebook'      => $this->hp('social_facebook',      '#'),
-            'social_twitter'       => $this->hp('social_twitter',       '#'),
-            'social_instagram'     => $this->hp('social_instagram',     '#'),
-            'social_linkedin'      => $this->hp('social_linkedin',      '#'),
+            'social_facebook'      => $this->hp('social_facebook',      setting('social_facebook', 'https://www.facebook.com/goldmatrixsoftware')),
+            'social_twitter'       => $this->hp('social_twitter',       setting('social_twitter', 'https://x.com/goldmatrixerp')),
+            'social_instagram'     => $this->hp('social_instagram',     setting('social_instagram', 'https://www.instagram.com/goldmatrixsoftware')),
+            'social_linkedin'      => $this->hp('social_linkedin',      setting('social_linkedin', 'https://www.linkedin.com/company/goldmatrix-software')),
+            'social_youtube'       => $this->hp('social_youtube',       setting('social_youtube', 'https://www.youtube.com/@goldmatrixsoftware')),
+            'social_whatsapp'      => $this->hp('social_whatsapp',      setting('social_whatsapp', 'https://wa.me/971563240319')),
+            'social_pinterest'     => $this->hp('social_pinterest',     setting('social_pinterest', '')),
+            'social_telegram'      => $this->hp('social_telegram',      setting('social_telegram', '')),
             'footer_copyright'     => $this->hp('footer_copyright',     '© ' . date('Y') . ' GoldMatrix Software. All Rights Reserved.'),
+            'footer_offices'       => $this->getFooterOffices(),
 
             // ── SEO ──
             'meta_title'         => $this->hp('meta_title',         'GoldMatrix — The Complete Jewellery ERP'),

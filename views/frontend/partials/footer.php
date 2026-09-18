@@ -206,14 +206,14 @@ $companyName = setting('company_name', 'GoldMatrix');
 
         <div class="footer-social-row">
           <?php 
-            $fb = setting('social_facebook', '');
-            $ig = setting('social_instagram', '');
-            $li = setting('social_linkedin', '');
-            $tw = setting('social_twitter', '');
-            $yt = setting('social_youtube', '');
-            $wa = setting('social_whatsapp', '');
+            $fb  = setting('social_facebook', '');
+            $ig  = setting('social_instagram', '');
+            $li  = setting('social_linkedin', '');
+            $tw  = setting('social_twitter', '');
+            $yt  = setting('social_youtube', '');
+            $wa  = setting('social_whatsapp', '');
             $pin = setting('social_pinterest', '');
-            $tg = setting('social_telegram', '');
+            $tg  = setting('social_telegram', '');
             $customSocialRaw = setting('custom_social_links', '[]');
             $customSocialList = json_decode($customSocialRaw, true) ?: [];
           ?>
@@ -304,70 +304,92 @@ $companyName = setting('company_name', 'GoldMatrix');
         <div class="footer-contact-wrap">
           
           <?php 
-          $uaeTitle = $footer_uae_title ?? setting('footer_uae_title', 'Headquarter - UAE');
-          $uaeAddr  = $footer_uae_address ?? setting('footer_uae_address', "Shop No. 25/A\nCentral Gold Souq Block No. 8,\nAl Majaz -1 King Faisal Road - Sharjah");
-          $uaePhone = $footer_uae_phone ?? setting('footer_uae_phone', '+971 56 324 0319');
-          
-          $indTitle = $footer_india_title ?? setting('footer_india_title', 'India Office');
-          $indAddr  = $footer_india_address ?? setting('footer_india_address', "India, 01/A, Hingna Rd,\nM.I.D.C, Maharashtra - 440022");
-          $indPhone = $footer_india_phone ?? setting('footer_india_phone', '+91 92703 69937');
+          // 1. Check for dynamic offices list
+          $dynamicOffices = [];
+          $rawOffices = !empty($footer_offices) ? $footer_offices : setting('footer_offices', '');
+          if (!empty($rawOffices)) {
+              $decodedOffices = is_array($rawOffices) ? $rawOffices : json_decode($rawOffices, true);
+              if (is_array($decodedOffices) && !empty($decodedOffices)) {
+                  foreach ($decodedOffices as $o) {
+                      if (isset($o['is_active']) && (int)$o['is_active'] === 0) continue;
+                      if (!empty($o['title']) || !empty($o['address']) || !empty($o['phone'])) {
+                          $dynamicOffices[] = $o;
+                      }
+                  }
+              }
+          }
 
-          $email1   = $footer_email ?? setting('footer_email', 'info@goldmatrixsoftware.com');
-          $email2   = $footer_email_2 ?? setting('footer_email_2', 'goldmatrixsoftware@gmail.com');
+          // 2. Fallback if no dynamic offices array configured yet
+          if (empty($dynamicOffices)) {
+              $uaeTitle = $footer_uae_title ?? setting('footer_uae_title', 'Headquarter - UAE');
+              $uaeAddr  = $footer_uae_address ?? setting('footer_uae_address', "Conqueror tower Ajman UAE");
+              $uaePhone = $footer_uae_phone ?? setting('footer_uae_phone', '+971 52 704 2689');
+              
+              $indTitle = $footer_india_title ?? setting('footer_india_title', 'India Operations Office');
+              $indAddr  = $footer_india_address ?? setting('footer_india_address', "India, 01/A, Hingna Rd,\nM.I.D.C, Maharashtra - 440022");
+              $indPhone = $footer_india_phone ?? setting('footer_india_phone', '+971 50 274 3168');
+
+              if (!empty($uaeAddr) || !empty($uaeTitle)) {
+                  $dynamicOffices[] = ['title' => $uaeTitle, 'address' => $uaeAddr, 'phone' => $uaePhone];
+              }
+              if (!empty($indAddr) || !empty($indTitle)) {
+                  $dynamicOffices[] = ['title' => $indTitle, 'address' => $indAddr, 'phone' => $indPhone];
+              }
+          }
+
+          $email1 = $footer_email ?? setting('footer_email', 'info@goldmatrixsoftware.com');
+          $email2 = $footer_email_2 ?? setting('footer_email_2', 'goldmatrixsoftware@gmail.com');
           ?>
 
-          <!-- Headquarter - UAE -->
-          <?php if (!empty($uaeAddr)): ?>
-          <div class="footer-location-item">
-            <i class="bi bi-geo-alt-fill"></i>
-            <div>
-              <strong><?= e($uaeTitle) ?></strong>
-              <?= nl2br(e($uaeAddr)) ?>
-            </div>
-          </div>
-          <?php endif; ?>
+          <!-- Dynamic Office Locations Loop -->
+          <?php foreach ($dynamicOffices as $off): 
+            $oTitle = $off['title'] ?? '';
+            $oAddr  = $off['address'] ?? '';
+            $oPhone = $off['phone'] ?? '';
+            $oEmail = $off['email'] ?? '';
+          ?>
+            <?php if (!empty($oAddr) || !empty($oTitle)): ?>
+              <div class="footer-location-item">
+                <i class="bi bi-geo-alt-fill"></i>
+                <div>
+                  <?php if (!empty($oTitle)): ?>
+                    <strong><?= e($oTitle) ?></strong>
+                  <?php endif; ?>
+                  <?php if (!empty($oAddr)): ?>
+                    <?= nl2br(e($oAddr)) ?>
+                  <?php endif; ?>
+                </div>
+              </div>
+            <?php endif; ?>
 
-          <!-- India -->
-          <?php if (!empty($indAddr)): ?>
-          <div class="footer-location-item">
-            <i class="bi bi-geo-alt-fill"></i>
-            <div>
-              <strong><?= e($indTitle) ?></strong>
-              <?= nl2br(e($indAddr)) ?>
-            </div>
-          </div>
-          <?php endif; ?>
+            <?php if (!empty($oPhone)): ?>
+              <div class="footer-contact-item">
+                <i class="bi bi-telephone-fill"></i>
+                <a href="tel:<?= e(preg_replace('/[^0-9+]/', '', $oPhone)) ?>"><?= e($oPhone) ?></a>
+              </div>
+            <?php endif; ?>
 
-          <!-- Phone 1 (UAE) -->
-          <?php if (!empty($uaePhone)): ?>
-          <div class="footer-contact-item">
-            <i class="bi bi-telephone-fill"></i>
-            <a href="tel:<?= e(preg_replace('/[^0-9+]/', '', $uaePhone)) ?>"><?= e($uaePhone) ?></a>
-          </div>
-          <?php endif; ?>
+            <?php if (!empty($oEmail) && $oEmail !== $email1 && $oEmail !== $email2): ?>
+              <div class="footer-contact-item">
+                <i class="bi bi-envelope-fill"></i>
+                <a href="mailto:<?= e($oEmail) ?>"><?= e($oEmail) ?></a>
+              </div>
+            <?php endif; ?>
+          <?php endforeach; ?>
 
-          <!-- Phone 2 (India) -->
-          <?php if (!empty($indPhone)): ?>
-          <div class="footer-contact-item">
-            <i class="bi bi-telephone-fill"></i>
-            <a href="tel:<?= e(preg_replace('/[^0-9+]/', '', $indPhone)) ?>"><?= e($indPhone) ?></a>
-          </div>
-          <?php endif; ?>
-
-          <!-- Email 1 -->
+          <!-- Official Inboxes -->
           <?php if (!empty($email1)): ?>
-          <div class="footer-contact-item">
-            <i class="bi bi-envelope-fill"></i>
-            <a href="mailto:<?= e($email1) ?>"><?= e($email1) ?></a>
-          </div>
+            <div class="footer-contact-item">
+              <i class="bi bi-envelope-fill"></i>
+              <a href="mailto:<?= e($email1) ?>"><?= e($email1) ?></a>
+            </div>
           <?php endif; ?>
 
-          <!-- Email 2 -->
           <?php if (!empty($email2)): ?>
-          <div class="footer-contact-item">
-            <i class="bi bi-envelope-fill"></i>
-            <a href="mailto:<?= e($email2) ?>"><?= e($email2) ?></a>
-          </div>
+            <div class="footer-contact-item">
+              <i class="bi bi-envelope-fill"></i>
+              <a href="mailto:<?= e($email2) ?>"><?= e($email2) ?></a>
+            </div>
           <?php endif; ?>
 
         </div>
@@ -380,8 +402,12 @@ $companyName = setting('company_name', 'GoldMatrix');
 
     <!-- Bottom Copyright & Language Switcher -->
     <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+      <?php 
+      $rawCopy = $footer_copyright ?? setting('footer_copyright', '© {year} GoldMatrix Software. All Rights Reserved.');
+      $cleanCopy = str_replace(['{year}', '{YEAR}', '{date}'], date('Y'), $rawCopy);
+      ?>
       <p class="footer-copyright-text">
-        <?= e($footer_copyright ?? setting('footer_copyright', '© ' . date('Y') . ' GoldMatrix Software. All Rights Reserved.')) ?>
+        <?= e($cleanCopy) ?>
       </p>
 
       <?php 

@@ -2963,117 +2963,577 @@ if (!isset($tabs[$activeTab])) {
           ══════════════════════════════════════════════════ */
   elseif ($activeTab === 'footer'): ?>
 
-    <div class="card border-0 shadow-sm">
-      <div class="card-header bg-white py-3">
-        <h5 class="card-title fw-bold mb-0"><i class="bi bi-layout-text-window-reverse text-primary me-2"></i>Global Website Footer &amp; Contact Info</h5>
-      </div>
-      <div class="card-body p-4">
-        <form method="POST" action="/admin/homepage?tab=footer">
-          <?= csrf_field() ?>
-          <input type="hidden" name="action" value="save_settings">
+    <form method="POST" action="/admin/homepage?tab=footer" id="footerSettingsForm">
+      <?= csrf_field() ?>
+      <input type="hidden" name="action" value="save_footer_settings">
 
-          <!-- 1. Tagline & Brand Bio -->
-          <div class="mb-4">
-            <label class="form-label fw-bold fs-13 text-secondary">Footer Tagline &amp; Bio Paragraph</label>
-            <textarea name="footer_tagline" rows="2" class="form-control"><?= e($footer_tagline ?? 'We build jewellery-specific software delivering accuracy, control, scalability, and business growth') ?></textarea>
-            <div class="form-text fs-11">Appears directly below the footer logo.</div>
-          </div>
-
-          <!-- 2. UAE Office Details -->
-          <div class="card border mb-4 bg-light">
-            <div class="card-header bg-white py-2">
-              <h6 class="fw-bold text-dark mb-0 fs-13"><i class="bi bi-geo-alt-fill text-danger me-1"></i> Headquarter Office (UAE)</h6>
-            </div>
-            <div class="card-body p-3">
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <label class="form-label fw-semibold fs-12 text-secondary">UAE Office Title</label>
-                  <input type="text" name="footer_uae_title" value="<?= e($footer_uae_title ?? 'Headquarter - UAE') ?>" class="form-control form-control-sm">
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label fw-semibold fs-12 text-secondary">UAE Phone Number</label>
-                  <input type="text" name="footer_uae_phone" value="<?= e($footer_uae_phone ?? '+971 56 324 0319') ?>" class="form-control form-control-sm">
-                </div>
-                <div class="col-12">
-                  <label class="form-label fw-semibold fs-12 text-secondary">UAE Full Physical Address</label>
-                  <textarea name="footer_uae_address" rows="2" class="form-control form-control-sm"><?= e($footer_uae_address ?? "Shop No. 25/A\nCentral Gold Souq Block No. 8,\nAl Majaz -1 King Faisal Road - Sharjah") ?></textarea>
-                </div>
-              </div>
+      <!-- TOP INFO HEADER -->
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-header bg-white py-3 d-flex flex-wrap align-items-center justify-content-between gap-3">
+          <div>
+            <h5 class="card-title fw-bold mb-1 d-flex align-items-center gap-2">
+              <i class="bi bi-layout-text-window-reverse text-primary"></i>
+              <span>Global Website Footer &amp; Contact Manager</span>
+            </h5>
+            <div class="text-muted fs-12">
+              Manage website footer tagline, dynamic office &amp; branch locations (add, edit, delete, reorder), official emails, social links, and copyright notice.
             </div>
           </div>
-
-          <!-- 3. India Office Details -->
-          <div class="card border mb-4 bg-light">
-            <div class="card-header bg-white py-2">
-              <h6 class="fw-bold text-dark mb-0 fs-13"><i class="bi bi-geo-alt-fill text-primary me-1"></i> India Operations Office</h6>
-            </div>
-            <div class="card-body p-3">
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <label class="form-label fw-semibold fs-12 text-secondary">India Office Title</label>
-                  <input type="text" name="footer_india_title" value="<?= e($footer_india_title ?? 'India') ?>" class="form-control form-control-sm">
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label fw-semibold fs-12 text-secondary">India Phone Number</label>
-                  <input type="text" name="footer_india_phone" value="<?= e($footer_india_phone ?? '+91 92703 69937') ?>" class="form-control form-control-sm">
-                </div>
-                <div class="col-12">
-                  <label class="form-label fw-semibold fs-12 text-secondary">India Full Physical Address</label>
-                  <textarea name="footer_india_address" rows="2" class="form-control form-control-sm"><?= e($footer_india_address ?? "India, 01/A, Hingna Rd,\nM.I.D.C, Maharashtra - 440022") ?></textarea>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 4. Emails & Social Links -->
-          <div class="card border mb-4 bg-light">
-            <div class="card-header bg-white py-2">
-              <h6 class="fw-bold text-dark mb-0 fs-13"><i class="bi bi-envelope-at-fill text-success me-1"></i> Contact Emails &amp; Social Links</h6>
-            </div>
-            <div class="card-body p-3">
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <label class="form-label fw-semibold fs-12 text-secondary">Primary Contact Email</label>
-                  <input type="email" name="footer_email" value="<?= e($footer_email ?? 'info@goldmatrixsoftware.com') ?>" class="form-control form-control-sm">
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label fw-semibold fs-12 text-secondary">Secondary / Support Email</label>
-                  <input type="email" name="footer_email_2" value="<?= e($footer_email_2 ?? 'goldmatrixsoftware@gmail.com') ?>" class="form-control form-control-sm">
-                </div>
-                <div class="col-md-3 col-6">
-                  <label class="form-label fw-semibold fs-12 text-secondary">Facebook URL</label>
-                  <input type="text" name="social_facebook" value="<?= e($social_facebook ?? setting('social_facebook', '#')) ?>" class="form-control form-control-sm" placeholder="https://facebook.com/...">
-                </div>
-                <div class="col-md-3 col-6">
-                  <label class="form-label fw-semibold fs-12 text-secondary">Twitter / X URL</label>
-                  <input type="text" name="social_twitter" value="<?= e($social_twitter ?? setting('social_twitter', '#')) ?>" class="form-control form-control-sm" placeholder="https://x.com/...">
-                </div>
-                <div class="col-md-3 col-6">
-                  <label class="form-label fw-semibold fs-12 text-secondary">Instagram URL</label>
-                  <input type="text" name="social_instagram" value="<?= e($social_instagram ?? setting('social_instagram', '#')) ?>" class="form-control form-control-sm" placeholder="https://instagram.com/...">
-                </div>
-                <div class="col-md-3 col-6">
-                  <label class="form-label fw-semibold fs-12 text-secondary">LinkedIn URL</label>
-                  <input type="text" name="social_linkedin" value="<?= e($social_linkedin ?? setting('social_linkedin', '#')) ?>" class="form-control form-control-sm" placeholder="https://linkedin.com/...">
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 5. Copyright Notice -->
-          <div class="mb-4">
-            <label class="form-label fw-bold fs-13 text-secondary">Copyright Notice</label>
-            <input type="text" name="footer_copyright" value="<?= e($footer_copyright ?? '© ' . date('Y') . ' GoldMatrix Software. All Rights Reserved.') ?>" class="form-control">
-          </div>
-
-          <div class="d-flex justify-content-end">
-            <button type="submit" class="btn btn-navy px-4 py-2 fw-bold">
+          <div class="d-flex align-items-center gap-2">
+            <button type="button" class="btn btn-sm btn-outline-primary" id="btnAddNewOfficeTop">
+              <i class="bi bi-plus-circle-fill me-1"></i> Add Office Location
+            </button>
+            <button type="submit" class="btn btn-navy btn-sm px-3 fw-bold">
               <i class="bi bi-floppy-fill me-1"></i> Save Footer Settings
             </button>
           </div>
-        </form>
+        </div>
       </div>
-    </div>
+
+      <!-- 1. FOOTER BRAND BIO & TAGLINE -->
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-header bg-white py-3 border-bottom">
+          <h6 class="fw-bold text-dark mb-0 fs-14 d-flex align-items-center gap-2">
+            <i class="bi bi-chat-square-quote-fill text-warning"></i>
+            <span>1. Footer Brand Bio &amp; Tagline</span>
+          </h6>
+        </div>
+        <div class="card-body p-4">
+          <div class="mb-2">
+            <label class="form-label fw-semibold fs-13 text-secondary">Footer Tagline &amp; Bio Paragraph</label>
+            <textarea name="footer_tagline" rows="3" class="form-control" placeholder="We build jewellery-specific software delivering accuracy, control, scalability, and business growth..."><?= e($footer_tagline ?? 'We build jewellery-specific software delivering accuracy, control, scalability, and business growth') ?></textarea>
+            <div class="form-text fs-11 text-muted mt-1">
+              <i class="bi bi-info-circle me-1"></i> Appears directly below the footer logo on all public website pages.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. DYNAMIC OFFICE & BRANCH LOCATIONS REPEATER (EDIT / ADD / DELETE / REORDER) -->
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-header bg-white py-3 border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2">
+          <div>
+            <h6 class="fw-bold text-dark mb-0 fs-14 d-flex align-items-center gap-2">
+              <i class="bi bi-geo-alt-fill text-danger"></i>
+              <span>2. Office &amp; Branch Locations (Add, Edit, Reorder &amp; Delete)</span>
+            </h6>
+            <div class="text-muted fs-11 mt-1">
+              Add any number of office locations, branch addresses, and local telephone numbers. Each office card can be edited, toggled, reordered, or deleted anytime.
+            </div>
+          </div>
+          <div>
+            <button type="button" class="btn btn-sm btn-primary d-inline-flex align-items-center gap-1.5 px-3 py-1.5 fw-semibold" id="btnAddNewOffice">
+              <i class="bi bi-plus-lg"></i>
+              <span>Add New Office Location</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="card-body p-4 bg-light">
+          <!-- Dynamic Office Cards Container -->
+          <div id="footer-offices-container" class="d-flex flex-column gap-3">
+            <?php 
+            $officesList = !empty($footer_offices) && is_array($footer_offices) ? $footer_offices : [];
+            if (empty($officesList)):
+              // Fallback default 2 offices
+              $officesList = [
+                [
+                  'id'        => 'office_1',
+                  'title'     => $footer_uae_title ?? 'Headquarter - UAE',
+                  'badge'     => 'HEADQUARTER',
+                  'phone'     => $footer_uae_phone ?? '+971527042689',
+                  'email'     => $footer_email ?? 'info@goldmatrixsoftware.com',
+                  'address'   => $footer_uae_address ?? "Conqueror tower Ajman UAE",
+                  'map_link'  => '',
+                  'is_active' => 1,
+                ],
+                [
+                  'id'        => 'office_2',
+                  'title'     => $footer_india_title ?? 'India Operations Office',
+                  'badge'     => 'OPERATIONS & TECH HUB',
+                  'phone'     => $footer_india_phone ?? '+971502743168',
+                  'email'     => $footer_email_2 ?? 'goldmatrixsoftware@gmail.com',
+                  'address'   => $footer_india_address ?? "India, 01/A, Hingna Rd,\nM.I.D.C, Maharashtra - 440022",
+                  'map_link'  => '',
+                  'is_active' => 1,
+                ]
+              ];
+            endif;
+            ?>
+
+            <?php foreach ($officesList as $idx => $office): 
+              $offId = !empty($office['id']) ? $office['id'] : 'office_' . ($idx + 1);
+              $offTitle = $office['title'] ?? '';
+              $offBadge = $office['badge'] ?? '';
+              $offPhone = $office['phone'] ?? '';
+              $offEmail = $office['email'] ?? '';
+              $offAddress = $office['address'] ?? '';
+              $offMapLink = $office['map_link'] ?? '';
+              $offActive = isset($office['is_active']) ? (int)$office['is_active'] : 1;
+            ?>
+              <div class="card border shadow-xs office-card rounded-3 bg-white" data-office-index="<?= $idx ?>">
+                <div class="card-header bg-white py-2.5 px-3 border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2">
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="text-muted cursor-move" title="Office Location Card"><i class="bi bi-grip-vertical fs-5"></i></span>
+                    <span class="badge bg-secondary-subtle text-secondary border fs-11 office-counter-badge">#<?= $idx + 1 ?></span>
+                    <span class="fw-bold text-dark fs-13 office-card-title-preview">
+                      <i class="bi bi-geo-alt-fill text-danger me-1"></i>
+                      <span class="title-text"><?= e(!empty($offTitle) ? $offTitle : 'New Office Location') ?></span>
+                    </span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle fs-10 office-badge-preview <?= empty($offBadge) ? 'd-none' : '' ?>"><?= e($offBadge) ?></span>
+                  </div>
+
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="form-check form-switch mb-0 d-inline-flex align-items-center gap-1 me-2" title="Toggle visibility on website">
+                      <input class="form-check-input" type="checkbox" name="footer_offices[<?= $idx ?>][is_active]" value="1" <?= $offActive ? 'checked' : '' ?> id="switch_office_<?= $idx ?>">
+                      <label class="form-check-label fs-11 text-muted" for="switch_office_<?= $idx ?>">Active</label>
+                    </div>
+
+                    <button type="button" class="btn btn-sm btn-light border move-office-up" title="Move Up">
+                      <i class="bi bi-arrow-up"></i>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-light border move-office-down" title="Move Down">
+                      <i class="bi bi-arrow-down"></i>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-danger delete-office-btn px-2 py-1" title="Delete this Office">
+                      <i class="bi bi-trash3-fill me-1"></i> Delete
+                    </button>
+                  </div>
+                </div>
+
+                <div class="card-body p-3">
+                  <input type="hidden" name="footer_offices[<?= $idx ?>][id]" value="<?= e($offId) ?>">
+                  <div class="row g-3">
+                    <div class="col-md-7">
+                      <label class="form-label fw-semibold fs-12 text-secondary mb-1">Office / Branch Title <span class="text-danger">*</span></label>
+                      <input type="text" name="footer_offices[<?= $idx ?>][title]" value="<?= e($offTitle) ?>" class="form-control form-control-sm office-title-input fw-semibold" placeholder="e.g. Headquarter - UAE or India Operations" required>
+                    </div>
+                    <div class="col-md-5">
+                      <label class="form-label fw-semibold fs-12 text-secondary mb-1">Badge / Tag Label</label>
+                      <input type="text" name="footer_offices[<?= $idx ?>][badge]" value="<?= e($offBadge) ?>" class="form-control form-control-sm office-badge-input" placeholder="e.g. HEADQUARTER, BRANCH, ASIA">
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label fw-semibold fs-12 text-secondary mb-1">Office Telephone / Call <span class="text-danger">*</span></label>
+                      <div class="input-group input-group-sm">
+                        <span class="input-group-text bg-white"><i class="bi bi-telephone text-primary"></i></span>
+                        <input type="text" name="footer_offices[<?= $idx ?>][phone]" value="<?= e($offPhone) ?>" class="form-control" placeholder="+971 52 704 2689 or +91 92703 69937">
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label fw-semibold fs-12 text-secondary mb-1">Branch Specific Email (Optional)</label>
+                      <div class="input-group input-group-sm">
+                        <span class="input-group-text bg-white"><i class="bi bi-envelope text-success"></i></span>
+                        <input type="email" name="footer_offices[<?= $idx ?>][email]" value="<?= e($offEmail) ?>" class="form-control" placeholder="branch@goldmatrixsoftware.com">
+                      </div>
+                    </div>
+
+                    <div class="col-md-8">
+                      <label class="form-label fw-semibold fs-12 text-secondary mb-1">Full Physical Address</label>
+                      <textarea name="footer_offices[<?= $idx ?>][address]" rows="2" class="form-control form-control-sm" placeholder="Office No, Tower / Building, City, State, Country"><?= e($offAddress) ?></textarea>
+                    </div>
+
+                    <div class="col-md-4">
+                      <label class="form-label fw-semibold fs-12 text-secondary mb-1">Google Maps / Location URL (Optional)</label>
+                      <div class="input-group input-group-sm">
+                        <span class="input-group-text bg-white"><i class="bi bi-map text-danger"></i></span>
+                        <input type="text" name="footer_offices[<?= $idx ?>][map_link]" value="<?= e($offMapLink) ?>" class="form-control" placeholder="https://maps.app.goo.gl/...">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <?php endforeach; ?>
+          </div>
+
+          <!-- Empty State Alert (shown when all offices removed) -->
+          <div id="no-offices-alert" class="alert alert-warning border text-center p-4 rounded-3 <?= !empty($officesList) ? 'd-none' : '' ?>">
+            <i class="bi bi-building-exclamation fs-3 text-warning mb-2 d-block"></i>
+            <h6 class="fw-bold mb-1">No Office Locations Configured</h6>
+            <p class="text-muted fs-12 mb-3">Click the button below to add your first office/branch location card.</p>
+            <button type="button" class="btn btn-sm btn-primary" id="btnEmptyAddOffice">
+              <i class="bi bi-plus-lg me-1"></i> Add Office Location
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. CONTACT EMAILS & HELPDESK CHANNELS -->
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-header bg-white py-3 border-bottom">
+          <h6 class="fw-bold text-dark mb-0 fs-14 d-flex align-items-center gap-2">
+            <i class="bi bi-envelope-at-fill text-success"></i>
+            <span>3. Official Contact Emails &amp; Inquiries</span>
+          </h6>
+        </div>
+        <div class="card-body p-4">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label fw-semibold fs-12 text-secondary">Primary Contact Email</label>
+              <div class="input-group input-group-sm">
+                <span class="input-group-text bg-white"><i class="bi bi-envelope-fill text-primary"></i></span>
+                <input type="email" name="footer_email" value="<?= e($footer_email ?? 'info@goldmatrixsoftware.com') ?>" class="form-control" placeholder="info@goldmatrixsoftware.com">
+              </div>
+              <div class="form-text fs-11">Primary inbox displayed on footer and contact touchpoints.</div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold fs-12 text-secondary">Secondary / Support Email</label>
+              <div class="input-group input-group-sm">
+                <span class="input-group-text bg-white"><i class="bi bi-envelope-check-fill text-success"></i></span>
+                <input type="email" name="footer_email_2" value="<?= e($footer_email_2 ?? 'goldmatrixsoftware@gmail.com') ?>" class="form-control" placeholder="support@goldmatrixsoftware.com">
+              </div>
+              <div class="form-text fs-11">Secondary helpdesk or sales support inbox.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. SOCIAL MEDIA CHANNELS & PROFILES -->
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-header bg-white py-3 border-bottom">
+          <h6 class="fw-bold text-dark mb-0 fs-14 d-flex align-items-center gap-2">
+            <i class="bi bi-share-fill text-primary"></i>
+            <span>4. Social Media Profiles &amp; Direct Messaging</span>
+          </h6>
+        </div>
+        <div class="card-body p-4">
+          <div class="row g-3">
+            <div class="col-md-4 col-sm-6">
+              <label class="form-label fw-semibold fs-12 text-secondary d-flex align-items-center gap-1.5">
+                <i class="bi bi-facebook text-primary"></i> Facebook URL
+              </label>
+              <input type="text" name="social_facebook" value="<?= e($social_facebook ?? setting('social_facebook', '')) ?>" class="form-control form-control-sm" placeholder="https://facebook.com/...">
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+              <label class="form-label fw-semibold fs-12 text-secondary d-flex align-items-center gap-1.5">
+                <i class="bi bi-twitter-x text-dark"></i> Twitter / X URL
+              </label>
+              <input type="text" name="social_twitter" value="<?= e($social_twitter ?? setting('social_twitter', '')) ?>" class="form-control form-control-sm" placeholder="https://x.com/...">
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+              <label class="form-label fw-semibold fs-12 text-secondary d-flex align-items-center gap-1.5">
+                <i class="bi bi-instagram text-danger"></i> Instagram URL
+              </label>
+              <input type="text" name="social_instagram" value="<?= e($social_instagram ?? setting('social_instagram', '')) ?>" class="form-control form-control-sm" placeholder="https://instagram.com/...">
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+              <label class="form-label fw-semibold fs-12 text-secondary d-flex align-items-center gap-1.5">
+                <i class="bi bi-linkedin text-primary"></i> LinkedIn URL
+              </label>
+              <input type="text" name="social_linkedin" value="<?= e($social_linkedin ?? setting('social_linkedin', '')) ?>" class="form-control form-control-sm" placeholder="https://linkedin.com/...">
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+              <label class="form-label fw-semibold fs-12 text-secondary d-flex align-items-center gap-1.5">
+                <i class="bi bi-youtube text-danger"></i> YouTube URL
+              </label>
+              <input type="text" name="social_youtube" value="<?= e($social_youtube ?? setting('social_youtube', '')) ?>" class="form-control form-control-sm" placeholder="https://youtube.com/@...">
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+              <label class="form-label fw-semibold fs-12 text-secondary d-flex align-items-center gap-1.5">
+                <i class="bi bi-whatsapp text-success"></i> WhatsApp Link / Number
+              </label>
+              <input type="text" name="social_whatsapp" value="<?= e($social_whatsapp ?? setting('social_whatsapp', '')) ?>" class="form-control form-control-sm" placeholder="https://wa.me/971563240319">
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+              <label class="form-label fw-semibold fs-12 text-secondary d-flex align-items-center gap-1.5">
+                <i class="bi bi-pinterest text-danger"></i> Pinterest URL
+              </label>
+              <input type="text" name="social_pinterest" value="<?= e($social_pinterest ?? setting('social_pinterest', '')) ?>" class="form-control form-control-sm" placeholder="https://pinterest.com/...">
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+              <label class="form-label fw-semibold fs-12 text-secondary d-flex align-items-center gap-1.5">
+                <i class="bi bi-telegram text-info"></i> Telegram Link
+              </label>
+              <input type="text" name="social_telegram" value="<?= e($social_telegram ?? setting('social_telegram', '')) ?>" class="form-control form-control-sm" placeholder="https://t.me/...">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. COPYRIGHT & QUICK NAVIGATION SHORTCUT -->
+      <div class="row g-4 mb-4">
+        <div class="col-lg-8">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white py-3 border-bottom">
+              <h6 class="fw-bold text-dark mb-0 fs-14 d-flex align-items-center gap-2">
+                <i class="bi bi-c-circle-fill text-secondary"></i>
+                <span>5. Copyright Notice &amp; Legal Label</span>
+              </h6>
+            </div>
+            <div class="card-body p-4">
+              <label class="form-label fw-semibold fs-12 text-secondary mb-1">Copyright Text</label>
+              <input type="text" name="footer_copyright" value="<?= e($footer_copyright ?? '© ' . date('Y') . ' GoldMatrix Software. All Rights Reserved.') ?>" class="form-control">
+              <div class="form-text fs-11 text-muted mt-1">
+                Tip: You can use <code>{year}</code> to automatically insert the current dynamic year (e.g. <code>© {year} GoldMatrix Software. All Rights Reserved.</code>).
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="card border-0 shadow-sm h-100 bg-primary-subtle border-primary-subtle">
+            <div class="card-body p-4 d-flex flex-column justify-content-between">
+              <div>
+                <h6 class="fw-bold text-primary mb-2 d-flex align-items-center gap-2">
+                  <i class="bi bi-compass-fill"></i>
+                  <span>Footer Menu Links</span>
+                </h6>
+                <p class="fs-12 text-secondary mb-3">
+                  Want to customize the links under "Our Solutions" and "Quick Links" columns? You can configure full multi-level navigation trees easily.
+                </p>
+              </div>
+              <div>
+                <a href="/admin/navigation" class="btn btn-outline-primary btn-sm w-100 fw-bold">
+                  <i class="bi bi-list-nested me-1"></i> Manage Navigation Menus →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAVE FOOTER BUTTON BAR -->
+      <div class="card border-0 shadow-sm sticky-bottom mb-4" style="bottom: 15px; z-index: 99;">
+        <div class="card-body p-3 bg-white border rounded-3 d-flex flex-wrap align-items-center justify-content-between gap-3 shadow-lg">
+          <div class="d-flex align-items-center gap-2 text-muted fs-12">
+            <i class="bi bi-info-circle-fill text-primary"></i>
+            <span>All office edits, additions, and deletions will be updated immediately across the site upon saving.</span>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <button type="button" class="btn btn-outline-primary px-3 py-2 fw-semibold" id="btnAddNewOfficeBottom">
+              <i class="bi bi-plus-lg me-1"></i> Add Another Office
+            </button>
+            <button type="submit" class="btn btn-navy px-4 py-2 fw-bold d-inline-flex align-items-center gap-2 shadow-sm">
+              <i class="bi bi-floppy-fill"></i>
+              <span>Save Footer Settings</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </form>
+
+    <!-- TEMPLATE FOR DYNAMIC NEW OFFICE CARD -->
+    <template id="officeCardTemplate">
+      <div class="card border shadow-xs office-card rounded-3 bg-white" data-office-index="__INDEX__">
+        <div class="card-header bg-white py-2.5 px-3 border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2">
+          <div class="d-flex align-items-center gap-2">
+            <span class="text-muted cursor-move" title="Office Location Card"><i class="bi bi-grip-vertical fs-5"></i></span>
+            <span class="badge bg-secondary-subtle text-secondary border fs-11 office-counter-badge">#__NUM__</span>
+            <span class="fw-bold text-dark fs-13 office-card-title-preview">
+              <i class="bi bi-geo-alt-fill text-danger me-1"></i>
+              <span class="title-text">New Office Location</span>
+            </span>
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle fs-10 office-badge-preview d-none"></span>
+          </div>
+
+          <div class="d-flex align-items-center gap-2">
+            <div class="form-check form-switch mb-0 d-inline-flex align-items-center gap-1 me-2" title="Toggle visibility on website">
+              <input class="form-check-input" type="checkbox" name="footer_offices[__INDEX__][is_active]" value="1" checked id="switch_office___INDEX__">
+              <label class="form-check-label fs-11 text-muted" for="switch_office___INDEX__">Active</label>
+            </div>
+
+            <button type="button" class="btn btn-sm btn-light border move-office-up" title="Move Up">
+              <i class="bi bi-arrow-up"></i>
+            </button>
+            <button type="button" class="btn btn-sm btn-light border move-office-down" title="Move Down">
+              <i class="bi bi-arrow-down"></i>
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-danger delete-office-btn px-2 py-1" title="Delete this Office">
+              <i class="bi bi-trash3-fill me-1"></i> Delete
+            </button>
+          </div>
+        </div>
+
+        <div class="card-body p-3">
+          <input type="hidden" name="footer_offices[__INDEX__][id]" value="office___INDEX__">
+          <div class="row g-3">
+            <div class="col-md-7">
+              <label class="form-label fw-semibold fs-12 text-secondary mb-1">Office / Branch Title <span class="text-danger">*</span></label>
+              <input type="text" name="footer_offices[__INDEX__][title]" value="" class="form-control form-control-sm office-title-input fw-semibold" placeholder="e.g. Dubai Showroom Branch or London Office" required>
+            </div>
+            <div class="col-md-5">
+              <label class="form-label fw-semibold fs-12 text-secondary mb-1">Badge / Tag Label</label>
+              <input type="text" name="footer_offices[__INDEX__][badge]" value="" class="form-control form-control-sm office-badge-input" placeholder="e.g. BRANCH, ASIA, RETAIL">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold fs-12 text-secondary mb-1">Office Telephone / Call <span class="text-danger">*</span></label>
+              <div class="input-group input-group-sm">
+                <span class="input-group-text bg-white"><i class="bi bi-telephone text-primary"></i></span>
+                <input type="text" name="footer_offices[__INDEX__][phone]" value="" class="form-control" placeholder="+971 50 123 4567">
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold fs-12 text-secondary mb-1">Branch Specific Email (Optional)</label>
+              <div class="input-group input-group-sm">
+                <span class="input-group-text bg-white"><i class="bi bi-envelope text-success"></i></span>
+                <input type="email" name="footer_offices[__INDEX__][email]" value="" class="form-control" placeholder="branch@goldmatrixsoftware.com">
+              </div>
+            </div>
+
+            <div class="col-md-8">
+              <label class="form-label fw-semibold fs-12 text-secondary mb-1">Full Physical Address</label>
+              <textarea name="footer_offices[__INDEX__][address]" rows="2" class="form-control form-control-sm" placeholder="Office No, Tower / Building, City, State, Country"></textarea>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label fw-semibold fs-12 text-secondary mb-1">Google Maps / Location URL (Optional)</label>
+              <div class="input-group input-group-sm">
+                <span class="input-group-text bg-white"><i class="bi bi-map text-danger"></i></span>
+                <input type="text" name="footer_offices[__INDEX__][map_link]" value="" class="form-control" placeholder="https://maps.app.goo.gl/...">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <!-- DYNAMIC OFFICES JS INTERACTIVITY -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const container = document.getElementById('footer-offices-container');
+      const template = document.getElementById('officeCardTemplate');
+      const noOfficesAlert = document.getElementById('no-offices-alert');
+
+      if (!container || !template) return;
+
+      function updateOfficeIndices() {
+        const cards = container.querySelectorAll('.office-card');
+        if (cards.length === 0) {
+          if (noOfficesAlert) noOfficesAlert.classList.remove('d-none');
+        } else {
+          if (noOfficesAlert) noOfficesAlert.classList.add('d-none');
+        }
+
+        cards.forEach((card, idx) => {
+          card.setAttribute('data-office-index', idx);
+          const badge = card.querySelector('.office-counter-badge');
+          if (badge) badge.textContent = '#' + (idx + 1);
+
+          // Update names
+          card.querySelectorAll('input, textarea, select').forEach(input => {
+            const name = input.getAttribute('name');
+            if (name) {
+              const updated = name.replace(/footer_offices\[\d+\]/, `footer_offices[${idx}]`);
+              input.setAttribute('name', updated);
+            }
+          });
+        });
+      }
+
+      function attachCardEvents(card) {
+        // Live title update
+        const titleInput = card.querySelector('.office-title-input');
+        const titleText = card.querySelector('.title-text');
+        if (titleInput && titleText) {
+          titleInput.addEventListener('input', function() {
+            titleText.textContent = this.value.trim() || 'New Office Location';
+          });
+        }
+
+        // Live badge update
+        const badgeInput = card.querySelector('.office-badge-input');
+        const badgePreview = card.querySelector('.office-badge-preview');
+        if (badgeInput && badgePreview) {
+          badgeInput.addEventListener('input', function() {
+            const val = this.value.trim();
+            if (val) {
+              badgePreview.textContent = val;
+              badgePreview.classList.remove('d-none');
+            } else {
+              badgePreview.classList.add('d-none');
+            }
+          });
+        }
+
+        // Delete button with confirmation
+        const delBtn = card.querySelector('.delete-office-btn');
+        if (delBtn) {
+          delBtn.addEventListener('click', function() {
+            const currentTitle = titleInput ? titleInput.value.trim() : 'this office';
+            if (confirm(`Are you sure you want to delete "${currentTitle}"?`)) {
+              card.style.transition = 'all 0.3s ease';
+              card.style.opacity = '0';
+              card.style.transform = 'translateY(-10px)';
+              setTimeout(() => {
+                card.remove();
+                updateOfficeIndices();
+              }, 250);
+            }
+          });
+        }
+
+        // Move Up
+        const upBtn = card.querySelector('.move-office-up');
+        if (upBtn) {
+          upBtn.addEventListener('click', function() {
+            const prev = card.previousElementSibling;
+            if (prev && prev.classList.contains('office-card')) {
+              container.insertBefore(card, prev);
+              updateOfficeIndices();
+              card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+          });
+        }
+
+        // Move Down
+        const downBtn = card.querySelector('.move-office-down');
+        if (downBtn) {
+          downBtn.addEventListener('click', function() {
+            const next = card.nextElementSibling;
+            if (next && next.classList.contains('office-card')) {
+              container.insertBefore(next, card);
+              updateOfficeIndices();
+              card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+          });
+        }
+      }
+
+      // Attach events to initial cards
+      container.querySelectorAll('.office-card').forEach(attachCardEvents);
+
+      function addNewOffice() {
+        const cardsCount = container.querySelectorAll('.office-card').length;
+        const newIndex = cardsCount;
+        const html = template.innerHTML
+          .replace(/__INDEX__/g, newIndex)
+          .replace(/__NUM__/g, newIndex + 1);
+
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = html.trim();
+        const newCard = tempDiv.firstElementChild;
+
+        container.appendChild(newCard);
+        attachCardEvents(newCard);
+        updateOfficeIndices();
+
+        newCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const firstIn = newCard.querySelector('.office-title-input');
+        if (firstIn) firstIn.focus();
+      }
+
+      const addBtnTop = document.getElementById('btnAddNewOfficeTop');
+      const addBtnMain = document.getElementById('btnAddNewOffice');
+      const addBtnBottom = document.getElementById('btnAddNewOfficeBottom');
+      const addBtnEmpty = document.getElementById('btnEmptyAddOffice');
+
+      if (addBtnTop) addBtnTop.addEventListener('click', addNewOffice);
+      if (addBtnMain) addBtnMain.addEventListener('click', addNewOffice);
+      if (addBtnBottom) addBtnBottom.addEventListener('click', addNewOffice);
+      if (addBtnEmpty) addBtnEmpty.addEventListener('click', addNewOffice);
+    });
+    </script>
 
   <?php /* ══════════════════════════════════════════════════
           TAB: SEO & META
