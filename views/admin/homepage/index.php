@@ -104,7 +104,7 @@ if (!isset($tabs[$activeTab])) {
             </div>
             <button class="btn btn-navy btn-sm d-inline-flex align-items-center gap-2 px-3 py-2" data-bs-toggle="collapse" data-bs-target="#addSlideCollapse">
               <i class="bi bi-plus-circle-fill text-warning"></i>
-              <span class="fw-bold">+ Add New Slide</span>
+              <span class="fw-bold">Add New Slide</span>
             </button>
           </div>
 
@@ -661,7 +661,7 @@ if (!isset($tabs[$activeTab])) {
         </div>
         <button class="btn btn-gold btn-sm d-inline-flex align-items-center gap-1 fw-bold shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#addSpotlightCollapse" aria-expanded="false">
           <i class="bi bi-plus-lg"></i>
-          <span>+ Add New Spotlight Module</span>
+          <span>Add New Spotlight Module</span>
         </button>
       </div>
 
@@ -2063,7 +2063,7 @@ if (!isset($tabs[$activeTab])) {
         </div>
         <button class="btn btn-gold btn-sm d-inline-flex align-items-center gap-1 fw-bold shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#addIntegCollapse" aria-expanded="false">
           <i class="bi bi-plus-lg"></i>
-          <span>+ Add New Integration Tool</span>
+          <span>Add New Integration Tool</span>
         </button>
       </div>
 
@@ -3927,7 +3927,7 @@ if (!isset($tabs[$activeTab])) {
         </div>
         <button class="btn btn-navy btn-sm d-inline-flex align-items-center gap-2 px-3 py-2" data-bs-toggle="collapse" data-bs-target="#addAwardCollapse">
           <i class="bi bi-plus-circle-fill text-warning"></i>
-          <span class="fw-bold">+ Add New Award</span>
+          <span class="fw-bold">Add New Award</span>
         </button>
       </div>
 
