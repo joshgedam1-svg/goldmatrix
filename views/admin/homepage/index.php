@@ -1827,16 +1827,58 @@ if (!isset($tabs[$activeTab])) {
           </span>
         </div>
 
+        <?php
+        $countryCodeMap = [
+            'uae'                  => 'ae',
+            'united arab emirates' => 'ae',
+            'united states'        => 'us',
+            'usa'                  => 'us',
+            'indonesia'            => 'id',
+            'malaysia'             => 'my',
+            'mexico'               => 'mx',
+            'italy'                => 'it',
+            'spain'                => 'es',
+            'india'                => 'in',
+            'thailand'             => 'th',
+            'hong kong'            => 'hk',
+            'singapore'            => 'sg',
+            'saudi arabia'         => 'sa',
+            'qatar'                => 'qa',
+            'kuwait'               => 'kw',
+            'oman'                 => 'om',
+            'bahrain'              => 'bh',
+            'canada'               => 'ca',
+            'australia'            => 'au',
+            'germany'              => 'de',
+            'france'               => 'fr',
+            'uk'                   => 'gb',
+            'united kingdom'       => 'gb',
+            'switzerland'          => 'ch',
+            'belgium'              => 'be',
+            'turkey'               => 'tr',
+            'south africa'         => 'za',
+            'nepal'                => 'np',
+            'sri lanka'            => 'lk',
+            'bangladesh'           => 'bd',
+            'japan'                => 'jp',
+        ];
+        ?>
         <div class="row g-3">
           <?php if (empty($sliding_countries)): ?>
             <div class="col-12">
               <div class="p-4 bg-light rounded-3 text-center text-muted border">
                 <i class="bi bi-globe fs-2 mb-2 d-block text-secondary"></i>
-                <p class="mb-0 fs-13">Showing default 10 countries (UAE, USA, Indonesia, Malaysia, Mexico, Italy, Spain, India, Thailand, Hong Kong).</p>
+                <p class="mb-0 fs-13">No sliding countries configured. Click "Add New Country Card" above to add countries.</p>
               </div>
             </div>
           <?php else: ?>
-            <?php foreach ($sliding_countries as $item): ?>
+            <?php foreach ($sliding_countries as $item): 
+              $cCode = $countryCodeMap[strtolower(trim($item['title'] ?? ''))] ?? 'in';
+              $flagSrc = trim($item['image'] ?? '');
+              if (empty($flagSrc) || strpos($flagSrc, 'goldmatrixsoftware.com/wp-content') !== false) {
+                  $flagSrc = "https://flagcdn.com/w160/{$cCode}.png";
+              }
+            ?>
               <div class="col-md-6 col-xl-4">
                 <div class="card h-100 border shadow-sm p-3 position-relative" style="border-radius:14px; background:#fff;">
                   
@@ -1872,15 +1914,11 @@ if (!isset($tabs[$activeTab])) {
                   </div>
 
                   <!-- Flag & Map Watermark Preview Box -->
-                  <div class="rounded-3 p-3 text-center mb-2 position-relative overflow-hidden d-flex align-items-center justify-content-center" style="background:#f8fafc; min-height:100px; border:1px solid #e2e8f0;">
+                  <div class="rounded-3 p-3 text-center mb-2 position-relative overflow-hidden d-flex align-items-center justify-content-center" style="background:#0F172A; min-height:105px; border:1px solid #1E293B;">
                     <!-- Map watermark preview -->
-                    <div style="position:absolute; inset:0; background-image:url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg'); background-repeat:no-repeat; background-position:center; background-size:80%; opacity:0.12; pointer-events:none;"></div>
+                    <div style="position:absolute; inset:0; background-image:url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg'); background-repeat:no-repeat; background-position:center; background-size:85%; opacity:0.18; pointer-events:none;"></div>
                     
-                    <?php if (!empty($item['image'])): ?>
-                      <img src="<?= e($item['image']) ?>" alt="<?= e($item['title']) ?>" style="max-height:55px; max-width:85px; object-fit:contain; position:relative; z-index:1;">
-                    <?php else: ?>
-                      <i class="bi bi-flag fs-2 text-muted" style="position:relative; z-index:1;"></i>
-                    <?php endif; ?>
+                    <img src="<?= e($flagSrc) ?>" alt="<?= e($item['title']) ?>" style="height:46px; width:70px; object-fit:cover; border-radius:6px; box-shadow:0 4px 12px rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); position:relative; z-index:1;" onerror="this.src='https://flagcdn.com/w160/<?= $cCode ?>.png'">
                   </div>
 
                   <!-- Country Name -->
@@ -1913,8 +1951,8 @@ if (!isset($tabs[$activeTab])) {
                         </div>
 
                         <div class="mb-3">
-                          <label class="form-label fs-12 fw-semibold text-secondary">Flag Image URL / CDN</label>
-                          <input type="text" name="flag_url" value="<?= e($item['image']) ?>" class="form-control form-control-sm" placeholder="https://... or /assets/...">
+                          <label class="form-label fs-12 fw-semibold text-secondary">Flag Image URL / CDN Link</label>
+                          <input type="text" name="flag_url" value="<?= e($flagSrc) ?>" class="form-control form-control-sm" placeholder="https://flagcdn.com/w160/es.png or /assets/...">
                         </div>
 
                         <div class="mb-3">

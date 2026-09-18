@@ -534,19 +534,23 @@ class HomepageController {
 
     private function seedDefaultSlidingCountries(): void {
         try {
+            $seeded = (int)$this->hp('countries_seeded', '0');
+            if ($seeded === 1) {
+                return;
+            }
             $count = (int)$this->db->fetchColumn("SELECT COUNT(*) FROM homepage_items WHERE section = 'sliding_countries'");
             if ($count === 0) {
                 $defaults = [
-                    ['title' => 'UAE',           'image' => 'https://goldmatrixsoftware.com/wp-content/uploads/2026/02/imgi_57_United-Arab-Emirates.png', 'sort_order' => 1],
-                    ['title' => 'United States', 'image' => 'https://goldmatrixsoftware.com/wp-content/uploads/2026/02/imgi_58_United-States.png',       'sort_order' => 2],
-                    ['title' => 'Indonesia',     'image' => 'https://goldmatrixsoftware.com/wp-content/uploads/2026/02/pngegg-1.png',                     'sort_order' => 3],
-                    ['title' => 'Malaysia',      'image' => 'https://goldmatrixsoftware.com/wp-content/uploads/2026/02/pngtree-malaysia-flag-map-region-png-image_10768067.png', 'sort_order' => 4],
-                    ['title' => 'Mexico',        'image' => 'https://goldmatrixsoftware.com/wp-content/uploads/2026/02/imgi_61_Mexico.png',             'sort_order' => 5],
-                    ['title' => 'Italy',         'image' => 'https://goldmatrixsoftware.com/wp-content/uploads/2026/02/imgi_62_Italy.png',              'sort_order' => 6],
-                    ['title' => 'Spain',         'image' => 'https://goldmatrixsoftware.com/wp-content/uploads/2026/02/imgi_63_spain.png',              'sort_order' => 7],
-                    ['title' => 'India',         'image' => 'https://goldmatrixsoftware.com/wp-content/uploads/2026/02/imgi_54_india01.png',            'sort_order' => 8],
-                    ['title' => 'Thailand',      'image' => 'https://goldmatrixsoftware.com/wp-content/uploads/2026/02/imgi_55_thailand.png',           'sort_order' => 9],
-                    ['title' => 'Hong Kong',     'image' => 'https://goldmatrixsoftware.com/wp-content/uploads/2026/02/imgi_56_HK.png',                 'sort_order' => 10],
+                    ['title' => 'UAE',           'image' => 'https://flagcdn.com/w160/ae.png', 'sort_order' => 1],
+                    ['title' => 'United States', 'image' => 'https://flagcdn.com/w160/us.png', 'sort_order' => 2],
+                    ['title' => 'Indonesia',     'image' => 'https://flagcdn.com/w160/id.png', 'sort_order' => 3],
+                    ['title' => 'Malaysia',      'image' => 'https://flagcdn.com/w160/my.png', 'sort_order' => 4],
+                    ['title' => 'Mexico',        'image' => 'https://flagcdn.com/w160/mx.png', 'sort_order' => 5],
+                    ['title' => 'Italy',         'image' => 'https://flagcdn.com/w160/it.png', 'sort_order' => 6],
+                    ['title' => 'Spain',         'image' => 'https://flagcdn.com/w160/es.png', 'sort_order' => 7],
+                    ['title' => 'India',         'image' => 'https://flagcdn.com/w160/in.png', 'sort_order' => 8],
+                    ['title' => 'Thailand',      'image' => 'https://flagcdn.com/w160/th.png', 'sort_order' => 9],
+                    ['title' => 'Hong Kong',     'image' => 'https://flagcdn.com/w160/hk.png', 'sort_order' => 10],
                 ];
                 foreach ($defaults as $d) {
                     $this->db->query(
@@ -555,6 +559,7 @@ class HomepageController {
                     );
                 }
             }
+            $this->setHP('countries_seeded', '1');
         } catch (\Throwable $e) {}
     }
 
@@ -796,6 +801,17 @@ class HomepageController {
         try {
             return $this->db->fetchAll(
                 "SELECT * FROM homepage_items WHERE section = ? AND is_active = 1 ORDER BY sort_order ASC",
+                [$section]
+            ) ?? [];
+        } catch (\Exception $e) {
+            return [];
+        }
+    }
+
+    private function hpItemsAll(string $section): array {
+        try {
+            return $this->db->fetchAll(
+                "SELECT * FROM homepage_items WHERE section = ? ORDER BY sort_order ASC, id ASC",
                 [$section]
             ) ?? [];
         } catch (\Exception $e) {
@@ -1810,6 +1826,19 @@ class HomepageController {
                 $flagUpload = $this->handleImageUpload('image');
                 $flagImage  = $flagUpload ?: $flagUrl;
 
+                if (empty($flagImage)) {
+                    $countryCodeMap = [
+                        'uae' => 'ae', 'united arab emirates' => 'ae', 'united states' => 'us', 'usa' => 'us',
+                        'indonesia' => 'id', 'malaysia' => 'my', 'mexico' => 'mx', 'italy' => 'it',
+                        'spain' => 'es', 'india' => 'in', 'thailand' => 'th', 'hong kong' => 'hk',
+                        'singapore' => 'sg', 'saudi arabia' => 'sa', 'qatar' => 'qa', 'kuwait' => 'kw',
+                        'oman' => 'om', 'bahrain' => 'bh', 'canada' => 'ca', 'australia' => 'au',
+                        'germany' => 'de', 'france' => 'fr', 'uk' => 'gb', 'united kingdom' => 'gb'
+                    ];
+                    $code = $countryCodeMap[strtolower(trim($name))] ?? 'in';
+                    $flagImage = "https://flagcdn.com/w160/{$code}.png";
+                }
+
                 $mapUpload  = $this->handleImageUpload('map_image');
                 $mapImage   = $mapUpload ?: $mapUrl;
 
@@ -2219,7 +2248,7 @@ class HomepageController {
             'countries_slider_enabled' => $this->hp('countries_slider_enabled', '1'),
             'countries_badge'          => $this->hp('countries_badge',          'GLOBAL PRESENCE'),
             'countries_title'          => $this->hp('countries_title',          'Trusted by Jewellers Across the Globe'),
-            'sliding_countries'        => $this->hpItems('sliding_countries'),
+            'sliding_countries'        => $this->hpItemsAll('sliding_countries'),
 
             // ── FEATURE SHOWCASE ──
             'showcase_enabled'         => $this->hp('showcase_enabled',         '1'),

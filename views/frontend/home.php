@@ -1098,19 +1098,6 @@ $slides = !empty($hero_slides) ? $hero_slides : [
 ════════════════════════════════ -->
 <?php if (($countries_slider_enabled ?? '1') == '1'): ?>
 <?php
-$embeddedFlags = [
-    'ae' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABQBAMAAABsc2MHAAAAElBMVEUAhD0AAAD////IEC5UVFRVrX4kPtyFAAAARElEQVRYw+3MwQAAIBAEwBRSSCGFFPJXSeB+++tmAGbswkgIhUKhUChsFt5AGa6AUCgUCoXCbuEJlOEMCIVCoVAo/Dh8BH+Zg5lNX1IAAAAASUVORK5CYII=',
-    'us' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABUCAMAAAAyEswQAAAAQlBMVEX///8KMWGzGULsxtDZjKFCYIURN2YdQW0sTnd2jKezobRbdZWntce+yNWFmbHl6e/K0t3W3eX29/lNaYyaqr7rxc9T6EpSAAAB7klEQVRo3u2ZzXKDMAyEpSa2oQb/Qd7/VXvAwkxLTQuDQjLakyd78I4tf2gUwIP6OFnwGgHtvF/TzMvyY83nCKhsVNO+Ro2jMlMSFa2aklR9loARumlXbFNqp5XpIFLAms9yxaFzdIMh0B26LtBl1nyOgNpgg4gGERtcLI1G1Lru4/1kLV5xp2mlu/IS7IqPxUc4W7SR6lPI5dWG1KtcaN7n8lv1OQNiCz0te8hR0ACYms8Z0Nn54jpLj2Jwbvjh6+JzBbSIqBH1BOJptfjxd58n4CFQswT00BOIgcrL9OApYM3nAXWkom+8JxC3sYC64rOAWuGQ6auMUXk5oCJQV3zOduvvoF74fAH3gprvBHeCmi/gKoi3Qc3TLAionwhqlm/xEVBzBDwEar52a2dHfTtXDwH1GaD+V0fNN/rYCWoZfbx9R82BmfcDtX7K6MOlMV+kHZObyk+7EJyZffvd550sQMhHZAIQ51RKquazBmzLl6JdBfWK/wKjD5ZmoYnlHMvZxHleXvM5ONgmYrLpgMbRygONo6s+C6h7vwZiX2qu4rOMPgakl5BBjIg44JBfbdWXf5ouH/DzoE7HjEgk2tDjdmk94OPikoASUAJuBbw8ZkQi0YbuF5eAWgJKwJcPKBKJpFmQZkECSkAJWNMXoKFkunVTetAAAAAASUVORK5CYII=',
-    'id' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABrAgMAAACNjmHJAAAACVBMVEX/AAD/////f3/sDLJDAAAAKUlEQVRYw+3KMREAAAgEoC9pSVNawcFzgpkEAOBTL6WWRFEURVEUL+IA4IDalyCr0mAAAAAASUVORK5CYII=',
-    'my' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABQCAMAAACpg44GAAAANlBMVEUAAGYzAE0YE1wtJFTYPz/yv7//zADMAAD////lf3+CZzKcfSdkUD61kB3vvwbhtAtGOErPpRLmimgSAAACS0lEQVRo3u2YzXLkIAyEe6VE2Ugg4P1fNgc8P7uGTFJlGw70ZaaKg7+SUCMJOFgfBwsLcAHODcg58+8A3w7Wd3CWREREUrT8Y8C/B6uPF2WTRzVTngxQNzoLGxnxVIClxk5pf/SC9BJAqnxxl3YAyPn+dxhg5dN93gFAw/1vS58Hq/WNWh62PwgKwOxOOcgHg4iIlFbqhYEYARYaB0guIuL/EWQCgFKAlOovQHkIYDWY3bdjAKCiEIGKAghxSARrAFOjcgqDRYJIEGHkUsakOHQqGJTE6Pb4kUlpX8P3g9Up4dbHKYnfAF0SDfJBb5QwVRh2ucu5HtDVgNR8Q7J5KtHiAzBaLMkbXc7ZgNw16Se6jTGMSHHu1QhA+oynnTt4dpFwF5DVnwG9Q3i2zfRSvM9wJ8en+2DrISaN0VSDPeAsqFos+zCeDpg6D8n9fm7Ko5qFGiVu85XaKUopXcLTAXPPZ9g9wCWJJHEEdx7UsKb2W8duhCzOIuySQdYmPL/lD80QUmQAJgEiCGIAONKYmaSGMDTmJaRYm9WY0JucLgCst9CpdQ2ptvzkQ6c63Xq+fYAEoAog69Cxs1pN2kUpAED4fuy8ZnlkTz3fc6U8BveBU12NVW0MYuOqEU2xH6R4e3MzAcQcfriBu26ByfZPczXjhpWCJRGPGn6xZZ1+R33ZhnUBLsCrAP8crMPHzo/JtQAX4HDAz8l1uG8d7oMLcAGOBnybXMuoF+BwwOmLZPngAlyALwCnb1iXUS/ABfgC8H1yLaNegAvwhb4ANKYYr+PS7sQAAAAASUVORK5CYII=',
-    'mx' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABbCAMAAADDRH7FAAAA2FBMVEX///8AaEfOESaqzMHvrrX8/PtSMh/39/VqOR1xSi3FyKju7uiOXTVkQy2seEaUmV+Kj1Lr5duhpHHQ07m8vpcxh4lBKBq6iFGjazne28eDUjLAmGb3577i4NX78+CHRiKsr4OBa1zQolwdfYCgjYLguka0tolkoKGZWivVzcfjz5CTfGmCh0e1n5I+v9mK0OHoyHDpmU3x3aF3W0jNrHzNupoZdHdck5Hf5+h6rqamtLHD1NK62uWXZkX2qFXmbG3awqrskIxTUUb0pKP6wsRPfXLjto3oeo0FJmBhAAADyElEQVRo3u3YV2/jOBAAYO45FNV7782ybEu23FucOG3z//8RjvaAez7kRXrgQLYAwYA+DDlDmujXT2KCfhBP//wkEAVSIAVSIAVSIAVSIAVSIAVSIAVSIAVS4FiAWDi0D228QBzcg1yu76UwSqAWEzlhkzqp67qd41EBMUb4cAgej7nrJ6zN1rIsjAkYmSE67AM5z5cH101shmEkPxoPEJu8MHccX3RkPwMgY4sgFKPxZLAyhEWXB77suH7dZ1BkGZa5C6MBmmm3zfMucHJn50MGGY4FIVuOBigYi+m0Q3sYYlYCoGjbAJREbURtxlP2UQ5A308YjoMB9mGcy1EASd/xokrX2n2wFBmbZUXGTVxRdNlkPgJgPO0i5JmmgGXZFTkbKoSTRdFnai65l2PIYLg1BT0lSHCD2hFtxk5qF5CsyNX+chRzkPB8eoC748gONEBGDhLwwTzk2N0ogJ4pVAHxtIPvMhIjuvcMlYeM87MdMzgQWjFGEa/xTj6dxjvIGefINoNIWy7LLJP6ISYDAk0FoS1GBm94+8O0C3aSK8qMbbco0tolAK9Q4zoeDMiruoa0TYTMCndZkO8djoMyllgpExC5Zrv3OdJ4NR0MmDYVRh8fn8gw91OIPJAZSYI2zXASdMDrMvNQpCrKYEBDNWKE3r4nWpU2WbeHRuj3qzDT13CL5i3srImq8IMBQ5NfIHQ7FrMzil9iFLVtO5dgNyhJjMTtIr5EeGt6w81BeDu8/FYU1vUcvX3++7DkdtmuF0rvIYxzvNiGA7YZ3oMmMiuKy+n0ejufrldI697ptDIry/nbol+j+SH7oKcrKtwms9nxaFknCz7vfbV0HhJuH69PSNCb1BgQiCtV+bvnmxTHAnjwdXpvZpfm/Tazvj8JMlVVwUOuJJ7eeDGKQ4Gcz2erKIqj9XU6WsXsYhUWlLChqvywa7GWLqAGtvxaeF6Ty2wGF2QRUnm04Edb778BHgoYd1VfBni9Wq+e9/nv37Pi64Hw7WpECEdoscVD72ZinDY8eV6vIIKXzebrl5Ov12vIK9F1hcRk8O2WoKuNgQkm67/AzcuLvlo/g6svEGMM+0ENJGEYh5NVsOmFm2C1eiZhrCuKjkfxp8ngKz7EMcaPcrlc3pcp4VONLEzew2M5+ugWeqoovAZzcSIQpKuqboZbPJ6jD+yZitKoimle3nSjahpFNxAZ1fkgNgyzitLL5PWNN3QljcZ4gEnQZf59evpAWBjrETDRyPlGT/kpkAIpkAIpkAIpkAIpkAIpkAIpkAIpkAL/Z/wBeFSgpx4+6xIAAAAASUVORK5CYII=',
-    'it' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABrBAMAAAACzpRpAAAAElBMVEXOKzcAkkb////vt7sBkkaq28Ex4XacAAAARElEQVRo3u3MMQEAIAwDsFngwMAUYGH+TaGg385EQGpOcjt6lQmFQqFQKBQKhUKhUCgUCoVCoVAoFAqFQqFQKBQKl8IPEMdbQC6ImPwAAAAASUVORK5CYII=',
-    'es' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABrCAMAAADHPnloAAAA4VBMVEX6vQCtFRnBPxOyACWgASCXMg+eEBuysrL3ugCenJuUdQSfewSXWQrytgHrsAGUJgzSnAGLSASSagGhHhSijGePHiXFXp+LUQGKWQOqkJqzhgbnqgB9ZASpCyLAkQN3KgyQPgcqU4GqkDemanFMWj6znFfapgndsztkZSGZTQa0pn+uqZquqqwNP5PgjwN2UgFXbl2wepfDo0OxIxxsQwXEVQ1CYnuXe3KmMhGkQEaDflDntiWISTHKoBugPhF2EkWlKDVnenrMZwunVFg3K3DyvRrXcQvXewexSQmicTaOYFv6L2/XAAAEJUlEQVR42u3aWXPiOBAAYBH5xpdsB9s4PjCnwz3cEAghmWRm/v8PmpYDqamdt93akh/UVDkG8fCV2nK3HFCt4oE4kAM5kAM5kAM5kAM5kAM5sMLAu4oH4sGDx/8QUaJUG9irVxw46xyri/ve7/e7MzgclCrieodjYtt1rWnbSb/XP3yvEk/pN5NmnsBZPe/B23qeJMdDhYD9uomMrh29r4Luj8vEqPeRkjSrM4dGnhiTi04wxkHXxVjSVx+RAsrKZDjRwRZncLAcAWPhBGd32qFClyC1Sb4VW5lVxJJIQBk7FboITceyBF8i53vLEncWHGKraFbpZmOCSxAt0RdF0XczSToXRVVqm3mdwywjxA9oTDOS+deSZ7LuDX6I21VJMXRHGwzyQqw3BwMtaF7Xt2ayTfTK8ok7KU8TJ5iSVBS3J6A6RvnZxbKkk8F0/TqnkwN/bKhvznS5TNNUzILAgXpnQ0kxnEJvMp1Buw4RIVv4io16i72JEjrM9DLs3YBwH0xTOGBPpuEN5ZF3BbJNsaZpdUSBUpou03sAhm113mh48xCAEfjYplh5HKndTyBcgdMS2AjDRiNs0Bk0hiP1G2OgfAWmFJjSFAMPgKFcAuXqAB8gphQ4p8JRZYCQYsMAoECB5Qy2qXA0l73IMFmnWPnY1dx4uxABOHhwOp8plkewSkJ54y5cXKstJgx9C7e2dWMXCwB0IFIsxOdRCL65LG8EOqbXXHaPoSJc27XDrjk5CXjpPAw0Ijy/PUubxnzeGMmb7ftk2N4ttjWF3QzGbVl9/aCLBBLccqS38Xj8/ArpbcDN2lRWqqwuMMMHee8CAM+SUVYSWuhag/Hg7SzLakiBH0IIwDhiuV16lDdnbCbpfRnCuAOveFPGL/OCX2EVM+23DO8V4xVqPki6KOqSMIYpHEuZnumn4j4yazj+xfQ2M7mDzdFP5QvovsEEPkPnbxEfgCgCfnxh1y0YC1xr00pyA+rlKiZS4GaZD0BjGO7oDDNbxXerz1J3A2qCK1iZT/wM9k4lUFbzxTvDjn/xT2Bwn8UimRIRkyvwW8yylEz+BhbE8TtThxQ34ITlKlH+BhLXhRxb0i3FrLuZIQUmfwIzIhLXh2sQ2i0YZgs0aMuvIHv6Bdy5vov9eBtYTwrqwTDblr8OAi1BaHkDklDyY2zhuHBBRkc1m6Hv2OkMBp2Oiez0Eyh5XjsmoigG8RNCeTk8Y1jr8lZr3Wq1jrD/XFJgsHncPbYlt3AlSDDal8NrhvvOfN16eWnNerQ3/Pn0tFFfZrPZi9p+0unzauStWxv4Bkvg3lzPjBIIC+aY7z1v7+V58vkB2ue99d6cVeo5oRmZf06Ygir+jycePP5TVP5XH/yHPRzIgRzIgRzIgRzIgRzIgRzIgRz4r+M3X0Oa0uTPoXQAAAAASUVORK5CYII=',
-    'in' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABrCAMAAADHPnloAAAAOVBMVEUEajj/aCD///9Dj2r/jlgJBY66ueDb2++Tks5dW7V+fMSpqNghHZk3NKPMy+hyb75LSKz39/zo6PV6qrsSAAACDUlEQVR42u2YSY4UQRAEGwePLff8/2M50DNiYLhQjSqFwl5gCsX++HI4jxRMwRRMwRRMwRRMwRRMwRRMwRRMwRRMwRRMwRRMwRT8W8Fvh/PA4bxQcBVvlazNyzpQUJ0/4XqY4B4kOWcTaXOS5NgnCfZKtro3sDewtTay9nMEC1llAQKoAgKsUslyiqCQdaIDKugdokDHrKScIahkU2AVICCCAMoCtJF6hGAjZStgCl+lLIcaoLuQ7QTBQsZGFyxHiJkEfEE6drwiDS8LrkrfAIrBrAwzL2YwAbCddd0uWEiBCGBjValjUOpyA0QgLwjhZUFn64COjpjWGFGbzYAMBXqj3y24SFsAYN59zhEx5hx9GgAsI+8WVHKrWFFo8zFijBjDm0KLier1TnNVUEgD0KPNMI9K1nCL2aIDsOvN+nG5RupzK+gxRyPJNmY85/Cul6vkqqCx7V5seKucUUmyxmRtPqz03Wj3R3D9OYLr/gg+W90zBwdJjqNysJP6XsUxhvsIO6mKf++DMad3f++D62bBD5MkZo1oM2agnzJJfpnFPG8Wf9xm3OLHNlOO2WaO3weBRpZPNmo9ZaOGkm1/cpPUU24SCMmTrzrASMZ+u4uXADvIy2P4xZ+FWvX5WVCt9azPwttvxr2JND/wN3P+dws4/j/4r3h8PZxHkiRJkiRJkiRJkiRJkiRJ8r/yHRkqXHglmdR7AAAAAElFTkSuQmCC',
-    'th' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABrBAMAAAACzpRpAAAAD1BMVEUtKkqlGTH09fiyP1Oysr6roJc9AAAAT0lEQVRo3u3ZOQEAIAwEwVjAAhawgH9NFCDhUjErYOo8NcIVEAgEAi+4wtUMBwQCgcAH7nAlSZIkfV58xrb4AIFAYBMYv2N7LgCBQGAPeAA8mWhf8DptTwAAAABJRU5ErkJggg==',
-    'hk' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABrBAMAAAACzpRpAAAAJ1BMVEX////uHCX7v8H/8fL+4uP80tTyTlX5qKvvJy/2fIH0ZWvwOED3k5dF3q2fAAADa0lEQVRo3u3Yz2sUZxjA8S8zs1lcPfSJ6WZ2Noc3v2ilHsaISYs9jGKtSg+TLIjSy06lRamHiaH26mBLCXhICgVLPSRgIWAPGfVS6WHTCmLpH9XDTDa9ZN7NzHspzFx25/Lhfed93ud53hcx/FCDNViDNViDNfi/B+/cO/u5SfALsBKD4JfAeYNTngLYMwe6IcC2OfBdACJzYAzApjHQA4BlY+B3GThmDNwAB2gaAxW0PvXBVGB3gUVv1GUeAeyA88wDUkPgJHDixxCqfsPkIKydFR+cquBq/jsBTYCWiMirn2+XBd3FA3AhD+y7PeBmUg70GskQjLO9/DSL8GZaCpzig+zPOITAZXlO/iyWAsfh9JvwYiRTEMJV8fx9sChPHA5O5PMTDxRWIhtDj2MVQKZdH8UNaWevPYqT7eHgSfaHGKOI5BbOzMrM7PVvKawvaNI0EPVRlkjozAH23kmARnJ0cBIgAPYmUS3x7DkA63GneFkOB9cBbq3BsutfGpPxZjbelgPAhaODbcBOB3Bc+taY7MaNHoCtSd8FezmAa8kGtMRrXJWfPk7kbh6J1s6rmyXAAfBkDpoiW+/JN5GIvMzAVZFHJcCHgAqBVNoXo/siIt1QE9aFYAdgCbgisv44db9ORH4A7KhsxlaAE4MTiYg37zunUvl99rOd0iXge4CPFDT+/up2+sfZEGu7Uk1xFcCpNTg3E/0iW0sBVloFzDYLCzPzvcvyRjrMF6fCEarer/sJInF7iYRWqG/qNLUxE61IOr1t2WANjlesy3fu+QtvU5EXalX6NKFhpsd2lVqWPo1A2yaOCD5FXZAtiAvyzKjg+uy5f17jhGdkAEqz8UYAvSBbZ85IAEr7EbVgXus+YdkDLmmbMB2Y99f2gOlJcGxt864D82J6wmfzIVivFaxWAvtggx1DtAuWBDBdCRzA2BIr4MgDuC9Kd7zQgQGcn1rw4Zi8AzyPK4JdcHY6AB/KBFkbVmnKHaD1ZwBsZiWBiovyArAALBEJGeHMVwy2hy3h+9mKUymw3SfhvmeJiLQDqLT13JfDDjM7zT8aHgZKTrkb5971/w9VEpf3b8AuDYcc6AtKrrA/m3WPv3s4HVLe8g94s3SLlfMgg+c1CzYv2H4Mu2t6du5xDRY33DWYA3WYA3WYA0ePP8Cx7x9y0qGJEMAAAAASUVORK5CYII=',
-];
-
 $countryCodeMap = [
     'uae'                  => 'ae',
     'united arab emirates' => 'ae',
@@ -1136,38 +1123,42 @@ $countryCodeMap = [
     'france'               => 'fr',
     'uk'                   => 'gb',
     'united kingdom'       => 'gb',
+    'switzerland'          => 'ch',
+    'belgium'              => 'be',
+    'turkey'               => 'tr',
+    'south africa'         => 'za',
+    'nepal'                => 'np',
+    'sri lanka'            => 'lk',
+    'bangladesh'           => 'bd',
+    'japan'                => 'jp',
 ];
 
-$defaultSlidingCountries = [
-    ['title' => 'UAE',           'code' => 'ae'],
-    ['title' => 'United States', 'code' => 'us'],
-    ['title' => 'Indonesia',     'code' => 'id'],
-    ['title' => 'Malaysia',      'code' => 'my'],
-    ['title' => 'Mexico',        'code' => 'mx'],
-    ['title' => 'Italy',         'code' => 'it'],
-    ['title' => 'Spain',         'code' => 'es'],
-    ['title' => 'India',         'code' => 'in'],
-    ['title' => 'Thailand',      'code' => 'th'],
-    ['title' => 'Hong Kong',     'code' => 'hk'],
-];
-
+$rawList = $sliding_countries ?? [];
 $renderCountriesList = [];
-$rawList = !empty($sliding_countries) ? $sliding_countries : $defaultSlidingCountries;
 
-foreach ($rawList as $c) {
-    $cTitle = trim($c['title'] ?? '');
-    $codeKey = strtolower($cTitle);
-    $cCode = $countryCodeMap[$codeKey] ?? ($c['code'] ?? 'in');
-    
-    // Always use embedded crystal-clear base64 flag
-    $cImg = $embeddedFlags[$cCode] ?? "https://flagcdn.com/w80/{$cCode}.png";
-    
-    $c['image'] = $cImg;
-    $c['code'] = $cCode;
-    $renderCountriesList[] = $c;
+if (!empty($rawList)) {
+    foreach ($rawList as $c) {
+        $cTitle = trim($c['title'] ?? '');
+        $codeKey = strtolower($cTitle);
+        $cCode = $c['code'] ?? ($countryCodeMap[$codeKey] ?? 'in');
+        
+        $img = trim($c['image'] ?? '');
+        if (empty($img) || strpos($img, 'goldmatrixsoftware.com/wp-content') !== false) {
+            $img = "https://flagcdn.com/w160/{$cCode}.png";
+        }
+        
+        $c['image'] = $img;
+        $c['code']  = $cCode;
+        $renderCountriesList[] = $c;
+    }
 }
 
-$allSlidingCards = array_merge($renderCountriesList, $renderCountriesList);
+if (!empty($renderCountriesList)):
+    $loopItems = $renderCountriesList;
+    while (count($loopItems) < 12) {
+        $loopItems = array_merge($loopItems, $renderCountriesList);
+    }
+    $allSlidingCards = array_merge($loopItems, $loopItems);
 ?>
 <section class="section-countries-slider" id="global-reach">
   <div class="countries-header-wrap">
@@ -1181,17 +1172,18 @@ $allSlidingCards = array_merge($renderCountriesList, $renderCountriesList);
       <?php foreach ($allSlidingCards as $c): ?>
         <div class="country-map-card">
           <div class="country-map-img-box">
-            <img src="<?= $c['image'] ?>" alt="<?= e($c['title']) ?>" class="country-map-img" style="width:72px; height:48px; object-fit:cover; border-radius:6px; box-shadow:0 4px 12px rgba(0,0,0,0.4);">
+            <div class="country-map-watermark"></div>
+            <img src="<?= e($c['image']) ?>" alt="<?= e($c['title']) ?>" class="country-map-img" loading="lazy" decoding="async" onerror="this.src='https://flagcdn.com/w160/<?= e($c['code'] ?? 'in') ?>.png'">
           </div>
           <div class="country-map-content">
             <h4 class="country-card-title"><?= e($c['title']) ?></h4>
-            <p class="country-card-desc"><?= e($c['description'] ?? 'Jewellery retail and wholesale automation.') ?></p>
           </div>
         </div>
       <?php endforeach; ?>
     </div>
   </div>
 </section>
+<?php endif; ?>
 <?php endif; ?>
 
 

@@ -1543,7 +1543,7 @@ h1, h2, h3, h4, h5, h6,
   display: flex;
   gap: 20px;
   width: max-content;
-  animation: slideCountriesMarquee 38s linear infinite;
+  animation: slideCountriesMarquee 75s linear infinite;
 }
 .countries-slide-track:hover {
   animation-play-state: paused;
@@ -1553,7 +1553,7 @@ h1, h2, h3, h4, h5, h6,
   100% { transform: translateX(-50%); }
 }
 .country-map-card {
-  width: 270px;
+  width: 260px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 16px;
@@ -1571,8 +1571,8 @@ h1, h2, h3, h4, h5, h6,
 }
 .country-map-img-box {
   width: 100%;
-  height: 155px;
-  background: rgba(0, 11, 42, 0.6);
+  height: 140px;
+  background: radial-gradient(circle at center, rgba(15, 23, 42, 0.8) 0%, rgba(2, 6, 23, 0.95) 100%);
   position: relative;
   display: flex;
   align-items: center;
@@ -1580,29 +1580,47 @@ h1, h2, h3, h4, h5, h6,
   padding: 16px;
   overflow: hidden;
 }
+.country-map-watermark {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 85%;
+  opacity: 0.15;
+  pointer-events: none;
+}
 .country-map-img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
-  transition: transform 0.25s ease;
+  width: 76px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  position: relative;
+  z-index: 2;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .country-map-card:hover .country-map-img {
   transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.4);
 }
 .country-map-content {
-  padding: 16px 18px 18px;
+  padding: 14px 18px 16px;
   background: rgba(255, 255, 255, 0.02);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   flex-grow: 1;
 }
 .country-card-title {
   color: #FFFFFF;
-  font-size: 16px;
+  font-size: 15.5px;
   font-weight: 750;
-  margin-bottom: 6px;
+  margin-bottom: 0;
+  letter-spacing: 0.2px;
 }
 .country-card-desc {
   color: #94A3B8;
