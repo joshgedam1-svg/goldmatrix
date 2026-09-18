@@ -351,12 +351,12 @@ $pageTitle = 'Menus & Navigation';
                 </form>
               </div>
 
-              <!-- 2. CMS PAGES TAB -->
+              <!-- 2. CMS & SYSTEM PAGES TAB -->
               <div class="tab-pane fade" id="tab-pages" role="tabpanel">
-                <?php if (empty($pages)): ?>
+                <?php if (empty($pages) && empty($systemPages)): ?>
                   <div class="p-3 text-center text-muted bg-light rounded-3 fs-12">
                     <i class="bi bi-file-earmark-x fs-3 d-block mb-1 text-secondary"></i>
-                    No published CMS pages found in database.
+                    No pages found in database.
                   </div>
                 <?php else: ?>
                   <form method="POST" action="/admin/navigation?location=<?= urlencode($location) ?>">
@@ -364,20 +364,48 @@ $pageTitle = 'Menus & Navigation';
                     <input type="hidden" name="action" value="add_from_pages">
                     <input type="hidden" name="location" value="<?= e($location) ?>">
 
-                    <div class="mb-3 border rounded-3 p-2 bg-light overflow-auto" style="max-height: 200px;">
-                      <?php foreach ($pages as $pg): ?>
-                        <div class="form-check fs-13 py-1 border-bottom border-light">
-                          <input class="form-check-input" type="checkbox" name="page_ids[]" value="<?= $pg['id'] ?>" id="page_<?= $pg['id'] ?>">
-                          <label class="form-check-label text-dark fw-medium" for="page_<?= $pg['id'] ?>">
-                            <?= e($pg['title']) ?>
-                            <span class="text-muted fs-11 ms-1">(/<?= e($pg['slug']) ?>)</span>
-                          </label>
-                        </div>
-                      <?php endforeach; ?>
-                    </div>
+                    <?php if (!empty($pages)): ?>
+                      <div class="d-flex align-items-center justify-content-between mb-1">
+                        <span class="fs-11 fw-bold text-uppercase text-secondary">
+                          <i class="bi bi-database me-1 text-primary"></i> CMS Pages (<?= count($pages) ?>)
+                        </span>
+                        <a href="javascript:void(0)" class="fs-11 text-decoration-none fw-semibold" onclick="toggleMenuCheckboxes('#cms-pages-box')">Select All</a>
+                      </div>
+                      <div id="cms-pages-box" class="mb-3 border rounded-3 p-2 bg-light overflow-auto" style="max-height: 160px;">
+                        <?php foreach ($pages as $pg): ?>
+                          <div class="form-check fs-13 py-1 border-bottom border-light">
+                            <input class="form-check-input" type="checkbox" name="page_items[]" value="<?= htmlspecialchars(json_encode(['title' => $pg['title'], 'url' => '/' . ltrim($pg['slug'], '/')]), ENT_QUOTES, 'UTF-8') ?>" id="page_<?= $pg['id'] ?>">
+                            <label class="form-check-label text-dark fw-medium" for="page_<?= $pg['id'] ?>" style="cursor: pointer;">
+                              <?= e($pg['title']) ?>
+                              <span class="text-muted fs-11 ms-1">(/<?= e($pg['slug']) ?>)</span>
+                            </label>
+                          </div>
+                        <?php endforeach; ?>
+                      </div>
+                    <?php endif; ?>
+
+                    <?php if (!empty($systemPages)): ?>
+                      <div class="d-flex align-items-center justify-content-between mb-1">
+                        <span class="fs-11 fw-bold text-uppercase text-secondary">
+                          <i class="bi bi-layers me-1 text-info"></i> System & Solution Pages (<?= count($systemPages) ?>)
+                        </span>
+                        <a href="javascript:void(0)" class="fs-11 text-decoration-none fw-semibold" onclick="toggleMenuCheckboxes('#sys-pages-box')">Select All</a>
+                      </div>
+                      <div id="sys-pages-box" class="mb-3 border rounded-3 p-2 bg-light overflow-auto" style="max-height: 180px;">
+                        <?php foreach ($systemPages as $idx => $sp): ?>
+                          <div class="form-check fs-13 py-1 border-bottom border-light">
+                            <input class="form-check-input" type="checkbox" name="page_items[]" value="<?= htmlspecialchars(json_encode(['title' => $sp['title'], 'url' => $sp['url']]), ENT_QUOTES, 'UTF-8') ?>" id="sys_page_<?= $idx ?>">
+                            <label class="form-check-label text-dark fw-medium" for="sys_page_<?= $idx ?>" style="cursor: pointer;">
+                              <?= e($sp['title']) ?>
+                              <span class="text-muted fs-11 ms-1">(<?= e($sp['url']) ?>)</span>
+                            </label>
+                          </div>
+                        <?php endforeach; ?>
+                      </div>
+                    <?php endif; ?>
 
                     <button type="submit" class="btn btn-success w-100 py-2 fw-semibold fs-13">
-                      <i class="bi bi-check-all me-1"></i> Add Selected Pages
+                      <i class="bi bi-check-all me-1"></i> Add Selected Pages to Menu
                     </button>
                   </form>
                 <?php endif; ?>
@@ -692,5 +720,14 @@ function applySectionAnchor(label, anchor) {
   const urlInput = document.getElementById('customLinkUrl');
   if (titleInput) titleInput.value = label;
   if (urlInput) urlInput.value = anchor;
+}
+
+function toggleMenuCheckboxes(containerSelector) {
+  const container = document.querySelector(containerSelector);
+  if (!container) return;
+  const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+  if (!checkboxes.length) return;
+  const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+  checkboxes.forEach(cb => cb.checked = !allChecked);
 }
 </script>

@@ -128,27 +128,49 @@ class NavigationController {
 
             /* ── ADD MULTIPLE ITEMS FROM PAGES ── */
             if ($action === 'add_from_pages') {
-                $pageIds = $_POST['page_ids'] ?? [];
+                $pageItems    = $_POST['page_items'] ?? [];
+                $pageIds      = $_POST['page_ids'] ?? [];
                 $itemLocation = strip_tags(trim($_POST['location'] ?? $location));
 
+                $itemsToAdd = [];
+
+                if (!empty($pageItems) && is_array($pageItems)) {
+                    foreach ($pageItems as $itemRaw) {
+                        $itemData = json_decode((string)$itemRaw, true);
+                        if (!empty($itemData['title']) && !empty($itemData['url'])) {
+                            $itemsToAdd[] = [
+                                'title' => strip_tags(trim($itemData['title'])),
+                                'url'   => strip_tags(trim($itemData['url']))
+                            ];
+                        }
+                    }
+                }
+
                 if (!empty($pageIds) && is_array($pageIds)) {
-                    $addedCount = 0;
                     foreach ($pageIds as $pageId) {
                         $page = $this->db->fetch("SELECT * FROM pages WHERE id = ?", [(int)$pageId]);
                         if ($page) {
-                            $maxOrder = (int)$this->db->fetchColumn(
-                                "SELECT MAX(sort_order) FROM navigation_menus WHERE location = ?",
-                                [$itemLocation]
-                            );
-                            $sortOrder = $maxOrder + 1;
-                            $pageUrl = '/' . ltrim($page['slug'], '/');
-
-                            $this->db->query(
-                                "INSERT INTO navigation_menus (location, title, url, target, icon, parent_id, badge, sort_order, is_active) VALUES (?, ?, ?, '_self', '', 0, '', ?, 1)",
-                                [$itemLocation, $page['title'], $pageUrl, $sortOrder]
-                            );
-                            $addedCount++;
+                            $itemsToAdd[] = [
+                                'title' => $page['title'],
+                                'url'   => '/' . ltrim($page['slug'], '/')
+                            ];
                         }
+                    }
+                }
+
+                if (!empty($itemsToAdd)) {
+                    $maxOrder = (int)$this->db->fetchColumn(
+                        "SELECT MAX(sort_order) FROM navigation_menus WHERE location = ?",
+                        [$itemLocation]
+                    );
+                    $addedCount = 0;
+                    foreach ($itemsToAdd as $item) {
+                        $maxOrder++;
+                        $this->db->query(
+                            "INSERT INTO navigation_menus (location, title, url, target, icon, parent_id, badge, sort_order, is_active) VALUES (?, ?, ?, '_self', '', 0, '', ?, 1)",
+                            [$itemLocation, $item['title'], $item['url'], $maxOrder]
+                        );
+                        $addedCount++;
                     }
                     set_flash('success', "✅ {$addedCount} page(s) added to menu successfully!");
                 } else {
@@ -279,8 +301,33 @@ class NavigationController {
         // Fetch existing CMS pages
         $pages = [];
         try {
-            $pages = $this->db->fetchAll("SELECT id, title, slug, is_published FROM pages ORDER BY title ASC") ?? [];
+            $pages = $this->db->fetchAll("SELECT id, title, slug, status FROM pages WHERE deleted_at IS NULL ORDER BY title ASC") ?? [];
         } catch (\Throwable $e) {}
+
+        // Standard predefined system pages
+        $systemPages = [
+            ['title' => 'Home',                          'url' => '/'],
+            ['title' => 'Solutions Overview',            'url' => '/solutions'],
+            ['title' => 'Retail Jewellery POS',          'url' => '/solutions/jewellery-retail'],
+            ['title' => 'Wholesale Jewellery ERP',       'url' => '/solutions/jewellery-wholesale'],
+            ['title' => 'Manufacturing & Bullion',       'url' => '/solutions/jewellery-manufacturing'],
+            ['title' => 'ERP Features & Capabilities',   'url' => '/features'],
+            ['title' => 'POS & Smart Inventory',         'url' => '/features/pos-inventory'],
+            ['title' => 'Manufacturing & Jobwork',       'url' => '/features/manufacturing-jobwork'],
+            ['title' => 'Accounting & GST Compliance',   'url' => '/features/accounting-gst'],
+            ['title' => 'Gold & Diamond Management',     'url' => '/features/gold-diamond-management'],
+            ['title' => 'RFID & Barcode Automation',     'url' => '/features/crm-rfid-barcode'],
+            ['title' => 'Industries Served',             'url' => '/industries'],
+            ['title' => 'Integrations & Ecosystem',      'url' => '/integrations'],
+            ['title' => 'Why Choose GoldMatrix',         'url' => '/why-us'],
+            ['title' => 'Customer Reviews & Stories',    'url' => '/testimonials'],
+            ['title' => 'About GoldMatrix ERP',          'url' => '/about'],
+            ['title' => 'Contact & Support',             'url' => '/contact'],
+            ['title' => 'Book Free Demo',                'url' => '/request-demo'],
+            ['title' => 'Blog & Industry Insights',      'url' => '/blog'],
+            ['title' => 'Terms & Conditions',            'url' => '/terms'],
+            ['title' => 'Privacy Policy',                'url' => '/privacy'],
+        ];
 
         // Counts per location
         $counts = [];
@@ -304,6 +351,7 @@ class NavigationController {
             'menuTree'         => $menuTree,
             'parentCandidates' => $parentCandidates,
             'pages'            => $pages,
+            'systemPages'      => $systemPages,
             'allItems'         => $allItems
         ]);
     }
