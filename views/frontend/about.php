@@ -17,12 +17,16 @@ $defaultJourney = [
 $journeyItems = json_decode(setting('about_journey_items', ''), true) ?: $defaultJourney;
 
 $defaultSolutions = [
-  ['icon' => 'bi-shop', 'title' => 'Jewellery Retail', 'desc' => 'Sales, quick billing, customer profiles and daily store management.'],
-  ['icon' => 'bi-boxes', 'title' => 'Wholesale Management', 'desc' => 'B2B orders, approval memos, dealer accounts and bulk trade control.'],
-  ['icon' => 'bi-gear-wide-connected', 'title' => 'Manufacturing & Jobwork', 'desc' => 'Department allocations, Karigar jobbags, loss tracking and worklogs.'],
-  ['icon' => 'bi-layers', 'title' => 'Inventory Management', 'desc' => 'Precious metal purity, diamond weights, barcode and RFID audits.'],
-  ['icon' => 'bi-calculator', 'title' => 'Accounting & Finance', 'desc' => 'Automated ledgers, tax compliance, metal balance and financial statements.'],
-  ['icon' => 'bi-people', 'title' => 'CRM & Customer Management', 'desc' => 'Customer history, gold saving schemes and relationship workflows.']
+  ['icon' => 'bi-speedometer2', 'title' => 'Dashboards & Live Rates', 'desc' => 'Role-based command centers with real-time 24K, 22K, 18K and 925 silver market ticker synchronization.'],
+  ['icon' => 'bi-box-seam', 'title' => 'Opening & Financial Ledgers', 'desc' => 'Foundational stock baselines, dual gold-and-rupee account ledgers, and automated multi-bank reconciliation.'],
+  ['icon' => 'bi-currency-exchange', 'title' => 'Operations & Metal Accounting', 'desc' => 'Unified financial core for bullion trade, pledge settlements, and bidirectional metal-to-rupee conversions.'],
+  ['icon' => 'bi-cart-check', 'title' => 'Order Management & Custom Orders', 'desc' => 'Custom bridal order tracking, repair jobs, CAD design quotations, and automated customer WhatsApp updates.'],
+  ['icon' => 'bi-tools', 'title' => 'Manufacturing & Karigar Loss Tracking', 'desc' => 'Departmental workshop WIP (Casting, Setting, Polishing), Karigar queues, and milligram-precision metal loss audits.'],
+  ['icon' => 'bi-receipt-cutoff', 'title' => 'Financial Statements & Tax Compliance', 'desc' => 'Live Balance Sheets, Profit & Loss, Trial Balance drill-downs, and automated GST, E-Invoice and E-Way Bill exports.'],
+  ['icon' => 'bi-bar-chart-line', 'title' => 'Report Analysis & BI Intelligence', 'desc' => '100+ granular business reports, customer KYC, debtor ageing analysis, Karatwise P&L, and full audit logs.'],
+  ['icon' => 'bi-layers', 'title' => 'Inventory & RFID Stock Management', 'desc' => 'High-speed UHF RFID showcase audits, precious stone & purity tracking, approval memos, and vault transfers.'],
+  ['icon' => 'bi-people', 'title' => 'Employee & Workforce Management', 'desc' => 'Granular role permissions, counter sales targets, making-charge incentive formulas, and attendance logs.'],
+  ['icon' => 'bi-translate', 'title' => 'Multi-Language Support & Global Admin', 'desc' => 'Native internationalization across English, Arabic, Hindi, and regional languages with multi-currency and security controls.']
 ];
 $solutionsItems = json_decode(setting('about_solutions_items', ''), true) ?: $defaultSolutions;
 
@@ -630,12 +634,13 @@ $ctaBg = setting('about_cta_bg_image', 'https://images.unsplash.com/photo-151556
 
     <div class="software-collage-box text-center">
       <div class="software-chip-row">
+        <div class="software-chip"><i class="bi bi-speedometer2"></i> Live Rates &amp; Dashboards</div>
         <div class="software-chip"><i class="bi bi-cart-check"></i> POS &amp; Billing</div>
         <div class="software-chip"><i class="bi bi-boxes"></i> Inventory &amp; RFID</div>
         <div class="software-chip"><i class="bi bi-gear"></i> Manufacturing &amp; Jobwork</div>
         <div class="software-chip"><i class="bi bi-calculator"></i> Accounting &amp; Tax</div>
-        <div class="software-chip"><i class="bi bi-people"></i> CRM &amp; Loyalty</div>
-        <div class="software-chip"><i class="bi bi-graph-up"></i> Reports &amp; Analytics</div>
+        <div class="software-chip"><i class="bi bi-graph-up"></i> BI Reports &amp; Analytics</div>
+        <div class="software-chip"><i class="bi bi-translate"></i> Multi-Language Support</div>
       </div>
 
       <div class="row justify-content-center">
@@ -649,15 +654,19 @@ $ctaBg = setting('about_cta_bg_image', 'https://images.unsplash.com/photo-151556
 </section>
 
 <!-- ══════════════════════════════════════════════════
-     6. OUR SOLUTIONS (6 CLEAN CARDS)
+     6. OUR CORE FEATURES & ERP MODULES (10 MODULES)
 ══════════════════════════════════════════════════ -->
-<section class="sec-white" id="our-solutions">
+<section class="sec-white" id="our-features">
   <div class="container-fluid px-3 px-xl-5" style="max-width: 1300px;">
     
     <div class="text-center mb-5">
-      <h2 class="ab-h2"><?= e(setting('about_solutions_title', 'Our Solutions')) ?></h2>
-      <p class="ab-lead mx-auto" style="max-width: 750px;">
-        <?= e(setting('about_solutions_text', 'Explore our dedicated solution modules built exclusively for jewellery commerce.')) ?>
+      <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-2" style="background: rgba(220, 148, 35, 0.1); border: 1px solid rgba(220, 148, 35, 0.25); color: var(--ab-gold); font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">
+        <i class="bi bi-stars"></i>
+        <span>10 Core ERP Modules</span>
+      </div>
+      <h2 class="ab-h2"><?= e(setting('about_solutions_title', 'Our Features & Core Modules')) ?></h2>
+      <p class="ab-lead mx-auto" style="max-width: 780px;">
+        <?= e(setting('about_solutions_text', 'An integrated ERP architecture designed exclusively for jewellery commerce — spanning real-time market rates, workshop loss tracking, RFID inventory, and native multi-language internationalization.')) ?>
       </p>
     </div>
 

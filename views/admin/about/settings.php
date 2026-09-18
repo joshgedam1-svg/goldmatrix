@@ -291,12 +291,16 @@ $sec = $expandedSection ?? 'hero';
             $solutionsItems = json_decode($settings['about_solutions_items'] ?? '', true);
             if (!is_array($solutionsItems)) {
                 $solutionsItems = [
-                    ['icon' => 'bi-shop', 'title' => 'Jewellery Retail', 'desc' => 'Sales, quick billing, customer profiles and daily store management.'],
-                    ['icon' => 'bi-boxes', 'title' => 'Wholesale Management', 'desc' => 'B2B orders, approval memos, dealer accounts and bulk trade control.'],
-                    ['icon' => 'bi-gear-wide-connected', 'title' => 'Manufacturing & Jobwork', 'desc' => 'Department allocations, Karigar jobbags, loss tracking and worklogs.'],
-                    ['icon' => 'bi-layers', 'title' => 'Inventory Management', 'desc' => 'Precious metal purity, diamond weights, barcode and RFID audits.'],
-                    ['icon' => 'bi-calculator', 'title' => 'Accounting & Finance', 'desc' => 'Automated ledgers, tax compliance, metal balance and financial statements.'],
-                    ['icon' => 'bi-people', 'title' => 'CRM & Customer Management', 'desc' => 'Customer history, gold saving schemes and relationship workflows.']
+                    ['icon' => 'bi-speedometer2', 'title' => 'Dashboards & Live Rates', 'desc' => 'Role-based command centers with real-time 24K, 22K, 18K and 925 silver market ticker synchronization.'],
+                    ['icon' => 'bi-box-seam', 'title' => 'Opening & Financial Ledgers', 'desc' => 'Foundational stock baselines, dual gold-and-rupee account ledgers, and automated multi-bank reconciliation.'],
+                    ['icon' => 'bi-currency-exchange', 'title' => 'Operations & Metal Accounting', 'desc' => 'Unified financial core for bullion trade, pledge settlements, and bidirectional metal-to-rupee conversions.'],
+                    ['icon' => 'bi-cart-check', 'title' => 'Order Management & Custom Orders', 'desc' => 'Custom bridal order tracking, repair jobs, CAD design quotations, and automated customer WhatsApp updates.'],
+                    ['icon' => 'bi-tools', 'title' => 'Manufacturing & Karigar Loss Tracking', 'desc' => 'Departmental workshop WIP (Casting, Setting, Polishing), Karigar queues, and milligram-precision metal loss audits.'],
+                    ['icon' => 'bi-receipt-cutoff', 'title' => 'Financial Statements & Tax Compliance', 'desc' => 'Live Balance Sheets, Profit & Loss, Trial Balance drill-downs, and automated GST, E-Invoice and E-Way Bill exports.'],
+                    ['icon' => 'bi-bar-chart-line', 'title' => 'Report Analysis & BI Intelligence', 'desc' => '100+ granular business reports, customer KYC, debtor ageing analysis, Karatwise P&L, and full audit logs.'],
+                    ['icon' => 'bi-layers', 'title' => 'Inventory & RFID Stock Management', 'desc' => 'High-speed UHF RFID showcase audits, precious stone & purity tracking, approval memos, and vault transfers.'],
+                    ['icon' => 'bi-people', 'title' => 'Employee & Workforce Management', 'desc' => 'Granular role permissions, counter sales targets, making-charge incentive formulas, and attendance logs.'],
+                    ['icon' => 'bi-translate', 'title' => 'Multi-Language Support & Global Admin', 'desc' => 'Native internationalization across English, Arabic, Hindi, and regional languages with multi-currency and security controls.']
                 ];
             }
             ?>
