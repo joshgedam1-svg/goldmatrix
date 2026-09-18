@@ -129,6 +129,87 @@ require __DIR__ . '/partials/header.php';
   color: #10B981;
   font-size: 17px;
 }
+/* Date + Time Slot picker */
+.demo-datetime-wrap { display: flex; flex-direction: column; gap: 10px; }
+.demo-date-row {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 10px;
+  background: #fff;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  overflow: hidden;
+}
+.demo-date-row:focus-within {
+  border-color: #F5A623;
+  box-shadow: 0 0 0 3px rgba(245,166,35,0.15);
+}
+.demo-date-row .demo-input-icon { flex-shrink:0; }
+.demo-date-input {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  width: 100%;
+  padding: 10px 14px 10px 0;
+  font-size: 14px;
+  color: #0F172A;
+  background: transparent;
+  cursor: pointer;
+}
+.demo-date-input::-webkit-calendar-picker-indicator {
+  opacity: 0.5;
+  cursor: pointer;
+}
+.demo-slots-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #64748B;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.demo-slots {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.demo-slot-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 9px 13px;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 9px;
+  background: #FAFAFA;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+  text-align: left;
+}
+.demo-slot-btn:hover {
+  border-color: #F5A623;
+  background: #FFFBF0;
+}
+.demo-slot-btn.active {
+  border-color: #F5A623;
+  background: linear-gradient(135deg, #FFF8E6 0%, #FFFBF0 100%);
+  box-shadow: 0 0 0 3px rgba(245,166,35,0.15);
+}
+.demo-slot-name {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #1E293B;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.demo-slot-time {
+  font-size: 11px;
+  color: #64748B;
+  font-weight: 500;
+}
+.demo-slot-btn.active .demo-slot-name { color: #B45309; }
+.demo-slot-btn.active .demo-slot-time  { color: #92400E; }
 </style>
 
 <section class="demo-page-container">
@@ -286,16 +367,39 @@ require __DIR__ . '/partials/header.php';
 
           <!-- 7. Preferred Demo Time -->
           <div class="demo-field-group mb-4">
-            <label class="demo-field-label">Preferred Demo Time</label>
-            <div class="demo-input-box">
-              <span class="demo-input-icon"><i class="bi bi-calendar2"></i></span>
-              <select name="preferred_time" class="demo-select-control">
-                <option value="" selected disabled>Select date & time</option>
-                <option value="Morning (10:00 AM - 01:00 PM)">Morning (10:00 AM - 01:00 PM)</option>
-                <option value="Afternoon (02:00 PM - 05:00 PM)">Afternoon (02:00 PM - 05:00 PM)</option>
-                <option value="Evening (05:00 PM - 08:00 PM)">Evening (05:00 PM - 08:00 PM)</option>
-                <option value="Immediately (Earliest Available)">Immediately (Earliest Available)</option>
-              </select>
+            <label class="demo-field-label">Preferred Demo Date &amp; Time</label>
+            <!-- hidden field that collects final value -->
+            <input type="hidden" name="preferred_time" id="demoPagePreferredTime">
+            <div class="demo-datetime-wrap">
+              <!-- Date picker row -->
+              <div class="demo-date-row">
+                <span class="demo-input-icon"><i class="bi bi-calendar2"></i></span>
+                <input type="date" class="demo-date-input" id="demoPageDate"
+                  min="<?= date('Y-m-d', strtotime('+1 day')) ?>"
+                  max="<?= date('Y-m-d', strtotime('+90 days')) ?>">
+              </div>
+              <!-- Time slot pills -->
+              <div>
+                <div class="demo-slots-label"><i class="bi bi-clock me-1"></i>Preferred Time Slot</div>
+                <div class="demo-slots" id="demoPageSlots">
+                  <button type="button" class="demo-slot-btn" data-slot="Morning (10:00 AM - 01:00 PM)">
+                    <span class="demo-slot-name"><i class="bi bi-brightness-high"></i> Morning</span>
+                    <span class="demo-slot-time">10:00 AM – 01:00 PM</span>
+                  </button>
+                  <button type="button" class="demo-slot-btn" data-slot="Afternoon (02:00 PM - 05:00 PM)">
+                    <span class="demo-slot-name"><i class="bi bi-sun"></i> Afternoon</span>
+                    <span class="demo-slot-time">02:00 PM – 05:00 PM</span>
+                  </button>
+                  <button type="button" class="demo-slot-btn" data-slot="Evening (05:00 PM - 08:00 PM)">
+                    <span class="demo-slot-name"><i class="bi bi-moon"></i> Evening</span>
+                    <span class="demo-slot-time">05:00 PM – 08:00 PM</span>
+                  </button>
+                  <button type="button" class="demo-slot-btn" data-slot="Immediately (Earliest Available)">
+                    <span class="demo-slot-name"><i class="bi bi-lightning-charge"></i> ASAP</span>
+                    <span class="demo-slot-time">Earliest Available</span>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -341,6 +445,9 @@ function submitDemoPageForm(e) {
         msg.className = 'alert alert-success d-flex align-items-center gap-2 mb-3 py-2 px-3 fs-13 border-0 shadow-sm';
         msg.innerHTML = '<i class="bi bi-check-circle-fill text-success fs-5 flex-shrink-0"></i><div><strong>Demo Requested!</strong> ' + res.message + '</div>';
         form.reset();
+        /* clear slot UI on reset */
+        document.querySelectorAll('#demoPageSlots .demo-slot-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById('demoPagePreferredTime').value = '';
         btnText.textContent = 'Demo Requested!';
       } else {
         msg.className = 'alert alert-danger d-flex align-items-center gap-2 mb-3 py-2 px-3 fs-13 border-0 shadow-sm';
@@ -357,6 +464,37 @@ function submitDemoPageForm(e) {
       btnText.textContent = 'Request My Demo';
     });
 }
+
+/* ── Date + Time Slot picker logic (Page form) ── */
+(function () {
+  const dateInput  = document.getElementById('demoPageDate');
+  const hidden     = document.getElementById('demoPagePreferredTime');
+  const slotBtns   = document.querySelectorAll('#demoPageSlots .demo-slot-btn');
+
+  let selectedSlot = '';
+
+  function updateHidden() {
+    if (!selectedSlot) { hidden.value = ''; return; }
+    const datePart = dateInput && dateInput.value
+      ? new Date(dateInput.value).toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' })
+      : '';
+    hidden.value = datePart ? datePart + ' — ' + selectedSlot : selectedSlot;
+  }
+
+  slotBtns.forEach(btn => {
+    btn.addEventListener('click', function () {
+      slotBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      selectedSlot = this.dataset.slot;
+      updateHidden();
+    });
+  });
+
+  if (dateInput) {
+    dateInput.addEventListener('change', updateHidden);
+  }
+})();
+
 </script>
 
 <?php require __DIR__ . '/partials/footer.php'; ?>
