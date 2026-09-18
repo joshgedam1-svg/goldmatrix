@@ -216,6 +216,127 @@ $slides = !empty($hero_slides) ? $hero_slides : [
 <?php endif; ?>
 
 <!-- ════════════════════════════════
+     FEATURE SPOTLIGHT (ZIG-ZAG DEEP DIVE SECTION)
+════════════════════════════════ -->
+<?php if (($spotlight_enabled ?? '1') == '1' && !empty($spotlight_items)): ?>
+<section class="section-spotlight" id="spotlight">
+  <div class="container-fluid px-3 px-xl-5" style="max-width: 1400px;">
+    
+    <?php if (!empty($spotlight_title) || !empty($spotlight_badge)): ?>
+      <div class="spotlight-header-wrap">
+        <?php if (!empty($spotlight_badge)): ?>
+          <div class="spotlight-badge">
+            <span><?= e($spotlight_badge) ?></span>
+          </div>
+        <?php endif; ?>
+        
+        <?php if (!empty($spotlight_title)): ?>
+          <h2 class="spotlight-main-heading">
+            <?= e($spotlight_title) ?>
+          </h2>
+          <span class="spotlight-gold-curve"></span>
+        <?php endif; ?>
+
+        <?php if (!empty($spotlight_desc)): ?>
+          <p class="mt-3 mb-0 fs-6 mx-auto" style="max-width: 720px; color: #94A3B8;"><?= e($spotlight_desc) ?></p>
+        <?php endif; ?>
+      </div>
+    <?php endif; ?>
+
+    <!-- Alternating Zig-Zag Rows -->
+    <div class="spotlight-rows-wrap">
+      <?php foreach ($spotlight_items as $idx => $card): 
+        $points = !empty($card['features']) ? json_decode($card['features'], true) : [];
+        $isReversed = ($idx % 2 === 1);
+      ?>
+        <div class="row align-items-center g-4 g-lg-5 spotlight-row <?= $isReversed ? 'flex-lg-row-reverse' : '' ?>">
+          
+          <!-- Text Column -->
+          <div class="col-lg-6 col-12">
+            <div class="spotlight-text-col <?= $isReversed ? 'ps-lg-4' : 'pe-lg-4' ?>">
+              
+              <h3 class="spotlight-title"><?= e($card['title']) ?></h3>
+              <p class="spotlight-desc"><?= e($card['description']) ?></p>
+
+              <?php if (!empty($points) && is_array($points)): ?>
+                <ul class="spotlight-checklist">
+                  <?php foreach ($points as $p): 
+                    if (empty(trim((string)$p))) continue;
+                  ?>
+                    <li class="spotlight-check-item">
+                      <i class="bi bi-check-circle-fill"></i>
+                      <span><?= e($p) ?></span>
+                    </li>
+                  <?php endforeach; ?>
+                </ul>
+              <?php endif; ?>
+
+            </div>
+          </div>
+
+          <!-- Screenshot / Visual Column -->
+          <div class="col-lg-6 col-12">
+            <div class="spotlight-img-wrap">
+              <?php if (!empty($card['image'])): ?>
+                <img src="<?= e($card['image']) ?>" alt="<?= e(!empty($card['alt_text']) ? $card['alt_text'] : $card['title']) ?>" class="spotlight-img" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="spotlight-img-placeholder" style="display:none; width: 100%;">
+                  <div class="spotlight-card-box">
+                    <span><?= e($card['title']) ?></span>
+                  </div>
+                </div>
+              <?php else: ?>
+                <div class="spotlight-img-placeholder" style="width: 100%;">
+                  <div class="spotlight-card-box">
+                    <span><?= e($card['title']) ?></span>
+                  </div>
+                </div>
+              <?php endif; ?>
+            </div>
+          </div>
+
+        </div>
+      <?php endforeach; ?>
+    </div>
+
+  </div>
+
+  <style>
+  .spotlight-img-wrap {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  .spotlight-img-wrap:hover {
+    box-shadow: none !important;
+  }
+  .spotlight-card-box {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 52px;
+    background: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 15.5px;
+    letter-spacing: 0.3px;
+    box-shadow: none !important;
+    transition: all 0.3s ease;
+  }
+  .spotlight-img-wrap:hover .spotlight-card-box {
+    border-color: rgba(245, 158, 11, 0.4);
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  </style>
+</section>
+<?php endif; ?>
+
+<!-- ════════════════════════════════
      SOLUTIONS — 3 BUSINESS TYPES (EDITABLE CMS SECTION)
 ════════════════════════════════ -->
 <?php if (($solutions_enabled ?? '1') == '1' && !empty($solutions_items)): 
@@ -675,127 +796,6 @@ $slides = !empty($hero_slides) ? $hero_slides : [
   }
 }
 </style>
-<?php endif; ?>
-
-<!-- ════════════════════════════════
-     FEATURE SPOTLIGHT (ZIG-ZAG DEEP DIVE SECTION)
-════════════════════════════════ -->
-<?php if (($spotlight_enabled ?? '1') == '1' && !empty($spotlight_items)): ?>
-<section class="section-spotlight" id="spotlight">
-  <div class="container-fluid px-3 px-xl-5" style="max-width: 1400px;">
-    
-    <?php if (!empty($spotlight_title) || !empty($spotlight_badge)): ?>
-      <div class="spotlight-header-wrap">
-        <?php if (!empty($spotlight_badge)): ?>
-          <div class="spotlight-badge">
-            <span><?= e($spotlight_badge) ?></span>
-          </div>
-        <?php endif; ?>
-        
-        <?php if (!empty($spotlight_title)): ?>
-          <h2 class="spotlight-main-heading">
-            <?= e($spotlight_title) ?>
-          </h2>
-          <span class="spotlight-gold-curve"></span>
-        <?php endif; ?>
-
-        <?php if (!empty($spotlight_desc)): ?>
-          <p class="mt-3 mb-0 fs-6 mx-auto" style="max-width: 720px; color: #94A3B8;"><?= e($spotlight_desc) ?></p>
-        <?php endif; ?>
-      </div>
-    <?php endif; ?>
-
-    <!-- Alternating Zig-Zag Rows -->
-    <div class="spotlight-rows-wrap">
-      <?php foreach ($spotlight_items as $idx => $card): 
-        $points = !empty($card['features']) ? json_decode($card['features'], true) : [];
-        $isReversed = ($idx % 2 === 1);
-      ?>
-        <div class="row align-items-center g-4 g-lg-5 spotlight-row <?= $isReversed ? 'flex-lg-row-reverse' : '' ?>">
-          
-          <!-- Text Column -->
-          <div class="col-lg-6 col-12">
-            <div class="spotlight-text-col <?= $isReversed ? 'ps-lg-4' : 'pe-lg-4' ?>">
-              
-              <h3 class="spotlight-title"><?= e($card['title']) ?></h3>
-              <p class="spotlight-desc"><?= e($card['description']) ?></p>
-
-              <?php if (!empty($points) && is_array($points)): ?>
-                <ul class="spotlight-checklist">
-                  <?php foreach ($points as $p): 
-                    if (empty(trim((string)$p))) continue;
-                  ?>
-                    <li class="spotlight-check-item">
-                      <i class="bi bi-check-circle-fill"></i>
-                      <span><?= e($p) ?></span>
-                    </li>
-                  <?php endforeach; ?>
-                </ul>
-              <?php endif; ?>
-
-            </div>
-          </div>
-
-          <!-- Screenshot / Visual Column -->
-          <div class="col-lg-6 col-12">
-            <div class="spotlight-img-wrap">
-              <?php if (!empty($card['image'])): ?>
-                <img src="<?= e($card['image']) ?>" alt="<?= e(!empty($card['alt_text']) ? $card['alt_text'] : $card['title']) ?>" class="spotlight-img" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="spotlight-img-placeholder" style="display:none; width: 100%;">
-                  <div class="spotlight-card-box">
-                    <span><?= e($card['title']) ?></span>
-                  </div>
-                </div>
-              <?php else: ?>
-                <div class="spotlight-img-placeholder" style="width: 100%;">
-                  <div class="spotlight-card-box">
-                    <span><?= e($card['title']) ?></span>
-                  </div>
-                </div>
-              <?php endif; ?>
-            </div>
-          </div>
-
-        </div>
-      <?php endforeach; ?>
-    </div>
-
-  </div>
-
-  <style>
-  .spotlight-img-wrap {
-    background: transparent !important;
-    box-shadow: none !important;
-  }
-  .spotlight-img-wrap:hover {
-    box-shadow: none !important;
-  }
-  .spotlight-card-box {
-    width: 100%;
-    max-width: 480px;
-    margin: 0 auto;
-    min-height: 52px;
-    background: transparent !important;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 14px 28px;
-    color: #FFFFFF;
-    font-weight: 700;
-    font-size: 15.5px;
-    letter-spacing: 0.3px;
-    box-shadow: none !important;
-    transition: all 0.3s ease;
-  }
-  .spotlight-img-wrap:hover .spotlight-card-box {
-    border-color: rgba(245, 158, 11, 0.4);
-    background: transparent !important;
-    box-shadow: none !important;
-  }
-  </style>
-</section>
 <?php endif; ?>
 
 <!-- ════════════════════════════════
