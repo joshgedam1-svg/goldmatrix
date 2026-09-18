@@ -2218,37 +2218,37 @@ footer {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 4px;
   background: #001540;
   color: #FFFFFF;
-  border: 1px solid rgba(0, 21, 64, 0.2);
-  padding: 4px 7px;
-  height: 32px;
-  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  padding: 3px 5px;
+  height: 24px;
+  border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 .btn-lang-compact:hover, 
 .btn-lang-compact:focus,
 .btn-lang-compact[aria-expanded="true"] {
   background: #000B2A;
   border-color: #F59E0B;
-  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.25);
+  box-shadow: 0 2px 6px rgba(245, 158, 11, 0.22);
 }
 .btn-lang-compact::after {
   display: none !important;
 }
 .btn-lang-compact .nav-flag-img {
-  width: 20px;
-  height: 14px;
+  width: 15px;
+  height: 10.5px;
   object-fit: cover;
   border-radius: 2px;
   display: block;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 .btn-lang-compact .nav-flag-caret {
-  font-size: 8px;
+  font-size: 6.5px;
   opacity: 0.85;
   color: #FFFFFF;
   transition: transform 0.2s ease;
@@ -2258,28 +2258,43 @@ footer {
   transform: rotate(180deg);
 }
 
-/* Compact Luxury Dropdown Menu */
+/* Compact Luxury Dropdown Menu (Constrained to ~3-4 items with smooth scroll) */
 .nav-lang-menu-compact {
-  min-width: 185px;
-  max-height: 360px;
+  min-width: 150px;
+  max-height: 128px;
   overflow-y: auto;
-  border-radius: 10px;
+  border-radius: 8px;
   background: #FFFFFF;
   border: 1px solid #E2E8F0;
-  padding: 5px;
-  margin-top: 6px !important;
+  padding: 4px;
+  margin-top: 5px !important;
   z-index: 1065;
-  box-shadow: 0 12px 30px rgba(0, 21, 64, 0.16), 0 2px 6px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 8px 24px rgba(0, 21, 64, 0.15), 0 2px 6px rgba(0, 0, 0, 0.04);
+  scrollbar-width: thin;
+  scrollbar-color: #CBD5E1 transparent;
+}
+.nav-lang-menu-compact::-webkit-scrollbar {
+  width: 4px;
+}
+.nav-lang-menu-compact::-webkit-scrollbar-track {
+  background: transparent;
+}
+.nav-lang-menu-compact::-webkit-scrollbar-thumb {
+  background-color: #CBD5E1;
+  border-radius: 4px;
+}
+.nav-lang-menu-compact::-webkit-scrollbar-thumb:hover {
+  background-color: #94A3B8;
 }
 .nav-lang-item-compact {
-  border-radius: 6px;
-  padding: 6px 10px;
+  border-radius: 5px;
+  padding: 4px 7px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
   color: #1E293B;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 550;
   text-decoration: none;
   transition: all 0.15s ease;
@@ -2295,21 +2310,12 @@ footer {
   font-weight: 700;
 }
 .nav-lang-item-compact .lang-flag-thumb {
-  width: 19px;
-  height: 13px;
+  width: 15px;
+  height: 10.5px;
   object-fit: cover;
   border-radius: 2px;
   flex-shrink: 0;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
-}
-
-/* Mobile Language Bar */
-.mobile-lang-bar {
-  background: #F8FAFC;
-  border: 1px solid #E2E8F0;
-  border-radius: 8px;
-  padding: 8px 12px;
-  margin-bottom: 16px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.12);
 }
 
 /* Hide Google Translate top bar / widget banners */
@@ -2642,7 +2648,6 @@ $topBarIsModal = !empty($topBarLink) && strpos($topBarLink, '#') === 0;
           <i class="bi bi-caret-down-fill nav-flag-caret"></i>
         </button>
         <ul class="dropdown-menu dropdown-menu-end nav-lang-menu-compact shadow-lg border-0" aria-labelledby="headerLangDropdown">
-          <li class="dropdown-header text-uppercase fs-10 fw-bold text-muted px-2 py-1">Select Language</li>
           <?php foreach ($enabledLangs as $code => $lang): ?>
             <li>
               <a class="dropdown-item nav-lang-item-compact <?= $activeLang === $code ? 'active-lang' : '' ?>" 
@@ -2719,32 +2724,6 @@ $topBarIsModal = !empty($topBarLink) && strpos($topBarLink, '#') === 0;
   </div>
   <div class="offcanvas-body d-flex flex-column justify-content-between p-4">
     <div>
-      <?php if ($isMultilangEnabled && ($langSwitcherPos === 'header' || $langSwitcherPos === 'both') && !empty($enabledLangs)): ?>
-        <div class="mobile-lang-bar d-flex align-items-center justify-content-between mb-3">
-          <div class="d-flex align-items-center gap-2">
-            <img src="<?= e($activeLangInfo['flag_img']) ?>" width="20" height="14" class="rounded-1 shadow-xs" style="object-fit:cover;">
-            <span class="fs-12 fw-bold text-dark"><?= e($activeLangInfo['name']) ?></span>
-          </div>
-          <div class="dropdown">
-            <button class="btn btn-xs btn-outline-dark dropdown-toggle py-1 px-2 fs-11" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Change
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end shadow-sm border py-1" style="min-width:170px; max-height:260px; overflow-y:auto;">
-              <?php foreach ($enabledLangs as $code => $lang): ?>
-                <li>
-                  <a class="dropdown-item d-flex align-items-center gap-2 py-1.5 fs-12 <?= $activeLang === $code ? 'active fw-bold' : '' ?>"
-                     href="javascript:void(0);"
-                     onclick="switchSiteLanguage('<?= e($code) ?>', '<?= e($lang['name']) ?>')">
-                    <img src="<?= e($lang['flag_img']) ?>" width="16" height="11" class="rounded-1" style="object-fit:cover;">
-                    <span><?= e($lang['name']) ?></span>
-                  </a>
-                </li>
-              <?php endforeach; ?>
-            </ul>
-          </div>
-        </div>
-      <?php endif; ?>
-
       <div class="mobile-nav-links">
         <?php foreach ($renderHeaderMenu as $item): ?>
           <a href="<?= e($item['url']) ?>" class="mobile-nav-link" target="<?= e($item['target'] ?: '_self') ?>">
