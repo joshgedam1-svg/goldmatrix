@@ -1182,6 +1182,15 @@ if (!empty($renderCountriesList)):
       <?php endforeach; ?>
     </div>
   </div>
+
+  <style>
+  .countries-slide-track {
+    animation: slideCountriesMarquee 130s linear infinite !important;
+  }
+  .countries-slide-track:hover {
+    animation-play-state: paused !important;
+  }
+  </style>
 </section>
 <?php endif; ?>
 <?php endif; ?>

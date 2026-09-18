@@ -1543,7 +1543,8 @@ h1, h2, h3, h4, h5, h6,
   display: flex;
   gap: 20px;
   width: max-content;
-  animation: slideCountriesMarquee 75s linear infinite;
+  animation: slideCountriesMarquee 130s linear infinite;
+  will-change: transform;
 }
 .countries-slide-track:hover {
   animation-play-state: paused;
