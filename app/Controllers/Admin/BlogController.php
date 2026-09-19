@@ -300,10 +300,6 @@ class BlogController {
         }
 
         if ($id > 0) {
-            $stmt = $this->pdo->prepare("UPDATE blog_posts SET 
-                title=?, slug=?, excerpt=?, content=?, featured_image=?, alt_text=?,
-                category_id=?, tags=?, author_name=?, status=?, focus_keyword=?,
-                meta_title=?, meta_description=?, canonical_url=?, robots=?,
             $now = date('Y-m-d H:i:s');
             $stmt = $this->pdo->prepare("UPDATE blog_posts SET 
                 title=?, slug=?, excerpt=?, content=?, featured_image=?, alt_text=?,
