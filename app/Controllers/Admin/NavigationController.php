@@ -27,46 +27,58 @@ class NavigationController {
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )");
 
-        // Seed default menu items if empty
+        // Seed or heal default menu items
         $count = (int)$this->db->fetchColumn("SELECT COUNT(*) FROM navigation_menus");
-        if ($count === 0) {
+        $hasAnchorHeader = (int)$this->db->fetchColumn("SELECT COUNT(*) FROM navigation_menus WHERE location = 'header' AND url LIKE '#%'");
+        if ($count === 0 || $hasAnchorHeader > 0) {
             $this->seedDefaults();
         }
     }
 
-    private function seedDefaults(): void {
+    public function seedDefaults(): void {
+        // Clear any outdated/anchor header items
+        $this->db->query("DELETE FROM navigation_menus WHERE location = 'header'");
+
+        // Only clear footer if empty or requested
+        $footerCount = (int)$this->db->fetchColumn("SELECT COUNT(*) FROM navigation_menus WHERE location != 'header'");
+        if ($footerCount === 0) {
+            $this->db->query("DELETE FROM navigation_menus");
+        }
+
         $items = [
-            // ── HEADER MENU ──
-            ['location' => 'header', 'title' => 'Home',        'url' => '/',             'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 1],
-            ['location' => 'header', 'title' => 'Solutions',   'url' => '#solutions',    'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 2],
-            ['location' => 'header', 'title' => 'Features',    'url' => '#modules',      'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 3],
-            ['location' => 'header', 'title' => 'Industries',  'url' => '#industries',   'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 4],
-            ['location' => 'header', 'title' => 'Resources',   'url' => '#testimonials', 'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 5],
-            ['location' => 'header', 'title' => 'Company',     'url' => '#about',        'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 6],
-            ['location' => 'header', 'title' => 'Contact',     'url' => '#contact',      'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 7],
-
-            // ── FOOTER COL 1: PRODUCT ──
-            ['location' => 'footer_col1', 'title' => 'ERP Modules',      'url' => '#modules',      'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 1],
-            ['location' => 'footer_col1', 'title' => 'Solutions',        'url' => '#solutions',    'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 2],
-            ['location' => 'footer_col1', 'title' => 'How It Works',     'url' => '#why',          'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 3],
-            ['location' => 'footer_col1', 'title' => 'Customer Reviews', 'url' => '#testimonials', 'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 4],
-
-            // ── FOOTER COL 2: COMPANY ──
-            ['location' => 'footer_col2', 'title' => 'About Us',         'url' => '#about',        'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 1],
-            ['location' => 'footer_col2', 'title' => 'Careers',          'url' => '#',             'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 2],
-            ['location' => 'footer_col2', 'title' => 'Blog',             'url' => '#',             'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 3],
-            ['location' => 'footer_col2', 'title' => 'Contact',          'url' => '#contact',      'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 4],
-
-            // ── FOOTER COL 3: SUPPORT ──
-            ['location' => 'footer_col3', 'title' => 'Documentation',    'url' => '#',             'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 1],
-            ['location' => 'footer_col3', 'title' => 'Video Tutorials',  'url' => '#',             'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 2],
-            ['location' => 'footer_col3', 'title' => 'WhatsApp Support', 'url' => '#contact',      'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 3],
-            ['location' => 'footer_col3', 'title' => 'Partner Program',  'url' => '#',             'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 4],
-
-            // ── FOOTER BOTTOM: LEGAL ──
-            ['location' => 'footer_bottom', 'title' => 'Privacy Policy',   'url' => '#',           'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 1],
-            ['location' => 'footer_bottom', 'title' => 'Terms of Service', 'url' => '#',           'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 2],
+            // ── HEADER MENU (Exact 5 Master Items) ──
+            ['location' => 'header', 'title' => 'Home',     'url' => '/',         'target' => '_self', 'icon' => 'bi-house-door',  'parent_id' => 0, 'badge' => '', 'sort_order' => 1],
+            ['location' => 'header', 'title' => 'Features', 'url' => '/features', 'target' => '_self', 'icon' => 'bi-stars',       'parent_id' => 0, 'badge' => '', 'sort_order' => 2],
+            ['location' => 'header', 'title' => 'About',    'url' => '/about',    'target' => '_self', 'icon' => 'bi-info-circle', 'parent_id' => 0, 'badge' => '', 'sort_order' => 3],
+            ['location' => 'header', 'title' => 'Blog',     'url' => '/blog',     'target' => '_self', 'icon' => 'bi-journal-text','parent_id' => 0, 'badge' => '', 'sort_order' => 4],
+            ['location' => 'header', 'title' => 'Contact',  'url' => '/contact',  'target' => '_self', 'icon' => 'bi-telephone',   'parent_id' => 0, 'badge' => '', 'sort_order' => 5],
         ];
+
+        if ($footerCount === 0) {
+            $items = array_merge($items, [
+                // ── FOOTER COL 1: PRODUCT ──
+                ['location' => 'footer_col1', 'title' => 'Jewelry ERP Software',            'url' => '/features',     'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 1],
+                ['location' => 'footer_col1', 'title' => 'Jewelry Manufacturing Software',  'url' => '/features',     'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 2],
+                ['location' => 'footer_col1', 'title' => 'POS System for Jewelry Store',    'url' => '/features',     'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 3],
+                ['location' => 'footer_col1', 'title' => 'RFID Jewelry Automation',         'url' => '/features',     'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 4],
+
+                // ── FOOTER COL 2: COMPANY ──
+                ['location' => 'footer_col2', 'title' => 'About Us',                        'url' => '/about',        'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 1],
+                ['location' => 'footer_col2', 'title' => 'Blog & Insights',                 'url' => '/blog',         'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 2],
+                ['location' => 'footer_col2', 'title' => 'Terms of Use',                    'url' => '/terms',        'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 3],
+                ['location' => 'footer_col2', 'title' => 'Privacy Policy',                  'url' => '/privacy',      'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 4],
+
+                // ── FOOTER COL 3: SUPPORT ──
+                ['location' => 'footer_col3', 'title' => 'Request Live Demo',               'url' => '#',             'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 1],
+                ['location' => 'footer_col3', 'title' => 'Contact Sales',                   'url' => '/contact',      'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 2],
+                ['location' => 'footer_col3', 'title' => 'WhatsApp Support',                'url' => '/contact',      'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 3],
+                ['location' => 'footer_col3', 'title' => 'Partner Program',                 'url' => '/contact',      'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 4],
+
+                // ── FOOTER BOTTOM: LEGAL ──
+                ['location' => 'footer_bottom', 'title' => 'Privacy Policy',                'url' => '/privacy',      'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 1],
+                ['location' => 'footer_bottom', 'title' => 'Terms of Service',              'url' => '/terms',        'target' => '_self', 'icon' => '', 'parent_id' => 0, 'badge' => '', 'sort_order' => 2],
+            ]);
+        }
 
         foreach ($items as $item) {
             $this->db->query(

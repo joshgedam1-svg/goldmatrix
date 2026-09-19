@@ -2067,6 +2067,11 @@ class FrontendController {
      * ───────────────────────────────────────────────────────────── */
     private function footerData(): array {
         return [
+            'header_menu'          => $this->getMenu('header'),
+            'footer_col1_menu'     => $this->getMenu('footer_col1'),
+            'footer_col2_menu'     => $this->getMenu('footer_col2'),
+            'footer_col3_menu'     => $this->getMenu('footer_col3'),
+            'footer_bottom_menu'   => $this->getMenu('footer_bottom'),
             'footer_tagline'       => $this->hp('footer_tagline',       'We build jewellery-specific software delivering accuracy, control, scalability, and business growth'),
             'footer_uae_title'     => $this->hp('footer_uae_title',     'Headquarter - UAE'),
             'footer_uae_address'   => $this->hp('footer_uae_address',   "Shop No. 25/A\nCentral Gold Souq Block No. 8,\nAl Majaz -1 King Faisal Road - Sharjah"),

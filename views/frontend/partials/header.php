@@ -2599,8 +2599,8 @@ $topBarIsModal = !empty($topBarLink) && strpos($topBarLink, '#') === 0;
     $renderHeaderMenu = !empty($header_menu) ? $header_menu : [
       ['title' => 'Home', 'url' => '/', 'target' => '_self', 'children' => []],
       ['title' => 'Features', 'url' => '/features', 'target' => '_self', 'children' => []],
-      ['title' => 'Blog', 'url' => '/blog', 'target' => '_self', 'children' => []],
       ['title' => 'About', 'url' => '/about', 'target' => '_self', 'children' => []],
+      ['title' => 'Blog', 'url' => '/blog', 'target' => '_self', 'children' => []],
       ['title' => 'Contact', 'url' => '/contact', 'target' => '_self', 'children' => []],
     ];
     foreach ($renderHeaderMenu as $item): ?>
