@@ -68,6 +68,8 @@ if (!function_exists('csrf_token')) {
         if (empty($_SESSION['csrf_token'])) {
             $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
         }
+        // Always write to session so it persists
+        $_SESSION['_csrf_last_seen'] = time();
         return $_SESSION['csrf_token'];
     }
 }
@@ -83,7 +85,15 @@ if (!function_exists('verify_csrf_token')) {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-        return isset($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], $token ?? '');
+        // If no token in session but user is logged in, regenerate (session was reset by server GC)
+        if (empty($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+            return false; // Still fail this request — next submit will work
+        }
+        if (empty($token)) {
+            return false;
+        }
+        return hash_equals((string)$_SESSION['csrf_token'], (string)$token);
     }
 }
 
