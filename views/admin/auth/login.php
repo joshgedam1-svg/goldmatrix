@@ -59,7 +59,11 @@
 
     <!-- HEADER LOGO -->
     <div class="text-center mb-4">
-      <img src="<?= asset('images/logo.svg') ?>" alt="GoldMatrix ERP" height="44" class="mb-3">
+      <?php
+        // Use globally uploaded logo from Settings → same as header/footer/sidebar
+        $loginLogo = setting('site_logo', '') ?: asset('images/logo.svg');
+      ?>
+      <img src="<?= e($loginLogo) ?>" alt="GoldMatrix ERP" height="44" class="mb-3">
       <h5 class="fw-bold text-dark mb-1">Admin CMS Sign In</h5>
       <p class="text-muted fs-13">Enter your administrator credentials to access ERP control panel</p>
     </div>
