@@ -100,16 +100,13 @@ if (session_status() === PHP_SESSION_NONE) {
     ini_set('session.save_path',       $sessionSavePath);
     ini_set('session.gc_maxlifetime',  (string)$lifetime);
     ini_set('session.cookie_lifetime', (string)$lifetime);
-    ini_set('session.use_strict_mode', '1');
     ini_set('session.use_only_cookies','1');
-
-    session_name('GMSESSID'); // Unique name avoids conflicts with other PHP apps on shared hosting
 
     session_set_cookie_params([
         'lifetime' => $lifetime,
         'path'     => '/',
         'domain'   => '',
-        'secure'   => false,   // false = cookie works on both HTTP & HTTPS (safer for proxy setups)
+        'secure'   => false,
         'httponly' => true,
         'samesite' => 'Lax'
     ]);
