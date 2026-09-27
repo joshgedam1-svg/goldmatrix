@@ -9,8 +9,18 @@ declare(strict_types=1);
 error_reporting(E_ALL);
 ini_set('display_errors', '0');
 
+// Determine Project Base Directory safely (works whether index.php is in public_html/ or public_html/public/)
+$baseDir = null;
+if (file_exists(__DIR__ . '/app/Autoloader.php')) {
+    $baseDir = __DIR__;
+} elseif (file_exists(dirname(__DIR__) . '/app/Autoloader.php')) {
+    $baseDir = dirname(__DIR__);
+} else {
+    $baseDir = is_dir(__DIR__ . '/app') ? __DIR__ : dirname(__DIR__);
+}
+
 // Load environment configuration manually if .env exists
-$envFile = __DIR__ . '/../.env';
+$envFile = $baseDir . '/.env';
 if (file_exists($envFile)) {
     $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     foreach ($lines as $line) {
@@ -37,8 +47,8 @@ $cleanPath = '/' . ltrim($reqPath, '/');
 if (preg_match('#^/(uploads|assets)/(.*)$#i', $cleanPath)) {
     $candidates = [
         __DIR__ . $cleanPath,
-        dirname(__DIR__) . '/public' . $cleanPath,
-        dirname(__DIR__) . $cleanPath,
+        $baseDir . '/public' . $cleanPath,
+        $baseDir . $cleanPath,
     ];
     foreach ($candidates as $filePath) {
         if (is_file($filePath)) {
@@ -70,7 +80,7 @@ if (preg_match('#^/(uploads|assets)/(.*)$#i', $cleanPath)) {
 }
 
 // Register Autoloader
-require_once __DIR__ . '/../app/Autoloader.php';
+require_once $baseDir . '/app/Autoloader.php';
 \App\Autoloader::register();
 
 // Security Response Headers
@@ -80,7 +90,7 @@ header("Referrer-Policy: strict-origin-when-cross-origin");
 header("X-XSS-Protection: 1; mode=block");
 
 // Load Global Helpers
-require_once __DIR__ . '/../app/Helpers/functions.php';
+require_once $baseDir . '/app/Helpers/functions.php';
 
 // Configure and Start Hardened Session
 if (session_status() === PHP_SESSION_NONE) {
@@ -92,12 +102,14 @@ if (session_status() === PHP_SESSION_NONE) {
 
     $lifetime = (int)($_ENV['SESSION_LIFETIME'] ?? 7200);
 
-    // Custom session save path so Hostinger shared hosting persists sessions correctly
-    $sessionSavePath = dirname(__DIR__) . '/storage/sessions';
+    // Custom session save path with safe fallback to system default
+    $sessionSavePath = $baseDir . '/storage/sessions';
     if (!is_dir($sessionSavePath)) {
         @mkdir($sessionSavePath, 0755, true);
     }
-    ini_set('session.save_path',       $sessionSavePath);
+    if (is_dir($sessionSavePath) && is_writable($sessionSavePath)) {
+        ini_set('session.save_path', $sessionSavePath);
+    }
     ini_set('session.gc_maxlifetime',  (string)$lifetime);
     ini_set('session.cookie_lifetime', (string)$lifetime);
     ini_set('session.use_only_cookies','1');
@@ -110,7 +122,7 @@ if (session_status() === PHP_SESSION_NONE) {
         'httponly' => true,
         'samesite' => 'Lax'
     ]);
-    session_start();
+    @session_start();
 }
 
 // Inactivity Session Timeout Verification
@@ -132,11 +144,10 @@ $router = new \App\Services\Router();
 // Register Routes (Multi-path fallback resolver for various hosting setups)
 $routesBase = null;
 $possibleRouteDirs = [
-    dirname(__DIR__) . '/routes',
-    __DIR__ . '/../routes',
+    $baseDir . '/routes',
+    $baseDir . '/Routes',
     __DIR__ . '/routes',
-    dirname(__DIR__) . '/Routes',
-    __DIR__ . '/../Routes',
+    dirname(__DIR__) . '/routes',
 ];
 
 foreach ($possibleRouteDirs as $dir) {
@@ -156,12 +167,12 @@ if ($routesBase !== null) {
     echo "<div style='font-family:system-ui,-apple-system,sans-serif;max-width:720px;margin:40px auto;padding:24px;background:#FEF2F2;border:1px solid #F87171;border-radius:12px;color:#991B1B;'>";
     echo "<h2 style='margin-top:0;font-size:20px;'>⚠️ Missing 'routes' Directory on Server</h2>";
     echo "<p style='font-size:14px;line-height:1.6;'>GoldMatrix could not locate <code>routes/web.php</code> on your hosting server.</p>";
-    echo "<p style='font-size:13px;'><strong>Expected Location:</strong> <code>" . htmlspecialchars(dirname(__DIR__) . '/routes/web.php') . "</code></p>";
+    echo "<p style='font-size:13px;'><strong>Expected Location:</strong> <code>" . htmlspecialchars($baseDir . '/routes/web.php') . "</code></p>";
     echo "<hr style='border:0;border-top:1px solid #FECACA;margin:16px 0;'>";
     echo "<p style='font-weight:600;margin-bottom:8px;'>Quick Fix Instructions:</p>";
     echo "<ul style='font-size:13.5px;line-height:1.7;padding-left:20px;margin:0;'>";
-    echo "<li><strong>If using Git:</strong> Run <code>git pull origin main</code> in your server directory (<code>" . htmlspecialchars(dirname(__DIR__)) . "</code>).</li>";
-    echo "<li><strong>If using Hostinger File Manager / FTP:</strong> Upload the <code>routes</code> folder (containing <code>web.php</code> and <code>admin.php</code>) into <code>" . htmlspecialchars(dirname(__DIR__)) . "</code>.</li>";
+    echo "<li><strong>If using Git:</strong> Run <code>git pull origin main</code> in your server directory (<code>" . htmlspecialchars($baseDir) . "</code>).</li>";
+    echo "<li><strong>If using Hostinger File Manager / FTP:</strong> Upload the <code>routes</code> folder (containing <code>web.php</code> and <code>admin.php</code>) into <code>" . htmlspecialchars($baseDir) . "</code>.</li>";
     echo "<li>Verify folder permissions are set to <code>755</code> and files to <code>644</code>.</li>";
     echo "</ul>";
     echo "</div>";
