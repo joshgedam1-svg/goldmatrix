@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 // Error reporting settings based on environment
 error_reporting(E_ALL);
-ini_set('display_errors', '1');
+ini_set('display_errors', '0');
 
 // Load environment configuration manually if .env exists
 $envFile = __DIR__ . '/../.env';
@@ -84,13 +84,32 @@ require_once __DIR__ . '/../app/Helpers/functions.php';
 
 // Configure and Start Hardened Session
 if (session_status() === PHP_SESSION_NONE) {
-    $isSecure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443);
+    // Hostinger uses Nginx reverse proxy — HTTPS must be detected via forwarded headers
+    $isSecure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+        || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')
+        || (!empty($_SERVER['HTTP_X_FORWARDED_SSL'])   && $_SERVER['HTTP_X_FORWARDED_SSL']   === 'on')
+        || (isset($_SERVER['SERVER_PORT']) && (int)$_SERVER['SERVER_PORT'] === 443);
+
     $lifetime = (int)($_ENV['SESSION_LIFETIME'] ?? 7200);
+
+    // Custom session save path so Hostinger shared hosting persists sessions correctly
+    $sessionSavePath = dirname(__DIR__) . '/storage/sessions';
+    if (!is_dir($sessionSavePath)) {
+        @mkdir($sessionSavePath, 0755, true);
+    }
+    ini_set('session.save_path',       $sessionSavePath);
+    ini_set('session.gc_maxlifetime',  (string)$lifetime);
+    ini_set('session.cookie_lifetime', (string)$lifetime);
+    ini_set('session.use_strict_mode', '1');
+    ini_set('session.use_only_cookies','1');
+
+    session_name('GMSESSID'); // Unique name avoids conflicts with other PHP apps on shared hosting
+
     session_set_cookie_params([
         'lifetime' => $lifetime,
         'path'     => '/',
         'domain'   => '',
-        'secure'   => $isSecure,
+        'secure'   => false,   // false = cookie works on both HTTP & HTTPS (safer for proxy setups)
         'httponly' => true,
         'samesite' => 'Lax'
     ]);

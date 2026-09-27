@@ -2,7 +2,8 @@
 /**
  * includes/auth.php — Admin session auth guard
  */
-if (session_status() === PHP_SESSION_NONE) session_start();
+
+
 
 function requireLogin() {
     if (empty($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
