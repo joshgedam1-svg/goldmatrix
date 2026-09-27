@@ -150,12 +150,12 @@ class SeoController {
                             "INSERT INTO redirects (source_url, target_url, status_code, is_active) VALUES (?, ?, ?, 1)",
                             [$source, $target, $code]
                         );
-                        set_flash('success', "✅ 301/302 Redirect rule added successfully for {$source} → {$target}");
+                        set_flash('success', "301/302 Redirect rule added successfully for {$source} → {$target}");
                     } catch (\Throwable $e) {
-                        set_flash('error', "❌ Error: A redirect rule for '{$source}' already exists!");
+                        set_flash('error', "Error: A redirect rule for '{$source}' already exists!");
                     }
                 } else {
-                    set_flash('error', "❌ Source and Target URLs are required.");
+                    set_flash('error', "Source and Target URLs are required.");
                 }
                 redirect('/admin/seo?tab=redirects');
                 return;
@@ -166,7 +166,7 @@ class SeoController {
                 $id = (int)($_POST['id'] ?? 0);
                 if ($id > 0) {
                     $this->db->query("DELETE FROM redirects WHERE id = ?", [$id]);
-                    set_flash('success', "✅ Redirect rule deleted successfully.");
+                    set_flash('success', "Redirect rule deleted successfully.");
                 }
                 redirect('/admin/seo?tab=redirects');
                 return;
@@ -178,7 +178,7 @@ class SeoController {
                 $status = (int)($_POST['status'] ?? 1);
                 if ($id > 0) {
                     $this->db->query("UPDATE redirects SET is_active = ? WHERE id = ?", [$status ? 0 : 1, $id]);
-                    set_flash('success', "✅ Redirect rule status updated.");
+                    set_flash('success', "Redirect rule status updated.");
                 }
                 redirect('/admin/seo?tab=redirects');
                 return;
@@ -208,7 +208,7 @@ class SeoController {
                     } catch (\Throwable $e) {}
                 }
 
-                set_flash('success', '🎉 All Universal SEO & Webmaster settings saved successfully!');
+                set_flash('success', 'All Universal SEO & Webmaster settings saved successfully!');
                 redirect('/admin/seo?tab=' . urlencode($activeTab));
                 return;
             }

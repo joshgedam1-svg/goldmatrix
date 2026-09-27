@@ -124,7 +124,7 @@ class RolesController {
         }
 
         ActivityService::log('create', 'roles', $newId, "Created role: $name ($slug)");
-        set_flash('success', "✅ Role '$name' created successfully.");
+        set_flash('success', "Role '$name' created successfully.");
         redirect('/admin/roles');
     }
 
@@ -190,7 +190,7 @@ class RolesController {
         }
 
         ActivityService::log('update', 'roles', $id, "Updated role: $name");
-        set_flash('success', "✅ Role '$name' updated successfully.");
+        set_flash('success', "Role '$name' updated successfully.");
         redirect('/admin/roles');
     }
 
@@ -211,7 +211,7 @@ class RolesController {
             $this->db->query("DELETE FROM roles WHERE id = ?", [$id]);
 
             ActivityService::log('delete', 'roles', $id, "Deleted role: {$role['name']}");
-            set_flash('success', "✅ Role '{$role['name']}' deleted.");
+            set_flash('success', "Role '{$role['name']}' deleted.");
         }
 
         redirect('/admin/roles');

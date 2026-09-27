@@ -143,7 +143,7 @@ class ContactPageController {
 
         // Check if clearing cache
         if (isset($_POST['action']) && $_POST['action'] === 'clear_cache') {
-            set_flash('success', '⚡ Contact page cache cleared successfully.');
+            set_flash('success', 'Contact page cache cleared successfully.');
             redirect('/admin/contact?section=' . urlencode($section));
             return;
         }
@@ -224,7 +224,7 @@ class ContactPageController {
         ];
 
         $secName = $sectionLabels[$section] ?? 'Section';
-        set_flash('success', "✅ {$secName} updated successfully and synchronized to live Contact page!");
+        set_flash('success', "{$secName} updated successfully and synchronized to live Contact page!");
         redirect('/admin/contact?section=' . urlencode($section));
     }
 }

@@ -1086,7 +1086,7 @@ class HomepageController {
                     $this->setSetting('footer_india_address', '');
                 }
 
-                set_flash('success', '✅ Footer settings, office locations, and contact info saved successfully!');
+                set_flash('success', 'Footer settings, office locations, and contact info saved successfully!');
                 redirect('/admin/homepage?tab=footer');
                 return;
             }
@@ -1134,7 +1134,7 @@ class HomepageController {
                     'integrations' => 'Integrations',
                 ];
                 $tabLabel = $tabNames[$activeTab] ?? 'Settings';
-                set_flash('success', "✅ {$tabLabel} saved successfully!");
+                set_flash('success', "{$tabLabel} saved successfully!");
                 redirect('/admin/homepage?tab=' . urlencode($activeTab));
                 return;
             }
@@ -1181,7 +1181,7 @@ class HomepageController {
                     [$badge, $title, $desc, $featuresJson, $accentColor, $btn1Text, $btn1Link, $btn2Text, $btn2Link, $altText, $desktopImg, $mobileImg, $sortOrder, $isActive]
                 );
 
-                set_flash('success', '✅ Hero slide added successfully!');
+                set_flash('success', 'Hero slide added successfully!');
                 redirect('/admin/homepage?tab=hero');
                 return;
             }
@@ -1240,7 +1240,7 @@ class HomepageController {
                     }
                 }
 
-                set_flash('success', '✅ Hero slide updated successfully!');
+                set_flash('success', 'Hero slide updated successfully!');
                 redirect('/admin/homepage?tab=hero');
                 return;
             }
@@ -1254,7 +1254,7 @@ class HomepageController {
                 } else {
                     $this->db->query("UPDATE homepage_items SET image = '' WHERE id = ? AND section = 'hero_slides'", [$id]);
                 }
-                set_flash('success', '🗑️ Slide image removed successfully.');
+                set_flash('success', 'Slide image removed successfully.');
                 redirect('/admin/homepage?tab=hero');
                 return;
             }
@@ -1286,7 +1286,7 @@ class HomepageController {
                             $slide['is_active']
                         ]
                     );
-                    set_flash('success', '📋 Slide duplicated successfully!');
+                    set_flash('success', 'Slide duplicated successfully!');
                 }
                 redirect('/admin/homepage?tab=hero');
                 return;
@@ -1296,7 +1296,7 @@ class HomepageController {
             if ($action === 'delete_slide') {
                 $id = (int)($_POST['slide_id'] ?? 0);
                 $this->db->query("DELETE FROM homepage_items WHERE id = ? AND section = 'hero_slides'", [$id]);
-                set_flash('success', '🗑️ Slide deleted successfully.');
+                set_flash('success', 'Slide deleted successfully.');
                 redirect('/admin/homepage?tab=hero');
                 return;
             }
@@ -1353,7 +1353,7 @@ class HomepageController {
                     [$badge, $title, $desc, $icon, $extra, $accentColor, $featuresJson, $btn1Text, $btn1Link, $image, $altText, $sortOrder, $isActive]
                 );
 
-                set_flash('success', '✅ Business Solution card added successfully!');
+                set_flash('success', 'Business Solution card added successfully!');
                 redirect('/admin/homepage?tab=solutions');
                 return;
             }
@@ -1412,7 +1412,7 @@ class HomepageController {
                     );
                 }
 
-                set_flash('success', '✅ Business Solution card updated successfully!');
+                set_flash('success', 'Business Solution card updated successfully!');
                 redirect('/admin/homepage?tab=solutions');
                 return;
             }
@@ -1441,7 +1441,7 @@ class HomepageController {
                     [$section, $title, $sub, $desc, $icon, $link, $image, $badge, $extra, $maxSort]
                 );
 
-                set_flash('success', '✅ Item added!');
+                set_flash('success', 'Item added!');
                 redirect('/admin/homepage?tab=' . urlencode($section));
                 return;
             }
@@ -1477,7 +1477,7 @@ class HomepageController {
                     );
                 }
 
-                set_flash('success', '✅ Item updated successfully!');
+                set_flash('success', 'Item updated successfully!');
                 redirect('/admin/homepage?tab=' . urlencode($section));
                 return;
             }
@@ -1487,7 +1487,7 @@ class HomepageController {
                 $id      = (int)($_POST['item_id'] ?? 0);
                 $section = strip_tags(trim($_POST['section'] ?? ''));
                 $this->db->query("DELETE FROM homepage_items WHERE id = ?", [$id]);
-                set_flash('success', '🗑️ Item deleted.');
+                set_flash('success', 'Item deleted.');
                 redirect('/admin/homepage?tab=' . urlencode($section));
                 return;
             }
@@ -1549,9 +1549,9 @@ class HomepageController {
                         "INSERT INTO homepage_items (section, title, image, link, sort_order, is_active) VALUES ('brand_logos', ?, ?, ?, ?, 1)",
                         [$title, $image, $link, $sort]
                     );
-                    set_flash('success', '✅ Brand logo added successfully!');
+                    set_flash('success', 'Brand logo added successfully!');
                 } else {
-                    set_flash('danger', '❌ Please enter brand name.');
+                    set_flash('danger', 'Please enter brand name.');
                 }
                 redirect('/admin/homepage?tab=brands');
                 return;
@@ -1562,7 +1562,7 @@ class HomepageController {
                 $id = (int)($_POST['item_id'] ?? 0);
                 if ($id > 0) {
                     $this->db->query("DELETE FROM homepage_items WHERE id = ? AND section = 'brand_logos'", [$id]);
-                    set_flash('success', '✅ Brand logo deleted.');
+                    set_flash('success', 'Brand logo deleted.');
                 }
                 redirect('/admin/homepage?tab=brands');
                 return;
@@ -1593,7 +1593,7 @@ class HomepageController {
                             [$title, $link, $sort, $id]
                         );
                     }
-                    set_flash('success', '✅ Brand logo updated successfully!');
+                    set_flash('success', 'Brand logo updated successfully!');
                 }
                 redirect('/admin/homepage?tab=brands');
                 return;
@@ -1629,7 +1629,7 @@ class HomepageController {
                     $this->setHP('mobile_app_banner_image', '');
                 }
 
-                set_flash('success', '✅ Mobile App Showcase settings saved successfully!');
+                set_flash('success', 'Mobile App Showcase settings saved successfully!');
                 redirect('/admin/homepage?tab=mobile_app');
                 return;
             }
@@ -1651,9 +1651,9 @@ class HomepageController {
                         "INSERT INTO homepage_items (section, title, description, icon, image, link, sort_order, is_active) VALUES ('mobile_app_cards', ?, ?, ?, ?, ?, ?, 1)",
                         [$title, $description, $icon, $image, $link, $sortOrder]
                     );
-                    set_flash('success', '✅ Feature card added successfully!');
+                    set_flash('success', 'Feature card added successfully!');
                 } else {
-                    set_flash('danger', '❌ Card title is required.');
+                    set_flash('danger', 'Card title is required.');
                 }
                 redirect('/admin/homepage?tab=mobile_app');
                 return;
@@ -1687,7 +1687,7 @@ class HomepageController {
                             [$title, $description, $icon, $link, $sortOrder, $isActive, $id]
                         );
                     }
-                    set_flash('success', '✅ Feature card updated successfully!');
+                    set_flash('success', 'Feature card updated successfully!');
                 }
                 redirect('/admin/homepage?tab=mobile_app');
                 return;
@@ -1698,7 +1698,7 @@ class HomepageController {
                 $id = (int)($_POST['item_id'] ?? 0);
                 if ($id > 0) {
                     $this->db->query("DELETE FROM homepage_items WHERE id = ? AND section = 'mobile_app_cards'", [$id]);
-                    set_flash('success', '✅ Feature card deleted.');
+                    set_flash('success', 'Feature card deleted.');
                 }
                 redirect('/admin/homepage?tab=mobile_app');
                 return;
@@ -1718,7 +1718,7 @@ class HomepageController {
                 $this->setHP('showcase_title_highlight', $highlight);
                 $this->setHP('showcase_desc', $desc);
 
-                set_flash('success', '✅ Feature Showcase settings saved!');
+                set_flash('success', 'Feature Showcase settings saved!');
                 redirect('/admin/homepage?tab=showcase');
                 return;
             }
@@ -1768,7 +1768,7 @@ class HomepageController {
                     [$title, $subtitle, $description, $icon, $accentColor, $altText, $btnText, $btnLink, $image, $featuresJson, $sortOrder, $isActive]
                 );
 
-                set_flash('success', '✅ Feature card added to Showcase!');
+                set_flash('success', 'Feature card added to Showcase!');
                 redirect('/admin/homepage?tab=showcase');
                 return;
             }
@@ -1820,7 +1820,7 @@ class HomepageController {
                     }
                 }
 
-                set_flash('success', '✅ Feature card updated successfully!');
+                set_flash('success', 'Feature card updated successfully!');
                 redirect('/admin/homepage?tab=showcase');
                 return;
             }
@@ -1829,7 +1829,7 @@ class HomepageController {
             if ($action === 'remove_showcase_image') {
                 $id = (int)($_POST['item_id'] ?? 0);
                 $this->db->query("UPDATE homepage_items SET image = '' WHERE id = ? AND section = 'feature_showcase'", [$id]);
-                set_flash('success', '🗑️ Feature image removed.');
+                set_flash('success', 'Feature image removed.');
                 redirect('/admin/homepage?tab=showcase');
                 return;
             }
@@ -1838,7 +1838,7 @@ class HomepageController {
             if ($action === 'delete_showcase_item') {
                 $id = (int)($_POST['item_id'] ?? 0);
                 $this->db->query("DELETE FROM homepage_items WHERE id = ? AND section = 'feature_showcase'", [$id]);
-                set_flash('success', '🗑️ Feature card deleted.');
+                set_flash('success', 'Feature card deleted.');
                 redirect('/admin/homepage?tab=showcase');
                 return;
             }
@@ -1867,7 +1867,7 @@ class HomepageController {
                 $this->setHP('spotlight_title_highlight', $highlight);
                 $this->setHP('spotlight_desc', $desc);
 
-                set_flash('success', '✅ Feature Spotlight settings saved!');
+                set_flash('success', 'Feature Spotlight settings saved!');
                 redirect('/admin/homepage?tab=spotlight');
                 return;
             }
@@ -1906,7 +1906,7 @@ class HomepageController {
                     [$title, $subtitle, $description, $altText, $image, $featuresJson, $sortOrder, $isActive]
                 );
 
-                set_flash('success', '✅ Spotlight module card added!');
+                set_flash('success', 'Spotlight module card added!');
                 redirect('/admin/homepage?tab=spotlight');
                 return;
             }
@@ -1947,7 +1947,7 @@ class HomepageController {
                     }
                 }
 
-                set_flash('success', '✅ Spotlight module card updated!');
+                set_flash('success', 'Spotlight module card updated!');
                 redirect('/admin/homepage?tab=spotlight');
                 return;
             }
@@ -1956,7 +1956,7 @@ class HomepageController {
             if ($action === 'delete_spotlight_item') {
                 $id = (int)($_POST['item_id'] ?? 0);
                 $this->db->query("DELETE FROM homepage_items WHERE id = ? AND section = 'feature_spotlight'", [$id]);
-                set_flash('success', '🗑️ Spotlight module card deleted.');
+                set_flash('success', 'Spotlight module card deleted.');
                 redirect('/admin/homepage?tab=spotlight');
                 return;
             }
@@ -1981,7 +1981,7 @@ class HomepageController {
                 $this->setHP('countries_title', $title);
                 $this->setHP('countries_slider_enabled', $enabled);
 
-                set_flash('success', '✅ Global Presence Slider settings saved!');
+                set_flash('success', 'Global Presence Slider settings saved!');
                 redirect('/admin/homepage?tab=countries');
                 return;
             }
@@ -2024,7 +2024,7 @@ class HomepageController {
                     [$name, $flagImage, $mapImage, $sortOrder, $isActive]
                 );
 
-                set_flash('success', '✅ Country added to Global Slider!');
+                set_flash('success', 'Country added to Global Slider!');
                 redirect('/admin/homepage?tab=countries');
                 return;
             }
@@ -2054,7 +2054,7 @@ class HomepageController {
                     $this->db->query("UPDATE homepage_items SET title = ?, sort_order = ?, is_active = ? WHERE id = ? AND section = 'sliding_countries'", [$name, $sortOrder, $isActive, $id]);
                 }
 
-                set_flash('success', '✅ Country updated successfully!');
+                set_flash('success', 'Country updated successfully!');
                 redirect('/admin/homepage?tab=countries');
                 return;
             }
@@ -2063,7 +2063,7 @@ class HomepageController {
             if ($action === 'delete_country') {
                 $id = (int)($_POST['item_id'] ?? 0);
                 $this->db->query("DELETE FROM homepage_items WHERE id = ? AND section = 'sliding_countries'", [$id]);
-                set_flash('success', '🗑️ Country removed from slider.');
+                set_flash('success', 'Country removed from slider.');
                 redirect('/admin/homepage?tab=countries');
                 return;
             }
@@ -2094,7 +2094,7 @@ class HomepageController {
                 $this->setHP('pfeat_cta_text', $ctaText);
                 $this->setHP('pfeat_cta_link', $ctaLink);
 
-                set_flash('success', '✅ Powerful Features settings saved!');
+                set_flash('success', 'Powerful Features settings saved!');
                 redirect('/admin/homepage?tab=pfeatures');
                 return;
             }
@@ -2126,7 +2126,7 @@ class HomepageController {
                     [$title, $description, $icon, $link, $image, $altText, $sortOrder, $isActive]
                 );
 
-                set_flash('success', '✅ Feature card added!');
+                set_flash('success', 'Feature card added!');
                 redirect('/admin/homepage?tab=pfeatures');
                 return;
             }
@@ -2160,7 +2160,7 @@ class HomepageController {
                     $this->db->query("UPDATE homepage_items SET image = ? WHERE id = ? AND section = 'powerful_features'", [$imageUrl, $id]);
                 }
 
-                set_flash('success', '✅ Feature card updated!');
+                set_flash('success', 'Feature card updated!');
                 redirect('/admin/homepage?tab=pfeatures');
                 return;
             }
@@ -2169,7 +2169,7 @@ class HomepageController {
             if ($action === 'delete_pfeat_item') {
                 $id = (int)($_POST['item_id'] ?? 0);
                 $this->db->query("DELETE FROM homepage_items WHERE id = ? AND section = 'powerful_features'", [$id]);
-                set_flash('success', '🗑️ Feature card deleted.');
+                set_flash('success', 'Feature card deleted.');
                 redirect('/admin/homepage?tab=pfeatures');
                 return;
             }
@@ -2196,7 +2196,7 @@ class HomepageController {
                 $this->setHP('integrations_title', $title);
                 $this->setHP('integrations_desc', $desc);
 
-                set_flash('success', '✅ Integration section settings saved!');
+                set_flash('success', 'Integration section settings saved!');
                 redirect('/admin/homepage?tab=integrations');
                 return;
             }
@@ -2228,7 +2228,7 @@ class HomepageController {
                     [$title, $description, $icon, $link, $image, $altText, $sortOrder, $isActive]
                 );
 
-                set_flash('success', '✅ Integration tool added!');
+                set_flash('success', 'Integration tool added!');
                 redirect('/admin/homepage?tab=integrations');
                 return;
             }
@@ -2262,7 +2262,7 @@ class HomepageController {
                     $this->db->query("UPDATE homepage_items SET image = ? WHERE id = ? AND section = 'integrations'", [$imageUrl, $id]);
                 }
 
-                set_flash('success', '✅ Integration tool updated!');
+                set_flash('success', 'Integration tool updated!');
                 redirect('/admin/homepage?tab=integrations');
                 return;
             }
@@ -2271,7 +2271,7 @@ class HomepageController {
             if ($action === 'delete_integration_item') {
                 $id = (int)($_POST['item_id'] ?? 0);
                 $this->db->query("DELETE FROM homepage_items WHERE id = ? AND section = 'integrations'", [$id]);
-                set_flash('success', '🗑️ Integration tool deleted.');
+                set_flash('success', 'Integration tool deleted.');
                 redirect('/admin/homepage?tab=integrations');
                 return;
             }
@@ -2298,7 +2298,7 @@ class HomepageController {
                 $this->setHP('awards_title', $title);
                 $this->setHP('awards_subtitle', $subtitle);
 
-                set_flash('success', '✅ Awards section settings updated successfully!');
+                set_flash('success', 'Awards section settings updated successfully!');
                 redirect('/admin/homepage?tab=awards');
                 return;
             }
@@ -2329,7 +2329,7 @@ class HomepageController {
                     [$title, $subtitle, $badge, $description, $finalImage, $link, $sortOrder, $isActive]
                 );
 
-                set_flash('success', '🏆 New award added successfully!');
+                set_flash('success', 'New award added successfully!');
                 redirect('/admin/homepage?tab=awards');
                 return;
             }
@@ -2363,7 +2363,7 @@ class HomepageController {
                     $this->db->query("UPDATE homepage_items SET image = ? WHERE id = ? AND section = 'awards'", [$imageUrl, $id]);
                 }
 
-                set_flash('success', '✅ Award updated successfully!');
+                set_flash('success', 'Award updated successfully!');
                 redirect('/admin/homepage?tab=awards');
                 return;
             }
@@ -2372,7 +2372,7 @@ class HomepageController {
             if ($action === 'delete_award_item') {
                 $id = (int)($_POST['item_id'] ?? 0);
                 $this->db->query("DELETE FROM homepage_items WHERE id = ? AND section = 'awards'", [$id]);
-                set_flash('success', '🗑️ Award deleted.');
+                set_flash('success', 'Award deleted.');
                 redirect('/admin/homepage?tab=awards');
                 return;
             }

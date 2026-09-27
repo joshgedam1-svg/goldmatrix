@@ -107,7 +107,7 @@ class UsersController {
         $newId = $this->db->lastInsertId();
         ActivityService::log('create', 'users', (int)$newId, "Created new admin user: $name ($email)");
 
-        set_flash('success', "✅ Admin user '$name' created successfully.");
+        set_flash('success', "Admin user '$name' created successfully.");
         redirect('/admin/users');
     }
 
@@ -188,7 +188,7 @@ class UsersController {
 
         ActivityService::log('update', 'users', $id, "Updated admin user: $name ($email)");
 
-        set_flash('success', "✅ Admin user '$name' updated successfully.");
+        set_flash('success', "Admin user '$name' updated successfully.");
         redirect('/admin/users');
     }
 
@@ -212,7 +212,7 @@ class UsersController {
         if ($user) {
             $this->db->query("DELETE FROM users WHERE id = ?", [$id]);
             ActivityService::log('delete', 'users', $id, "Deleted admin user: {$user['name']} ({$user['email']})");
-            set_flash('success', "✅ Admin user '{$user['name']}' deleted.");
+            set_flash('success', "Admin user '{$user['name']}' deleted.");
         }
 
         redirect('/admin/users');

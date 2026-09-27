@@ -84,7 +84,7 @@ class SettingsController {
                 $key = $_POST['key'] ?? '';
                 if (in_array($key, ['site_logo', 'site_logo_dark', 'site_favicon'])) {
                     $this->db->query("UPDATE settings SET setting_value = '' WHERE setting_key = ?", [$key]);
-                    set_flash('success', '✅ Custom logo/favicon removed. Reverted to default.');
+                    set_flash('success', 'Custom logo/favicon removed. Reverted to default.');
                     redirect('/admin/settings?tab=' . urlencode($activeTab));
                     return;
                 }
@@ -183,7 +183,7 @@ class SettingsController {
                 }
             }
 
-            set_flash('success', '✅ Settings & Branding saved successfully!');
+            set_flash('success', 'Settings & Branding saved successfully!');
             redirect('/admin/settings?tab=' . urlencode($activeTab));
             return;
         }

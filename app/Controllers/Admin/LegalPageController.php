@@ -140,7 +140,7 @@ class LegalPageController {
         $activeTab = $_POST['tab'] ?? 'terms';
 
         if (isset($_POST['action']) && $_POST['action'] === 'clear_cache') {
-            set_flash('success', '⚡ Legal pages cache cleared successfully.');
+            set_flash('success', 'Legal pages cache cleared successfully.');
             redirect('/admin/legal-settings?tab=' . urlencode($activeTab) . '&section=' . urlencode($section));
             return;
         }
@@ -212,7 +212,7 @@ class LegalPageController {
             }
         }
 
-        set_flash('success', "✅ Legal section updated successfully and synchronized to live website!");
+        set_flash('success', "Legal section updated successfully and synchronized to live website!");
         redirect('/admin/legal-settings?tab=' . urlencode($activeTab) . '&section=' . urlencode($section));
     }
 }

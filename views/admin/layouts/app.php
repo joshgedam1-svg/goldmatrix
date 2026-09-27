@@ -56,7 +56,7 @@
         </div>
       <?php endif; ?>
 
-      <?php if ($msg = get_flash('danger')): ?>
+      <?php if ($msg = (get_flash('danger') ?? get_flash('error'))): ?>
         <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
           <i class="bi bi-exclamation-triangle-fill me-2"></i> <?= e($msg) ?>
           <button type="button" class="btn-close" data-bs-dismiss="alert"></button>

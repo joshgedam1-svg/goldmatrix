@@ -97,12 +97,23 @@ if (!function_exists('verify_csrf_token')) {
     }
 }
 
+if (!function_exists('clean_flash_message')) {
+    function clean_flash_message(?string $message): string {
+        if ($message === null || $message === '') {
+            return '';
+        }
+        // Strip common leading emojis and symbols (e.g. ✅, ❌, ⚠️, ⚡, 🎉, 🗑️, 📋, etc.)
+        $clean = preg_replace('/^[\x{1F300}-\x{1FAFF}\x{2600}-\x{27BF}\x{FE00}-\x{FE0F}\x{200D}\x{20E3}\x{2190}-\x{21FF}\x{2900}-\x{297F}\x{2B00}-\x{2BFF}\s]+/u', '', $message);
+        return $clean !== null && $clean !== '' ? trim($clean) : trim($message);
+    }
+}
+
 if (!function_exists('set_flash')) {
     function set_flash(string $type, string $message): void {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-        $_SESSION['flash'][$type] = $message;
+        $_SESSION['flash'][$type] = clean_flash_message($message);
     }
 }
 
@@ -114,7 +125,7 @@ if (!function_exists('get_flash')) {
         if (isset($_SESSION['flash'][$type])) {
             $msg = $_SESSION['flash'][$type];
             unset($_SESSION['flash'][$type]);
-            return $msg;
+            return clean_flash_message($msg);
         }
         return null;
     }

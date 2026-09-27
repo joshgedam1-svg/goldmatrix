@@ -171,7 +171,7 @@ class AboutPageController {
         $section = $_POST['section_name'] ?? 'all';
 
         if (isset($_POST['action']) && $_POST['action'] === 'clear_cache') {
-            set_flash('success', '⚡ About page cache cleared successfully.');
+            set_flash('success', 'About page cache cleared successfully.');
             redirect('/admin/about-settings?section=' . urlencode($section));
             return;
         }
@@ -268,7 +268,7 @@ class AboutPageController {
         ];
 
         $secName = $sectionLabels[$section] ?? 'Section';
-        set_flash('success', "✅ {$secName} saved successfully and updated on live About page!");
+        set_flash('success', "{$secName} saved successfully and updated on live About page!");
         redirect('/admin/about-settings?section=' . urlencode($section));
     }
 }

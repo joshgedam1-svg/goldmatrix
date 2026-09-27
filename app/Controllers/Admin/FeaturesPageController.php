@@ -129,7 +129,7 @@ class FeaturesPageController {
 
         // Check if clearing cache
         if (isset($_POST['action']) && $_POST['action'] === 'clear_cache') {
-            set_flash('success', '⚡ Features page cache cleared successfully.');
+            set_flash('success', 'Features page cache cleared successfully.');
             redirect('/admin/features-settings?section=' . urlencode($section));
             return;
         }
@@ -208,7 +208,7 @@ class FeaturesPageController {
         ];
 
         $secName = $sectionLabels[$section] ?? 'Section';
-        set_flash('success', "✅ {$secName} updated successfully and synchronized to live Features page!");
+        set_flash('success', "{$secName} updated successfully and synchronized to live Features page!");
         redirect('/admin/features-settings?section=' . urlencode($section));
     }
 }

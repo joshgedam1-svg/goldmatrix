@@ -69,7 +69,7 @@ class ActivityLogsController {
         if ($days > 0) {
             $this->db->query("DELETE FROM activity_logs WHERE created_at < datetime('now', '-' || ? || ' days')", [$days]);
             ActivityService::log('delete', 'logs', 0, "Cleared activity logs older than $days days");
-            set_flash('success', "✅ Activity logs older than $days days have been cleared.");
+            set_flash('success', "Activity logs older than $days days have been cleared.");
         }
         redirect('/admin/activity-logs');
     }

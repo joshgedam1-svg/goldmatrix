@@ -98,7 +98,7 @@ class NavigationController {
         // Handle POST actions
         if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
             if (!verify_csrf_token($_POST['csrf_token'] ?? '')) {
-                set_flash('danger', '❌ Invalid CSRF session token. Please try again.');
+                set_flash('danger', 'Invalid CSRF session token. Please try again.');
                 redirect('/admin/navigation?location=' . urlencode($location));
                 return;
             }
@@ -131,7 +131,7 @@ class NavigationController {
                     );
                     set_flash('success', '✅ Menu item "' . e($title) . '" added successfully!');
                 } else {
-                    set_flash('danger', '❌ Menu title and URL are required.');
+                    set_flash('danger', 'Menu title and URL are required.');
                 }
 
                 redirect('/admin/navigation?location=' . urlencode($itemLocation));
@@ -184,9 +184,9 @@ class NavigationController {
                         );
                         $addedCount++;
                     }
-                    set_flash('success', "✅ {$addedCount} page(s) added to menu successfully!");
+                    set_flash('success', "{$addedCount} page(s) added to menu successfully!");
                 } else {
-                    set_flash('warning', '⚠️ Please select at least one page to add.');
+                    set_flash('warning', 'Please select at least one page to add.');
                 }
 
                 redirect('/admin/navigation?location=' . urlencode($itemLocation));
@@ -210,7 +210,7 @@ class NavigationController {
                         "UPDATE navigation_menus SET title = ?, url = ?, target = ?, icon = ?, parent_id = ?, badge = ?, sort_order = ?, is_active = ? WHERE id = ?",
                         [$title, $url, $target, $icon, $parentId, $badge, $sortOrder, $isActive, $id]
                     );
-                    set_flash('success', '✅ Menu item updated successfully!');
+                    set_flash('success', 'Menu item updated successfully!');
                 }
                 redirect('/admin/navigation?location=' . urlencode($location));
                 return;
@@ -222,7 +222,7 @@ class NavigationController {
                 if ($id > 0) {
                     // Delete item and any children
                     $this->db->query("DELETE FROM navigation_menus WHERE id = ? OR parent_id = ?", [$id, $id]);
-                    set_flash('success', '✅ Menu item deleted successfully.');
+                    set_flash('success', 'Menu item deleted successfully.');
                 }
                 redirect('/admin/navigation?location=' . urlencode($location));
                 return;
@@ -255,7 +255,7 @@ class NavigationController {
                         if ($sibling) {
                             $this->db->query("UPDATE navigation_menus SET sort_order = ? WHERE id = ?", [$sibling['sort_order'], $current['id']]);
                             $this->db->query("UPDATE navigation_menus SET sort_order = ? WHERE id = ?", [$curOrder, $sibling['id']]);
-                            set_flash('success', '✅ Menu order updated.');
+                            set_flash('success', 'Menu order updated.');
                         }
                     }
                 }
@@ -268,7 +268,7 @@ class NavigationController {
                 $id = (int)($_POST['item_id'] ?? 0);
                 if ($id > 0) {
                     $this->db->query("UPDATE navigation_menus SET is_active = CASE WHEN is_active = 1 THEN 0 ELSE 1 END WHERE id = ?", [$id]);
-                    set_flash('success', '✅ Status toggled.');
+                    set_flash('success', 'Status toggled.');
                 }
                 redirect('/admin/navigation?location=' . urlencode($location));
                 return;
