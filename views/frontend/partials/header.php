@@ -903,13 +903,13 @@ h1, h2, h3, h4, h5, h6,
   width: auto;
   max-width: 130px;
   object-fit: contain;
-  filter: grayscale(100%);
-  opacity: 0.68;
-  transition: filter 0.25s ease, opacity 0.25s ease, transform 0.2s ease;
+  filter: none;
+  opacity: 1;
+  transition: transform 0.2s ease;
   display: block;
 }
 .brand-logo:hover img {
-  filter: grayscale(0%);
+  filter: none;
   opacity: 1;
   transform: scale(1.08);
 }
