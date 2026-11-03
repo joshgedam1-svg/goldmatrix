@@ -72,19 +72,25 @@ $slides = !empty($hero_slides) ? $hero_slides : [
             </p>
 
             <?php if ($idx === 0): ?>
-            <!-- 3 Feature Boxes: Only on 1st Slide -->
+            <!-- 3 Feature Boxes: Exact Target Design -->
             <div class="hero-feature-boxes">
               <div class="hero-feature-box">
-                <div class="hfb-icon-wrap"><i class="bi bi-display text-amber"></i></div>
-                <div class="hfb-text">Online &amp; Offline Software</div>
+                <div class="hfb-icon-wrap">
+                  <i class="bi bi-display text-amber"></i>
+                </div>
+                <div class="hfb-text">Online &amp; Offline<br>Software</div>
               </div>
               <div class="hero-feature-box">
-                <div class="hfb-icon-wrap"><i class="bi bi-phone text-cyan"></i></div>
-                <div class="hfb-text">Mobile Application</div>
+                <div class="hfb-icon-wrap">
+                  <i class="bi bi-phone text-cyan"></i>
+                </div>
+                <div class="hfb-text">Mobile<br>Application</div>
               </div>
               <div class="hero-feature-box">
-                <div class="hfb-icon-wrap"><i class="bi bi-diagram-3 text-emerald"></i></div>
-                <div class="hfb-text">Multi-Branch Management</div>
+                <div class="hfb-icon-wrap">
+                  <i class="bi bi-diagram-3 text-emerald"></i>
+                </div>
+                <div class="hfb-text">Multi-Branch<br>Management</div>
               </div>
             </div>
             <?php endif; ?>

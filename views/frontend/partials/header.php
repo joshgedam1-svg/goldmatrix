@@ -696,33 +696,36 @@ h1, h2, h3, h4, h5, h6,
 .hero-feature-boxes {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  gap: 14px;
   margin-bottom: 28px;
   max-width: 540px;
 }
 .hero-feature-box {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 10px;
-  padding: 14px 14px;
-  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  padding: 18px 18px 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  transition: all 0.25s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 .hero-feature-box:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.25);
-  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.28);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
 }
 .hero-feature-box .hfb-icon-wrap {
-  margin-bottom: 8px;
+  margin-bottom: 14px;
   display: flex;
   align-items: center;
 }
 .hero-feature-box .hfb-icon-wrap i {
-  font-size: 22px;
+  font-size: 26px;
   display: inline-block;
   line-height: 1;
 }
@@ -737,10 +740,11 @@ h1, h2, h3, h4, h5, h6,
 }
 .hero-feature-box .hfb-text {
   font-size: 15.5px;
-  line-height: 1.5;
+  line-height: 1.35;
   color: #FFFFFF;
   font-weight: 700;
   word-break: break-word;
+  letter-spacing: -0.2px;
 }
 @media (max-width: 768px) {
   .hero-feature-boxes {
