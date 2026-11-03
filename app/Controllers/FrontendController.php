@@ -603,6 +603,7 @@ class FrontendController {
             'why_title'         => $this->hp('why_title',          'Built Around How Jewellery'),
             'why_title2'        => $this->hp('why_title2',         'Businesses Actually Work.'),
             'why_video_url'     => $this->hp('why_video_url',      ''),
+            'why_image'         => $this->hp('why_image',         ''),
             'why_explore_text'  => $this->hp('why_explore_text',   'Explore Features →'),
             'why_explore_link'  => $this->hp('why_explore_link',   '#modules'),
 

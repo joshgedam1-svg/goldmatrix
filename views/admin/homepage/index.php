@@ -2314,9 +2314,29 @@ if (!isset($tabs[$activeTab])) {
             <h5 class="card-title fw-bold mb-0"><i class="bi bi-pencil-square text-primary me-2"></i>Headings & Video Link</h5>
           </div>
           <div class="card-body p-4">
-            <form method="POST" action="/admin/homepage?tab=why">
+            <form method="POST" action="/admin/homepage?tab=why" enctype="multipart/form-data">
               <?= csrf_field() ?>
               <input type="hidden" name="action" value="save_settings">
+
+              <!-- Why Section Image Upload -->
+              <div class="mb-3">
+                <label class="form-label fw-semibold fs-13 text-secondary"><i class="bi bi-image-fill text-warning me-1"></i>Section Image (Right Side)</label>
+                <?php if (!empty($why_image)): ?>
+                  <div class="d-flex align-items-center gap-3 mb-2 p-2 bg-light rounded border">
+                    <img src="<?= e($why_image) ?>" alt="Why Section" class="rounded border" style="height:60px;width:auto;max-width:120px;object-fit:contain;">
+                    <div>
+                      <div class="fs-12 fw-semibold text-dark mb-1">Current Image</div>
+                      <div class="form-check mb-0">
+                        <input class="form-check-input" type="checkbox" name="remove_why_image" value="1" id="removeWhyImg">
+                        <label class="form-check-label fs-11 text-danger fw-semibold" for="removeWhyImg">Remove Image</label>
+                      </div>
+                    </div>
+                  </div>
+                <?php endif; ?>
+                <input type="file" name="why_image" accept=".webp,.png,.jpg,.jpeg,.svg,image/webp,image/png,image/jpeg,image/svg+xml" class="form-control form-control-sm">
+                <div class="fs-11 text-muted mt-1">Recommended: WebP/PNG, 800x600px. Appears on the right side of the Why GoldMatrix section.</div>
+              </div>
+
               <div class="mb-3">
                 <label class="form-label fw-semibold fs-13 text-secondary">Badge Label</label>
                 <input type="text" name="why_badge" value="<?= e($why_badge ?? '') ?>" class="form-control" placeholder="MADE FOR JEWELLERY BUSINESS">
@@ -2360,7 +2380,7 @@ if (!isset($tabs[$activeTab])) {
             <h5 class="card-title fw-bold mb-0"><i class="bi bi-plus-circle-fill text-success me-2"></i>Add Checklist Item</h5>
           </div>
           <div class="card-body p-4">
-            <form method="POST" action="/admin/homepage?tab=why">
+            <form method="POST" action="/admin/homepage?tab=why" enctype="multipart/form-data">
               <?= csrf_field() ?>
               <input type="hidden" name="action" value="add_item">
               <input type="hidden" name="section" value="why_features">

@@ -1094,7 +1094,7 @@ class HomepageController {
             /* ── SAVE TEXT SETTINGS (OTHER TABS) ── */
             if ($action === 'save_settings') {
                 foreach ($_POST as $key => $val) {
-                    if (in_array($key, ['action', 'section', 'csrf_token', 'remove_hero_image'])) continue;
+                    if (in_array($key, ['action', 'section', 'csrf_token', 'remove_hero_image', 'remove_why_image'])) continue;
                     if (is_array($val)) {
                         $cleanVal = json_encode($val, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
                     } else {
@@ -1108,6 +1108,12 @@ class HomepageController {
                 if (!empty($_POST['remove_hero_image'])) {
                     $this->setHP('hero_image', '');
                     $this->setSetting('hero_image', '');
+                }
+
+                // Remove why section image if requested
+                if (!empty($_POST['remove_why_image'])) {
+                    $this->setHP('why_image', '');
+                    $this->setSetting('why_image', '');
                 }
 
                 // Handle file uploads
@@ -2476,6 +2482,7 @@ class HomepageController {
             'why_title'          => $this->hp('why_title',          'Built Around How Jewellery'),
             'why_title2'         => $this->hp('why_title2',         'Businesses Actually Work.'),
             'why_video_url'      => $this->hp('why_video_url',      ''),
+            'why_image'          => $this->hp('why_image',          ''),
             'why_explore_text'   => $this->hp('why_explore_text',   'Explore Features →'),
             'why_explore_link'   => $this->hp('why_explore_link',   '#modules'),
 

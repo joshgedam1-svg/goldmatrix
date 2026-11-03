@@ -71,6 +71,24 @@ $slides = !empty($hero_slides) ? $hero_slides : [
               <?= e($s['description']) ?>
             </p>
 
+            <?php if ($idx === 0): ?>
+            <!-- 3 Feature Boxes: Only on 1st Slide -->
+            <div class="hero-feature-boxes">
+              <div class="hero-feature-box">
+                <div class="hfb-icon-wrap"><i class="bi bi-display text-amber"></i></div>
+                <div class="hfb-text">Online &amp; Offline Software</div>
+              </div>
+              <div class="hero-feature-box">
+                <div class="hfb-icon-wrap"><i class="bi bi-phone text-cyan"></i></div>
+                <div class="hfb-text">Mobile Application</div>
+              </div>
+              <div class="hero-feature-box">
+                <div class="hfb-icon-wrap"><i class="bi bi-diagram-3 text-emerald"></i></div>
+                <div class="hfb-text">Multi-Branch Management</div>
+              </div>
+            </div>
+            <?php endif; ?>
+
             <!-- CTA Buttons -->
             <div class="hero-btns">
               <?php 
@@ -1291,7 +1309,8 @@ if (!empty($renderCountriesList)):
     <!-- Right: Mockup Image -->
     <div class="why-media">
       <div class="why-img-holder">
-        <img src="/assets/images/why-goldmatrix-mockup.png" alt="GoldMatrix Jewellery ERP Laptop & Mobile" class="why-mockup-img" loading="lazy" decoding="async">
+        <?php $whyImgSrc = !empty($why_image) ? $why_image : '/assets/images/why-goldmatrix-mockup.png'; ?>
+        <img src="<?= e($whyImgSrc) ?>" alt="GoldMatrix Jewellery ERP Laptop & Mobile" class="why-mockup-img" loading="lazy" decoding="async">
       </div>
     </div>
 
