@@ -1291,10 +1291,14 @@ h1, h2, h3, h4, h5, h6,
   background-color: var(--gm-pure-white);
   padding: 85px 5%;
 }
+.conn-wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+}
 .conn-top {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 48px;
   align-items: flex-end;
   margin-bottom: 48px;
 }
@@ -1429,6 +1433,10 @@ h1, h2, h3, h4, h5, h6,
   background-color: var(--gm-off-white);
   padding: 90px 5%;
   border-top: 1px solid var(--gm-border-color);
+}
+.modules-wrap {
+  max-width: 1240px;
+  margin: 0 auto;
 }
 .modules-header {
   text-align: center;
