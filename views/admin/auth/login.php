@@ -76,7 +76,7 @@
         <label for="email" class="form-label fw-semibold fs-13">Email Address</label>
         <div class="input-group">
           <span class="input-group-text bg-light border-end-0"><i class="bi bi-envelope text-muted"></i></span>
-          <input type="email" class="form-control border-start-0 ps-2" id="email" name="email" value="admin@example.com" placeholder="admin@example.com" required autofocus>
+          <input type="email" class="form-control border-start-0 ps-2" id="email" name="email" value="" placeholder="Enter your email address" autocomplete="email" required autofocus>
         </div>
       </div>
 
@@ -86,13 +86,16 @@
         </div>
         <div class="input-group">
           <span class="input-group-text bg-light border-end-0"><i class="bi bi-lock text-muted"></i></span>
-          <input type="password" class="form-control border-start-0 ps-2" id="password" name="password" value="Admin@123" placeholder="••••••••" required>
+          <input type="password" class="form-control border-start-0 border-end-0 ps-2" id="password" name="password" value="" placeholder="Enter your password" autocomplete="current-password" required>
+          <button type="button" class="btn btn-outline-secondary border-start-0 bg-light" id="togglePasswordBtn" style="border-color: #dee2e6;" title="Show/Hide Password" tabindex="-1">
+            <i class="bi bi-eye text-muted" id="togglePasswordIcon"></i>
+          </button>
         </div>
       </div>
 
       <div class="d-flex align-items-center justify-content-between mb-4">
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="remember" name="remember" checked>
+          <input class="form-check-input" type="checkbox" id="remember" name="remember">
           <label class="form-check-label fs-13 text-muted" for="remember">Remember me</label>
         </div>
       </div>
@@ -109,5 +112,23 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const toggleBtn = document.getElementById('togglePasswordBtn');
+    const pwdInput = document.getElementById('password');
+    const icon = document.getElementById('togglePasswordIcon');
+    if (toggleBtn && pwdInput && icon) {
+      toggleBtn.addEventListener('click', function () {
+        if (pwdInput.type === 'password') {
+          pwdInput.type = 'text';
+          icon.classList.remove('bi-eye');
+          icon.classList.add('bi-eye-slash');
+        } else {
+          pwdInput.type = 'password';
+          icon.classList.remove('bi-eye-slash');
+          icon.classList.add('bi-eye');
+        }
+      });
+    }
+  </script>
 </body>
 </html>
