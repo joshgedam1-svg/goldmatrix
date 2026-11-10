@@ -72,26 +72,11 @@ $slides = !empty($hero_slides) ? $hero_slides : [
             </p>
 
             <?php if ($idx === 0): ?>
-            <!-- 3 Feature Boxes: Exact Target Design -->
-            <div class="hero-feature-boxes">
-              <div class="hero-feature-box">
-                <div class="hfb-icon-wrap">
-                  <i class="bi bi-display text-amber"></i>
-                </div>
-                <div class="hfb-text">Online &amp; Offline<br>Software</div>
-              </div>
-              <div class="hero-feature-box">
-                <div class="hfb-icon-wrap">
-                  <i class="bi bi-phone text-cyan"></i>
-                </div>
-                <div class="hfb-text">Mobile<br>Application</div>
-              </div>
-              <div class="hero-feature-box">
-                <div class="hfb-icon-wrap">
-                  <i class="bi bi-diagram-3 text-emerald"></i>
-                </div>
-                <div class="hfb-text">Multi-Branch<br>Management</div>
-              </div>
+            <!-- 3 Compact 1-Line Feature Pills (Exact Reference Style) -->
+            <div class="hero-feature-pills">
+              <span class="hero-feature-pill pill-green">Online &amp; Offline Software</span>
+              <span class="hero-feature-pill pill-blue">Mobile Application</span>
+              <span class="hero-feature-pill pill-gray">Multi-Branch Management</span>
             </div>
             <?php endif; ?>
 
