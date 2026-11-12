@@ -66,6 +66,33 @@ if (!function_exists('fix_software_typo')) {
     }
 }
 
+if (!function_exists('clean_brand_spelling')) {
+    function clean_brand_spelling(?string $value): string {
+        if ($value === null || $value === '') {
+            return '';
+        }
+        $value = fix_software_typo($value);
+        $value = preg_replace_callback('/\bheadquarter\b/i', static function (array $m): string {
+            $w = $m[0];
+            if ($w === strtoupper($w)) return 'HEADQUARTERS';
+            if ($w === strtolower($w)) return 'headquarters';
+            return 'Headquarters';
+        }, $value) ?? $value;
+        $value = preg_replace('/Girvi\s*\(\s+Mortgage\)/i', 'Girvi (Mortgage)', $value) ?? $value;
+        $value = preg_replace('/and\s*\+\s*e-invoicing/i', 'and e-invoicing', $value) ?? $value;
+        $value = preg_replace('/Royal\s*-\s*sahrajah/i', 'Royal - Sharjah', $value) ?? $value;
+        $value = preg_replace_callback('/\bjewelers\b/i', static function (array $m): string {
+            return ($m[0] === strtoupper($m[0])) ? 'JEWELLERS' : (($m[0][0] === 'J') ? 'Jewellers' : 'jewellers');
+        }, $value) ?? $value;
+        $value = preg_replace_callback('/(?<![\/\-_])\bjewelry\b(?![\/\-_\.])/i', static function (array $m): string {
+            if ($m[0] === strtoupper($m[0])) return 'JEWELLERY';
+            if ($m[0][0] === 'J') return 'Jewellery';
+            return 'jewellery';
+        }, $value) ?? $value;
+        return $value;
+    }
+}
+
 if (!function_exists('normalize_uae_phones')) {
     function normalize_uae_phones(?string $value): string {
         if ($value === null || $value === '') {
@@ -225,7 +252,7 @@ if (!function_exists('setting')) {
             }
         }
         $val = $settings[$key] ?? $default;
-        return is_string($val) ? normalize_uae_phones($val) : $val;
+        return is_string($val) ? clean_brand_spelling(normalize_uae_phones($val)) : $val;
     }
 }
 

@@ -308,7 +308,7 @@ $heroStyleClass = 'bg-theme-' . ($hero_bg_style ?? 'dark');
             <div class="contact-card-icon">
               <i class="bi <?= e($uae_office['icon'] ?? 'bi-geo-alt') ?>"></i>
             </div>
-            <div class="text-uppercase fw-bold text-muted fs-11 mb-2" style="letter-spacing:1.5px;"><?= e($uae_office['tag'] ?? 'INTERNATIONAL HEADQUARTER') ?></div>
+            <div class="text-uppercase fw-bold text-muted fs-11 mb-2" style="letter-spacing:1.5px;"><?= e($uae_office['tag'] ?? 'INTERNATIONAL HEADQUARTERS') ?></div>
             <h3 class="contact-card-title"><?= e($uae_office['country']) ?></h3>
             
             <div class="contact-row-item">
@@ -504,7 +504,7 @@ $heroStyleClass = 'bg-theme-' . ($hero_bg_style ?? 'dark');
         <div class="map-frame-box p-3 h-100">
           <div class="d-flex align-items-center justify-content-between mb-3">
             <div>
-              <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle fs-11 fw-bold">UAE HEADQUARTER</span>
+              <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle fs-11 fw-bold">UAE HEADQUARTERS</span>
               <div class="fw-bold text-dark fs-14 mt-1">Sharjah Gold Souq Technology Center</div>
             </div>
             <a href="https://maps.google.com/?q=Central+Gold+Souq+Sharjah" target="_blank" class="btn btn-sm btn-light border fs-12 fw-semibold">
@@ -548,7 +548,7 @@ $heroStyleClass = 'bg-theme-' . ($hero_bg_style ?? 'dark');
     <div class="text-center mb-5">
       <div class="text-uppercase fw-bold text-muted fs-11 mb-2" style="letter-spacing:1.5px;">HAVE QUESTIONS?</div>
       <h2 class="h3 fw-bold text-dark"><?= e($faq_title ?? 'Frequently Asked Questions') ?></h2>
-      <p class="text-muted fs-15"><?= e($faq_subtitle ?? 'Quick answers to commonly asked questions about our jewelry ERP demonstrations and onboarding.') ?></p>
+      <p class="text-muted fs-15"><?= e($faq_subtitle ?? 'Quick answers to commonly asked questions about our jewellery ERP demonstrations and onboarding.') ?></p>
     </div>
 
     <div class="accordion faq-accordion-custom" id="contactFaqAccordion">

@@ -825,7 +825,7 @@ $ctaBg = setting('about_cta_bg_image', 'https://images.unsplash.com/photo-151556
         </p>
 
         <div class="hub-capsule">
-          <div class="hub-capsule-badge">INTERNATIONAL HEADQUARTER</div>
+          <div class="hub-capsule-badge">INTERNATIONAL HEADQUARTERS</div>
           <h3 class="hub-capsule-title">Sharjah, UAE</h3>
           <p class="hub-capsule-desc"><?= e(setting('contact_uae_address', 'Shop No. 25/A, Central Gold Souq Block No. 8, Al Majaz -1 King Faisal Road - Sharjah, UAE')) ?></p>
         </div>

@@ -417,7 +417,7 @@ require __DIR__ . '/partials/header.php';
           <p class="why-feat-desc">Real-time stock valuation by karat purity, Karigar productivity analytics, trending diamond design reports, and store profit margins.</p>
           <div class="why-feat-highlight">
             <i class="bi bi-check-circle-fill"></i>
-            <span>Instant bullion &amp; jewelry balance sheet</span>
+            <span>Instant bullion &amp; jewellery balance sheet</span>
           </div>
         </div>
       </div>
@@ -526,7 +526,7 @@ require __DIR__ . '/partials/header.php';
         </div>
         <div class="comp-generic-col">
           <i class="bi bi-x-circle"></i>
-          <span>No native jewelry RFID support; expensive plugins</span>
+          <span>No native jewellery RFID support; expensive plugins</span>
         </div>
       </div>
 

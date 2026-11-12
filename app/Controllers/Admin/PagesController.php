@@ -92,7 +92,7 @@ class PagesController {
             'id' => -4,
             'title' => 'Contact Us Page',
             'slug' => '/contact',
-            'subtitle' => 'Section-by-section CMS: UAE Headquarter, India Tech Hub, Demo Booking Form, Direct Hotline, Google Maps & FAQs',
+            'subtitle' => 'Section-by-section CMS: UAE Headquarters, India Tech Hub, Demo Booking Form, Direct Hotline, Google Maps & FAQs',
             'template' => 'Executive Contact Layout',
             'status' => 'published',
             'edit_url' => admin_url('contact'),

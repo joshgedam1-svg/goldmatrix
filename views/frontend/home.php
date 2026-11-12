@@ -1079,7 +1079,7 @@ $slides = !empty($hero_slides) ? $hero_slides : [
         ['bi-cart-check', 'Order Management', 'Custom customer jewellery orders, quotation estimates, design approvals, advance payments, and scheduled delivery tracking.'],
         ['bi-hammer', 'Production', 'Work order allocation, metal loss & allowable wastage math, stage-wise WIP production, and labor payroll automation.'],
         ['bi-pie-chart', 'Financial Statement', 'Automated Balance Sheet, Profit & Loss (P&L), Trial Balance, Party Ledgers, Cash Book, Day Book, and journal entries.'],
-        ['bi-file-earmark-bar-graph', 'Report Analysis', '180+ business intelligence reports — top selling designs, sales vs targets, production efficiency, and metal profitability analysis.'],
+        ['bi-file-earmark-bar-graph', 'Report Analysis', '100+ business intelligence reports — top selling designs, sales vs targets, production efficiency, and metal profitability analysis.'],
         ['bi-percent', 'Tax Reports', 'Automated tax summaries, e-Way bill generation, IRN e-Invoicing, and 100% tax audit compliance.'],
         ['bi-people-fill', 'Employee Management', 'Staff attendance, commission calculation on sales, daily target tracking, and role-based permissions & security.'],
         ['bi-gear-fill', 'Settings', 'System configuration, multi-branch control, automated cloud backups, audit trails, and custom invoice header designer.']

@@ -17,9 +17,9 @@ class FrontendController {
                 "SELECT value FROM homepage_sections WHERE section_key = ?",
                 [$key]
             );
-            return ($row && $row['value'] !== null) ? normalize_uae_phones((string)$row['value']) : normalize_uae_phones($default);
+            return ($row && $row['value'] !== null) ? clean_brand_spelling(normalize_uae_phones((string)$row['value'])) : clean_brand_spelling(normalize_uae_phones($default));
         } catch (\Exception $e) {
-            return normalize_uae_phones($default);
+            return clean_brand_spelling(normalize_uae_phones($default));
         }
     }
 
@@ -44,10 +44,19 @@ class FrontendController {
 
     private function hpItems(string $section): array {
         try {
-            return $this->db->fetchAll(
+            $rows = $this->db->fetchAll(
                 "SELECT * FROM homepage_items WHERE section = ? AND is_active = 1 ORDER BY sort_order ASC",
                 [$section]
             ) ?? [];
+            $textKeys = ['title', 'subtitle', 'badge', 'description', 'alt_text', 'content', 'btn1_text', 'btn2_text'];
+            foreach ($rows as &$row) {
+                foreach ($textKeys as $k) {
+                    if (isset($row[$k]) && is_string($row[$k]) && $row[$k] !== '') {
+                        $row[$k] = clean_brand_spelling(normalize_uae_phones($row[$k]));
+                    }
+                }
+            }
+            return $rows;
         } catch (\Exception $e) {
             return [];
         }
@@ -70,8 +79,8 @@ class FrontendController {
         return [
             [
                 'id'        => 'office_1',
-                'title'     => $this->hp('footer_uae_title', 'Headquarter - UAE'),
-                'badge'     => 'HEADQUARTER',
+                'title'     => $this->hp('footer_uae_title', 'Headquarters - UAE'),
+                'badge'     => 'HEADQUARTERS',
                 'phone'     => $this->hp('footer_uae_phone', '+971 527042669'),
                 'email'     => $this->hp('footer_email', 'info@goldmatrixsoftware.com'),
                 'address'   => $this->hp('footer_uae_address', "Conqueror tower Ajman UAE"),
@@ -267,7 +276,7 @@ class FrontendController {
                     $this->db->query("
                         INSERT INTO homepage_items 
                         (section, title, subtitle, description, features, alt_text, image, sort_order, is_active)
-                        VALUES ('feature_spotlight', 'Girvi ( Mortgage)', 
+                        VALUES ('feature_spotlight', 'Girvi (Mortgage)', 
                         'Streamline Gold Loan & Girvi Operations with Automated Interest',
                         'GoldMatrix Girvi (Mortgage) Software provides a secure, reliable pawn broking and gold loan system built specifically for jewellery businesses. Calculate daily, monthly, or compounding interest accurately, issue legal pledge receipts, and maintain safe vault management.',
                         ?, 'Girvi Mortgage & Gold Loan Software Interface', '', 4, 1)
@@ -353,7 +362,7 @@ class FrontendController {
                 ],
                 [
                     'id'          => 4,
-                    'title'       => 'Girvi ( Mortgage)',
+                    'title'       => 'Girvi (Mortgage)',
                     'subtitle'    => 'Streamline Gold Loan & Girvi Operations with Automated Interest',
                     'description' => 'GoldMatrix Girvi (Mortgage) Software provides a secure, reliable pawn broking and gold loan system built specifically for jewellery businesses. Calculate daily, monthly, or compounding interest accurately, issue legal pledge receipts, and maintain safe vault management.',
                     'features'    => json_encode([
@@ -631,7 +640,7 @@ class FrontendController {
 
             // ── FOOTER ──
             'footer_tagline'       => $this->hp('footer_tagline',       'We build jewellery-specific software delivering accuracy, control, scalability, and business growth'),
-            'footer_uae_title'     => $this->hp('footer_uae_title',     'Headquarter - UAE'),
+            'footer_uae_title'     => $this->hp('footer_uae_title',     'Headquarters - UAE'),
             'footer_uae_address'   => $this->hp('footer_uae_address',   "Shop No. 25/A\nCentral Gold Souq Block No. 8,\nAl Majaz -1 King Faisal Road - Sharjah"),
             'footer_uae_phone'     => $this->hp('footer_uae_phone',     '+971 502743168'),
             'footer_india_title'   => $this->hp('footer_india_title',   'India'),
@@ -1340,7 +1349,7 @@ class FrontendController {
         $data = [
             // ── SEO & Meta ──
             'meta_title'         => setting('contact_seo_meta_title', 'Contact Us | GoldMatrix Software Technologies (UAE & India)'),
-            'meta_desc'          => setting('contact_seo_meta_desc', 'Contact GoldMatrix Jewellery ERP specialists. UAE Headquarter in Sharjah Gold Souq and India Tech Hub in Maharashtra. Call +971 502743168.'),
+            'meta_desc'          => setting('contact_seo_meta_desc', 'Contact GoldMatrix Jewellery ERP specialists. UAE Headquarters in Sharjah Gold Souq and India Tech Hub in Maharashtra. Call +971 502743168.'),
             'meta_keywords'      => setting('contact_seo_keywords', 'contact goldmatrix, jewellery software support, goldmatrix sharjah uae, goldmatrix india office, jewellery pos demo'),
             'canonical_url'      => site_url('contact'),
             'og_title'           => setting('contact_seo_meta_title', 'Contact Us | GoldMatrix Software Technologies (UAE & India)'),
@@ -1358,8 +1367,8 @@ class FrontendController {
             // ── 2. UAE OFFICE ──
             'uae_enabled'        => setting('contact_uae_enabled', '1'),
             'uae_office'         => [
-                'tag'      => setting('contact_uae_tag', 'INTERNATIONAL HEADQUARTER'),
-                'country'  => setting('contact_uae_country', 'United Arab Emirates (Headquarter)'),
+                'tag'      => setting('contact_uae_tag', 'INTERNATIONAL HEADQUARTERS'),
+                'country'  => setting('contact_uae_country', 'United Arab Emirates (Headquarters)'),
                 'address'  => setting('contact_uae_address', 'Shop No. 25/A, Central Gold Souq Block No. 8, Al Majaz -1 King Faisal Road - Sharjah'),
                 'phone'    => setting('contact_uae_phone', '+971 502743168'),
                 'whatsapp' => setting('contact_uae_whatsapp', '+971 502743168'),
@@ -2074,7 +2083,7 @@ class FrontendController {
             'footer_col3_menu'     => $this->getMenu('footer_col3'),
             'footer_bottom_menu'   => $this->getMenu('footer_bottom'),
             'footer_tagline'       => $this->hp('footer_tagline',       'We build jewellery-specific software delivering accuracy, control, scalability, and business growth'),
-            'footer_uae_title'     => $this->hp('footer_uae_title',     'Headquarter - UAE'),
+            'footer_uae_title'     => $this->hp('footer_uae_title',     'Headquarters - UAE'),
             'footer_uae_address'   => $this->hp('footer_uae_address',   "Shop No. 25/A\nCentral Gold Souq Block No. 8,\nAl Majaz -1 King Faisal Road - Sharjah"),
             'footer_uae_phone'     => $this->hp('footer_uae_phone',     '+971 502743168'),
             'footer_india_title'   => $this->hp('footer_india_title',   'India'),

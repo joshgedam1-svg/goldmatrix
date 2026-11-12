@@ -120,17 +120,17 @@ $twitterCard   = setting('twitter_card_type', 'summary_large_image');
 
 <!-- Open Graph / Social Sharing -->
 <meta property="og:type" content="<?= e($og_type ?? setting('og_type', 'website')) ?>">
-<meta property="og:site_name" content="<?= e(setting('og_sitename', 'GoldMatrix Jewelry ERP')) ?>">
-<meta property="og:title" content="<?= e($og_title ?? $finalMetaTitle) ?>">
-<meta property="og:description" content="<?= e($og_desc ?? $finalMetaDesc) ?>">
+<meta property="og:site_name" content="<?= e(clean_brand_spelling(setting('og_sitename', 'GoldMatrix Jewellery ERP'))) ?>">
+<meta property="og:title" content="<?= e(clean_brand_spelling($og_title ?? $finalMetaTitle)) ?>">
+<meta property="og:description" content="<?= e(clean_brand_spelling($og_desc ?? $finalMetaDesc)) ?>">
 <meta property="og:url" content="<?= e($og_url ?? $finalCanonical) ?>">
 <meta property="og:image" content="<?= e($ogImgUrl) ?>">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="<?= e($twitterCard) ?>">
 <?php if (!empty($twitterHandle)): ?><meta name="twitter:site" content="<?= e($twitterHandle) ?>"><?php endif; ?>
-<meta name="twitter:title" content="<?= e($og_title ?? $finalMetaTitle) ?>">
-<meta name="twitter:description" content="<?= e($og_desc ?? $finalMetaDesc) ?>">
+<meta name="twitter:title" content="<?= e(clean_brand_spelling($og_title ?? $finalMetaTitle)) ?>">
+<meta name="twitter:description" content="<?= e(clean_brand_spelling($og_desc ?? $finalMetaDesc)) ?>">
 <meta name="twitter:image" content="<?= e($ogImgUrl) ?>">
 
 <!-- ══════════════════════════════════════════

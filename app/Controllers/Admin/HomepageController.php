@@ -611,7 +611,7 @@ class HomepageController {
                         'sort_order'  => 3
                     ],
                     [
-                        'title'       => 'Girvi ( Mortgage)',
+                        'title'       => 'Girvi (Mortgage)',
                         'subtitle'    => 'Streamline Gold Loan & Girvi Operations with Automated Interest',
                         'description' => 'GoldMatrix Girvi (Mortgage) Software provides a secure, reliable pawn broking and gold loan system built specifically for jewellery businesses. Calculate daily, monthly, or compounding interest accurately, issue legal pledge receipts, and maintain safe vault management.',
                         'features'    => json_encode([
@@ -837,8 +837,8 @@ class HomepageController {
         return [
             [
                 'id'        => 'office_1',
-                'title'     => $this->hp('footer_uae_title', 'Headquarter - UAE'),
-                'badge'     => 'HEADQUARTER',
+                'title'     => $this->hp('footer_uae_title', 'Headquarters - UAE'),
+                'badge'     => 'HEADQUARTERS',
                 'phone'     => $this->hp('footer_uae_phone', '+971 527042669'),
                 'email'     => $this->hp('footer_email', 'info@goldmatrixsoftware.com'),
                 'address'   => $this->hp('footer_uae_address', "Conqueror tower Ajman UAE"),
@@ -2510,7 +2510,7 @@ class HomepageController {
 
             // ── FOOTER ──
             'footer_tagline'       => $this->hp('footer_tagline',       'We build jewellery-specific software delivering accuracy, control, scalability, and business growth'),
-            'footer_uae_title'     => $this->hp('footer_uae_title',     'Headquarter - UAE'),
+            'footer_uae_title'     => $this->hp('footer_uae_title',     'Headquarters - UAE'),
             'footer_uae_address'   => $this->hp('footer_uae_address',   "Shop No. 25/A\nCentral Gold Souq Block No. 8,\nAl Majaz -1 King Faisal Road - Sharjah"),
             'footer_uae_phone'     => $this->hp('footer_uae_phone',     '+971 502743168'),
             'footer_india_title'   => $this->hp('footer_india_title',   'India'),

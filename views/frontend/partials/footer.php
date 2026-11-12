@@ -363,11 +363,11 @@ $companyName = setting('company_name', 'GoldMatrix');
         <ul class="footer-links-list">
           <?php 
           $col1 = !empty($footer_col1_menu) ? $footer_col1_menu : [
-            ['title' => 'Jewelry Retail Software',          'url' => '/services/jewelry-retail-pos-software',    'target' => '_self'],
-            ['title' => 'Jewelry Manufacturing ERP',        'url' => '/services/jewelry-manufacturing-software', 'target' => '_self'],
+            ['title' => 'Jewellery Retail Software',          'url' => '/services/jewelry-retail-pos-software',    'target' => '_self'],
+            ['title' => 'Jewellery Manufacturing ERP',        'url' => '/services/jewelry-manufacturing-software', 'target' => '_self'],
             ['title' => 'Wholesale & Bullion Management',   'url' => '/services/wholesale-bullion-management',   'target' => '_self'],
-            ['title' => 'RFID Jewelry Automation',          'url' => '/services/rfid-jewelry-automation',        'target' => '_self'],
-            ['title' => 'Jewelry GST & Accounting',         'url' => '/services/jewelry-accounting-gst-software','target' => '_self'],
+            ['title' => 'RFID Jewellery Automation',          'url' => '/services/rfid-jewelry-automation',        'target' => '_self'],
+            ['title' => 'Jewellery GST & Accounting',         'url' => '/services/jewelry-accounting-gst-software','target' => '_self'],
           ];
           foreach ($col1 as $item): ?>
             <li>
@@ -423,7 +423,7 @@ $companyName = setting('company_name', 'GoldMatrix');
 
           // 2. Fallback if no dynamic offices array configured yet
           if (empty($dynamicOffices)) {
-              $uaeTitle = $footer_uae_title ?? setting('footer_uae_title', 'Headquarter - UAE');
+              $uaeTitle = $footer_uae_title ?? setting('footer_uae_title', 'Headquarters - UAE');
               $uaeAddr  = $footer_uae_address ?? setting('footer_uae_address', "Conqueror tower Ajman UAE");
               $uaePhone = $footer_uae_phone ?? setting('footer_uae_phone', '+971 502743168');
               

@@ -24,10 +24,10 @@ class ContactPageController {
             ['contact_hero_subtitle',      'Have a question about our enterprise architecture, hardware compatibility, or ready to schedule a product simulation? Our offices in the UAE and India are at your service.', 'Hero Subtitle', 'textarea'],
             ['contact_hero_bg_style',      'dark', 'Hero Background Theme', 'select'],
 
-            // ── Section 2: UAE Headquarter ──
-            ['contact_uae_enabled',        '1', 'Show UAE Headquarter Card', 'select'],
-            ['contact_uae_tag',            'INTERNATIONAL HEADQUARTER', 'UAE Card Badge', 'text'],
-            ['contact_uae_country',        'United Arab Emirates (Headquarter)', 'UAE Title', 'text'],
+            // ── Section 2: UAE Headquarters ──
+            ['contact_uae_enabled',        '1', 'Show UAE Headquarters Card', 'select'],
+            ['contact_uae_tag',            'INTERNATIONAL HEADQUARTERS', 'UAE Card Badge', 'text'],
+            ['contact_uae_country',        'United Arab Emirates (Headquarters)', 'UAE Title', 'text'],
             ['contact_uae_address',        'Shop No. 25/A, Central Gold Souq Block No. 8, Al Majaz -1 King Faisal Road - Sharjah', 'UAE Address', 'textarea'],
             ['contact_uae_phone',          '+971 502743168', 'UAE Phone', 'text'],
             ['contact_uae_whatsapp',       '+971 502743168', 'UAE WhatsApp', 'text'],
@@ -94,7 +94,7 @@ class ContactPageController {
 
             // ── Section 8: SEO & Social Meta ──
             ['contact_seo_meta_title',     'Contact Us | GoldMatrix Software Technologies (UAE & India)', 'SEO Meta Title', 'text'],
-            ['contact_seo_meta_desc',      'Contact GoldMatrix Jewellery ERP specialists. UAE Headquarter in Sharjah Gold Souq and India Tech Hub in Maharashtra. Call +971 502743168.', 'SEO Meta Description', 'textarea'],
+            ['contact_seo_meta_desc',      'Contact GoldMatrix Jewellery ERP specialists. UAE Headquarters in Sharjah Gold Souq and India Tech Hub in Maharashtra. Call +971 502743168.', 'SEO Meta Description', 'textarea'],
             ['contact_seo_keywords',       'contact goldmatrix, jewellery software support, goldmatrix sharjah uae, goldmatrix india office, jewellery pos demo', 'SEO Keywords', 'textarea'],
             ['contact_seo_og_image',       '', 'OpenGraph Image URL', 'text'],
         ];
@@ -213,7 +213,7 @@ class ContactPageController {
 
         $sectionLabels = [
             'hero'    => 'Hero Banner Section',
-            'uae'     => 'UAE Headquarter Card',
+            'uae'     => 'UAE Headquarters Card',
             'india'   => 'India Development Hub Card',
             'form'    => 'Direct Consultation Form Section',
             'hotline' => 'Direct Hotline & Channels Banner',
