@@ -89,7 +89,8 @@ $slides = !empty($hero_slides) ? $hero_slides : [
 
                 $b2Text = !empty($s['btn2_text']) ? $s['btn2_text'] : 'Start 30-Day Free Trial';
                 $b2Link = !empty($s['btn2_link']) ? $s['btn2_link'] : '/request-demo';
-                $isB2Modal = (strpos($b2Link, 'bookDemoModal') !== false);
+                $isB2Modal = (strpos($b2Link, 'bookDemoModal') !== false || $b2Link === '#contact' || ($b2Link === '/contact' && stripos($b2Text, 'demo') !== false));
+                if ($isB2Modal) { $b2Link = '#bookDemoModal'; }
               ?>
               <a href="<?= e($b1Link) ?>" class="btn-gold-solid" <?= $isB1Modal ? 'data-bs-toggle="modal" data-bs-target="#bookDemoModal"' : '' ?> role="button">
                 <span><?= e($b1Text) ?></span>
