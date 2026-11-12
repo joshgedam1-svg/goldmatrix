@@ -433,8 +433,8 @@ class FrontendController {
             ['id'=>8, 'title'=>'QuickBooks', 'description'=>'Automate accounting, invoices, expenses, and financial reporting', 'icon'=>'bi-file-earmark-spreadsheet', 'link'=>'#contact', 'image'=>'/assets/images/integrations/quickbooks.svg', 'alt_text'=>'QuickBooks', 'sort_order'=>8, 'is_active'=>1],
             ['id'=>9, 'title'=>'Chainway', 'description'=>'Connect barcode scanners and RFID devices for smart operations', 'icon'=>'bi-upc-scan', 'link'=>'#contact', 'image'=>'/assets/images/integrations/chainway.svg', 'alt_text'=>'Chainway', 'sort_order'=>9, 'is_active'=>1],
             ['id'=>10, 'title'=>'Planet Payment', 'description'=>'Accept global card payments with fast and reliable processing', 'icon'=>'bi-globe', 'link'=>'#contact', 'image'=>'/assets/images/integrations/planet.svg', 'alt_text'=>'Planet', 'sort_order'=>10, 'is_active'=>1],
-            ['id'=>11, 'title'=>'E-Way Bill', 'description'=>'E-way Bill E-Way bill system is for GST registered person', 'icon'=>'bi-truck', 'link'=>'#contact', 'image'=>'/assets/images/integrations/ewaybill.svg', 'alt_text'=>'E-Way Bill', 'sort_order'=>11, 'is_active'=>1],
-            ['id'=>12, 'title'=>'E-Invoice', 'description'=>'E-invoice bill system is for GST registered person', 'icon'=>'bi-file-earmark-check', 'link'=>'#contact', 'image'=>'/assets/images/integrations/einvoice.svg', 'alt_text'=>'E-Invoice', 'sort_order'=>12, 'is_active'=>1],
+            ['id'=>11, 'title'=>'E-Way Bill', 'description'=>'E-way Bill E-Way bill system is for Tax registered person', 'icon'=>'bi-truck', 'link'=>'#contact', 'image'=>'/assets/images/integrations/ewaybill.svg', 'alt_text'=>'E-Way Bill', 'sort_order'=>11, 'is_active'=>1],
+            ['id'=>12, 'title'=>'E-Invoice', 'description'=>'E-invoice bill system is for Tax registered person', 'icon'=>'bi-file-earmark-check', 'link'=>'#contact', 'image'=>'/assets/images/integrations/einvoice.svg', 'alt_text'=>'E-Invoice', 'sort_order'=>12, 'is_active'=>1],
             ['id'=>13, 'title'=>'AML Compliance', 'description'=>'Jewellery ERP like GoldMatrix can support AML compliance', 'icon'=>'bi-shield-check', 'link'=>'#contact', 'image'=>'/assets/images/integrations/aml.svg', 'alt_text'=>'AML Compliance', 'sort_order'=>13, 'is_active'=>1],
         ];
     }
@@ -443,7 +443,7 @@ class FrontendController {
         $data = [
             // ── META/SEO ──
             'meta_title'        => $this->hp('meta_title',         'GoldMatrix — The Complete Jewellery ERP'),
-            'meta_desc'         => $this->hp('meta_desc',          'Complete Jewellery ERP Software with Inventory, POS, GST, Manufacturing, and Multi-Branch Management. Trusted by 1500+ jewelers.'),
+            'meta_desc'         => $this->hp('meta_desc',          'Complete Jewellery ERP Software with Inventory, POS, Tax, Manufacturing, and Multi-Branch Management. Trusted by 1500+ jewelers.'),
             'meta_keywords'     => $this->hp('meta_keywords',      'jewelry erp software, jewellery pos system, gold shop software india, jewellery management software'),
             'og_title'          => $this->hp('og_title',           'GoldMatrix — The Complete Jewellery ERP'),
             'og_desc'           => $this->hp('og_desc',            'Complete Jewelry ERP Software trusted by 1500+ jewelers.'),
@@ -539,7 +539,7 @@ class FrontendController {
                     'icon'        => 'bi-calculator',
                     'link'        => '#contact',
                     'image'       => 'https://images.unsplash.com/photo-1586486855514-8c633cc6fd38?w=600&auto=format&fit=crop&q=80',
-                    'alt_text'    => 'Tax Calculation & GST Compliance',
+                    'alt_text'    => 'Tax Calculation & Compliance',
                     'sort_order'  => 2,
                     'is_active'   => 1
                 ],
@@ -685,7 +685,7 @@ class FrontendController {
                 ],
                 [
                     'title'       => 'Mobile POS & Instant Billing',
-                    'description' => 'Create GST invoices, calculate making charges, and generate estimates directly from your tablet or mobile.',
+                    'description' => 'Create Tax invoices, calculate making charges, and generate estimates directly from your tablet or mobile.',
                     'icon'        => 'bi-receipt',
                     'image'       => '',
                     'link'        => '#contact',
@@ -762,7 +762,7 @@ class FrontendController {
         $services = $this->getServicesData();
         $data = [
             'meta_title'         => 'Jewellery ERP Solutions & Services — GoldMatrix',
-            'meta_desc'          => 'Explore GoldMatrix specialized jewellery software solutions: Retail POS, Karigar Manufacturing, RFID Inventory, Bullion Trading, and GST Invoicing.',
+            'meta_desc'          => 'Explore GoldMatrix specialized jewellery software solutions: Retail POS, Karigar Manufacturing, RFID Inventory, Bullion Trading, and Tax Invoicing.',
             'meta_keywords'      => 'jewellery erp services, jewelry pos software, karigar management, jewelry rfid automation',
             'services'           => $services,
             'header_menu'        => $this->getMenu('header'),
@@ -937,7 +937,7 @@ class FrontendController {
                 ['icon' => 'bi-gem', 'title' => 'Domain Expertise', 'desc' => 'Engineered exclusively for jewellery retail, wholesale, manufacturing, and bullion workflows.'],
                 ['icon' => 'bi-shield-check', 'title' => 'Data Integrity', 'desc' => 'Zero margin for calculation errors in gold karats, purity wastage, stones, and multi-currency billing.'],
                 ['icon' => 'bi-lightning-charge', 'title' => 'Speed & Automation', 'desc' => 'Instant barcode generation, RFID tray audits in 3 seconds, and automated GST/VAT returns.'],
-                ['icon' => 'bi-globe2', 'title' => 'Global Standards', 'desc' => 'Multi-branch cloud architecture compliant with UAE VAT, India GST, and international jewellery laws.']
+                ['icon' => 'bi-globe2', 'title' => 'Global Standards', 'desc' => 'Multi-branch cloud architecture compliant with UAE VAT, India Tax, and international jewellery laws.']
             ];
         }
 
@@ -1166,7 +1166,7 @@ class FrontendController {
         $modules = $this->getModulesData();
 
         // Parse category filter categories
-        $rawFilters = setting('features_filter_categories', "All 10 Modules|all\nRetail & Billing|Retail & Operations\nManufacturing & Jobwork|Manufacturing\nAccounting & GST|Finance\nStock & RFID|Inventory\nStaff & Admin|Admin");
+        $rawFilters = setting('features_filter_categories', "All 10 Modules|all\nRetail & Billing|Retail & Operations\nManufacturing & Jobwork|Manufacturing\nAccounting & Tax|Finance\nStock & RFID|Inventory\nStaff & Admin|Admin");
         $filterLines = array_values(array_filter(array_map('trim', explode("\n", str_replace("\r", "", $rawFilters)))));
         $categoryFilters = [];
         foreach ($filterLines as $fLine) {
@@ -1233,7 +1233,7 @@ class FrontendController {
             'name'                => 'GoldMatrix Jewellery ERP — 10 Core Enterprise Modules',
             'operatingSystem'     => 'Web Browser, Windows, Android, iOS',
             'applicationCategory' => 'BusinessApplication',
-            'description'         => 'Complete Jewellery ERP Software with Inventory, POS, GST, Manufacturing, and Multi-Branch Management.',
+            'description'         => 'Complete Jewellery ERP Software with Inventory, POS, Tax, Manufacturing, and Multi-Branch Management.',
             'offers'              => [
                 '@type'         => 'Offer',
                 'price'         => '0',
@@ -1307,7 +1307,7 @@ class FrontendController {
      */
     public function contact(): void {
         // Parse services list
-        $rawServices = setting('contact_form_services', "Retail POS & Billing Software\nJewellery Manufacturing & Jobwork Software\nWholesale & Bullion Management\nRFID Inventory Automation\nGirvi (Money Lending) & Kitty Schemes\nJewellery GST Invoicing & Accounting\nGeneral Enterprise Consultation");
+        $rawServices = setting('contact_form_services', "Retail POS & Billing Software\nJewellery Manufacturing & Jobwork Software\nWholesale & Bullion Management\nRFID Inventory Automation\nGirvi (Money Lending) & Kitty Schemes\nJewellery Tax Invoicing & Accounting\nGeneral Enterprise Consultation");
         $servicesList = array_values(array_filter(array_map('trim', explode("\n", str_replace("\r", "", $rawServices)))));
 
         // Parse FAQs
@@ -1498,10 +1498,10 @@ class FrontendController {
                 'badge'          => 'ENTERPRISE RETAIL POS',
                 'category'       => 'Retail & Billing Automation',
                 'hero_subtitle'  => 'High-speed billing, live gold rate valuation, touch-screen estimations, and automated purity conversion for modern jewellery retailers.',
-                'hero_desc'      => 'GoldMatrix Retail POS transforms your jewellery store counter operations into a frictionless, ultra-fast checkout experience. Built specifically for complex weight calculations, making charges, gemstone valuation, and instant GST invoicing.',
+                'hero_desc'      => 'GoldMatrix Retail POS transforms your jewellery store counter operations into a frictionless, ultra-fast checkout experience. Built specifically for complex weight calculations, making charges, gemstone valuation, and instant Tax invoicing.',
                 'hero_image'     => '/assets/images/why-goldmatrix-mockup.png',
                 'meta_title'     => 'Jewelry Retail POS & Billing Software | GoldMatrix ERP',
-                'meta_desc'      => 'High-speed Jewelry Retail POS software for modern jewelers. Touch-screen billing, automated weight calculations, old gold exchange, and instant GST invoices.',
+                'meta_desc'      => 'High-speed Jewelry Retail POS software for modern jewelers. Touch-screen billing, automated weight calculations, old gold exchange, and instant Tax invoices.',
                 'meta_keywords'  => 'jewelry retail pos software, jewellery store billing system, gold billing software, jewellery counter pos, jewelry estimation to invoice',
                 'accent_color'   => '#DC9423',
                 'icon'           => 'bi-shop',
@@ -1523,7 +1523,7 @@ class FrontendController {
                     [
                         'icon'  => 'bi-speedometer2',
                         'title' => 'Lightning-Fast Multi-Counter Billing',
-                        'desc'  => 'Generate GST invoices, customer estimates, advance receipts, and delivery challans in under 5 seconds with barcode/RFID integration.',
+                        'desc'  => 'Generate Tax invoices, customer estimates, advance receipts, and delivery challans in under 5 seconds with barcode/RFID integration.',
                         'points'=> ['Barcode & RFID instant scanning', 'Touchscreen POS interface', 'Thermal & A4/A5 custom print templates', 'Offline billing with auto-sync']
                     ],
                     [
@@ -1565,14 +1565,14 @@ class FrontendController {
                 ],
                 'kpis'           => [
                     ['stat' => '3x', 'label' => 'Faster Counter Checkout', 'sub' => 'Zero manual calculations'],
-                    ['stat' => '100%', 'label' => 'GST & E-Way Bill Compliance', 'sub' => 'Automated HSN and tax splits'],
+                    ['stat' => '100%', 'label' => 'Tax & E-Way Bill Compliance', 'sub' => 'Automated HSN and tax splits'],
                     ['stat' => '0%', 'label' => 'Discrepancy in Old Gold Exchange', 'sub' => 'Standardized purity loss formula'],
                     ['stat' => '99.9%', 'label' => 'Real-Time Inventory Precision', 'sub' => 'Instant stock decrement']
                 ],
                 'faqs'           => [
                     ['q' => 'Can GoldMatrix POS handle different purity categories (22K, 18K, 14K, 9K)?', 'a' => 'Yes! GoldMatrix supports all precious metal purities (Gold, Silver, Platinum, Palladium) and handles stone weight, diamond carat, and certification details separately from net metal weight.'],
                     ['q' => 'Does the POS software work if the showroom internet goes down?', 'a' => 'Absolutely. GoldMatrix features built-in offline billing resilience. You can continue scanning items and printing invoices; once internet connectivity resumes, all transactions sync seamlessly to the cloud.'],
-                    ['q' => 'Can we customize invoice print templates with our logo, terms, and hallmark QR code?', 'a' => 'Yes. You have full control over invoice layouts, including A4, A5, and thermal roll formats with your showroom branding, BIS Hallmark QR codes, GST numbers, and bank payment QR codes.'],
+                    ['q' => 'Can we customize invoice print templates with our logo, terms, and hallmark QR code?', 'a' => 'Yes. You have full control over invoice layouts, including A4, A5, and thermal roll formats with your showroom branding, BIS Hallmark QR codes, Tax numbers, and bank payment QR codes.'],
                     ['q' => 'How does Old Gold purchase and exchange work at the counter?', 'a' => 'The software provides a dedicated Old Gold calculation module where you input gross weight, estimated purity, melting loss, and stone deduction. The net credit is instantly applied as a payment method on the new purchase.']
                 ],
                 'related_slugs'  => ['rfid-jewelry-automation', 'jewelry-accounting-gst-software', 'jewelry-ecommerce-catalog']
@@ -1672,7 +1672,7 @@ class FrontendController {
                     ['stat' => '99.5%', 'label' => 'First-Time Quality Pass Rate', 'sub' => 'Integrated stage-wise QC']
                 ],
                 'faqs'           => [
-                    ['q' => 'Can GoldMatrix track both in-house workshops and third-party outside karigars?', 'a' => 'Yes. GoldMatrix supports internal manufacturing workshops as well as external jobwork contractors with dedicated metal ledgers, labor billing, and GST e-way bills for jobwork.'],
+                    ['q' => 'Can GoldMatrix track both in-house workshops and third-party outside karigars?', 'a' => 'Yes. GoldMatrix supports internal manufacturing workshops as well as external jobwork contractors with dedicated metal ledgers, labor billing, and Tax e-way bills for jobwork.'],
                     ['q' => 'How does the software handle gold purity differences (e.g. issuing 24K and receiving 22K finished jewelry)?', 'a' => 'The software includes an automated purity conversion engine (Fine Gold Equivalency) that converts all purities to 100% pure fine gold, ensuring accurate accounting across different karatages.'],
                     ['q' => 'Can we track diamond setting and stone breakage during manufacturing?', 'a' => 'Yes. Stones are issued in exact quantities/carats. If a stone breaks during setting, a supervisor can log it under broken stone loss with reason codes, maintaining complete diamond accountability.'],
                     ['q' => 'Can the karigar view their assigned job sheets on a mobile app?', 'a' => 'Yes. We offer a Karigar Companion App where artisans can view assigned job cards, upload progress photos, request additional materials, and view their labor earnings.']
@@ -1748,7 +1748,7 @@ class FrontendController {
                 'workflow'       => [
                     ['step' => '01', 'title' => 'Rate Fixing & Contract', 'desc' => 'Fix live bullion rate with B2B buyer. System locks position and issues digital contract note.'],
                     ['step' => '02', 'title' => 'Order Picking & Packing', 'desc' => 'Pick finished goods from wholesale vaults. Scan barcode tags to compile automated packing list.'],
-                    ['step' => '03', 'title' => 'Dispatch & E-Way Bill', 'desc' => 'Generate GST tax invoice, delivery challan, and automated government E-Way bill with transit tracking.'],
+                    ['step' => '03', 'title' => 'Dispatch & E-Way Bill', 'desc' => 'Generate Tax tax invoice, delivery challan, and automated government E-Way bill with transit tracking.'],
                     ['step' => '04', 'title' => 'Dual Settlement', 'desc' => 'Receive payment via bank wire or pure metal bar deposit. Party dual ledger updates instantly.']
                 ],
                 'kpis'           => [
@@ -1937,25 +1937,25 @@ class FrontendController {
 
             'jewelry-accounting-gst-software' => [
                 'slug'           => 'jewelry-accounting-gst-software',
-                'title'          => 'Jewellery GST Invoicing, Accounting & Compliance',
-                'badge'          => '100% TAX & GST COMPLIANT',
+                'title'          => 'Jewellery Tax Invoicing, Accounting & Compliance',
+                'badge'          => '100% TAX & Tax COMPLIANT',
                 'category'       => 'Accounting & Financial Management',
-                'hero_subtitle'  => 'Automated GST invoices, E-Way bills, e-Invoicing, dual metal accounting, P&L statements, and audit-ready reports tailored for jewelers.',
-                'hero_desc'      => 'Eliminate tax filing headaches and audit stress. GoldMatrix Accounting is designed exclusively for the jewellery sector\'s unique taxation rules, including 3% GST on gold, making charges split, RCM on old gold purchases, TCS on high-value cash transactions, and government e-Invoicing.',
+                'hero_subtitle'  => 'Automated Tax invoices, E-Way bills, e-Invoicing, dual metal accounting, P&L statements, and audit-ready reports tailored for jewelers.',
+                'hero_desc'      => 'Eliminate tax filing headaches and audit stress. GoldMatrix Accounting is designed exclusively for the jewellery sector\'s unique taxation rules, including 3% Tax on gold, making charges split, RCM on old gold purchases, TCS on high-value cash transactions, and government e-Invoicing.',
                 'hero_image'     => 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&auto=format&fit=crop&q=80',
-                'meta_title'     => 'Jewelry GST Billing & Accounting Software | GoldMatrix ERP',
-                'meta_desc'      => 'Comprehensive GST billing and financial accounting software for jewellers. Auto GSTR-1, GSTR-3B reports, automated e-Way bills, and dual currency ledgers.',
-                'meta_keywords'  => 'jewelry gst billing software, gold accounting software, jewelry e-way bill, gstr-1 jewelry format, jewelry tax compliance erp',
+                'meta_title'     => 'Jewelry Tax Billing & Accounting Software | GoldMatrix ERP',
+                'meta_desc'      => 'Comprehensive Tax billing and financial accounting software for jewellers. Auto GSTR-1, GSTR-3B reports, automated e-Way bills, and dual currency ledgers.',
+                'meta_keywords'  => 'jewelry Tax billing software, gold accounting software, jewelry e-way bill, gstr-1 jewelry format, jewelry tax compliance erp',
                 'accent_color'   => '#0284C7',
                 'icon'           => 'bi-calculator',
                 'challenges'     => [
                     [
-                        'pain' => 'Complex manual calculation of separate GST on gold metal value vs making charges and gemstone valuation.',
-                        'solution' => 'Automatic HSN-code tax splitting (e.g. 7113) with precise 3% GST computation on invoices.'
+                        'pain' => 'Complex manual calculation of separate Tax on gold metal value vs making charges and gemstone valuation.',
+                        'solution' => 'Automatic HSN-code tax splitting (e.g. 7113) with precise 3% Tax computation on invoices.'
                     ],
                     [
                         'pain' => 'Generating separate government E-Way bills and e-Invoices manually on the government portal.',
-                        'solution' => '1-Click Direct API integration with the GST e-Invoice and E-Way Bill portal directly inside the billing screen.'
+                        'solution' => '1-Click Direct API integration with the Tax e-Invoice and E-Way Bill portal directly inside the billing screen.'
                     ],
                     [
                         'pain' => 'Auditing differences between physical gold stock weight and financial book values.',
@@ -1965,7 +1965,7 @@ class FrontendController {
                 'capabilities'   => [
                     [
                         'icon'  => 'bi-receipt',
-                        'title' => 'Automated GST Invoicing & Split Tax',
+                        'title' => 'Automated Tax Invoicing & Split Tax',
                         'desc'  => 'Compliant tax invoices with automated CGST, SGST, IGST, HSN code classification, Hallmarking fees, and making charges breakdowns.',
                         'points'=> ['Auto HSN code 7113 classification', 'Making charge tax separation', 'Round-off & discount handling', 'B2B & B2C invoice formats']
                     ],
@@ -1978,7 +1978,7 @@ class FrontendController {
                     [
                         'icon'  => 'bi-file-earmark-bar-graph',
                         'title' => 'GSTR-1, GSTR-3B & GSTR-9 Tax Reports',
-                        'desc'  => 'Export GST filing summaries in official Excel and JSON formats ready to upload to the GST portal or share with your Chartered Accountant.',
+                        'desc'  => 'Export Tax filing summaries in official Excel and JSON formats ready to upload to the Tax portal or share with your Chartered Accountant.',
                         'points'=> ['B2B, B2CL, B2CS sales tables', 'HSN-wise summary reports', 'GSTR-2B purchase reconciliation', 'Advance receipt tax tracking']
                     ],
                     [
@@ -2001,13 +2001,13 @@ class FrontendController {
                     ]
                 ],
                 'workflow'       => [
-                    ['step' => '01', 'title' => 'Bill Generation', 'desc' => 'Cashier generates sales invoice. System auto-calculates HSN codes, GST rates, and TCS thresholds.'],
+                    ['step' => '01', 'title' => 'Bill Generation', 'desc' => 'Cashier generates sales invoice. System auto-calculates HSN codes, Tax rates, and TCS thresholds.'],
                     ['step' => '02', 'title' => '1-Click e-Way / IRN', 'desc' => 'If invoice exceeds legal threshold, system generates IRN number and E-Way bill via direct government API.'],
                     ['step' => '03', 'title' => 'Ledger Posting', 'desc' => 'Customer ledger, sales revenue, tax liability, and inventory accounts update simultaneously.'],
-                    ['step' => '04', 'title' => '1-Click GST Filing', 'desc' => 'At month-end, export GSTR-1 and GSTR-3B JSON data ready for direct submission to the GST portal.']
+                    ['step' => '04', 'title' => '1-Click Tax Filing', 'desc' => 'At month-end, export GSTR-1 and GSTR-3B JSON data ready for direct submission to the Tax portal.']
                 ],
                 'kpis'           => [
-                    ['stat' => '100%', 'label' => 'Tax Audit Compliance', 'sub' => 'Error-free GST calculations'],
+                    ['stat' => '100%', 'label' => 'Tax Audit Compliance', 'sub' => 'Error-free Tax calculations'],
                     ['stat' => '1-Click', 'label' => 'E-Way Bill & IRN Generation', 'sub' => 'Direct API connectivity'],
                     ['stat' => '10x', 'label' => 'Faster Month-End Filing', 'sub' => 'Automated GSTR-1 JSON exports'],
                     ['stat' => 'Zero', 'label' => 'Manual Ledger Entry', 'sub' => 'Auto-posting from POS and factory']
@@ -2143,8 +2143,8 @@ class FrontendController {
         view('frontend.blog-index', array_merge($this->footerData(), [
             'posts'      => $posts,
             'categories' => $categories,
-            'meta_title' => 'Blog — Jewellery ERP Tips, GST Guides & Business Insights | GoldMatrix',
-            'meta_desc'  => 'Expert articles on jewellery ERP software, GST compliance, inventory management, karigar tracking and business growth for jewellers.',
+            'meta_title' => 'Blog — Jewellery ERP Tips, Tax Guides & Business Insights | GoldMatrix',
+            'meta_desc'  => 'Expert articles on jewellery ERP software, Tax compliance, inventory management, karigar tracking and business growth for jewellers.',
         ]));
     }
 
@@ -2379,21 +2379,21 @@ class FrontendController {
     public function solutionRetail(): void {
         $data = array_merge($this->solutionBaseData(), [
             'meta_title'    => 'Jewellery Retail Software | POS, Inventory & CRM | GoldMatrix',
-            'meta_desc'     => 'Complete jewellery retail software for showrooms. Fast POS billing, RFID inventory, old gold exchange, customer CRM, GST invoicing and gold rate management.',
+            'meta_desc'     => 'Complete jewellery retail software for showrooms. Fast POS billing, RFID inventory, old gold exchange, customer CRM, Tax invoicing and gold rate management.',
             'meta_keywords' => 'jewellery retail software, jewellery pos software, jewellery showroom software, jewellery billing software, gold shop software india',
             'page_type'     => 'retail',
             'page_title'    => 'Jewellery Retail Software',
             'page_badge'    => 'RETAIL SOFTWARE',
             'page_headline' => 'Built for Jewellery Showrooms & Retail Stores',
-            'page_subtitle' => 'POS billing, inventory, old gold exchange, customer management, gold rates and GST — all in one screen built for counter operations.',
+            'page_subtitle' => 'POS billing, inventory, old gold exchange, customer management, gold rates and Tax — all in one screen built for counter operations.',
             'page_icon'     => 'bi-shop',
             'features'      => [
-                ['icon'=>'bi-speedometer2',    'title'=>'Fast POS & Touch Billing',        'desc'=>'Generate GST invoices in seconds with barcode/RFID scan, auto weight/rate calculation, and one-click print.'],
+                ['icon'=>'bi-speedometer2',    'title'=>'Fast POS & Touch Billing',        'desc'=>'Generate Tax invoices in seconds with barcode/RFID scan, auto weight/rate calculation, and one-click print.'],
                 ['icon'=>'bi-upc-scan',        'title'=>'Barcode & RFID Scanning',         'desc'=>'Scan individual items or tray-full RFID batches instantly. Stock updates automatically on every transaction.'],
                 ['icon'=>'bi-graph-up-arrow',  'title'=>'Live Gold Rate Board Sync',       'desc'=>'Daily 22K/24K/18K gold rates update automatically across all counters and branches in real time.'],
                 ['icon'=>'bi-recycle',         'title'=>'Old Gold Exchange',               'desc'=>'Process old gold/silver exchange with automated purity, melt-loss calculations and instant voucher.'],
                 ['icon'=>'bi-people-fill',     'title'=>'Customer CRM & KYC',              'desc'=>'Maintain complete customer profiles, purchase history, KYC documents, loyalty points and scheme tracking.'],
-                ['icon'=>'bi-receipt-cutoff',  'title'=>'GST Invoicing & Compliance',      'desc'=>'100% GST-compliant tax invoices, e-way bills, IRN e-invoicing and GSTR auto-preparation.'],
+                ['icon'=>'bi-receipt-cutoff',  'title'=>'Tax Invoicing & Compliance',      'desc'=>'100% GST-compliant tax invoices, e-way bills, IRN e-invoicing and GSTR auto-preparation.'],
             ],
             'workflow'      => [
                 ['step'=>'01','title'=>'Scan Item',      'desc'=>'Scan barcode/RFID — weight, purity, rate populate instantly.'],
@@ -2703,8 +2703,8 @@ class FrontendController {
                     [
                         'icon'   => 'bi-journal-bookmark-fill',
                         'title'  => 'Account Ledger',
-                        'desc'   => 'Maintain complete customer, supplier, Karigar, and internal account ledgers with dual metal-weight and currency balances, fully searchable and exportable for audits or GST filing.',
-                        'points' => ['Dual pure gold & currency balances', 'Searchable transaction history', 'Exportable for CA & GST filing', 'Voucher-level transaction drill-down']
+                        'desc'   => 'Maintain complete customer, supplier, Karigar, and internal account ledgers with dual metal-weight and currency balances, fully searchable and exportable for audits or Tax filing.',
+                        'points' => ['Dual pure gold & currency balances', 'Searchable transaction history', 'Exportable for CA & Tax filing', 'Voucher-level transaction drill-down']
                     ],
                     [
                         'icon'   => 'bi-layers-fill',
@@ -2785,8 +2785,8 @@ class FrontendController {
                     [
                         'icon'   => 'bi-journal-bookmark-fill',
                         'title'  => 'Account Ledger',
-                        'desc'   => 'Maintain complete customer, supplier, and internal account ledgers with full transaction history, searchable and exportable for audits or GST filing.',
-                        'points' => ['Dual pure gold & currency balances', 'Searchable transaction history', 'Exportable for CA & GST filing', 'Voucher-level drill-down']
+                        'desc'   => 'Maintain complete customer, supplier, and internal account ledgers with full transaction history, searchable and exportable for audits or Tax filing.',
+                        'points' => ['Dual pure gold & currency balances', 'Searchable transaction history', 'Exportable for CA & Tax filing', 'Voucher-level drill-down']
                     ],
                     [
                         'icon'   => 'bi-arrow-left-right',
@@ -2815,8 +2815,8 @@ class FrontendController {
                         'a' => 'Conversions can be calculated against the live rate at the time of transaction or a fixed rate you set, ensuring accuracy whether you\'re settling same-day or against a locked-in price.'
                     ],
                     [
-                        'q' => 'Can the Account Ledger export data for GST filing or CA review?',
-                        'a' => 'Yes, ledger data is exportable in standard formats suitable for handoff to accountants or for GST return preparation.'
+                        'q' => 'Can the Account Ledger export data for Tax filing or CA review?',
+                        'a' => 'Yes, ledger data is exportable in standard formats suitable for handoff to accountants or for Tax return preparation.'
                     ],
                     [
                         'q' => 'Does bank reconciliation support multiple bank accounts?',
@@ -2910,7 +2910,7 @@ class FrontendController {
                     ],
                     [
                         'q' => 'How are customer advance payments in cash or old gold adjusted at final billing?',
-                        'a' => 'Advance cash, card deposits, and old gold exchange credits are linked to the Order ID and automatically deducted from the final GST tax invoice.'
+                        'a' => 'Advance cash, card deposits, and old gold exchange credits are linked to the Order ID and automatically deducted from the final Tax tax invoice.'
                     ],
                     [
                         'q' => 'Does it generate printable jobcards with barcodes for workshop karigars?',
@@ -3051,12 +3051,12 @@ class FrontendController {
                 'badge'          => 'COMPLIANCE & AUDIT',
                 'category'       => 'Financial Reporting',
                 'icon'           => 'bi-receipt-cutoff',
-                'h1'             => 'Jewellery Accounting, Trial Balance & GST Financial Statement Software',
+                'h1'             => 'Jewellery Accounting, Trial Balance & Tax Financial Statement Software',
                 'h2'             => 'Live Balance Sheets, Metal-Aware P&L & 100% Tax-Compliant Reporting',
-                'headline'       => 'Jewellery Accounting, Trial Balance & GST Financial Statement Software',
+                'headline'       => 'Jewellery Accounting, Trial Balance & Tax Financial Statement Software',
                 'subtitle'       => 'Live Balance Sheets, Metal-Aware P&L & 100% Tax-Compliant Reporting',
-                'intro'          => 'General accounting packages fail when handling changing bullion prices, dual metal-and-rupee balances, and complex jewellery GST rules. GoldMatrix\'s Financial Statement module automatically compiles real-time Trial Balances, Balance Sheets, Profit & Loss statements, Cash/Fund Flows, and Sales/Purchase registers directly from your daily counter billing and workshop vouchers. Audit-ready, CA-friendly, and 100% compliant with GSTR-1, GSTR-3B, E-Invoicing, and E-Way bills.',
-                'description'    => 'Real-time balance sheet, profit & loss statement, cash/fund flow, chart of accounts, and automated GST returns (GSTR-1, GSTR-3B, E-Invoicing).',
+                'intro'          => 'General accounting packages fail when handling changing bullion prices, dual metal-and-rupee balances, and complex jewellery Tax rules. GoldMatrix\'s Financial Statement module automatically compiles real-time Trial Balances, Balance Sheets, Profit & Loss statements, Cash/Fund Flows, and Sales/Purchase registers directly from your daily counter billing and workshop vouchers. Audit-ready, CA-friendly, and 100% compliant with GSTR-1, GSTR-3B, E-Invoicing, and E-Way bills.',
+                'description'    => 'Real-time balance sheet, profit & loss statement, cash/fund flow, chart of accounts, and automated Tax returns (GSTR-1, GSTR-3B, E-Invoicing).',
                 'bullets'        => [
                     'Trial Balance, Balance Sheet & Profit Loss statements',
                     'Cash Flow, Fund Flow & Chart of Accounts',
@@ -3110,7 +3110,7 @@ class FrontendController {
                     ]
                 ],
                 'visual_title'   => 'Real-Time Financial Statements & Automated Tax Return Dashboard',
-                'visual_desc'    => 'Visual display showing live Balance Sheet, Trial Balance drill-down, and GST return portal-ready JSON export summaries.',
+                'visual_desc'    => 'Visual display showing live Balance Sheet, Trial Balance drill-down, and Tax return portal-ready JSON export summaries.',
                 'visual_points'  => [
                     'Live stock valuation reflects on your balance sheet automatically',
                     'Direct JSON export for GSTR-1 and GSTR-3B saves your CA dozens of hours',
@@ -3132,7 +3132,7 @@ class FrontendController {
                     ],
                     [
                         'q' => 'Does the system support E-Invoicing (IRN) and E-Way bill generation?',
-                        'a' => 'Yes. GoldMatrix integrates directly with the government GST portal to generate IRN QR codes and E-Way bills directly from the invoice screen.'
+                        'a' => 'Yes. GoldMatrix integrates directly with the government Tax portal to generate IRN QR codes and E-Way bills directly from the invoice screen.'
                     ]
                 ],
                 'related'        => ['operations', 'report-analysis', 'dashboard-live-rates']
@@ -3469,7 +3469,7 @@ class FrontendController {
                                 'icon'   => 'bi-tools',
                                 'title'  => 'Service Management & Service Analytics',
                                 'desc'   => 'Track after-sales services including rhodium plating, resizing, stringing, and ultrasonic cleaning with customer service history.',
-                                'points' => ['Service job card creation', 'Estimated completion date alerts', 'Customer service history log', 'Service billing & GST invoices']
+                                'points' => ['Service job card creation', 'Estimated completion date alerts', 'Customer service history log', 'Service billing & Tax invoices']
                             ],
                             [
                                 'icon'   => 'bi-broadcast-pin',

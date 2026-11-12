@@ -17,7 +17,7 @@ $testiList = !empty($testimonials) ? $testimonials : [
     [
         'title'       => 'Amitabh Shah',
         'subtitle'    => 'Founder, Shah Bullion & Trading Co. (Mumbai)',
-        'description' => 'Handling multi-party bullion orders, metal settlement vouchers, and GST e-invoicing was our biggest bottleneck. GoldMatrix handles high-volume wholesale transactions flawlessly without a single decimal calculation error.',
+        'description' => 'Handling multi-party bullion orders, metal settlement vouchers, and Tax e-invoicing was our biggest bottleneck. GoldMatrix handles high-volume wholesale transactions flawlessly without a single decimal calculation error.',
         'image'       => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
         'badge'       => 'BULLION & WHOLESALE',
         'extra'       => '5'

@@ -99,7 +99,7 @@ class HomepageController {
                     [
                         'title'       => 'Vikram Malhotra',
                         'subtitle'    => 'Managing Partner, Malhotra Jewellers (Delhi)',
-                        'description' => 'We can now manage 5 showroom branches and manufacturing inventory in real-time with 100% accuracy and GST hallmark compliance.',
+                        'description' => 'We can now manage 5 showroom branches and manufacturing inventory in real-time with 100% accuracy and Tax hallmark compliance.',
                         'image'       => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
                         'extra'       => '5',
                         'badge'       => 'MULTI-BRANCH ERP',
@@ -117,7 +117,7 @@ class HomepageController {
                     [
                         'title'       => 'Amitabh Shah',
                         'subtitle'    => 'Founder, Shah Bullion & Trading Co. (Mumbai)',
-                        'description' => 'Handling multi-party bullion orders, metal settlement vouchers, and GST e-invoicing was our biggest bottleneck. GoldMatrix handles wholesale transactions flawlessly.',
+                        'description' => 'Handling multi-party bullion orders, metal settlement vouchers, and Tax e-invoicing was our biggest bottleneck. GoldMatrix handles wholesale transactions flawlessly.',
                         'image'       => 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&auto=format&fit=crop&q=80',
                         'extra'       => '5',
                         'badge'       => 'BULLION & WHOLESALE',
@@ -283,7 +283,7 @@ class HomepageController {
                     ],
                     [
                         'title'       => 'Mobile POS & Instant Billing',
-                        'description' => 'Create GST invoices, calculate making charges, and generate estimates directly from your tablet or mobile.',
+                        'description' => 'Create Tax invoices, calculate making charges, and generate estimates directly from your tablet or mobile.',
                         'icon'        => 'bi-receipt',
                         'image'       => '',
                         'link'        => '#contact',
@@ -429,20 +429,20 @@ class HomepageController {
                     ],
                     [
                         'title'       => 'E-Way Bill',
-                        'description' => 'E-way Bill E-Way bill system is for GST registered person',
+                        'description' => 'E-way Bill E-Way bill system is for Tax registered person',
                         'icon'        => 'bi-truck',
                         'link'        => '#contact',
                         'image'       => 'https://einvoice1.gst.gov.in/Images/logo.png',
-                        'alt_text'    => 'National E-Way Bill GST Portal System',
+                        'alt_text'    => 'National E-Way Bill Tax Portal System',
                         'sort_order'  => 11
                     ],
                     [
                         'title'       => 'E-Invoice',
-                        'description' => 'E-invoice bill system is for GST registered person',
+                        'description' => 'E-invoice bill system is for Tax registered person',
                         'icon'        => 'bi-file-earmark-check',
                         'link'        => '#contact',
                         'image'       => 'https://einvoice1.gst.gov.in/Images/logo.png',
-                        'alt_text'    => 'GST E-Invoice System for Jewellery',
+                        'alt_text'    => 'Tax E-Invoice System for Jewellery',
                         'sort_order'  => 12
                     ],
                     [
@@ -488,7 +488,7 @@ class HomepageController {
                         'icon'        => 'bi-calculator',
                         'link'        => '#contact',
                         'image'       => 'https://images.unsplash.com/photo-1586486855514-8c633cc6fd38?w=600&auto=format&fit=crop&q=80',
-                        'alt_text'    => 'Tax Calculation & GST Compliance',
+                        'alt_text'    => 'Tax Calculation & Compliance',
                         'sort_order'  => 2
                     ],
                     [
@@ -727,8 +727,8 @@ class HomepageController {
                     [
                         'badge'       => 'RETAIL & SHOWROOM POS',
                         'title'       => 'Jewellery POS Software for Modern Retail Showrooms.',
-                        'description' => 'High-speed billing, barcode scanning, old gold exchange, advance booking, and automated GST invoices in seconds.',
-                        'features'    => json_encode(['Fast Billing', 'Old Gold Exchange', 'Barcode & RFID', 'GST Invoices']),
+                        'description' => 'High-speed billing, barcode scanning, old gold exchange, advance booking, and automated Tax invoices in seconds.',
+                        'features'    => json_encode(['Fast Billing', 'Old Gold Exchange', 'Barcode & RFID', 'Tax Invoices']),
                         'btn1_text'   => 'Explore POS Features',
                         'btn1_link'   => '#features',
                         'btn2_text'   => 'Request Demo',
@@ -2531,7 +2531,7 @@ class HomepageController {
 
             // ── SEO ──
             'meta_title'         => $this->hp('meta_title',         'GoldMatrix — The Complete Jewellery ERP'),
-            'meta_desc'          => $this->hp('meta_desc',          'Complete Jewelry ERP Software with Inventory, POS, GST, Karigar, and Multi-Branch Management. Trusted by 1500+ jewelers.'),
+            'meta_desc'          => $this->hp('meta_desc',          'Complete Jewelry ERP Software with Inventory, POS, Tax, Karigar, and Multi-Branch Management. Trusted by 1500+ jewelers.'),
             'meta_keywords'      => $this->hp('meta_keywords',      'jewelry erp software, jewellery pos system, gold shop software india'),
             'og_title'           => $this->hp('og_title',           'GoldMatrix — The Complete Jewellery ERP'),
             'og_desc'            => $this->hp('og_desc',            'Complete Jewelry ERP Software trusted by 1500+ jewelers.'),

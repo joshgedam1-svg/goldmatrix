@@ -326,7 +326,7 @@ class NavigationController {
             ['title' => 'ERP Features & Capabilities',   'url' => '/features'],
             ['title' => 'POS & Smart Inventory',         'url' => '/features/pos-inventory'],
             ['title' => 'Manufacturing & Jobwork',       'url' => '/features/manufacturing-jobwork'],
-            ['title' => 'Accounting & GST Compliance',   'url' => '/features/accounting-gst'],
+            ['title' => 'Accounting & Tax Compliance',   'url' => '/features/accounting-gst'],
             ['title' => 'Gold & Diamond Management',     'url' => '/features/gold-diamond-management'],
             ['title' => 'RFID & Barcode Automation',     'url' => '/features/crm-rfid-barcode'],
             ['title' => 'Industries Served',             'url' => '/industries'],

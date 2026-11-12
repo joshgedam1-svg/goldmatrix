@@ -416,10 +416,6 @@ $slides = !empty($hero_slides) ? $hero_slides : [
               <?php endif; ?>
 
               <div class="d-flex align-items-center flex-wrap gap-3 pt-1 gm-sol-action-row">
-                <a href="<?= e($firstCard['btn1_link'] ?: '/features') ?>" class="btn-gold-solid">
-                  <span><?= e($firstCard['btn1_text'] ?: 'Explore Digital Catalogue') ?></span>
-                  <i class="bi bi-arrow-right"></i>
-                </a>
                 <span class="text-secondary fs-12 d-inline-flex align-items-center gap-1">
                   <i class="bi bi-whatsapp text-success"></i> Direct WhatsApp Ready
                 </span>

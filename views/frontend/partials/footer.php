@@ -367,7 +367,7 @@ $companyName = setting('company_name', 'GoldMatrix');
             ['title' => 'Jewellery Manufacturing ERP',        'url' => '/services/jewelry-manufacturing-software', 'target' => '_self'],
             ['title' => 'Wholesale & Bullion Management',   'url' => '/services/wholesale-bullion-management',   'target' => '_self'],
             ['title' => 'RFID Jewellery Automation',          'url' => '/services/rfid-jewelry-automation',        'target' => '_self'],
-            ['title' => 'Jewellery GST & Accounting',         'url' => '/services/jewelry-accounting-gst-software','target' => '_self'],
+            ['title' => 'Jewellery Tax & Accounting',         'url' => '/services/jewelry-accounting-gst-software','target' => '_self'],
           ];
           foreach ($col1 as $item): ?>
             <li>

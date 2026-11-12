@@ -22,7 +22,7 @@ $defaultSolutions = [
   ['icon' => 'bi-currency-exchange', 'title' => 'Operations & Metal Accounting', 'desc' => 'Unified financial core for bullion trade, pledge settlements, and bidirectional metal-to-rupee conversions.'],
   ['icon' => 'bi-cart-check', 'title' => 'Order Management & Custom Orders', 'desc' => 'Custom bridal order tracking, repair jobs, CAD design quotations, and automated customer WhatsApp updates.'],
   ['icon' => 'bi-tools', 'title' => 'Manufacturing & Karigar Loss Tracking', 'desc' => 'Departmental workshop WIP (Casting, Setting, Polishing), Karigar queues, and milligram-precision metal loss audits.'],
-  ['icon' => 'bi-receipt-cutoff', 'title' => 'Financial Statements & Tax Compliance', 'desc' => 'Live Balance Sheets, Profit & Loss, Trial Balance drill-downs, and automated GST, E-Invoice and E-Way Bill exports.'],
+  ['icon' => 'bi-receipt-cutoff', 'title' => 'Financial Statements & Tax Compliance', 'desc' => 'Live Balance Sheets, Profit & Loss, Trial Balance drill-downs, and automated Tax, E-Invoice and E-Way Bill exports.'],
   ['icon' => 'bi-bar-chart-line', 'title' => 'Report Analysis & BI Intelligence', 'desc' => '100+ granular business reports, customer KYC, debtor ageing analysis, Karatwise P&L, and full audit logs.'],
   ['icon' => 'bi-layers', 'title' => 'Inventory & RFID Stock Management', 'desc' => 'High-speed UHF RFID showcase audits, precious stone & purity tracking, approval memos, and vault transfers.'],
   ['icon' => 'bi-people', 'title' => 'Employee & Workforce Management', 'desc' => 'Granular role permissions, counter sales targets, making-charge incentive formulas, and attendance logs.'],

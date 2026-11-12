@@ -547,7 +547,7 @@ foreach ($highlights as $h) {
             <div class="fs-12 text-light"><i class="bi bi-shield-check text-warning me-1"></i> Bank-Grade SSL</div>
           </div>
           <div class="col-6 col-md-3">
-            <div class="fs-12 text-light"><i class="bi bi-receipt text-warning me-1"></i> GST Compliant</div>
+            <div class="fs-12 text-light"><i class="bi bi-receipt text-warning me-1"></i> Tax Compliant</div>
           </div>
           <div class="col-6 col-md-3">
             <div class="fs-12 text-light"><i class="bi bi-buildings text-warning me-1"></i> Multi-Branch Sync</div>

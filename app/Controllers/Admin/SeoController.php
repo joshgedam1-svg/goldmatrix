@@ -54,7 +54,7 @@ class SeoController {
             ['seo', 'default_seo_title',        'GoldMatrix — The Complete Jewellery ERP Software in India', 'Default SEO Title', 'text'],
             ['seo', 'site_title_separator',     '|', 'Title Separator', 'text'],
             ['seo', 'site_name_suffix',         'GoldMatrix ERP', 'Site Name Suffix', 'text'],
-            ['seo', 'default_meta_description', 'All-in-one Jewellery ERP software for inventory, billing, POS, manufacturing, Karigar tracking, GST accounting & multi-branch showroom control.', 'Default Meta Description', 'textarea'],
+            ['seo', 'default_meta_description', 'All-in-one Jewellery ERP software for inventory, billing, POS, manufacturing, Karigar tracking, Tax accounting & multi-branch showroom control.', 'Default Meta Description', 'textarea'],
             ['seo', 'default_keywords',         'jewellery erp, jewelry software india, jewellery pos billing, karigar management software, gold shop accounting software, rfid jewellery software', 'Meta Keywords', 'textarea'],
             ['seo', 'default_robots',           'index, follow', 'Default Robots Tag', 'select'],
             ['seo', 'meta_author',              'GoldMatrix Software Technologies Pvt Ltd', 'Meta Author', 'text'],

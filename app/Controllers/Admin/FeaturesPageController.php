@@ -27,7 +27,7 @@ class FeaturesPageController {
 
             // ── Section 2: Category Filter Bar ──
             ['features_filter_enabled',   '1', 'Show Category Filter Tabs Bar', 'select'],
-            ['features_filter_categories',"All 10 Modules|all\nRetail & Billing|Retail & Operations\nManufacturing & Jobwork|Manufacturing\nAccounting & GST|Finance\nStock & RFID|Inventory\nStaff & Admin|Admin", 'Filter Tabs (Label|FilterTag)', 'textarea'],
+            ['features_filter_categories',"All 10 Modules|all\nRetail & Billing|Retail & Operations\nManufacturing & Jobwork|Manufacturing\nAccounting & Tax|Finance\nStock & RFID|Inventory\nStaff & Admin|Admin", 'Filter Tabs (Label|FilterTag)', 'textarea'],
 
             // ── Section 3: Modules Grid Overview ──
             ['features_grid_enabled',     '1', 'Show 10 Core Modules Grid', 'select'],

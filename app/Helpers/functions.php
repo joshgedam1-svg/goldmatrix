@@ -89,6 +89,7 @@ if (!function_exists('clean_brand_spelling')) {
             if ($m[0][0] === 'J') return 'Jewellery';
             return 'jewellery';
         }, $value) ?? $value;
+        $value = preg_replace('/(?<![\/\-_])(?<!AM\s)(?<!PM\s)\bGST\b(?![\/\-_\.])/i', 'Tax', $value) ?? $value;
         return $value;
     }
 }

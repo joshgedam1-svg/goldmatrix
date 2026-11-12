@@ -20,7 +20,7 @@ $showHreflang = (setting('enable_hreflang_seo', '1') == '1');
 $siteTitleSuffix = setting('site_name_suffix', 'GoldMatrix ERP');
 $titleSep = setting('site_title_separator', '|');
 $finalMetaTitle = !empty($meta_title) ? $meta_title : setting('default_seo_title', 'GoldMatrix — The Complete Jewellery ERP Software in India');
-$finalMetaDesc  = !empty($meta_desc) ? $meta_desc : setting('default_meta_description', 'Complete Jewellery ERP Software with Inventory, POS, GST, Manufacturing, and Multi-Branch Management.');
+$finalMetaDesc  = !empty($meta_desc) ? $meta_desc : setting('default_meta_description', 'Complete Jewellery ERP Software with Inventory, POS, Tax, Manufacturing, and Multi-Branch Management.');
 $finalMetaKeys  = !empty($meta_keywords) ? $meta_keywords : setting('default_keywords', 'jewellery erp, jewelry software india, jewellery pos billing');
 $finalRobots    = !empty($meta_robots) ? $meta_robots : setting('default_robots', 'index, follow');
 
@@ -936,7 +936,7 @@ h1, h2, h3, h4, h5, h6,
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  padding: 6px 28px;
+  padding: 10px 34px;
   flex-shrink: 0;
   border-right: 1px solid #E8EDF4;
   transition: background 0.2s ease;
@@ -945,9 +945,9 @@ h1, h2, h3, h4, h5, h6,
   background: #F8FAFF;
 }
 .brand-logo img {
-  height: 34px;
+  height: 64px;
   width: auto;
-  max-width: 130px;
+  max-width: 190px;
   object-fit: contain;
   filter: none;
   opacity: 1;
@@ -2215,8 +2215,8 @@ footer {
   }
   .brands-slider-outer::before,
   .brands-slider-outer::after { width: 30px; }
-  .brand-logo { padding: 4px 18px; }
-  .brand-logo img { height: 26px; max-width: 90px; }
+  .brand-logo { padding: 6px 20px; }
+  .brand-logo img { height: 46px; max-width: 140px; }
 
   /* ── feat-grid: force 1-col on small mobile, column layout same as desktop ── */
   .feat-grid { grid-template-columns: 1fr !important; gap: 12px; }

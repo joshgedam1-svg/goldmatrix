@@ -3,8 +3,8 @@
  * Blog Listing Page
  * views/frontend/blog-index.php
  */
-$meta_title    = $meta_title    ?? 'Blog | Jewellery ERP Tips, GST Guides & Business Insights';
-$meta_desc     = $meta_desc     ?? 'Expert articles on jewellery ERP software, GST compliance, inventory management, production tracking and business growth for jewellers.';
+$meta_title    = $meta_title    ?? 'Blog | Jewellery ERP Tips, Tax Guides & Business Insights';
+$meta_desc     = $meta_desc     ?? 'Expert articles on jewellery ERP software, Tax compliance, inventory management, production tracking and business growth for jewellers.';
 $meta_keywords = $meta_keywords ?? 'jewellery erp blog, gst for jewellers, jewellery business tips, jewellery manufacturing software';
 include __DIR__ . '/partials/header.php';
 ?>
@@ -18,7 +18,7 @@ include __DIR__ . '/partials/header.php';
         Jewellery Business <span style="color:#F59E0B">Blog & Insights</span>
       </h1>
       <p class="text-white-50 mb-4" style="max-width:560px;margin:auto;font-size:1.1rem">
-        Expert guides on GST, ERP software, inventory, manufacturing management, and growing your jewellery business.
+        Expert guides on Tax, ERP software, inventory, manufacturing management, and growing your jewellery business.
       </p>
 
       <!-- Category Filter Pills -->

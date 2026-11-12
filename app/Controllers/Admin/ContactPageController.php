@@ -49,7 +49,7 @@ class ContactPageController {
             ['contact_form_tag',           'DIRECT CONSULTATION', 'Form Badge', 'text'],
             ['contact_form_title',         'Schedule a Private Demo', 'Form Title', 'text'],
             ['contact_form_subtitle',      'Fill out the form below and an ERP consultant will reach out within 2 business hours.', 'Form Subtitle', 'textarea'],
-            ['contact_form_services',      "Retail POS & Billing Software\nJewellery Manufacturing & Jobwork Software\nWholesale & Bullion Management\nRFID Inventory Automation\nGirvi (Money Lending) & Kitty Schemes\nJewellery GST Invoicing & Accounting\nGeneral Enterprise Consultation", 'Service Dropdown Options (One per line)', 'textarea'],
+            ['contact_form_services',      "Retail POS & Billing Software\nJewellery Manufacturing & Jobwork Software\nWholesale & Bullion Management\nRFID Inventory Automation\nGirvi (Money Lending) & Kitty Schemes\nJewellery Tax Invoicing & Accounting\nGeneral Enterprise Consultation", 'Service Dropdown Options (One per line)', 'textarea'],
             ['contact_form_btn_text',      'Submit Enquiry & Schedule Demo', 'Submit Button Text', 'text'],
             ['contact_form_success_msg',   'Thank you! Our jewelry ERP specialist will contact you shortly for a personalized demo.', 'Success Message', 'text'],
 
