@@ -182,14 +182,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Structured Data / Schema JSON-LD -->
 <?php if (!empty($schema_json)): ?>
   <script type="application/ld+json">
-    <?= json_encode($schema_json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) ?>
+    <?= fix_software_typo(json_encode($schema_json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)) ?>
   </script>
 <?php elseif (setting('schema_enabled', '1') === '1'): ?>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "<?= e(setting('schema_org_type', 'SoftwareApplication')) ?>",
-    "name": "<?= e(setting('schema_org_name', 'GoldMatrix Jewellery ERP')) ?>",
+    "name": "<?= e(fix_software_typo(setting('schema_org_name', 'GoldMatrix Jewellery ERP'))) ?>",
     "url": "<?= site_url() ?>",
     "applicationCategory": "<?= e(setting('schema_software_category', 'BusinessApplication, ERP, POS')) ?>",
     "operatingSystem": "<?= e(setting('schema_software_os', 'Cloud Web, Windows 10/11, Android, iOS')) ?>",

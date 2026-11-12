@@ -18,7 +18,11 @@ Options -Indexes
     RewriteRule ^favicon\.ico$ public/favicon.ico [L]
     RewriteRule ^robots\.txt$ public/robots.txt [L]
 
-    # 4. Route all application requests to public/index.php
+    # 4. Keep main domain /features separated from physical subdomain folder (features.goldmatrixsoftware.com)
+    RewriteCond %{HTTP_HOST} ^(www\.)?goldmatrixsoftware\.com$ [NC]
+    RewriteRule ^features(/.*)?$ public/index.php [L,QSA]
+
+    # 5. Route all application requests to public/index.php
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ public/index.php [L,QSA]

@@ -48,6 +48,24 @@ if (!function_exists('e')) {
     }
 }
 
+if (!function_exists('fix_software_typo')) {
+    function fix_software_typo(?string $value): string {
+        if ($value === null || $value === '') {
+            return '';
+        }
+        return preg_replace_callback('/\bsoftwere\b/i', static function (array $m): string {
+            $word = $m[0];
+            if ($word === strtoupper($word)) {
+                return 'SOFTWARE';
+            }
+            if ($word === strtolower($word)) {
+                return 'software';
+            }
+            return 'Software';
+        }, $value) ?? $value;
+    }
+}
+
 if (!function_exists('slugify')) {
     function slugify(string $text): string {
         $text = preg_replace('~[^\pL\d]+~u', '-', $text);

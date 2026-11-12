@@ -40,7 +40,7 @@ $slides = !empty($hero_slides) ? $hero_slides : [
       $slideAccent = !empty($s['accent_color']) ? $s['accent_color'] : '#F59E0B';
       
       // Clean title styling with gold accent
-      $rawTitle = $s['title'];
+      $rawTitle = fix_software_typo($s['title'] ?? '');
       $formattedTitle = e($rawTitle);
       $highlights = ['Jewellery ERP', 'POS Software', 'Manufacturing', 'Stock Management', 'Jewellery Businesses'];
       foreach ($highlights as $h) {
@@ -57,7 +57,7 @@ $slides = !empty($hero_slides) ? $hero_slides : [
           <div class="hero-left">
             <?php if (!empty($s['badge'])): ?>
               <div class="hero-eyebrow">
-                <?= e($s['badge']) ?>
+                <?= e(fix_software_typo($s['badge'])) ?>
               </div>
             <?php endif; ?>
 
@@ -68,7 +68,7 @@ $slides = !empty($hero_slides) ? $hero_slides : [
             <?php endif; ?>
 
             <p class="hero-desc">
-              <?= e($s['description']) ?>
+              <?= e(fix_software_typo($s['description'] ?? '')) ?>
             </p>
 
             <?php if ($idx === 0): ?>
