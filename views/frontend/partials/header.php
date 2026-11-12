@@ -2803,7 +2803,7 @@ $topBarIsModal = !empty($topBarLink) && strpos($topBarLink, '#') === 0;
       <div class="p-3 rounded-3 mb-3" style="background:var(--gm-off-white); border:1px solid #EAE6DB;">
         <div class="fs-12 fw-bold text-uppercase mb-2" style="color:var(--gm-soft-gold); letter-spacing:0.8px;">Direct Support</div>
         <div class="fs-13 fw-semibold text-truncate mb-1" style="color:var(--gm-navy);">
-          <i class="bi bi-telephone-fill text-warning me-2"></i><?= e(setting('contact_phone', '+971 56 324 0319')) ?>
+          <i class="bi bi-telephone-fill text-warning me-2"></i><?= e(setting('contact_phone', '+971 502743168')) ?>
         </div>
         <div class="fs-13 fw-semibold text-truncate" style="color:var(--gm-navy);">
           <i class="bi bi-envelope-fill text-warning me-2"></i><?= e(setting('contact_email', 'info@goldmatrixerp.com')) ?>

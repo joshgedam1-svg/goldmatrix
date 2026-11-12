@@ -29,8 +29,8 @@ class ContactPageController {
             ['contact_uae_tag',            'INTERNATIONAL HEADQUARTER', 'UAE Card Badge', 'text'],
             ['contact_uae_country',        'United Arab Emirates (Headquarter)', 'UAE Title', 'text'],
             ['contact_uae_address',        'Shop No. 25/A, Central Gold Souq Block No. 8, Al Majaz -1 King Faisal Road - Sharjah', 'UAE Address', 'textarea'],
-            ['contact_uae_phone',          '+971 56 324 0319', 'UAE Phone', 'text'],
-            ['contact_uae_whatsapp',       '+971 56 324 0319', 'UAE WhatsApp', 'text'],
+            ['contact_uae_phone',          '+971 502743168', 'UAE Phone', 'text'],
+            ['contact_uae_whatsapp',       '+971 502743168', 'UAE WhatsApp', 'text'],
             ['contact_uae_email',          'info@goldmatrixsoftware.com', 'UAE Email', 'email'],
             ['contact_uae_hours',          'Mon - Sat: 9:00 AM - 8:00 PM GST', 'UAE Working Hours', 'text'],
 
@@ -39,8 +39,8 @@ class ContactPageController {
             ['contact_india_tag',          'DEVELOPMENT & TECH HUB', 'India Card Badge', 'text'],
             ['contact_india_country',      'India (Development & Operations Hub)', 'India Title', 'text'],
             ['contact_india_address',      'India, 01/A, Hingna Rd, M.I.D.C, Maharashtra - 440022', 'India Address', 'textarea'],
-            ['contact_india_phone',        '+91 92703 69937', 'India Phone', 'text'],
-            ['contact_india_whatsapp',     '+91 92703 69937', 'India WhatsApp', 'text'],
+            ['contact_india_phone',        '+971 502743168', 'India Phone', 'text'],
+            ['contact_india_whatsapp',     '+971 502743168', 'India WhatsApp', 'text'],
             ['contact_india_email',        'goldmatrixsoftware@gmail.com', 'India Email', 'email'],
             ['contact_india_hours',        'Mon - Sat: 9:30 AM - 7:00 PM IST', 'India Working Hours', 'text'],
 
@@ -57,8 +57,8 @@ class ContactPageController {
             ['contact_hotline_enabled',    '1', 'Show Direct Hotline & Quick Channels', 'select'],
             ['contact_hotline_title',      'Need Instant ERP Assistance or Customized Quotation?', 'Hotline Title', 'text'],
             ['contact_hotline_subtitle',   'Connect directly with our senior jewellery ERP implementation team for express query resolution.', 'Hotline Subtitle', 'textarea'],
-            ['contact_hotline_whatsapp',   '+91 92703 69937', 'WhatsApp Helpline', 'text'],
-            ['contact_hotline_call',       '+971 56 324 0319', 'Direct Phone Call', 'text'],
+            ['contact_hotline_whatsapp',   '+971 502743168', 'WhatsApp Helpline', 'text'],
+            ['contact_hotline_call',       '+971 502743168', 'Direct Phone Call', 'text'],
             ['contact_hotline_sales_email','sales@goldmatrixsoftware.com', 'Sales Email', 'email'],
             ['contact_hotline_support_email','support@goldmatrixsoftware.com', 'Support Email', 'email'],
 
@@ -94,7 +94,7 @@ class ContactPageController {
 
             // ── Section 8: SEO & Social Meta ──
             ['contact_seo_meta_title',     'Contact Us | GoldMatrix Software Technologies (UAE & India)', 'SEO Meta Title', 'text'],
-            ['contact_seo_meta_desc',      'Contact GoldMatrix Jewellery ERP specialists. UAE Headquarter in Sharjah Gold Souq and India Tech Hub in Maharashtra. Call +971 56 324 0319.', 'SEO Meta Description', 'textarea'],
+            ['contact_seo_meta_desc',      'Contact GoldMatrix Jewellery ERP specialists. UAE Headquarter in Sharjah Gold Souq and India Tech Hub in Maharashtra. Call +971 502743168.', 'SEO Meta Description', 'textarea'],
             ['contact_seo_keywords',       'contact goldmatrix, jewellery software support, goldmatrix sharjah uae, goldmatrix india office, jewellery pos demo', 'SEO Keywords', 'textarea'],
             ['contact_seo_og_image',       '', 'OpenGraph Image URL', 'text'],
         ];

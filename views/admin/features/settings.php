@@ -555,7 +555,7 @@ if (!is_array($hwItems) || empty($hwItems)) {
           </div>
           <div class="col-md-6">
             <label class="form-label-section">WhatsApp Support Number</label>
-            <input type="text" name="features_cta_whatsapp" class="form-control" value="<?= e($settings['features_cta_whatsapp'] ?? '+91 92703 69937') ?>" placeholder="+91 92703 69937">
+            <input type="text" name="features_cta_whatsapp" class="form-control" value="<?= e($settings['features_cta_whatsapp'] ?? '+971 502743168') ?>" placeholder="+971 502743168">
           </div>
         </div>
 

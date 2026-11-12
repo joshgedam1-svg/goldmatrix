@@ -727,7 +727,7 @@ $sec = $expandedSection ?? 'hero';
 
               <div class="col-md-6">
                 <label class="form-label fw-bold fs-13 text-dark">WhatsApp Direct Number</label>
-                <input type="text" name="about_cta_whatsapp" class="form-control fs-13" value="<?= e($settings['about_cta_whatsapp'] ?? '+91 92703 69937') ?>">
+                <input type="text" name="about_cta_whatsapp" class="form-control fs-13" value="<?= e($settings['about_cta_whatsapp'] ?? '+971 502743168') ?>">
               </div>
 
               <div class="col-12">

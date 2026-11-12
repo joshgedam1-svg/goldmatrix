@@ -2964,7 +2964,7 @@ if (!isset($tabs[$activeTab])) {
               </div>
               <div class="col-md-6">
                 <label class="form-label fs-12 fw-semibold text-muted">Secondary Button Link (tel:+91...)</label>
-                <input type="text" name="cta_btn2_link" value="<?= e($cta_btn2_link ?? '') ?>" class="form-control" placeholder="tel:+919876543210">
+                <input type="text" name="cta_btn2_link" value="<?= e($cta_btn2_link ?? '') ?>" class="form-control" placeholder="tel:+971502743168">
               </div>
             </div>
           </div>
@@ -3061,7 +3061,7 @@ if (!isset($tabs[$activeTab])) {
                   'id'        => 'office_1',
                   'title'     => $footer_uae_title ?? 'Headquarter - UAE',
                   'badge'     => 'HEADQUARTER',
-                  'phone'     => $footer_uae_phone ?? '+971527042689',
+                  'phone'     => $footer_uae_phone ?? '+971527042669',
                   'email'     => $footer_email ?? 'info@goldmatrixsoftware.com',
                   'address'   => $footer_uae_address ?? "Conqueror tower Ajman UAE",
                   'map_link'  => '',
@@ -3137,7 +3137,7 @@ if (!isset($tabs[$activeTab])) {
                       <label class="form-label fw-semibold fs-12 text-secondary mb-1">Office Telephone / Call <span class="text-danger">*</span></label>
                       <div class="input-group input-group-sm">
                         <span class="input-group-text bg-white"><i class="bi bi-telephone text-primary"></i></span>
-                        <input type="text" name="footer_offices[<?= $idx ?>][phone]" value="<?= e($offPhone) ?>" class="form-control" placeholder="+971 52 704 2689 or +91 92703 69937">
+                        <input type="text" name="footer_offices[<?= $idx ?>][phone]" value="<?= e($offPhone) ?>" class="form-control" placeholder="+971 527042669 or +971 502743168">
                       </div>
                     </div>
 
@@ -3258,7 +3258,7 @@ if (!isset($tabs[$activeTab])) {
               <label class="form-label fw-semibold fs-12 text-secondary d-flex align-items-center gap-1.5">
                 <i class="bi bi-whatsapp text-success"></i> WhatsApp Link / Number
               </label>
-              <input type="text" name="social_whatsapp" value="<?= e($social_whatsapp ?? setting('social_whatsapp', '')) ?>" class="form-control form-control-sm" placeholder="https://wa.me/971563240319">
+              <input type="text" name="social_whatsapp" value="<?= e($social_whatsapp ?? setting('social_whatsapp', '')) ?>" class="form-control form-control-sm" placeholder="https://wa.me/971502743168">
             </div>
 
             <div class="col-md-4 col-sm-6">

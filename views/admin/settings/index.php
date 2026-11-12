@@ -324,7 +324,7 @@ $activeTab = $activeTab ?? 'branding';
               <label class="form-label fs-12 fw-semibold">WhatsApp Direct / Channel Link</label>
               <div class="input-group input-group-sm">
                 <span class="input-group-text bg-light text-success"><i class="bi bi-whatsapp"></i></span>
-                <input type="url" name="social_whatsapp" id="inp_social_whatsapp" class="form-control" value="<?= e($settings['social_whatsapp'] ?? '') ?>" placeholder="https://wa.me/971563240319" oninput="updateLiveSocialPreview()">
+                <input type="url" name="social_whatsapp" id="inp_social_whatsapp" class="form-control" value="<?= e($settings['social_whatsapp'] ?? '') ?>" placeholder="https://wa.me/971502743168" oninput="updateLiveSocialPreview()">
               </div>
             </div>
 
@@ -473,7 +473,7 @@ $activeTab = $activeTab ?? 'branding';
             <span class="input-group-text bg-light text-success"><i class="bi bi-whatsapp"></i></span>
             <input type="text" name="whatsapp_number" value="<?= e($settings['whatsapp_number'] ?? '') ?>" class="form-control">
           </div>
-          <div class="form-text fs-11 text-muted">Include country code without + or spaces (e.g. 919876543210).</div>
+          <div class="form-text fs-11 text-muted">Include country code without + or spaces (e.g. 971502743168).</div>
         </div>
         <div class="col-md-6">
           <label class="form-label fs-12">Company Office Address</label>

@@ -532,7 +532,7 @@ foreach ($highlights as $h) {
             <span>Book a Free 1-on-1 Live Demo</span>
             <i class="bi bi-arrow-right"></i>
           </a>
-          <a href="https://wa.me/919270369937?text=Hello%2C%20I%20am%20interested%20in%20<?= urlencode($service['title']) ?>" target="_blank" class="btn-ghost py-3 px-4">
+          <a href="https://wa.me/971502743168?text=Hello%2C%20I%20am%20interested%20in%20<?= urlencode($service['title']) ?>" target="_blank" class="btn-ghost py-3 px-4">
             <i class="bi bi-whatsapp text-success me-2"></i>
             <span>Chat on WhatsApp</span>
           </a>
@@ -813,7 +813,7 @@ foreach ($highlights as $h) {
 
           <div class="p-3 rounded-3 bg-white bg-opacity-10 border border-white border-opacity-10">
             <div class="fs-12 text-warning fw-bold text-uppercase mb-1">Direct Consultant Helpline</div>
-            <div class="fs-15 fw-bold text-white"><i class="bi bi-telephone-fill text-warning me-2"></i>+971 56 324 0319 / +91 92703 69937</div>
+            <div class="fs-15 fw-bold text-white"><i class="bi bi-telephone-fill text-warning me-2"></i>+971 502743168 / +971 527042669</div>
           </div>
         </div>
 
@@ -900,7 +900,7 @@ function handleLeadSubmit(e) {
   .catch(err => {
     feedback.style.display = 'block';
     feedback.className = 'alert alert-danger py-2 px-3 fs-13 mt-3';
-    feedback.innerText = 'Network error. Please WhatsApp us at +91 92703 69937.';
+    feedback.innerText = 'Network error. Please WhatsApp us at +971 502743168.';
   })
   .finally(() => {
     btn.disabled = false;

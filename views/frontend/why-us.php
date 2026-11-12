@@ -616,7 +616,7 @@ require __DIR__ . '/partials/header.php';
         <span>Request Personalized Demo</span>
         <i class="bi bi-arrow-right"></i>
       </a>
-      <a href="https://wa.me/919270369937" target="_blank" class="btn-intl-secondary">
+      <a href="https://wa.me/971502743168" target="_blank" class="btn-intl-secondary">
         <i class="bi bi-whatsapp text-success me-1"></i>
         <span>Chat on WhatsApp</span>
       </a>

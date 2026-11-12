@@ -68,7 +68,7 @@ class FeaturesPageController {
             ['features_cta_btn1_text',    'Book Free Live Demo', 'Primary Button Text', 'text'],
             ['features_cta_btn1_link',    '#bookDemoModal', 'Primary Button Target', 'text'],
             ['features_cta_btn2_text',    'Chat on WhatsApp', 'Secondary Button Text', 'text'],
-            ['features_cta_whatsapp',     '+91 92703 69937', 'WhatsApp Number', 'text'],
+            ['features_cta_whatsapp',     '+971 502743168', 'WhatsApp Number', 'text'],
 
             // ── Section 6: SEO & Social Meta ──
             ['features_seo_meta_title',   'Complete Jewellery ERP Features & 10 Core Modules | GoldMatrix', 'SEO Meta Title', 'text'],

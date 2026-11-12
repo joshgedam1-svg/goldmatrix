@@ -119,7 +119,7 @@ class AboutPageController {
             ['about_cta_title',         'Let\'s Grow Together', 'Final CTA Heading', 'text'],
             ['about_cta_desc',          'Discover how GoldMatrix can help simplify your jewellery business and bring greater control to your daily operations.', 'Final CTA Supporting Text', 'textarea'],
             ['about_cta_btn1_text',     'Book a Free Demo', 'CTA Button Text', 'text'],
-            ['about_cta_whatsapp',      '+91 92703 69937', 'CTA WhatsApp Phone', 'text'],
+            ['about_cta_whatsapp',      '+971 502743168', 'CTA WhatsApp Phone', 'text'],
             ['about_cta_bg_image',      'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1600&auto=format&fit=crop&q=80', 'CTA Background Image URL', 'text'],
 
             // ── 14. SEO Meta ──

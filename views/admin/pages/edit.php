@@ -643,7 +643,7 @@ $presetIcons = [
                     </div>
                     <div class="mb-3">
                       <label class="form-label fw-bold fs-12">UAE Phone</label>
-                      <input type="text" name="contact_uae_phone" class="form-control" value="<?= e(setting('contact_uae_phone', '+971 56 324 0319')) ?>">
+                      <input type="text" name="contact_uae_phone" class="form-control" value="<?= e(setting('contact_uae_phone', '+971 502743168')) ?>">
                     </div>
                     <div class="mb-3">
                       <label class="form-label fw-bold fs-12">UAE Email</label>
@@ -660,7 +660,7 @@ $presetIcons = [
                     </div>
                     <div class="mb-3">
                       <label class="form-label fw-bold fs-12">India Phone</label>
-                      <input type="text" name="contact_india_phone" class="form-control" value="<?= e(setting('contact_india_phone', '+91 92703 69937')) ?>">
+                      <input type="text" name="contact_india_phone" class="form-control" value="<?= e(setting('contact_india_phone', '+971 502743168')) ?>">
                     </div>
                     <div class="mb-3">
                       <label class="form-label fw-bold fs-12">India Email</label>

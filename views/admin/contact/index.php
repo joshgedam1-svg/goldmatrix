@@ -328,11 +328,11 @@ if (!is_array($faqs) || empty($faqs)) {
         <div class="row g-3 mb-3">
           <div class="col-md-4">
             <label class="form-label-section">Direct Telephone / Call</label>
-            <input type="text" name="contact_uae_phone" class="form-control" value="<?= e($settings['contact_uae_phone'] ?? '+971 56 324 0319') ?>" placeholder="+971 56 324 0319">
+            <input type="text" name="contact_uae_phone" class="form-control" value="<?= e($settings['contact_uae_phone'] ?? '+971 502743168') ?>" placeholder="+971 502743168">
           </div>
           <div class="col-md-4">
             <label class="form-label-section">WhatsApp Number</label>
-            <input type="text" name="contact_uae_whatsapp" class="form-control" value="<?= e($settings['contact_uae_whatsapp'] ?? '+971 56 324 0319') ?>" placeholder="+971 56 324 0319">
+            <input type="text" name="contact_uae_whatsapp" class="form-control" value="<?= e($settings['contact_uae_whatsapp'] ?? '+971 502743168') ?>" placeholder="+971 502743168">
           </div>
           <div class="col-md-4">
             <label class="form-label-section">Official Email Address</label>
@@ -406,11 +406,11 @@ if (!is_array($faqs) || empty($faqs)) {
         <div class="row g-3 mb-3">
           <div class="col-md-4">
             <label class="form-label-section">Direct Telephone / Call</label>
-            <input type="text" name="contact_india_phone" class="form-control" value="<?= e($settings['contact_india_phone'] ?? '+91 92703 69937') ?>" placeholder="+91 92703 69937">
+            <input type="text" name="contact_india_phone" class="form-control" value="<?= e($settings['contact_india_phone'] ?? '+971 502743168') ?>" placeholder="+971 502743168">
           </div>
           <div class="col-md-4">
             <label class="form-label-section">WhatsApp Support Number</label>
-            <input type="text" name="contact_india_whatsapp" class="form-control" value="<?= e($settings['contact_india_whatsapp'] ?? '+91 92703 69937') ?>" placeholder="+91 92703 69937">
+            <input type="text" name="contact_india_whatsapp" class="form-control" value="<?= e($settings['contact_india_whatsapp'] ?? '+971 502743168') ?>" placeholder="+971 502743168">
           </div>
           <div class="col-md-4">
             <label class="form-label-section">Official Email Address</label>
@@ -554,11 +554,11 @@ if (!is_array($faqs) || empty($faqs)) {
         <div class="row g-3 mb-3">
           <div class="col-md-3">
             <label class="form-label-section">WhatsApp Direct Hotline</label>
-            <input type="text" name="contact_hotline_whatsapp" class="form-control" value="<?= e($settings['contact_hotline_whatsapp'] ?? '+91 92703 69937') ?>" placeholder="+91 92703 69937">
+            <input type="text" name="contact_hotline_whatsapp" class="form-control" value="<?= e($settings['contact_hotline_whatsapp'] ?? '+971 502743168') ?>" placeholder="+971 502743168">
           </div>
           <div class="col-md-3">
             <label class="form-label-section">Direct Telephone Hotline</label>
-            <input type="text" name="contact_hotline_call" class="form-control" value="<?= e($settings['contact_hotline_call'] ?? '+971 56 324 0319') ?>" placeholder="+971 56 324 0319">
+            <input type="text" name="contact_hotline_call" class="form-control" value="<?= e($settings['contact_hotline_call'] ?? '+971 502743168') ?>" placeholder="+971 502743168">
           </div>
           <div class="col-md-3">
             <label class="form-label-section">Sales Inquiries Email</label>
@@ -756,7 +756,7 @@ if (!is_array($faqs) || empty($faqs)) {
             <label class="form-label-section">Meta Description</label>
             <span class="text-muted fs-11" id="seoDescCounter">0 / 160 chars</span>
           </div>
-          <textarea name="contact_seo_meta_desc" id="contact_seo_meta_desc" class="form-control" rows="3" placeholder="Enter compelling description summarizing UAE & India offices..." oninput="updateCharCount('contact_seo_meta_desc', 'seoDescCounter', 160)"><?= e($settings['contact_seo_meta_desc'] ?? 'Contact GoldMatrix Jewellery ERP specialists. UAE Headquarter in Sharjah Gold Souq and India Tech Hub in Maharashtra. Call +971 56 324 0319.') ?></textarea>
+          <textarea name="contact_seo_meta_desc" id="contact_seo_meta_desc" class="form-control" rows="3" placeholder="Enter compelling description summarizing UAE & India offices..." oninput="updateCharCount('contact_seo_meta_desc', 'seoDescCounter', 160)"><?= e($settings['contact_seo_meta_desc'] ?? 'Contact GoldMatrix Jewellery ERP specialists. UAE Headquarter in Sharjah Gold Souq and India Tech Hub in Maharashtra. Call +971 502743168.') ?></textarea>
           <div class="form-hint">Recommended length: 140-160 characters.</div>
         </div>
 

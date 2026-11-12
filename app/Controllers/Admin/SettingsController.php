@@ -50,7 +50,7 @@ class SettingsController {
             ['social',   'social_linkedin',         'https://www.linkedin.com/company/goldmatrix-software', 'LinkedIn Company URL', 'text'],
             ['social',   'social_twitter',          'https://x.com/goldmatrixerp',                  'Twitter / X Profile URL',      'text'],
             ['social',   'social_youtube',          'https://www.youtube.com/@goldmatrixsoftware',  'YouTube Channel URL',          'text'],
-            ['social',   'social_whatsapp',         'https://wa.me/971563240319',                   'WhatsApp Direct Link / Channel','text'],
+            ['social',   'social_whatsapp',         'https://wa.me/971502743168',                   'WhatsApp Direct Link / Channel','text'],
             ['social',   'social_pinterest',        '',                                             'Pinterest URL',                'text'],
             ['social',   'social_telegram',         '',                                             'Telegram Channel / Link',      'text'],
             ['social',   'custom_social_links',     '[]',                                           'Custom Social Links (JSON)',   'textarea'],

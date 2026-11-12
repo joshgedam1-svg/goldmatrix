@@ -246,14 +246,14 @@ require __DIR__ . '/partials/header.php';
       <div style="padding:24px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:16px; backdrop-filter:blur(8px);">
         <div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:#94A3B8; margin-bottom:14px;">Direct Contact</div>
         <div style="display:flex; flex-direction:column; gap:12px;">
-          <a href="tel:+971563240319" style="display:flex; align-items:center; gap:12px; color:#FFFFFF; text-decoration:none; font-size:14.5px; font-weight:600;">
-            <i class="bi bi-telephone-fill" style="color:#FBBF24;"></i> +971 56 324 0319 <span style="font-size:12px; color:#94A3B8; font-weight:normal;">(UAE HQ)</span>
+          <a href="tel:+971502743168" style="display:flex; align-items:center; gap:12px; color:#FFFFFF; text-decoration:none; font-size:14.5px; font-weight:600;">
+            <i class="bi bi-telephone-fill" style="color:#FBBF24;"></i> +971 502743168 <span style="font-size:12px; color:#94A3B8; font-weight:normal;">(UAE HQ)</span>
           </a>
-          <a href="tel:+919270369937" style="display:flex; align-items:center; gap:12px; color:#FFFFFF; text-decoration:none; font-size:14.5px; font-weight:600;">
-            <i class="bi bi-telephone-fill" style="color:#FBBF24;"></i> +91 92703 69937 <span style="font-size:12px; color:#94A3B8; font-weight:normal;">(India Hub)</span>
+          <a href="tel:+971527042669" style="display:flex; align-items:center; gap:12px; color:#FFFFFF; text-decoration:none; font-size:14.5px; font-weight:600;">
+            <i class="bi bi-telephone-fill" style="color:#FBBF24;"></i> +971 527042669 <span style="font-size:12px; color:#94A3B8; font-weight:normal;">(UAE Support)</span>
           </a>
-          <a href="https://wa.me/971563240319?text=Hello%20GoldMatrix,%20I%20want%20to%20schedule%20a%20demo" target="_blank" style="display:flex; align-items:center; gap:12px; color:#25D366; text-decoration:none; font-size:14.5px; font-weight:700;">
-            <i class="bi bi-whatsapp" style="color:#25D366; font-size:16px;"></i> WhatsApp Concierge (+971 56 324 0319)
+          <a href="https://wa.me/971502743168?text=Hello%20GoldMatrix,%20I%20want%20to%20schedule%20a%20demo" target="_blank" style="display:flex; align-items:center; gap:12px; color:#25D366; text-decoration:none; font-size:14.5px; font-weight:700;">
+            <i class="bi bi-whatsapp" style="color:#25D366; font-size:16px;"></i> WhatsApp Concierge (+971 502743168)
           </a>
         </div>
       </div>

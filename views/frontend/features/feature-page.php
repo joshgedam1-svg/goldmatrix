@@ -478,7 +478,7 @@ $hasTabs = !empty($mod['tabs']);
       <a href="#bookDemoModal" data-bs-toggle="modal" data-bs-target="#bookDemoModal" class="btn btn-warning text-dark fw-bold px-4 py-3">
         <i class="bi bi-calendar-check-fill me-1"></i> Book Live Module Demo
       </a>
-      <a href="https://wa.me/919270369937?text=Hello%20GoldMatrix%20Team%2C%20I%20want%20to%20know%20more%20about%20<?= urlencode($mod['title'] ?? 'this feature') ?>" target="_blank" class="btn btn-outline-light fw-semibold px-4 py-3">
+      <a href="https://wa.me/971502743168?text=Hello%20GoldMatrix%20Team%2C%20I%20want%20to%20know%20more%20about%20<?= urlencode($mod['title'] ?? 'this feature') ?>" target="_blank" class="btn btn-outline-light fw-semibold px-4 py-3">
         <i class="bi bi-whatsapp text-success me-1"></i> Chat with Specialist
       </a>
     </div>
@@ -744,7 +744,7 @@ $hasTabs = !empty($mod['tabs']);
       <a href="#bookDemoModal" data-bs-toggle="modal" data-bs-target="#bookDemoModal" class="btn btn-warning text-dark fw-bold px-4 py-3">
         <i class="bi bi-calendar-check-fill me-1"></i> Request Free 1-on-1 Demo
       </a>
-      <a href="https://wa.me/919270369937?text=Hello%20GoldMatrix%20Team%2C%20I%20would%20like%20a%20demo%20of%20<?= urlencode($mod['title'] ?? 'ERP') ?>" target="_blank" class="btn btn-outline-light fw-semibold px-4 py-3">
+      <a href="https://wa.me/971502743168?text=Hello%20GoldMatrix%20Team%2C%20I%20would%20like%20a%20demo%20of%20<?= urlencode($mod['title'] ?? 'ERP') ?>" target="_blank" class="btn btn-outline-light fw-semibold px-4 py-3">
         <i class="bi bi-whatsapp text-success me-1"></i> Contact via WhatsApp
       </a>
     </div>

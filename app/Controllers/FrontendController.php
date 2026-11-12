@@ -17,9 +17,9 @@ class FrontendController {
                 "SELECT value FROM homepage_sections WHERE section_key = ?",
                 [$key]
             );
-            return ($row && $row['value'] !== null) ? $row['value'] : $default;
+            return ($row && $row['value'] !== null) ? normalize_uae_phones((string)$row['value']) : normalize_uae_phones($default);
         } catch (\Exception $e) {
-            return $default;
+            return normalize_uae_phones($default);
         }
     }
 
@@ -72,7 +72,7 @@ class FrontendController {
                 'id'        => 'office_1',
                 'title'     => $this->hp('footer_uae_title', 'Headquarter - UAE'),
                 'badge'     => 'HEADQUARTER',
-                'phone'     => $this->hp('footer_uae_phone', '+971 52 704 2689'),
+                'phone'     => $this->hp('footer_uae_phone', '+971 527042669'),
                 'email'     => $this->hp('footer_email', 'info@goldmatrixsoftware.com'),
                 'address'   => $this->hp('footer_uae_address', "Conqueror tower Ajman UAE"),
                 'map_link'  => '',
@@ -82,7 +82,7 @@ class FrontendController {
                 'id'        => 'office_2',
                 'title'     => $this->hp('footer_india_title', 'India Operations Office'),
                 'badge'     => 'OPERATIONS & TECH HUB',
-                'phone'     => $this->hp('footer_india_phone', '+971 50 274 3168'),
+                'phone'     => $this->hp('footer_india_phone', '+971 502743168'),
                 'email'     => $this->hp('footer_email_2', 'goldmatrixsoftware@gmail.com'),
                 'address'   => $this->hp('footer_india_address', "India, 01/A, Hingna Rd,\nM.I.D.C, Maharashtra - 440022"),
                 'map_link'  => '',
@@ -627,16 +627,16 @@ class FrontendController {
             'cta_btn1_text'     => $this->hp('cta_btn1_text',      '🚀 Book Free Demo'),
             'cta_btn1_link'     => $this->hp('cta_btn1_link',      '#contact'),
             'cta_btn2_text'     => $this->hp('cta_btn2_text',      '📞 +91 98765 43210'),
-            'cta_btn2_link'     => $this->hp('cta_btn2_link',      'tel:+919876543210'),
+            'cta_btn2_link'     => $this->hp('cta_btn2_link',      'tel:+971502743168'),
 
             // ── FOOTER ──
             'footer_tagline'       => $this->hp('footer_tagline',       'We build jewellery-specific software delivering accuracy, control, scalability, and business growth'),
             'footer_uae_title'     => $this->hp('footer_uae_title',     'Headquarter - UAE'),
             'footer_uae_address'   => $this->hp('footer_uae_address',   "Shop No. 25/A\nCentral Gold Souq Block No. 8,\nAl Majaz -1 King Faisal Road - Sharjah"),
-            'footer_uae_phone'     => $this->hp('footer_uae_phone',     '+971 56 324 0319'),
+            'footer_uae_phone'     => $this->hp('footer_uae_phone',     '+971 502743168'),
             'footer_india_title'   => $this->hp('footer_india_title',   'India'),
             'footer_india_address' => $this->hp('footer_india_address', "India, 01/A, Hingna Rd,\nM.I.D.C, Maharashtra - 440022"),
-            'footer_india_phone'   => $this->hp('footer_india_phone',   '+91 92703 69937'),
+            'footer_india_phone'   => $this->hp('footer_india_phone',   '+971 502743168'),
             'footer_email'         => $this->hp('footer_email',         'info@goldmatrixsoftware.com'),
             'footer_email_2'       => $this->hp('footer_email_2',       'goldmatrixsoftware@gmail.com'),
             'social_facebook'      => $this->hp('social_facebook',      setting('social_facebook', 'https://www.facebook.com/goldmatrixsoftware')),
@@ -644,7 +644,7 @@ class FrontendController {
             'social_instagram'     => $this->hp('social_instagram',     setting('social_instagram', 'https://www.instagram.com/goldmatrixsoftware')),
             'social_linkedin'      => $this->hp('social_linkedin',      setting('social_linkedin', 'https://www.linkedin.com/company/goldmatrix-software')),
             'social_youtube'       => $this->hp('social_youtube',       setting('social_youtube', 'https://www.youtube.com/@goldmatrixsoftware')),
-            'social_whatsapp'      => $this->hp('social_whatsapp',      setting('social_whatsapp', 'https://wa.me/971563240319')),
+            'social_whatsapp'      => $this->hp('social_whatsapp',      setting('social_whatsapp', 'https://wa.me/971502743168')),
             'social_pinterest'     => $this->hp('social_pinterest',     setting('social_pinterest', '')),
             'social_telegram'      => $this->hp('social_telegram',      setting('social_telegram', '')),
             'footer_copyright'     => $this->hp('footer_copyright',     '© ' . date('Y') . ' GoldMatrix Software. All Rights Reserved.'),
@@ -983,7 +983,7 @@ class FrontendController {
             'description' => setting('about_seo_meta_desc', 'Learn about GoldMatrix, a jewellery-focused software provider delivering ERP, POS, inventory, manufacturing, accounting, CRM and business management solutions for jewellery businesses.'),
             'contactPoint' => [
                 '@type'       => 'ContactPoint',
-                'telephone'   => setting('contact_uae_phone', '+971 56 324 0319'),
+                'telephone'   => setting('contact_uae_phone', '+971 502743168'),
                 'contactType' => 'customer service'
             ]
         ];
@@ -1042,7 +1042,7 @@ class FrontendController {
             'about_cta_btn1_text'    => setting('about_cta_btn1_text', 'Book a Personal Demo'),
             'about_cta_btn1_link'    => setting('about_cta_btn1_link', '/contact'),
             'about_cta_btn2_text'    => setting('about_cta_btn2_text', 'Talk to Our Team'),
-            'about_cta_whatsapp'     => setting('about_cta_whatsapp', '+91 92703 69937'),
+            'about_cta_whatsapp'     => setting('about_cta_whatsapp', '+971 502743168'),
 
             // Menus
             'header_menu'            => $this->getMenu('header'),
@@ -1280,7 +1280,7 @@ class FrontendController {
             'cta_btn1_text'      => setting('features_cta_btn1_text', 'Book Free Live Demo'),
             'cta_btn1_link'      => setting('features_cta_btn1_link', '#bookDemoModal'),
             'cta_btn2_text'      => setting('features_cta_btn2_text', 'Chat on WhatsApp'),
-            'cta_whatsapp'       => setting('features_cta_whatsapp', '+91 92703 69937'),
+            'cta_whatsapp'       => setting('features_cta_whatsapp', '+971 502743168'),
 
             // ── Menus ──
             'header_menu'        => $this->getMenu('header'),
@@ -1340,7 +1340,7 @@ class FrontendController {
         $data = [
             // ── SEO & Meta ──
             'meta_title'         => setting('contact_seo_meta_title', 'Contact Us | GoldMatrix Software Technologies (UAE & India)'),
-            'meta_desc'          => setting('contact_seo_meta_desc', 'Contact GoldMatrix Jewellery ERP specialists. UAE Headquarter in Sharjah Gold Souq and India Tech Hub in Maharashtra. Call +971 56 324 0319.'),
+            'meta_desc'          => setting('contact_seo_meta_desc', 'Contact GoldMatrix Jewellery ERP specialists. UAE Headquarter in Sharjah Gold Souq and India Tech Hub in Maharashtra. Call +971 502743168.'),
             'meta_keywords'      => setting('contact_seo_keywords', 'contact goldmatrix, jewellery software support, goldmatrix sharjah uae, goldmatrix india office, jewellery pos demo'),
             'canonical_url'      => site_url('contact'),
             'og_title'           => setting('contact_seo_meta_title', 'Contact Us | GoldMatrix Software Technologies (UAE & India)'),
@@ -1361,8 +1361,8 @@ class FrontendController {
                 'tag'      => setting('contact_uae_tag', 'INTERNATIONAL HEADQUARTER'),
                 'country'  => setting('contact_uae_country', 'United Arab Emirates (Headquarter)'),
                 'address'  => setting('contact_uae_address', 'Shop No. 25/A, Central Gold Souq Block No. 8, Al Majaz -1 King Faisal Road - Sharjah'),
-                'phone'    => setting('contact_uae_phone', '+971 56 324 0319'),
-                'whatsapp' => setting('contact_uae_whatsapp', '+971 56 324 0319'),
+                'phone'    => setting('contact_uae_phone', '+971 502743168'),
+                'whatsapp' => setting('contact_uae_whatsapp', '+971 502743168'),
                 'email'    => setting('contact_uae_email', 'info@goldmatrixsoftware.com'),
                 'hours'    => setting('contact_uae_hours', 'Mon - Sat: 9:00 AM - 8:00 PM GST'),
                 'icon'     => 'bi-geo-alt-fill'
@@ -1374,8 +1374,8 @@ class FrontendController {
                 'tag'      => setting('contact_india_tag', 'DEVELOPMENT & TECH HUB'),
                 'country'  => setting('contact_india_country', 'India (Development & Operations Hub)'),
                 'address'  => setting('contact_india_address', 'India, 01/A, Hingna Rd, M.I.D.C, Maharashtra - 440022'),
-                'phone'    => setting('contact_india_phone', '+91 92703 69937'),
-                'whatsapp' => setting('contact_india_whatsapp', '+91 92703 69937'),
+                'phone'    => setting('contact_india_phone', '+971 502743168'),
+                'whatsapp' => setting('contact_india_whatsapp', '+971 502743168'),
                 'email'    => setting('contact_india_email', 'goldmatrixsoftware@gmail.com'),
                 'hours'    => setting('contact_india_hours', 'Mon - Sat: 9:30 AM - 7:00 PM IST'),
                 'icon'     => 'bi-building'
@@ -1394,8 +1394,8 @@ class FrontendController {
             'hotline_enabled'    => setting('contact_hotline_enabled', '1'),
             'hotline_title'      => setting('contact_hotline_title', 'Need Instant ERP Assistance or Customized Quotation?'),
             'hotline_subtitle'   => setting('contact_hotline_subtitle', 'Connect directly with our senior jewellery ERP implementation team for express query resolution.'),
-            'hotline_whatsapp'   => setting('contact_hotline_whatsapp', '+91 92703 69937'),
-            'hotline_call'       => setting('contact_hotline_call', '+971 56 324 0319'),
+            'hotline_whatsapp'   => setting('contact_hotline_whatsapp', '+971 502743168'),
+            'hotline_call'       => setting('contact_hotline_call', '+971 502743168'),
             'hotline_sales_email'=> setting('contact_hotline_sales_email', 'sales@goldmatrixsoftware.com'),
             'hotline_support_email'=> setting('contact_hotline_support_email', 'support@goldmatrixsoftware.com'),
 
@@ -2076,10 +2076,10 @@ class FrontendController {
             'footer_tagline'       => $this->hp('footer_tagline',       'We build jewellery-specific software delivering accuracy, control, scalability, and business growth'),
             'footer_uae_title'     => $this->hp('footer_uae_title',     'Headquarter - UAE'),
             'footer_uae_address'   => $this->hp('footer_uae_address',   "Shop No. 25/A\nCentral Gold Souq Block No. 8,\nAl Majaz -1 King Faisal Road - Sharjah"),
-            'footer_uae_phone'     => $this->hp('footer_uae_phone',     '+971 56 324 0319'),
+            'footer_uae_phone'     => $this->hp('footer_uae_phone',     '+971 502743168'),
             'footer_india_title'   => $this->hp('footer_india_title',   'India'),
             'footer_india_address' => $this->hp('footer_india_address', "India, 01/A, Hingna Rd,\nM.I.D.C, Maharashtra - 440022"),
-            'footer_india_phone'   => $this->hp('footer_india_phone',   '+91 92703 69937'),
+            'footer_india_phone'   => $this->hp('footer_india_phone',   '+971 502743168'),
             'footer_email'         => $this->hp('footer_email',         'info@goldmatrixsoftware.com'),
             'footer_email_2'       => $this->hp('footer_email_2',       'goldmatrixsoftware@gmail.com'),
             'social_facebook'      => $this->hp('social_facebook',      setting('social_facebook', 'https://www.facebook.com/goldmatrixsoftware')),
@@ -2087,7 +2087,7 @@ class FrontendController {
             'social_instagram'     => $this->hp('social_instagram',     setting('social_instagram', 'https://www.instagram.com/goldmatrixsoftware')),
             'social_linkedin'      => $this->hp('social_linkedin',      setting('social_linkedin', 'https://www.linkedin.com/company/goldmatrix-software')),
             'social_youtube'       => $this->hp('social_youtube',       setting('social_youtube', 'https://www.youtube.com/@goldmatrixsoftware')),
-            'social_whatsapp'      => $this->hp('social_whatsapp',      setting('social_whatsapp', 'https://wa.me/971563240319')),
+            'social_whatsapp'      => $this->hp('social_whatsapp',      setting('social_whatsapp', 'https://wa.me/971502743168')),
             'social_pinterest'     => $this->hp('social_pinterest',     setting('social_pinterest', '')),
             'social_telegram'      => $this->hp('social_telegram',      setting('social_telegram', '')),
             'footer_copyright'     => $this->hp('footer_copyright',     '© ' . date('Y') . ' GoldMatrix Software. All Rights Reserved.'),
@@ -2335,7 +2335,7 @@ class FrontendController {
             http_response_code(500);
             echo json_encode([
                 'success' => false,
-                'message' => 'Failed to register demo. Please contact us on WhatsApp (+91 92703 69937).'
+                'message' => 'Failed to register demo. Please contact us on WhatsApp (+971 502743168).'
             ]);
         }
         exit;

@@ -425,11 +425,11 @@ $companyName = setting('company_name', 'GoldMatrix');
           if (empty($dynamicOffices)) {
               $uaeTitle = $footer_uae_title ?? setting('footer_uae_title', 'Headquarter - UAE');
               $uaeAddr  = $footer_uae_address ?? setting('footer_uae_address', "Conqueror tower Ajman UAE");
-              $uaePhone = $footer_uae_phone ?? setting('footer_uae_phone', '+971 52 704 2689');
+              $uaePhone = $footer_uae_phone ?? setting('footer_uae_phone', '+971 502743168');
               
               $indTitle = $footer_india_title ?? setting('footer_india_title', 'India Operations Office');
               $indAddr  = $footer_india_address ?? setting('footer_india_address', "India, 01/A, Hingna Rd,\nM.I.D.C, Maharashtra - 440022");
-              $indPhone = $footer_india_phone ?? setting('footer_india_phone', '+971 50 274 3168');
+              $indPhone = $footer_india_phone ?? setting('footer_india_phone', '+971 527042669');
 
               if (!empty($uaeAddr) || !empty($uaeTitle)) {
                   $dynamicOffices[] = ['title' => $uaeTitle, 'address' => $uaeAddr, 'phone' => $uaePhone];

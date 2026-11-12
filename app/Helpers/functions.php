@@ -66,6 +66,30 @@ if (!function_exists('fix_software_typo')) {
     }
 }
 
+if (!function_exists('normalize_uae_phones')) {
+    function normalize_uae_phones(?string $value): string {
+        if ($value === null || $value === '') {
+            return '';
+        }
+        $replacements = [
+            '+91 92703 69937' => '+971 502743168',
+            '+91 9270369937'  => '+971 502743168',
+            '+919270369937'   => '+971502743168',
+            '919270369937'    => '971502743168',
+            '+971 56 324 0319' => '+971 502743168',
+            '+971563240319'   => '+971502743168',
+            '971563240319'    => '971502743168',
+            '+971 52 704 2689' => '+971 527042669',
+            '+971527042689'   => '+971527042669',
+            '971527042689'    => '971527042669',
+            '+971 50 274 3168' => '+971 502743168',
+            '+919876543210'   => '+971502743168',
+            '919876543210'    => '971502743168',
+        ];
+        return strtr($value, $replacements);
+    }
+}
+
 if (!function_exists('slugify')) {
     function slugify(string $text): string {
         $text = preg_replace('~[^\pL\d]+~u', '-', $text);
@@ -200,7 +224,8 @@ if (!function_exists('setting')) {
                 $settings = [];
             }
         }
-        return $settings[$key] ?? $default;
+        $val = $settings[$key] ?? $default;
+        return is_string($val) ? normalize_uae_phones($val) : $val;
     }
 }
 

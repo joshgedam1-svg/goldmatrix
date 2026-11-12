@@ -889,7 +889,7 @@ $ctaBg = setting('about_cta_bg_image', 'https://images.unsplash.com/photo-151556
         <span><?= e(setting('about_cta_btn1_text', 'Book a Free Demo')) ?></span>
         <i class="bi bi-arrow-right"></i>
       </button>
-      <a href="https://wa.me/<?= preg_replace('/[^0-9]/', '', setting('about_cta_whatsapp', '919270369937')) ?>?text=Hello%20GoldMatrix%20Team%2C%20I%20would%20like%20to%20learn%20more%20about%20your%20Jewellery%20ERP%20software." target="_blank" class="btn-ab-outline">
+      <a href="https://wa.me/<?= preg_replace('/[^0-9]/', '', setting('about_cta_whatsapp', '971502743168')) ?>?text=Hello%20GoldMatrix%20Team%2C%20I%20would%20like%20to%20learn%20more%20about%20your%20Jewellery%20ERP%20software." target="_blank" class="btn-ab-outline">
         <i class="bi bi-whatsapp text-success me-1"></i>
         <span>Chat on WhatsApp</span>
       </a>

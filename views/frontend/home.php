@@ -1756,7 +1756,7 @@ if (!empty($renderCountriesList)):
       <a href="#bookDemoModal" data-bs-toggle="modal" data-bs-target="#bookDemoModal" class="btn btn-warning text-dark fw-bold px-4 py-3">
         <i class="bi bi-calendar-check-fill me-1"></i> Book Free Demo
       </a>
-      <a href="https://wa.me/971563240319?text=Hi+GoldMatrix,+I+want+to+know+more+about+your+Jewellery+ERP+software." target="_blank" rel="noopener"
+      <a href="https://wa.me/971502743168?text=Hi+GoldMatrix,+I+want+to+know+more+about+your+Jewellery+ERP+software." target="_blank" rel="noopener"
          class="btn btn-outline-light fw-semibold px-4 py-3">
         <i class="bi bi-whatsapp text-success me-1"></i> Chat on WhatsApp
       </a>

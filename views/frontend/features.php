@@ -457,7 +457,7 @@ $heroBgClass = 'bg-theme-' . ($hero_bg_style ?? 'navy');
       <?php endif; ?>
 
       <?php if (!empty($cta_btn2_text)): ?>
-        <a href="https://wa.me/<?= preg_replace('/[^0-9]/', '', $cta_whatsapp ?? '919270369937') ?>?text=Hello%20GoldMatrix%20Team%2C%20I%20would%20like%20to%20see%20a%20demo%20of%20all%20features" target="_blank" class="btn btn-outline-light fw-semibold px-4 py-3">
+        <a href="https://wa.me/<?= preg_replace('/[^0-9]/', '', $cta_whatsapp ?? '971502743168') ?>?text=Hello%20GoldMatrix%20Team%2C%20I%20would%20like%20to%20see%20a%20demo%20of%20all%20features" target="_blank" class="btn btn-outline-light fw-semibold px-4 py-3">
           <i class="bi bi-whatsapp text-success me-1"></i> <?= e($cta_btn2_text) ?>
         </a>
       <?php endif; ?>
