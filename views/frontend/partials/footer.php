@@ -369,10 +369,27 @@ $companyName = setting('company_name', 'GoldMatrix');
             ['title' => 'RFID Jewellery Automation',          'url' => '/services/rfid-jewelry-automation',        'target' => '_self'],
             ['title' => 'Jewellery Tax & Accounting',         'url' => '/services/jewelry-accounting-gst-software','target' => '_self'],
           ];
-          foreach ($col1 as $item): ?>
+          foreach ($col1 as $item): 
+            $iUrl = $item['url'] ?? '';
+            $iTitle = $item['title'] ?? '';
+            // Sanitize placeholder hash links to real pages
+            if ($iUrl === '#' || strpos($iUrl, '#') === 0) {
+              if (stripos($iTitle, 'module') !== false || stripos($iTitle, 'feature') !== false) {
+                $iUrl = '/features';
+              } elseif (stripos($iTitle, 'solution') !== false) {
+                $iUrl = '/services';
+              } elseif (stripos($iTitle, 'how') !== false || stripos($iTitle, 'why') !== false) {
+                $iUrl = '/why-us';
+              } elseif (stripos($iTitle, 'review') !== false || stripos($iTitle, 'testimonial') !== false) {
+                $iUrl = '/testimonials';
+              } else {
+                $iUrl = '/features';
+              }
+            }
+          ?>
             <li>
-              <a href="<?= e($item['url']) ?>" class="footer-nav-link" target="<?= e($item['target'] ?: '_self') ?>">
-                <?= e($item['title']) ?>
+              <a href="<?= e($iUrl) ?>" class="footer-nav-link" target="<?= e($item['target'] ?: '_self') ?>">
+                <?= e($iTitle) ?>
               </a>
             </li>
           <?php endforeach; ?>
@@ -385,15 +402,39 @@ $companyName = setting('company_name', 'GoldMatrix');
         <ul class="footer-links-list">
           <?php 
           $col2 = !empty($footer_col2_menu) ? $footer_col2_menu : [
-            ['title' => 'About Us',       'url' => '/about',    'target' => '_self'],
-            ['title' => 'Features',       'url' => '/features', 'target' => '_self'],
-            ['title' => 'All Solutions',  'url' => '/services', 'target' => '_self'],
-            ['title' => 'Contact Us',     'url' => '/contact',  'target' => '_self'],
+            ['title' => 'About Us',          'url' => '/about',                 'target' => '_self'],
+            ['title' => 'Features',          'url' => '/features',              'target' => '_self'],
+            ['title' => 'Blog',              'url' => '/blog',                  'target' => '_self'],
+            ['title' => 'Contact Us',        'url' => '/contact',               'target' => '_self'],
+            ['title' => 'Privacy Policy',    'url' => '/privacy-policy',        'target' => '_self'],
+            ['title' => 'Terms of Service',  'url' => '/terms-and-conditions',  'target' => '_self'],
           ];
-          foreach ($col2 as $item): ?>
+          foreach ($col2 as $item): 
+            $iUrl = $item['url'] ?? '';
+            $iTitle = $item['title'] ?? '';
+            // Sanitize placeholder hash links to real pages
+            if ($iUrl === '#' || strpos($iUrl, '#') === 0) {
+              if (stripos($iTitle, 'blog') !== false) {
+                $iUrl = '/blog';
+              } elseif (stripos($iTitle, 'career') !== false) {
+                $iUrl = '/privacy-policy';
+                $iTitle = 'Privacy Policy';
+              } elseif (stripos($iTitle, 'about') !== false) {
+                $iUrl = '/about';
+              } elseif (stripos($iTitle, 'contact') !== false) {
+                $iUrl = '/contact';
+              } elseif (stripos($iTitle, 'privacy') !== false) {
+                $iUrl = '/privacy-policy';
+              } elseif (stripos($iTitle, 'terms') !== false) {
+                $iUrl = '/terms-and-conditions';
+              } else {
+                $iUrl = '/about';
+              }
+            }
+          ?>
             <li>
-              <a href="<?= e($item['url']) ?>" class="footer-nav-link" target="<?= e($item['target'] ?: '_self') ?>">
-                <?= e($item['title']) ?>
+              <a href="<?= e($iUrl) ?>" class="footer-nav-link" target="<?= e($item['target'] ?: '_self') ?>">
+                <?= e($iTitle) ?>
               </a>
             </li>
           <?php endforeach; ?>
@@ -427,28 +468,20 @@ $companyName = setting('company_name', 'GoldMatrix');
               $uaeAddr  = $footer_uae_address ?? setting('footer_uae_address', "Conqueror tower Ajman UAE");
               $uaePhone = $footer_uae_phone ?? setting('footer_uae_phone', '+971 502743168');
               
-              $indTitle = $footer_india_title ?? setting('footer_india_title', 'India Operations Office');
-              $indAddr  = $footer_india_address ?? setting('footer_india_address', "India, 01/A, Hingna Rd,\nM.I.D.C, Maharashtra - 440022");
-              $indPhone = $footer_india_phone ?? setting('footer_india_phone', '+971 527042669');
-
               if (!empty($uaeAddr) || !empty($uaeTitle)) {
                   $dynamicOffices[] = ['title' => $uaeTitle, 'address' => $uaeAddr, 'phone' => $uaePhone];
               }
-              if (!empty($indAddr) || !empty($indTitle)) {
-                  $dynamicOffices[] = ['title' => $indTitle, 'address' => $indAddr, 'phone' => $indPhone];
-              }
           }
 
-          $email1 = $footer_email ?? setting('footer_email', 'info@goldmatrixsoftware.com');
-          $email2 = $footer_email_2 ?? setting('footer_email_2', 'goldmatrixsoftware@gmail.com');
+          $email1 = 'info@goldmatrixsoftware.com';
           ?>
 
           <!-- Dynamic Office Locations Loop -->
           <?php foreach ($dynamicOffices as $off): 
             $oTitle = $off['title'] ?? '';
             $oAddr  = $off['address'] ?? '';
-            $oPhone = $off['phone'] ?? '';
-            $oEmail = $off['email'] ?? '';
+            $oPhone = !empty($off['phone']) ? $off['phone'] : '+971 502743168';
+            $oPhone = normalize_uae_phones($oPhone);
           ?>
             <?php if (!empty($oAddr) || !empty($oTitle)): ?>
               <div class="footer-location-item">
@@ -470,29 +503,19 @@ $companyName = setting('company_name', 'GoldMatrix');
                 <a href="tel:<?= e(preg_replace('/[^0-9+]/', '', $oPhone)) ?>"><?= e($oPhone) ?></a>
               </div>
             <?php endif; ?>
-
-            <?php if (!empty($oEmail) && $oEmail !== $email1 && $oEmail !== $email2): ?>
-              <div class="footer-contact-item">
-                <i class="bi bi-envelope-fill"></i>
-                <a href="mailto:<?= e($oEmail) ?>"><?= e($oEmail) ?></a>
-              </div>
-            <?php endif; ?>
           <?php endforeach; ?>
 
-          <!-- Official Inboxes -->
-          <?php if (!empty($email1)): ?>
-            <div class="footer-contact-item">
-              <i class="bi bi-envelope-fill"></i>
-              <a href="mailto:<?= e($email1) ?>"><?= e($email1) ?></a>
-            </div>
-          <?php endif; ?>
+          <!-- Secondary UAE Support Phone -->
+          <div class="footer-contact-item">
+            <i class="bi bi-telephone-fill"></i>
+            <a href="tel:+971527042669">+971 527042669</a>
+          </div>
 
-          <?php if (!empty($email2)): ?>
-            <div class="footer-contact-item">
-              <i class="bi bi-envelope-fill"></i>
-              <a href="mailto:<?= e($email2) ?>"><?= e($email2) ?></a>
-            </div>
-          <?php endif; ?>
+          <!-- Official Inbox (Single Professional Domain) -->
+          <div class="footer-contact-item">
+            <i class="bi bi-envelope-fill"></i>
+            <a href="mailto:info@goldmatrixsoftware.com">info@goldmatrixsoftware.com</a>
+          </div>
 
         </div>
       </div>
@@ -508,9 +531,15 @@ $companyName = setting('company_name', 'GoldMatrix');
       $rawCopy = $footer_copyright ?? setting('footer_copyright', '© {year} GoldMatrix Software. All Rights Reserved.');
       $cleanCopy = str_replace(['{year}', '{YEAR}', '{date}'], date('Y'), $rawCopy);
       ?>
-      <p class="footer-copyright-text">
-        <?= e($cleanCopy) ?>
-      </p>
+      <div class="d-flex flex-wrap align-items-center gap-2 footer-copyright-wrap">
+        <p class="footer-copyright-text mb-0">
+          <?= e($cleanCopy) ?>
+        </p>
+        <span class="text-white-50 fs-12 d-none d-sm-inline">|</span>
+        <a href="/privacy-policy" class="text-white-50 fs-12 text-decoration-none" style="transition:color 0.2s;">Privacy Policy</a>
+        <span class="text-white-50 fs-12">·</span>
+        <a href="/terms-and-conditions" class="text-white-50 fs-12 text-decoration-none" style="transition:color 0.2s;">Terms of Service</a>
+      </div>
 
       <?php 
       $isMultilang = (setting('enable_multilang', '1') == '1');

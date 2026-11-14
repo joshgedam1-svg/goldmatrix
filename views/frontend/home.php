@@ -111,7 +111,7 @@ $slides = !empty($hero_slides) ? $hero_slides : [
               ?>
                 <div class="hero-badge">
                   <i class="bi <?= $vectorIcons[$fidx % count($vectorIcons)] ?>"></i>
-                  <span><?= e($feat) ?></span>
+                  <span><?= e(clean_brand_spelling($feat)) ?></span>
                 </div>
               <?php endforeach; ?>
             </div>
@@ -1312,7 +1312,7 @@ if (!empty($renderCountriesList)):
   <div class="testi-wrap">
     <div class="testi-hdr">
       <h2 class="testi-title"><?= e($testi_tag ?? 'What Our Customers Say') ?></h2>
-      <a href="#" class="testi-view-all"><?= e($testi_view_all ?? 'View All Testimonials →') ?></a>
+      <a href="/testimonials" class="testi-view-all"><?= e($testi_view_all ?? 'View All Testimonials →') ?></a>
     </div>
     <div class="testi-grid">
       <?php

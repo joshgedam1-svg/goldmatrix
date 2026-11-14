@@ -984,12 +984,17 @@ class FrontendController {
             ]
         ];
 
+        $aboutSeoDesc = setting('about_seo_meta_desc', 'GoldMatrix delivers specialized jewellery ERP, POS, inventory, and manufacturing software trusted by jewellery businesses worldwide.');
+        if (strlen($aboutSeoDesc) > 160) {
+            $aboutSeoDesc = 'GoldMatrix delivers specialized jewellery ERP, POS, inventory, and manufacturing software trusted by jewellery businesses worldwide.';
+        }
+
         $orgSchema = [
             '@context'    => 'https://schema.org',
             '@type'       => 'Organization',
             'name'        => 'GoldMatrix Software Technologies',
             'url'         => site_url('/'),
-            'description' => setting('about_seo_meta_desc', 'Learn about GoldMatrix, a jewellery-focused software provider delivering ERP, POS, inventory, manufacturing, accounting, CRM and business management solutions for jewellery businesses.'),
+            'description' => $aboutSeoDesc,
             'contactPoint' => [
                 '@type'       => 'ContactPoint',
                 'telephone'   => setting('contact_uae_phone', '+971 502743168'),
@@ -1000,11 +1005,10 @@ class FrontendController {
         $data = [
             // SEO Meta (Aligned with Recommended SEO & E-E-A-T Standards)
             'meta_title'             => setting('about_seo_meta_title', 'About GoldMatrix | Jewellery ERP & Business Software'),
-            'meta_desc'              => setting('about_seo_meta_desc', 'Learn about GoldMatrix, a jewellery-focused software provider delivering ERP, POS, inventory, manufacturing, accounting, CRM and business management solutions for jewellery businesses.'),
-            'meta_keywords'          => setting('about_seo_keywords', 'about goldmatrix, jewellery erp software, jewellery pos, jewellery inventory management, jewelry manufacturing software, jewellery accounting crm'),
+            'meta_desc'              => $aboutSeoDesc,
             'canonical_url'          => site_url('about'),
             'og_title'               => setting('about_seo_meta_title', 'About GoldMatrix | Jewellery ERP & Business Software'),
-            'og_desc'                => setting('about_seo_meta_desc', 'Learn about GoldMatrix, a jewellery-focused software provider delivering ERP, POS, inventory, manufacturing, accounting, CRM and business management solutions for jewellery businesses.'),
+            'og_desc'                => $aboutSeoDesc,
             'og_image'               => setting('about_seo_og_image', ''),
             'schema_json'            => [$breadcrumbsSchema, $orgSchema],
 

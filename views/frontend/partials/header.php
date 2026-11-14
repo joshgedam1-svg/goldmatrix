@@ -62,10 +62,15 @@ $fbPixel    = trim(strip_tags((string)setting('facebook_pixel_id', '')));
 $customHead = setting('custom_header_scripts', '');
 
 // ── Local / Geo SEO Tags ──
-$geoRegion = trim((string)setting('geo_region', 'IN-MH'));
-$geoPlace  = trim((string)setting('geo_placename', 'Mumbai, Maharashtra, India'));
-$geoPos    = trim((string)setting('geo_position', '19.0760;72.8777'));
-$icbmPos   = str_replace(';', ', ', $geoPos);
+$geoRegion = trim((string)setting('geo_region', ''));
+$geoPlace  = trim((string)setting('geo_placename', ''));
+$geoPos    = trim((string)setting('geo_position', ''));
+if (stripos($geoPlace, 'Mumbai') !== false || stripos($geoRegion, 'IN-MH') !== false) {
+    $geoRegion = '';
+    $geoPlace  = '';
+    $geoPos    = '';
+}
+$icbmPos   = !empty($geoPos) ? str_replace(';', ', ', $geoPos) : '';
 
 $author    = setting('meta_author', 'GoldMatrix Software Technologies Pvt Ltd');
 $publisher = setting('meta_publisher', 'GoldMatrix Software Technologies');
@@ -74,7 +79,6 @@ $twitterCard   = setting('twitter_card_type', 'summary_large_image');
 ?>
 <title><?= e($finalMetaTitle) ?></title>
 <meta name="description" content="<?= e($finalMetaDesc) ?>">
-<meta name="keywords" content="<?= e($finalMetaKeys) ?>">
 <meta name="robots" content="<?= e($finalRobots) ?>">
 <meta name="author" content="<?= e($author) ?>">
 <meta name="publisher" content="<?= e($publisher) ?>">
@@ -2806,7 +2810,7 @@ $topBarIsModal = !empty($topBarLink) && strpos($topBarLink, '#') === 0;
           <i class="bi bi-telephone-fill text-warning me-2"></i><?= e(setting('contact_phone', '+971 502743168')) ?>
         </div>
         <div class="fs-13 fw-semibold text-truncate" style="color:var(--gm-navy);">
-          <i class="bi bi-envelope-fill text-warning me-2"></i><?= e(setting('contact_email', 'info@goldmatrixerp.com')) ?>
+          <i class="bi bi-envelope-fill text-warning me-2"></i><?= e(str_replace('info@goldmatrixerp.com', 'info@goldmatrixsoftware.com', setting('contact_email', 'info@goldmatrixsoftware.com'))) ?>
         </div>
       </div>
       <a href="#bookDemoModal" data-bs-toggle="modal" data-bs-target="#bookDemoModal" class="btn btn-gold-solid w-100 justify-content-center py-2 open-demo-modal" data-bs-dismiss="offcanvas">
